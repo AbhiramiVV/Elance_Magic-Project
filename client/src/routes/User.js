@@ -6,7 +6,7 @@ import UserRegister from "../Pages/User/UserRegister";
 import Otp from "../Pages/User/Otp";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import Bookpage from '../Pages/User/Bookpage'
-
+import ChangePassword from "../Component/ChangePassword";
 import Forgot from "../Pages/User/Forgot";
 function User() {
   const {user}=useAuthContext()
@@ -19,6 +19,8 @@ function User() {
          <Route path='/otp' element={<Otp/>}/>
          <Route path='/bookpage' element={<Bookpage/>}/>
          <Route path='/forgotPassword' element={<Forgot/>}/>
+         <Route path="changePassword/:userId/:token" element={user != "" ? <Navigate to="/home" /> : <ChangePassword />} />
+
       
     </Routes>
     </fragments>

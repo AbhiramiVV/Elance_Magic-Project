@@ -27,7 +27,7 @@ module.exports = {
       } else {
         let otp=randomNumber();
         twilio.sendVerificationToken(mobile,otp);
-        sentMail(email,otp);
+        // sentMail(email,otp);
 
         const userToken=jwt.sign({
           otp:otp,
@@ -151,32 +151,56 @@ postResend: async (req, res) => {
   },
   forgotPassword :async (req, res) => {
     const { mobile } = req.body;
-    console.log(req.body);
+    
     try {
       const user = await userModels.findOne({
-        mobile: req.body.mobile,
+        email: req.body.phone,
         isBlocked: false,
       });
+      console.log(user);
       if (user) {
-        const response = await twilio.sendVerificationToken(mobile, otp);
-        
-        if (response.status === true) {
-          res
-            .status(201)
+        let otp =randomNumber()
+        console.log("++++++++++++++++++++++++",otp);
+        console.log(mobile);
+       // twilio.sendVerificationToken(mobile, otp);
+         sentMail(user.email,otp);
+      
+          res.status(201)
             .json(`otp send successfully at to change password ${mobile}`);
-        } else {
-          res
-            .status(500)
-            .json(
-              `otp failed for network error   at ${mobile} contact developer`
-            );
-        }
-      } else {
-        res.status(400).json(`there is no user with mobile number${mobile}`);
+       
+   
+  }
+}catch(err){
+    console.log(err);
+  }
+  },
+
+  changePassword : async (req, res) => {
+    try {
+      const { password, userId, passwordToken } = req.body;
+  console.log(req.body);
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(400).send("Invalid userId. No user found with that userId or expired.");
       }
+  
+      const token = await Token.findOne({
+        userId: userId,
+        token: passwordToken,
+      });
+      if (!token) {
+        return res.status(400).send("Invalid link or expired.");
+      }
+  
+      const hash = await bcrypt.hash(password, 5);
+      user.password = hash;
+      await user.save();
+  
+      res.status(201).json("Password changed successfully");
     } catch (error) {
-      res.status(500).json("server addichu poy, call the developer");
+      res.status(500).json("Server error. Please contact the developer.");
     }
   },
+  
 
 };

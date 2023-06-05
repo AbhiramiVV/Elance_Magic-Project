@@ -31,12 +31,12 @@ const ForgotOTPModal = ({ visible, onClose, phone }) => {
   };
 
   const otpSentButtonHandler = async () => {
-    if (otp.length < 4) {
+    if (otp.length < 5) {
       setError(true);
     } else {
       setError(false);
 
-      const data = { mobile: phone, otp: otp };
+      const data = { email: phone, otp: otp };
       try {
         const response = await axios.post('/ChangePasswordOtp', data);
         if (response.status === 201) {
@@ -82,13 +82,13 @@ const ForgotOTPModal = ({ visible, onClose, phone }) => {
         </div>
         <div className="h-full w-full flex items-center justify-center flex-col">
           <h1 className="text-3xl font-medium mb-8">Enter OTP</h1>
-          <p>OTP was sent to +91 {phone}</p>
+          <p>OTP was sent to {phone}</p>
           <OtpInput
             value={otp}
             onChange={handleChange}
             separator={<span className="p-4 shadow-2xl"> </span>}
             inputStyle="md:text-7xl text-4xl shadow-2xl border-2 rounded-xl"
-            numInputs={4}
+            numInputs={5}
             isInputNum={true}
           />
           {error && <p className="text-red-600 text-xl pt-5">Invalid OTP</p>}

@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import Navebar from '../../components/providerComponents/Navbar'
-import Footer from '../../components/Footer'
-import ServicesCard from '../../components/ServicesCard'
-import GalaryCard from '../../components/GalaryCard'
+
+import Footer from '../../Component/Footer'
+// import ServicesCard from '../../components/ServicesCard'
+// import GalaryCard from '../../components/GalaryCard'
 import { useNavigate } from 'react-router-dom'
 import { MdLibraryAdd } from 'react-icons/md'
-import AddServiceModal from '../../components/providerComponents/AddServiceModal'
-import AddImage from '../../components/providerComponents/AddImage'
+// import AddServiceModal from '../../components/providerComponents/AddServiceModal'
+// import AddImage from '../../components/providerComponents/AddImage'
 import axios from '../../instance/axios'
-import { useSelector } from 'react-redux'
-import { managersData } from '../../features/managersAuthSlice'
 import { Link } from 'react-router-dom'
-import OurServices from '../../components/providerComponents/OurServices'
-import OurGalary from '../../components/providerComponents/OurGalary'
-import managerAxios from '../../config/managerAxios'
-import Superadminbar from '../../Component/Superadminbar'
+import { useAuthContext } from '../../Hooks/useAuthContext'
+import Adminsidebar from '../../Component/Adminsidebar'
 
 const ProviderProfile = () => {
 
 
+  const { admin } = useAuthContext();
 
   const [addService, setAddService] = useState(false)
   const [addImage, setAddImage] = useState(false)
@@ -27,13 +24,19 @@ const ProviderProfile = () => {
   const navigate = useNavigate()
 
 
-  const addServiceClose = () => setAddService(false);
-  const addImageClose = () => setAddImage(false);
+  // const addServiceClose = () => setAddService(false);
+  // const addImageClose = () => setAddImage(false);
 
-  const managers = useSelector(managersData)
   useEffect(() => {
+
     try {
-      managerAxios.post("/provider/providerDetails", { email: managers }).then((response) => {
+      console.log(admin.adminExist._id);
+      const id=admin.adminExist._id;
+      axios.get(`/vendor/providerDetails/${id}`,{
+        headers: {
+          Authorization: `${admin.token}`,
+        },
+      }).then((response) => {
         if (response.status === 200) {
           setData(response.data.data)
         } else {
@@ -49,7 +52,7 @@ const ProviderProfile = () => {
 
   return (
     <div>
-      <Superadminbar />
+      <Adminsidebar />
       <div className={data.coverPhoto ? `bg-black w-full h-[300px] lg:h-[500px] flex relative justify-center` : 'bg-slate-300 w-full h-[300px] lg:h-[500px] flex relative justify-center'} >
         {data.coverPhoto && <div className='w-full h-full bg-cover bg-no-repeat' style={{ backgroundImage: `url(${data.coverPhoto})` }}></div>}
         <Link to="/editProfile" className='bg-white border-black border-2 absolute right-16 top-14 w-48 h-16 rounded-2xl flex items-center justify-center text-xl font-semibold hover:shadow-xl uppercase hover:bg-[#E1EDF8] hover:scale-105'>edit profile</Link>
@@ -67,9 +70,9 @@ const ProviderProfile = () => {
           {data.category ?
             <div className='grid grid-flow-col gap-3 overflow-x-scroll show-scrollbar mb-10 col-span-3'>
 
-              {data.category.map((elements) => {
+              {/* {data.category.map((elements) => {
                 return <OurServices isDelete={setServiceDelete} delete={serviceDelete} text={elements} />
-              })}
+              })} */}
             </div>
             : <h1>Services not available</h1>}
           <div className='col-span-1 flex items-center justify-center'>
@@ -82,9 +85,9 @@ const ProviderProfile = () => {
         <div className='grid grid-flow-col grid-cols-3'>
           {data.gallery ?
             <div className='grid grid-flow-col gap-3 overflow-x-scroll show-scrollbar mb-10 col-span-2'>
-              {data.gallery.map((elements) => {
+              {/* {data.gallery.map((elements) => {
                 return <OurGalary isDelete={setServiceDelete} delete={serviceDelete} image={elements} />
-              })}
+              })} */}
 
 
             </div>
@@ -94,10 +97,10 @@ const ProviderProfile = () => {
           </div>
         </div>
       </div>
-      <AddServiceModal onClose={addServiceClose} inService={data.category} visible={addService} />
-      <AddImage onClose={addImageClose} visible={addImage} />
+      {/* <AddServiceModal onClose={addServiceClose} inService={data.category} visible={addService} />
+      <AddImage onClose={addImageClose} visible={addImage} /> */}
 
-      {/* <Footer /> */}
+       <Footer /> 
     </div>
   )
 }

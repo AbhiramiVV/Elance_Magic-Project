@@ -20,7 +20,7 @@ function Admin() {
         <Route path='/vendorSign' element={<ProviderSignup/>}/>
         <Route path='/dashboard'  element={admin?<Dashboard/>:<Adminlogin/>}/>
         <Route path='/customerview'  element={admin?<CustomerView/>:<Adminlogin/>}/>
-        <Route path="/profile/:id" element={<ProviderProfile />} /> 
+        <Route path="/profile" element={<ProviderProfile />} /> 
 
         
        

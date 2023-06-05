@@ -26,7 +26,7 @@ function Adminsidebar() {
   }
   const menus=[
     {name:"Dashboard",link:'/',icon:MdOutlineDashboard },
-    {name:"Profile",link:'/admin/profile/:id',icon:GiPartyPopper },
+    {name:"Profile",link:'/vendor/profile',icon:GiPartyPopper },
     {name:"Venue-Category",link:'/admin/Venueview',icon:FaHotel },
     {name:"Venue",link:'/admin/venueDisplay',icon:FaPlaceOfWorship },
     {name:"Decorations",link:'/admin/Decordisplay',icon:GiPartyFlags },

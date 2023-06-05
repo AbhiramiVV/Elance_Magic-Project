@@ -13,14 +13,10 @@ const Forgotpassword = () => {
     const addServiceClose = () => setOtpmodal(false);
 
     const submitHandler = async () => {
-        const expr = /^(91)?[0-9]{10}$/;
-        if (!phone.match(expr)) {
-            setErrMsg("Enter valid phone number");
-            return;
-        }
+      
         try {
             const response = await axios.post("/forgotPassword", {
-                mobile: phone,
+                 phone,
             });
             setOtpmodal(true)
         } catch (error) {
@@ -39,8 +35,8 @@ const Forgotpassword = () => {
     return (
         <div className='w-full h-[1007px] grid lg:grid-cols-3 md:grid-cols-5 bg-white'>
             <div className='md:col-span-2 lg:col-span-1 flex flex-col items-center justify-center'>
-                <h1 className='text-3xl font-semibold font-sans'>Enter your phone number</h1>
-                <input onChange={(e) => { setPhone(e.target.value) }} type="text" name='phone' value={phone} placeholder='Phone' className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center' />
+                <h1 className='text-3xl font-semibold font-sans'>Enter your Email Address</h1>
+                <input onChange={(e) => { setPhone(e.target.value) }} type="email" name='email' value={phone} placeholder='Email' className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center' />
                 <p className="text-red-500">{errMsg}</p>
 
                 <button onClick={submitHandler} className='w-[60%] h-20 mt-10 text-3xl font-semibold border-2 border-black rounded-3xl text-center hover:scale-105 hover:bg-black hover:text-white'>Send OTP</button>

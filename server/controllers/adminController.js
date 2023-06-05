@@ -30,6 +30,7 @@ module.exports = {
           res.status(200).json({
             token,
             create: true,
+            adminExist,
           });
         } else {
           res.status(401).json({ error: "Incorrect login details" });
@@ -143,4 +144,15 @@ module.exports = {
     res.status(404).json({ message: "error occured" });
   }
 },
-};
+providerDetails :async (req, res) => {
+
+  try {
+    console.log(req.params.id);
+    const id=req.params.id;
+    const provider = await adminModels.findOne({ _id: id});
+    res.status(200).json({ data: provider });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+}
+}
