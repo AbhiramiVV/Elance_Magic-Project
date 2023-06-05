@@ -7,6 +7,7 @@ import CustomerView from '../Pages/Admin/CustomerView';
 
 import { useAuthContext } from '../Hooks/useAuthContext';
 import ProviderSignup from '../Pages/Admin/ProviderSignup';
+import ProviderProfile from '../Pages/Admin/ProviderProfile';
 
 function Admin() {
   const {admin}=useAuthContext()
@@ -19,6 +20,8 @@ function Admin() {
         <Route path='/vendorSign' element={<ProviderSignup/>}/>
         <Route path='/dashboard'  element={admin?<Dashboard/>:<Adminlogin/>}/>
         <Route path='/customerview'  element={admin?<CustomerView/>:<Adminlogin/>}/>
+        <Route path="/profile/:id" element={<ProviderProfile />} /> 
+
         
        
        

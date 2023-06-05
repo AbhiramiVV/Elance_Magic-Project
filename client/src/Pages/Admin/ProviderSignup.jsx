@@ -9,7 +9,7 @@ import Otp from '../User/Otp';
 const ProviderSignup = () => {
   const[selectedPlace,setSelectedPlace]=useState('')
   const[selectedService,setSelectedService]=useState('')
-
+  const [file, setImage] = useState("")
   const navigate=useNavigate()
     axios.defaults.withCredentials = true;
     const[Inpval,setInpval]=useState({
@@ -31,8 +31,10 @@ const ProviderSignup = () => {
        
   try{
     axios.post('/vendor/vendorSignup',{
-        ...providerData,selectedPlace,selectedService
-    }).then((data)=>{
+        ...providerData,selectedPlace,selectedService,file
+    },{headers: {
+      'content-type': 'multipart/form-data'
+  }}).then((data)=>{
 console.log(data.data);
 if(!data.data.err){
 setShowOtp(true)
@@ -79,10 +81,12 @@ setShowOtp(true)
     phone:"",
     email:"",
     password:"",
+    
+
  
 
   });
-  const [image, setImage] = useState("")
+  
 
   const [validation, setValidation] = useState({
     companyName: {
@@ -459,8 +463,7 @@ setShowOtp(true)
         <input
           type="file"
           name='certificate'
-          value={providerData.certificate}
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={(e)=>setImage(e.target.files[0])}
           className='w-[90%] h-20 mt-10 text-3xl p-4 border-2 border-black rounded-3xl text-center'
         />
         <label htmlFor="file">Gov.Approved Certificate</label>

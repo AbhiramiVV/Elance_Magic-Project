@@ -1,7 +1,7 @@
 const Admin = require("../models/admin/AdminSchema");
 const superadmin = require("../models/admin/superadmin");
 const mailer = require("../config/otp");
-upload = require("../utility/multer");
+const upload = require("../utility/multer");
 const Eventcat = require("../models/admin/Eventcategory");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -88,7 +88,7 @@ singleviewadmin :async (req, res) => {
 },
  updateadmin :async (req, res) => {
   try {
-    const admin = await Admin.findByIdAndUpdate(req.params.id, req.body, {
+    const admin = await Admin.findByIdAndUpdate(req.params.id, req.body, req.file,{
       new: true,
     });
     if (!admin) {

@@ -47,6 +47,7 @@ module.exports = {
     try {
       
       const {companyName,description,phone,email,password,selectedPlace,selectedService,certificate} =req.body
+      console.log(req.file);
       const vendorExist = await adminModels.findOne({ email: email});
 
       if (vendorExist) {
@@ -59,7 +60,7 @@ module.exports = {
         console.log(otp);
         //twilio.sendVerificationToken(phone, otp);
           mailer.sentMail(email,otp);
-        const signupToken=jwt.sign({
+        const signupToken=jwt.sign({                  
           otp:otp,
 
       },

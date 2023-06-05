@@ -17,7 +17,7 @@ const adminSchema=mongoose.Schema({
         type:Boolean,
         default:false
     },
-    certificate: { type: String, required: true, trim: true },
+    certificate: { type: Object, required: true, trim: true },
     // coverPhoto: { type: String, trim: true },
     // profilePhoto: { type: String, trim: true },
     // gallery: { type: Array, default: [], required: true, trim: true },
