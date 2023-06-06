@@ -57,7 +57,7 @@ module.exports = {
     }
   },
    verifyUserSignup:async(req,res)=>{
-console.log(req.body);
+     console.log(req.body);
     const {name,email,mobile,password}=req.body
   
     let otp=req.body.OTP;
@@ -150,24 +150,26 @@ postResend: async (req, res) => {
     }
   },
   forgotPassword :async (req, res) => {
-    const { mobile } = req.body;
     
     try {
       const user = await userModels.findOne({
         email: req.body.phone,
         isBlocked: false,
       });
-      console.log(user);
       if (user) {
         let otp =randomNumber()
-        console.log("++++++++++++++++++++++++",otp);
-        console.log(mobile);
        // twilio.sendVerificationToken(mobile, otp);
          sentMail(user.email,otp);
-      
-          res.status(201)
-            .json(`otp send successfully at to change password ${mobile}`);
-       
+         const tempToken = jwt.sign({
+          otp: otp,
+      }, "00f3f20c9fc43a29d4c9b6b3c2a3e18918f0b23a379c152b577ceda3256f3ffa");
+
+      return res.cookie("tempToken", tempToken, {
+          httpOnly: true,
+          secure: true,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          sameSite: "none",
+      }).json({ err: false, message: `Otp send successfully ${user.email}` });
    
   }
 }catch(err){
@@ -175,32 +177,52 @@ postResend: async (req, res) => {
   }
   },
 
-  changePassword : async (req, res) => {
+  ChangePasswordOtp: async (req, res) => {
     try {
-      const { password, userId, passwordToken } = req.body;
-  console.log(req.body);
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(400).send("Invalid userId. No user found with that userId or expired.");
+      
+      const { email, otp } = req.body;
+      let user=await userModels.findOne({email:email})
+      let tempToken=req.cookies.tempToken
+      const OtpToken = jwt.verify(tempToken,'00f3f20c9fc43a29d4c9b6b3c2a3e18918f0b23a379c152b577ceda3256f3ffa')
+      if(otp==OtpToken.otp){
+        let id=user._id;
+        const tempToken = jwt.sign({
+          ID:id,
+      }, "00f3f20c9fc43a29d4c9b6b3c2a3e18918f0b23a379c152b577ceda3256f3ffa");
+
+      return res.cookie("tempToken", tempToken, {
+          httpOnly: true,
+          secure: true,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          sameSite: "none",
+      }).status(200).json('success')
+      }else{
+        res.status(404).json("Not found")
+
       }
-  
-      const token = await Token.findOne({
-        userId: userId,
-        token: passwordToken,
-      });
-      if (!token) {
-        return res.status(400).send("Invalid link or expired.");
-      }
-  
-      const hash = await bcrypt.hash(password, 5);
-      user.password = hash;
-      await user.save();
-  
-      res.status(201).json("Password changed successfully");
+       
+ 
     } catch (error) {
       res.status(500).json("Server error. Please contact the developer.");
     }
   },
+  changePassword: async (req, res) => {
+    try {
+      let tempToken=req.cookies.tempToken
+      const OtpToken = jwt.verify(tempToken,'00f3f20c9fc43a29d4c9b6b3c2a3e18918f0b23a379c152b577ceda3256f3ffa')
+      let id=OtpToken.ID
+
+      const {password }= req.body;
+      let bcrypPassword=await bcrypt.hash(password,10)
+
+       await userModels.updateOne({_id:id},{$set:{password:bcrypPassword}}).then(()=>{
+        res.status(200).json("success")
+       })
+    } catch (error) {
+      res.status(500).json("Server error. Please contact the developer.");
+    }
+  },
+  
   
 
 };

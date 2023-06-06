@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import Footer from '../../Component/Footer'
-// import ServicesCard from '../../components/ServicesCard'
-// import GalaryCard from '../../components/GalaryCard'
+ import ServicesCard from '../../Component/ServiceCard'
+import GalaryCard from  '../../Component/GalaryCard'
 import { useNavigate } from 'react-router-dom'
 import { MdLibraryAdd } from 'react-icons/md'
 // import AddServiceModal from '../../components/providerComponents/AddServiceModal'
@@ -10,8 +9,7 @@ import { MdLibraryAdd } from 'react-icons/md'
 import axios from '../../instance/axios'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../Hooks/useAuthContext'
-import Adminsidebar from '../../Component/Adminsidebar'
-
+import OurGalary from '../../Component/OurGalary'
 const ProviderProfile = () => {
 
 
@@ -52,8 +50,7 @@ const ProviderProfile = () => {
 
   return (
     <div>
-      <Adminsidebar />
-      <div className={data.coverPhoto ? `bg-black w-full h-[300px] lg:h-[500px] flex relative justify-center` : 'bg-slate-300 w-full h-[300px] lg:h-[500px] flex relative justify-center'} >
+       <div className={data.coverPhoto ? `bg-black w-full h-[300px] lg:h-[500px] flex relative justify-center` : 'bg-slate-300 w-full h-[300px] lg:h-[500px] flex relative justify-center'} >
         {data.coverPhoto && <div className='w-full h-full bg-cover bg-no-repeat' style={{ backgroundImage: `url(${data.coverPhoto})` }}></div>}
         <Link to="/editProfile" className='bg-white border-black border-2 absolute right-16 top-14 w-48 h-16 rounded-2xl flex items-center justify-center text-xl font-semibold hover:shadow-xl uppercase hover:bg-[#E1EDF8] hover:scale-105'>edit profile</Link>
         <div className='lg:w-[400px] h-[230px] w-[230px] lg:h-[400px] rounded-full bg-slate-300 border-8 border-[#E1EDF8] absolute top-[187px] lg:top-[300px]'>
@@ -85,9 +82,9 @@ const ProviderProfile = () => {
         <div className='grid grid-flow-col grid-cols-3'>
           {data.gallery ?
             <div className='grid grid-flow-col gap-3 overflow-x-scroll show-scrollbar mb-10 col-span-2'>
-              {/* {data.gallery.map((elements) => {
+              {data.gallery.map((elements) => {
                 return <OurGalary isDelete={setServiceDelete} delete={serviceDelete} image={elements} />
-              })} */}
+              })}
 
 
             </div>
@@ -100,7 +97,7 @@ const ProviderProfile = () => {
       {/* <AddServiceModal onClose={addServiceClose} inService={data.category} visible={addService} />
       <AddImage onClose={addImageClose} visible={addImage} /> */}
 
-       <Footer /> 
+       
     </div>
   )
 }

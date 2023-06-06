@@ -15,7 +15,6 @@ function Userlogin() {
 
   const loginuser = async (e) => {
     e.preventDefault();
-    console.log('hjsjhjhj');
   await login(email, Password);
 console.log(error)
    if(error){
@@ -24,12 +23,12 @@ console.log(error)
   };
 
   return (
-    <div>
+<div style={{ backgroundImage: `url(${userRegister})` ,backgroundSize:"cover" }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
         <div className="hidden sm:block h-full">
-          <img className="absolute inset-0 m-0 h-full overflow-hidden rounded-none  p-5" src={userRegister} />
+          <img className="absolute inset-0 m-0 h-full overflow-hidden rounded-none  p-5 ml-25" style={{marginLeft:"400px"}}   />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center" style={{marginRight:"200px"}}>
           <img className="w-40 h-40 mx-auto object-cover" src={logo} />
           <form
             className="max-w-[400px] w-full mx-auto bg-gray-200 p-8 px-8 rounded-lg"

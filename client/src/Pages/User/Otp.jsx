@@ -4,7 +4,6 @@ import axios from '../../instance/axios';
 import { toast } from 'react-toastify';
 
 function Otp(props) {
-  console.log("********************",props);
 
   const [timer, setTimer] = useState(60);
   const navigate=useNavigate()

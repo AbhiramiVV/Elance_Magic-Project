@@ -38,11 +38,11 @@ const ForgotOTPModal = ({ visible, onClose, phone }) => {
 
       const data = { email: phone, otp: otp };
       try {
-        const response = await axios.post('/ChangePasswordOtp', data);
-        if (response.status === 201) {
+        const response = await axios.post('/ChangePasswordOtp',data);
+        if (response.status === 200) {
           const token = response.data.passwordToken;
           const userId = response.data.userId;
-          navigate(`/changePassword/${userId}/${token}`);
+          navigate(`/changePassword`);
         } else {
           setError(true);
         }

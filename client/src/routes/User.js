@@ -19,7 +19,7 @@ function User() {
          <Route path='/otp' element={<Otp/>}/>
          <Route path='/bookpage' element={<Bookpage/>}/>
          <Route path='/forgotPassword' element={<Forgot/>}/>
-         <Route path="changePassword/:userId/:token" element={user != "" ? <Navigate to="/home" /> : <ChangePassword />} />
+         <Route path="/changePassword" element={user? <Navigate to="/home" /> : <ChangePassword />} />
 
       
     </Routes>
