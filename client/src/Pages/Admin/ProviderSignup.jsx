@@ -6,7 +6,57 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import logo from "../../assets/logo.jpg";
 import event from "../../assets/event-planner.jpg"
 import Otp from '../User/Otp';
+import { Theme, useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+const names = [
+  'Wedding Planning',
+  'Personal Events',
+  'Birthday Party',
+  'Commercial Events',
+  'Live music & orchestra',
+  'Entertainment shows',
+  'Photography',
+  'Travel',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 const ProviderSignup = () => {
+
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {'target': { value },} = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
   const[selectedPlace,setSelectedPlace]=useState('')
   const[selectedService,setSelectedService]=useState('')
   const [file, setImage] = useState("")
@@ -31,7 +81,7 @@ const ProviderSignup = () => {
        
   try{
     axios.post('/vendor/vendorSignup',{
-        ...providerData,selectedPlace,selectedService,file
+        ...providerData,selectedPlace,selectedService,file,personName
     },{headers: {
       'content-type': 'multipart/form-data'
   }}).then((data)=>{
@@ -283,6 +333,7 @@ setShowOtp(true)
 
 
   const PhoneCheck = () => {
+    
     const expr = /^(91)?[0-9]{10}$/;
     if (!providerData.phone.match(expr)) {
       setValidation((prevState) => ({
@@ -305,8 +356,6 @@ setShowOtp(true)
       return true;
     }
   };
-
-
 
   const passwordCheck = () => {
     if (providerData.password.length < 8) {
@@ -359,28 +408,29 @@ setShowOtp(true)
         )}
        <div className='w-[90%] mt-10 text-3xl border-2 border-black rounded-3xl text-center flex flex-col items-center justify-center break-words'>
   <div className='w-[90%] break-words'>{services.join(', ')}</div>
-  <MdBackspace onClick={backService} className='self-end mr-2' />
-  <select
-    name="services"
-    value={selectedService} // Use "inpVal.services" instead of "providerData.category"
-    onChange={(e)=>setSelectedService(e.target.value)}
-    onBlur={servicesCheck}
-    className='h-12 bottom-0 border-none w-full text-center rounded-3xl'
-  >
-    <option value="#">--Select Services--</option>
-    <option value="Wedding planning">Wedding planning</option>
-    <option value="Personal events">Personal events</option>
-    <option value="Commercial events">Commercial events</option>
-    <option value="Birthday party">Birthday party</option>
-    <option value="Live music & orchestra">Live music & orchestra</option>
-    <option value="Entertainment shows">Entertainment shows</option>
-    <option value="Bridal makeup">Bridal makeup</option>
-    <option value="Photography">Photography</option>
-    <option value="Travels">Travels</option>
-    <option value="Catering services">Catering services</option>
-    <option value="Decoration">Decoration</option>
-    <option value="Security">Security</option>
-  </select>
+   
+  <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+        <Select
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput label="Name" />}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 </div>
 
         {/* {!validation.services.status && (

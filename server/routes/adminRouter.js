@@ -12,6 +12,8 @@ router.post('/vendorSignup',upload.single('file'),admin.postSignup)
 router.post('/otp',admin.verifyvendorSignup)
 router.get('/customerdisplay',admin.customerview)
 router.get("/providerDetails/:id",admin.providerDetails)
+router.post("/removeService", admin.removeService);
+
 
 // router.use(adminAuth)
 

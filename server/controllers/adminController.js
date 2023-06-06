@@ -7,6 +7,7 @@ const { randomNumber } = require("../randomNum");
 const adminModels = require("../models/admin/AdminSchema");
 const userModels = require("../models/userModels/userDetails");
 const { sentMail } = require("../config/otp");
+const { response } = require("express");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -47,8 +48,8 @@ module.exports = {
     console.log(req.body)
     try {
       
-      const {companyName,description,phone,email,password,selectedPlace,selectedService,certificate} =req.body
-      console.log(req.file);
+      const {companyName,description,phone,email,password,selectedPlace,personName,certificate} =req.body
+    
       const vendorExist = await adminModels.findOne({ email: email});
 
       if (vendorExist) {
@@ -71,7 +72,7 @@ module.exports = {
           email:  email,
           companyname:  companyName,      
           description:  description,
-          category: selectedService,
+          category: personName,
           place: selectedPlace,
           mobile:phone,
 
@@ -154,5 +155,20 @@ providerDetails :async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error });
   }
+},
+removeService:async(req,res)=>{
+  const { data,name } = req.body;
+  {
+    
+    try {
+      console.log(name);
+      await adminModels.updateOne({ _id:data._id},{ $pull: { category:name} }).then((response)=>{
+        console.log(response);
+      })
+      res.status(201).json({ message: "success" })
+    } catch (error) {
+      res.status(500).json({ message: error })
+    }
 }
+},
 }

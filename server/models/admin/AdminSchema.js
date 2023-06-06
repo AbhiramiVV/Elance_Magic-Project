@@ -7,7 +7,7 @@ const adminSchema=mongoose.Schema({
     email: { type: String, unique: true, required: true, trim: true },
     companyname: { type: String, required: true },
     description: { type: String, required: true, trim: true },
-    category: { type: String, required: true, trim: true },
+    category: { type: Array, required: true, trim: true },
     place: { type: Array, required: true, trim: true },
     mobile: { type: Number, unique: true, trim: true, required: true },
     verified: { type: Boolean },
