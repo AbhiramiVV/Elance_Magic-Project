@@ -13,6 +13,10 @@ router.post('/otp',admin.verifyvendorSignup)
 router.get('/customerdisplay',admin.customerview)
 router.get("/providerDetails/:id",admin.providerDetails)
 router.post("/removeService", admin.removeService);
+router.post("/addService/:id", admin.addService);
+router.get("/editProfile/:id",admin.editProfileGet);
+router.patch("/editProfile",admin.editProfilePach)
+    
 
 
 // router.use(adminAuth)

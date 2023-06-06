@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
 import axios from '../instance/axios'
 import { useToast } from '@chakra-ui/toast';
+import { useAuthContext } from '../Hooks/useAuthContext';
 
 
 const AddServiceModal = ({ visible, onClose, inService }) => {
   // console.log(inService);
   const [data, setData] = useState("");
   const [error, setError] = useState("");
-  
+  const {admin}=useAuthContext()
   const toast = useToast();
 
   const handleOnClose = (e) => {
-    if (e.target.id === "container") onClose()
+    if (e.target.id === "container") onClose();
   };
+  
 
   const changeData = (e) => {
 
@@ -24,11 +26,14 @@ const AddServiceModal = ({ visible, onClose, inService }) => {
 
   const saveHandler = async () => {
     if (data != "") {
-      const response = await axios.post('/vendor/addService', { data },{
+      const id = admin.adminExist._id;
+
+      const response = await axios.post(`/vendor/addService/${id}`, { data },{
           headers: {
             Authorization: admin.token,
           },
         })
+        console.log(response);
       if (response.status === 201) {
         toast({
           position: "top",
@@ -38,7 +43,7 @@ const AddServiceModal = ({ visible, onClose, inService }) => {
           title: 'Service added successfully',
 
         })
-        onClose()
+        onClose();
       } else {
         setError("select one")
         toast({

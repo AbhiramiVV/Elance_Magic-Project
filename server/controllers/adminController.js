@@ -80,9 +80,9 @@ module.exports = {
           approved: false,
           password:   bcrypPassword,
           certificate: req.file,
-          // coverPhoto: userDetail.coverPhoto,
-          // profilePhoto: userDetail.profilePhoto,
-          // gallery: userDetail.gallery,
+          coverPhoto: coverPhoto,
+          profilePhoto: profilePhoto,
+          gallery:gallery,
         });
 
         await newAdmin.save();
@@ -171,4 +171,50 @@ removeService:async(req,res)=>{
     }
 }
 },
+addService :async (req, res) => {
+  const { data} = req.body;
+  const id=req.params.id;
+  {
+    try {
+      await adminModels.updateOne({ _id:id}, { $push: { category: data} }).then((response)=>{
+        console.log(response);
+      })
+      res.status(201).json({ message: "success" })
+    } catch (error) {
+      res.status(500).json({ message: error })
+    }
+}
+},
+editProfileGet:async (req, res) => {
+  const id=req.params.id;
+  try {
+    const profile = await adminModels.findOne({ _id:id });
+    profile ?
+      res.status(201).json({ profile }) :
+      res.status(500).json({ message: "error" })
+  } catch (error) {
+    res.status(500).json({ message: "error" })
+  }
+
+},
+editProfilePach: async (req, res) => {
+  const { email, name, description, place } = req.body
+  console.log(req.body);
+  if (req.body.coverPhotoUrl && req.body.profilePhotoUrl) {
+    try {
+      await adminModels.findOneAndUpdate(email, { companyname: name, description: description, place: place, coverPhoto: req.body.coverPhotoUrl, profilePhoto: req.body.profilePhotoUrl })
+      res.status(201).json({ message: "success" })
+    } catch (error) {
+      res.status(500).json({ message: error })
+    }
+  } else {
+    try {
+      await adminModels.findOneAndUpdate(email, { companyname: name, description: description, place: place, coverPhoto: "", profilePhoto: "" })
+      res.status(201).json({ message: "success" })
+    } catch (error) {
+      res.status(500).json({ message: error })
+    }
+  }
+}
+
 }
