@@ -170,7 +170,7 @@ const {admin}=useAuthContext();
     }
   
     try {
-      const response = await axios.patch("/provider/editProfile", values);
+      const response = await axios.patch("/vendor/editProfile", values);
       if (response.status === 201) {
         toast({
           position: "top",
