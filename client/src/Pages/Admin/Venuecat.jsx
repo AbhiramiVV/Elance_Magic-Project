@@ -18,6 +18,7 @@ const Venuecat=()=> {
 
     const fetchVenueCategories = async () => {
         try {
+          console.log(venuecat);
           const response = await axios.get('/vendor/Venuedisplay', {
             headers: {
               Authorization: `${admin.token}`,
@@ -35,9 +36,8 @@ const Venuecat=()=> {
       };
       
       
-
-
-const handleDelete = async (id) => {
+      
+      const handleDelete = async (id) => {
   try {
     const confirmResult = await Swal.fire({
       title: 'Are you sure?',
@@ -51,7 +51,8 @@ const handleDelete = async (id) => {
     });
 
     if (confirmResult.isConfirmed) {
-      await axios.put(`/vendor/deletecat/${id}`, {
+      
+      await axios.delete(`/vendor/deletecat/${id}`, {
         headers: {
           Authorization: `${admin.token}`,
         },
@@ -69,6 +70,7 @@ const handleDelete = async (id) => {
       }, []);
 
 
+      const ImgURl='http://localhost:5000/upload/'
 
           const columns=[
      {
@@ -77,9 +79,10 @@ const handleDelete = async (id) => {
      },
      {
          name:"Image",
-         selector:(row)=><img width={90} height={90} src={row.image}/>
+        
+         selector:(row)=><img width={90} height={90} src={`http://localhost:5000/uploads/${row.image.filename}`}/>
          
-     },
+        },
      {
          name:"Name",
          selector:(row)=>row.name,
@@ -107,7 +110,7 @@ const handleDelete = async (id) => {
               
                 <div className='d-flex w-8/12 flex-column align-items-center mx-auto'>
                <div className="flex justify-end">
-                <NavLink to="/admin/VenueAdd">
+                <NavLink to="/vendor/VenueAdd">
                 <button class="bg-green-900  text-white font-bold py-2 px-4 rounded-full mt-5 mb-5">
             ADD NEW EVENT CATEGORY
           </button>

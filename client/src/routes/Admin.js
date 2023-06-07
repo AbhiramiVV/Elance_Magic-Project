@@ -9,6 +9,8 @@ import { useAuthContext } from '../Hooks/useAuthContext';
 import ProviderSignup from '../Pages/Admin/ProviderSignup';
 import ProviderProfile from '../Pages/Admin/ProviderProfile';
 import Venuecat from '../Pages/Admin/Venuecat';
+import VenuecatAdd from '../Pages/Admin/VenuecatAdd';
+import VenueDisplay from '../Pages/Admin/VenueDisplay';
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -23,6 +25,9 @@ function Admin() {
         <Route path="/profile" element={<ProviderProfile />} /> 
         <Route path="/editProfile" element={<EditProfile />} />
         <Route path='/Venueview'  element={admin?<Venuecat/>:<Adminlogin/>}/>
+        <Route path='/VenueAdd'  element={admin?<VenuecatAdd/>:<Adminlogin/>}/>
+        <Route path='/venueDisplay'  element={admin?<VenueDisplay/>:<Adminlogin/>}/>
+
 
 
 

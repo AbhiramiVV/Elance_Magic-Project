@@ -1,14 +1,13 @@
 const mongoose=require('mongoose')
-const Schema=mongoose.Schema;
-const venuecategorySchema=new Schema({
+const venuecategorySchema=mongoose.Schema({
     name:{
         type:String,
         required:true
     },
     image:{
-        type:String,
+        type:Object,
         required:true
     }
 })
-const venueCategory=mongoose.model("venueCategory",venuecategorySchema)
+const venueCategory=mongoose.model("venueCategory",venuecategorySchema);
 module.exports=venueCategory;

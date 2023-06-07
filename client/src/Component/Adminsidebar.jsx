@@ -28,9 +28,9 @@ function Adminsidebar() {
     {name:"Dashboard",link:'/vendor/vendor',icon:MdOutlineDashboard },
     {name:"Profile",link:'/vendor/profile',icon:GiPartyPopper },
     {name:"Venue-Category",link:'/vendor/Venueview',icon:FaHotel },
-    {name:"Venue",link:'/admin/venueDisplay',icon:FaPlaceOfWorship },
-    {name:"Decorations",link:'/admin/Decordisplay',icon:GiPartyFlags },
-    {name:"Photography",link:'/admin/photographerview',icon:AiFillCamera },
+    {name:"Venue",link:'/vendor/venueDisplay',icon:FaPlaceOfWorship },
+    {name:"Decorations",link:'/vendor/Decordisplay',icon:GiPartyFlags },
+    {name:"Photography",link:'/vendor/photographerview',icon:AiFillCamera },
     {name:"Customers",link:'/vendor/customerview',icon:FaUserAlt },
     
   ];

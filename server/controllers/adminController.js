@@ -6,7 +6,7 @@ const mailer = require("../config/otp");
 const { randomNumber } = require("../randomNum");
 const adminModels = require("../models/admin/AdminSchema");
 const userModels = require("../models/userModels/userDetails");
-const Venuecat =require("../models/admin/Venuecat")
+const venueCategory =require("../models/admin/Venuecat")
 const { sentMail } = require("../config/otp");
 const { response } = require("express");
 const createToken = (_id) => {
@@ -210,9 +210,45 @@ editProfilePatch: async (req, res) => {
 },
  Venuecategory :async (req, res) => {
   try {
-    const venue = await Venuecat.find();
+    const venue = await venueCategory.find();
     res.status(201).json({ data: venue });
   } catch (error) {}
+},
+addVenue : async (req, res) => {
+  console.log(req.body);
+  const allvenue = await venueCategory.find();
+  const verify = await venueCategory.findOne({
+    name: { $regex: new RegExp(req.body.name, "i") },
+  });
+  if (verify) {
+    res.status(201).json({ err: "category already exist" });
+  } else {
+    const newVenuecat = new venueCategory({
+      name: req.body.name,
+      image: req.file,
+    });
+    await newVenuecat.save();
+    res.status(201).json({ message: "successfully added", verified: true });
+  }
+},
+Deletecat:async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Venuecat.findByIdAndDelete(id);
+    res.status(200).json({ message: "Venue category deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
+  }
+
+},
+venuecollectview :async (req, res) => {
+  try {
+    const allvenue = await venueCategory.find();
+    res.status(200).json({ data: allvenue, verified: true });
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
+  }
 },
 
 }
