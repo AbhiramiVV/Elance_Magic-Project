@@ -27,7 +27,7 @@ function Adminsidebar() {
   const menus=[
     {name:"Dashboard",link:'/vendor/vendor',icon:MdOutlineDashboard },
     {name:"Profile",link:'/vendor/profile',icon:GiPartyPopper },
-    {name:"Venue-Category",link:'/admin/Venueview',icon:FaHotel },
+    {name:"Venue-Category",link:'/vendor/Venueview',icon:FaHotel },
     {name:"Venue",link:'/admin/venueDisplay',icon:FaPlaceOfWorship },
     {name:"Decorations",link:'/admin/Decordisplay',icon:GiPartyFlags },
     {name:"Photography",link:'/admin/photographerview',icon:AiFillCamera },

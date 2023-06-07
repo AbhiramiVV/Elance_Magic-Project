@@ -16,7 +16,8 @@ router.post("/removeService", admin.removeService);
 router.post("/addService/:id", admin.addService);
 router.get("/editProfile/:id",admin.editProfileGet);
 router.patch("/editProfile",multiUpload,admin.editProfilePatch)
-    
+router.get('/Venuedisplay',admin.Venuecategory)
+   
 
 
 // router.use(adminAuth)

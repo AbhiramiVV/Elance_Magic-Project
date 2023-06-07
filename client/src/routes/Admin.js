@@ -8,7 +8,7 @@ import EditProfile from '../Pages/Admin/EditProfile';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import ProviderSignup from '../Pages/Admin/ProviderSignup';
 import ProviderProfile from '../Pages/Admin/ProviderProfile';
-
+import Venuecat from '../Pages/Admin/Venuecat';
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -22,6 +22,8 @@ function Admin() {
         <Route path='/customerview'  element={admin?<CustomerView/>:<Adminlogin/>}/>
         <Route path="/profile" element={<ProviderProfile />} /> 
         <Route path="/editProfile" element={<EditProfile />} />
+        <Route path='/Venueview'  element={admin?<Venuecat/>:<Adminlogin/>}/>
+
 
 
         

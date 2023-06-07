@@ -6,6 +6,7 @@ const mailer = require("../config/otp");
 const { randomNumber } = require("../randomNum");
 const adminModels = require("../models/admin/AdminSchema");
 const userModels = require("../models/userModels/userDetails");
+const Venuecat =require("../models/admin/Venuecat")
 const { sentMail } = require("../config/otp");
 const { response } = require("express");
 const createToken = (_id) => {
@@ -206,8 +207,12 @@ editProfilePatch: async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Failed to update profile", error });
   }
-
-
+},
+ Venuecategory :async (req, res) => {
+  try {
+    const venue = await Venuecat.find();
+    res.status(201).json({ data: venue });
+  } catch (error) {}
 },
 
 }
