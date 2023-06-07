@@ -197,24 +197,17 @@ editProfileGet:async (req, res) => {
   }
 
 },
-editProfilePach: async (req, res) => {
-  const { email, name, description, place } = req.body
-  console.log(req.body);
-  if (req.body.coverPhotoUrl && req.body.profilePhotoUrl) {
-    try {
-      await adminModels.findOneAndUpdate(email, { companyname: name, description: description, place: place, coverPhoto: req.body.coverPhotoUrl, profilePhoto: req.body.profilePhotoUrl })
-      res.status(201).json({ message: "success" })
-    } catch (error) {
-      res.status(500).json({ message: error })
-    }
-  } else {
-    try {
-      await adminModels.findOneAndUpdate(email, { companyname: name, description: description, place: place, coverPhoto: "", profilePhoto: "" })
-      res.status(201).json({ message: "success" })
-    } catch (error) {
-      res.status(500).json({ message: error })
-    }
+editProfilePatch: async (req, res) => {
+  const {  name, description, place } = req.body;
+  let email=req.body.email.adminExist.email
+  try {
+   await adminModels.updateMany({email:email},{$set:{companyname:name,description:description,place:place}})
+    res.status(201).json({ message: "success" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update profile", error });
   }
-}
+
+
+},
 
 }

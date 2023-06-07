@@ -1,11 +1,10 @@
 import { Button, useToast } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import { MdBackspace } from 'react-icons/md'
-import AddCoverPhoto from '../Admin/AddCoverPhoto'
-import AddDP from '../Admin/AddDP'
 import axios from '../../instance/axios'
 import BeatLoader from "react-spinners/BeatLoader";
 import { useAuthContext } from '../../Hooks/useAuthContext'
+import { Navigate } from 'react-router-dom';
 
 const EditProfile = () => {
 const {admin}=useAuthContext();
@@ -14,11 +13,8 @@ const {admin}=useAuthContext();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [place, setPlace] = useState([]);
-  const [coverPhoto, setCoverPhoto] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState("");
   const [load, setLoad] = useState(false);
-  const [cover, setCover] = useState(false);
-  const [dp, setDp] = useState(false);
+  
 
   const [validation, setValidation] = useState({
     companyName: {
@@ -140,10 +136,6 @@ const {admin}=useAuthContext();
           setName(response.data.profile.companyname)
           setDescription(response.data.profile.description)
           setPlace(response.data.profile.place)
-          setCoverPhoto(response.data.profile.coverPhoto)
-          setProfilePhoto(response.data.profile.profilePhoto)
-          response.data.profile.coverPhoto ? setCover(true) : setCover(false);
-          response.data.profile.profilePhoto ? setDp(true) : setDp(false);
         }
       })
     } catch (error) {
@@ -160,18 +152,15 @@ const {admin}=useAuthContext();
       name,
       description,
       place,
-      coverPhotoUrl: null, 
-      profilePhotoUrl: null, 
+     
     };
   
-    if (coverPhoto && profilePhoto) {
-      values.coverPhotoUrl = URL.createObjectURL(coverPhoto);
-      values.profilePhotoUrl = URL.createObjectURL(profilePhoto);
-    }
+    
   
     try {
       const response = await axios.patch("/vendor/editProfile", values);
       if (response.status === 201) {
+        Navigate('vendor/profile');
         toast({
           position: "top",
           variant: "left-accent",
@@ -179,6 +168,7 @@ const {admin}=useAuthContext();
           isClosable: true,
           title: "Profile updated successfully",
         });
+        Navigate('vendor/profile');
       } else {
         toast({
           position: "top",
@@ -205,8 +195,8 @@ const {admin}=useAuthContext();
     <div>
       <div className='w-full'>
         <div className='max-w-[1300px]  mx-auto  mt-8 rounded-2xl flex flex-col'>
-          <AddCoverPhoto photo={coverPhoto} setCover={setCover} cover={cover} change={setCoverPhoto} />
-          <AddDP photo={profilePhoto} setDp={setDp} dp={dp} change={setProfilePhoto} />
+          {/* <AddCoverPhoto photo={coverPhoto} setCover={setCover} cover={cover} change={setCoverPhoto} />
+          <AddDP photo={profilePhoto} setDp={setDp} dp={dp} change={setProfilePhoto} /> */}
 
           <div className='mx-auto flex flex-col items-center justify-center mt-10 gap-6'>
             <div>
