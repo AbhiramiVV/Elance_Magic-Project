@@ -93,20 +93,25 @@ function VenueDisplay() {
           selector:(row)=>row.name,
           sortable:true
       },
-      
+      {
+        name:"Email",
+        selector:(row)=>row.email,
+        sortable:true
+
+      },
      
       
       {
           name:"View",
           selector:(row)=>
-          <NavLink to={`/admin/venuesingle/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' /></button></NavLink>
+          <NavLink to={`/vendor/venuesingle/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' /></button></NavLink>
 
 
       },
       {
           name:"Edit",
           selector:(row)=>
-          <NavLink to={`/admin/venueEdit/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' /></button></NavLink>
+          <NavLink to={`/vendor/venueEdit/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' /></button></NavLink>
       },
       {
         name:"Remove",
@@ -125,6 +130,11 @@ return (
             
               <div className='d-flex w-8/12 flex-column align-items-center mx-auto'>
               <div className="flex justify-end">
+              <NavLink to="/vendor/venuecollectadd">
+              <button class="bg-green-900  text-white font-bold py-2 px-4 rounded-full mt-5 mb-5">
+          ADD NEW VENUE
+        </button>
+        </NavLink>
             
         </div>
         {loading ? (

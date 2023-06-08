@@ -11,6 +11,8 @@ import ProviderProfile from '../Pages/Admin/ProviderProfile';
 import Venuecat from '../Pages/Admin/Venuecat';
 import VenuecatAdd from '../Pages/Admin/VenuecatAdd';
 import VenueDisplay from '../Pages/Admin/VenueDisplay';
+import Venuesingle from '../Pages/Admin/Venuesingle';
+import VenuecollectAdd from '../Pages/Admin/VenuecollectAdd';
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -27,6 +29,9 @@ function Admin() {
         <Route path='/Venueview'  element={admin?<Venuecat/>:<Adminlogin/>}/>
         <Route path='/VenueAdd'  element={admin?<VenuecatAdd/>:<Adminlogin/>}/>
         <Route path='/venueDisplay'  element={admin?<VenueDisplay/>:<Adminlogin/>}/>
+        <Route path='/venuecollectadd'  element={admin?<VenuecollectAdd/>:<Adminlogin/>}/>
+        <Route path='/venuesingle/:id'  element={admin?<Venuesingle/>:<Adminlogin/>}/>
+
 
 
 

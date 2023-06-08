@@ -7,8 +7,10 @@ const { randomNumber } = require("../randomNum");
 const adminModels = require("../models/admin/AdminSchema");
 const userModels = require("../models/userModels/userDetails");
 const venueCategory =require("../models/admin/Venuecat")
+const Venue=require("../models/admin/Venue")
 const { sentMail } = require("../config/otp");
 const { response } = require("express");
+const venuecollection = require("../models/admin/Venue");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -215,7 +217,7 @@ editProfilePatch: async (req, res) => {
   } catch (error) {}
 },
 addVenue : async (req, res) => {
-  console.log(req.body);
+  
   const allvenue = await venueCategory.find();
   const verify = await venueCategory.findOne({
     name: { $regex: new RegExp(req.body.name, "i") },
@@ -244,10 +246,47 @@ Deletecat:async (req, res) => {
 },
 venuecollectview :async (req, res) => {
   try {
-    const allvenue = await venueCategory.find();
+    const allvenue = await venuecollection.find();
     res.status(200).json({ data: allvenue, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
+  }
+},
+VenuesideAdd : async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.files);
+    // console.log(req.files.image[0]);
+
+
+   await venuecollection.create({
+    name: req.body.name,
+    description: req.body.description,
+    email: req.body.email,
+    manager: req.body.manager,
+    mobile: req.body.mobile,
+    address: req.body.address,
+    seats: req.body.seats,
+    location: req.body.location,
+    rent: req.body.rent,
+    image: req.files
+   }).then((result)=>{
+    console.log(result);
+   })
+    res.status(201).json({ message: "successfully added" });
+  } catch (error) {
+    console.log(error.message);
+  }
+},
+singleVenue :async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
+    const venuesingle = await venueCategory.findById({ _id: id });
+    console.log(venuesingle);
+    res.status(201).json(venuesingle);
+  } catch (error) {
+    console.log("Error occurred in single view of venue", error);
   }
 },
 
