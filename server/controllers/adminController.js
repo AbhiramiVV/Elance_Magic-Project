@@ -304,4 +304,14 @@ updateVenue : async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 },
+Deletevenue : async (req, res) => {
+  const id = req.params.id;
+  try {
+    await venuecollection.findByIdAndDelete(id);
+    res.status(200).json({ message: "Venue category deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
+  }
+},
 }

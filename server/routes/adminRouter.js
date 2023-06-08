@@ -23,6 +23,8 @@ router.get('/venuecollectView',admin.venuecollectview)
 router.post('/addVenueside',multiUpload,admin.VenuesideAdd)
 router.get('/singleVenue/:id',admin.singleVenue)
 router.put("/venuEdit/:id",multiUpload,admin.updateVenue)
+router.delete("/deletevenue/:id",admin.Deletevenue)
+
 
    
 
