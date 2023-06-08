@@ -8,7 +8,7 @@ const multiUpload=require('../utility/multer')
 
 
 router.post('/vendor',admin.login)
-router.post('/vendorSignup',multiUpload,admin.postSignup)
+router.post('/vendorSignup',upload.single('file'),admin.postSignup)
 router.post('/otp',admin.verifyvendorSignup)
 router.get('/customerdisplay',admin.customerview)
 router.get("/providerDetails/:id",admin.providerDetails)
@@ -17,13 +17,17 @@ router.post("/addService/:id", admin.addService);
 router.get("/editProfile/:id",admin.editProfileGet);
 router.patch("/editProfile",admin.editProfilePatch)
 router.get('/Venuedisplay',admin.Venuecategory)
-router.post('/Venueadd',multiUpload,admin.addVenue)
+router.post('/Venueadd',upload.single('file'),admin.addVenue)
 router.delete("/deletecat/:id",admin.Deletecat)
 router.get('/venuecollectView',admin.venuecollectview)
-router.post('/addVenueside',multiUpload,admin.VenuesideAdd)
+router.post('/addVenueside',upload.single('file'),admin.VenuesideAdd)
 router.get('/singleVenue/:id',admin.singleVenue)
-router.put("/venuEdit/:id",multiUpload,admin.updateVenue)
+router.put("/venuEdit/:id",upload.single('file'),admin.updateVenue)
 router.delete("/deletevenue/:id",admin.Deletevenue)
+router.get('/Decorview',admin.Decorview)
+router.post('/addDecor', upload.array('image[]', 4), admin.Decoradd);
+router.get('/singleDecor/:id',admin.singleDecor)
+
 
 
    

@@ -11,6 +11,7 @@ const Venue=require("../models/admin/Venue")
 const { sentMail } = require("../config/otp");
 const { response } = require("express");
 const venuecollection = require("../models/admin/Venue");
+const Decorcollection = require("../models/admin/Decoration");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -312,6 +313,53 @@ Deletevenue : async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json();
+  }
+},
+Decorview :async (req, res) => {
+  try {
+    const allDecor = await Decorcollection.find();
+    res.status(200).json({ data: allDecor, verified: true });
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
+  }
+},
+Decoradd : async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.files);
+
+    const imgArray = [];
+    const multiImg = req.files;
+    multiImg.forEach((el) => {
+      const em = el.path;
+      imgArray.push(em);
+    });
+
+    await Decorcollection.create({
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      image: imgArray,
+    });
+
+    res.status(201).json({ message: "Successfully added" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+},
+singleDecor :async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
+    const decorsingle = await Decorcollection.findById({ _id: id });
+    console.log(decorsingle);
+    res.status(201).json(decorsingle);
+  } catch (error) {
+    console.log("Error occurred in single view of Decor", error);
   }
 },
 }

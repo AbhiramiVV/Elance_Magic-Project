@@ -15,4 +15,4 @@ const upload = multer({ storage: storage });
 
 const multiUpload = upload.fields([{ name: 'image', maxCount: 8 }]);
 
-module.exports = multiUpload;
+module.exports = upload;
