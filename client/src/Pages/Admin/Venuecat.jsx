@@ -70,7 +70,7 @@ const Venuecat=()=> {
       }, []);
 
 
-      const ImgURl='http://localhost:5000/upload/'
+      const ImgURl='http://localhost:5000/uploads/'
 
           const columns=[
      {

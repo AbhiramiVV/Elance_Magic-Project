@@ -20,7 +20,7 @@ function VenueDisplay() {
   
     const fetchVenue = async () => {
       try {
-        console.log(venue);
+        
         const response = await axios.get('/vendor/venuecollectView', {
           headers: {
               Authorization: `${admin.token}`,
@@ -52,7 +52,7 @@ function VenueDisplay() {
           });
       
           if (confirmResult.isConfirmed) {
-            await axios.put(`/vendor/deletevenue/${id}`, {
+            await axios.delete(`/vendor/deletevenue/${id}`, {
               headers: {
                 Authorization: `${admin.token}`,
               },
@@ -69,6 +69,8 @@ function VenueDisplay() {
     useEffect(() => {
       fetchVenue();
     }, []);
+    const ImgURl='http://localhost:5000/uploads/'
+
     useEffect(() => {
         setFilteredAdmin(
             venue.filter((ven) =>
@@ -84,9 +86,15 @@ function VenueDisplay() {
           cell:(row,index)=><div>{index+1}</div>,
       },
       {
-          name:"Image",
-          selector:(row)=><img width={90} height={90}  src={`http://localhost:5000/uploads/${row.image.filename}`}/>
-          
+        name: 'Image',
+        selector: (row) => (
+          <img
+            width={90}
+            height={90}
+            src={`http://localhost:5000/uploads/${row.image[0]}`}
+            alt={row.name}
+          />
+        ),
       },
       {
           name:"Name",

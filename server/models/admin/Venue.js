@@ -39,7 +39,8 @@ const venueSchema = mongoose.Schema({
     required: true,
   },
   image: {
-    type: Array,
+    type: Object,
+    required:true,
   },
 });
 

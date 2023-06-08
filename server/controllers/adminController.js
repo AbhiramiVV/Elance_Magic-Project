@@ -213,6 +213,7 @@ editProfilePatch: async (req, res) => {
  Venuecategory :async (req, res) => {
   try {
     const venue = await venueCategory.find();
+    console.log(venue);
     res.status(201).json({ data: venue });
   } catch (error) {}
 },
@@ -247,6 +248,7 @@ Deletecat:async (req, res) => {
 venuecollectview :async (req, res) => {
   try {
     const allvenue = await venuecollection.find();
+    console.log(allvenue);
     res.status(200).json({ data: allvenue, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
@@ -282,12 +284,24 @@ singleVenue :async (req, res) => {
   try {
     console.log(req.params);
     const { id } = req.params;
-    const venuesingle = await venueCategory.findById({ _id: id });
-    console.log(venuesingle);
+    const venuesingle = await venuecollection.findById({ _id: id });
     res.status(201).json(venuesingle);
   } catch (error) {
     console.log("Error occurred in single view of venue", error);
   }
 },
-
+updateVenue : async (req, res) => {
+  try {
+    const Venuenew = await venuecollection.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!Venuenew) {
+      return res.status(404).json({ message: "venue not found" });
+    }
+    res.json({ data: Venuenew, verified: true });
+  } catch (error) {
+    console.log("errror");
+    res.status(500).json({ message: error.message });
+  }
+},
 }

@@ -13,6 +13,7 @@ import VenuecatAdd from '../Pages/Admin/VenuecatAdd';
 import VenueDisplay from '../Pages/Admin/VenueDisplay';
 import Venuesingle from '../Pages/Admin/Venuesingle';
 import VenuecollectAdd from '../Pages/Admin/VenuecollectAdd';
+import VenueEdit from '../Pages/Admin/VenueEdit';
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -31,6 +32,7 @@ function Admin() {
         <Route path='/venueDisplay'  element={admin?<VenueDisplay/>:<Adminlogin/>}/>
         <Route path='/venuecollectadd'  element={admin?<VenuecollectAdd/>:<Adminlogin/>}/>
         <Route path='/venuesingle/:id'  element={admin?<Venuesingle/>:<Adminlogin/>}/>
+        <Route path='/venueEdit/:id'  element={admin?<VenueEdit/>:<Adminlogin/>}/>
 
 
 
