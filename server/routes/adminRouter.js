@@ -27,6 +27,9 @@ router.delete("/deletevenue/:id",admin.Deletevenue)
 router.get('/Decorview',admin.Decorview)
 router.post('/addDecor', upload.array('image[]', 4), admin.Decoradd);
 router.get('/singleDecor/:id',admin.singleDecor)
+router.put("/decoredit/:id",upload.single('image',4),admin.updateDecor)
+router.delete("/deletedecor/:id",admin.Deletedecor)
+
 
 
 

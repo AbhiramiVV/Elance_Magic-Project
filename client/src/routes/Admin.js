@@ -16,6 +16,8 @@ import VenuecollectAdd from '../Pages/Admin/VenuecollectAdd';
 import VenueEdit from '../Pages/Admin/VenueEdit';
 import DecorDisplay from '../Pages/Admin/DecorDisplay';
 import DecorAdd from '../Pages/Admin/DecorAdd';
+import Decorsingle from '../Pages/Admin/Decorsingle';
+import DecorEdit from '../Pages/Admin/DecorEdit';
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -37,6 +39,9 @@ function Admin() {
         <Route path='/venueEdit/:id'  element={admin?<VenueEdit/>:<Adminlogin/>}/>
         <Route path='/Decordisplay'  element={admin?<DecorDisplay/>:<Adminlogin/>}/>
         <Route path='/Decoradd'  element={admin?<DecorAdd/>:<Adminlogin/>}/>
+        <Route path='/decorsingleview/:id'  element={admin?<Decorsingle/>:<Adminlogin/>}/>
+        <Route path='/decorEdit/:id'  element={admin?<DecorEdit/>:<Adminlogin/>}/>
+
 
 
 

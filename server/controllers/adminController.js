@@ -325,8 +325,8 @@ Decorview :async (req, res) => {
 },
 Decoradd : async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.files);
+    // console.log(req.body);
+    // console.log(req.files);
 
     const imgArray = [];
     const multiImg = req.files;
@@ -339,6 +339,7 @@ Decoradd : async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       manager: req.body.manager,
+      type:req.body.type,
       mobile: req.body.mobile,
       desc: req.body.desc,
       rent: req.body.rent,
@@ -360,6 +361,29 @@ singleDecor :async (req, res) => {
     res.status(201).json(decorsingle);
   } catch (error) {
     console.log("Error occurred in single view of Decor", error);
+  }
+},
+updateDecor :async (req, res) => {
+  try {
+    const Decornew = await Decorcollection.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!Decornew) {
+      return res.status(404).json({ message: "Decor not found" });
+    }
+    res.json({ data: Decornew, verified: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
+Deletedecor :async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Decorcollection.findByIdAndDelete(id);
+    res.status(200).json({ message: "Decor  deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
   }
 },
 }

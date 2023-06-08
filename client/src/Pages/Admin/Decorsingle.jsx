@@ -20,7 +20,7 @@ function Decorsingle() {
   useEffect(() => {
     const viewDecorSingle = async () => {
       try {
-        const res = await axios.get(`/admin/singleDecor/${id}`,{
+        const res = await axios.get(`/vendor/singleDecor/${id}`,{
           headers: {
             Authorization: `${admin.token}`,
           },
@@ -47,10 +47,10 @@ function Decorsingle() {
         <Adminsidebar />
 
         <div class="flex flex-col md:lg:xl:flex-row bg-white">
-          <div class="h-screen w-screen md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
+          <div class="h-full w-full md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
             {/* <div class="h-screen w-screen md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center shadow-2xl "> */}
 
-            <div class="bg-white p-8 rounded-xl w-96 shadow-2xl mx-auto flex flex-col items-center justify-center">
+            <div class="bg-white p-8 rounded-xl w-96 shadow-2xl mx-auto flex flex-col items-center justify-center" >
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img

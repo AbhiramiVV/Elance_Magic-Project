@@ -45,7 +45,7 @@ function DecorDisplay() {
       });
 
       if (confirmResult.isConfirmed) {
-        await axios.put(`/vendor/deletedecor/${id}`, {
+        await axios.delete(`/vendor/deletedecor/${id}`, {
           headers: {
             Authorization: `${admin.token}`,
           },
@@ -82,7 +82,7 @@ function DecorDisplay() {
       selector: (row) => row.email,
     },
     {
-      name: 'Action',
+      name: 'View',
       selector: (row) => (
         <NavLink to={`/vendor/decorsingleview/${row._id}`}>
           <button className='bg-green-900 text-white font-bold py-2 px-4 rounded'>
@@ -92,7 +92,7 @@ function DecorDisplay() {
       ),
     },
     {
-      name: 'Action',
+      name: 'Edit',
       selector: (row) => (
         <NavLink to={`/vendor/decorEdit/${row._id}`}>
           <button className='bg-green-900 text-white font-bold py-2 px-4 rounded'>
@@ -102,7 +102,7 @@ function DecorDisplay() {
       ),
     },
     {
-      name: 'Action',
+      name: 'Remove',
       selector: (row) => (
         <button onClick={() => handleDelete(row._id)} className='bg-red-900 text-white font-bold py-2 px-4 rounded'>
           <i className='fa-solid fa-trash-can'></i>

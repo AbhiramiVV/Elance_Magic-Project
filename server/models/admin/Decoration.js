@@ -8,7 +8,10 @@ const DecorSchema = mongoose.Schema({
     type: String,
     required: true,
   },
- 
+ type:{
+  type:String,
+  required:true,
+ },
   desc: {
     type: String,
     required: true,
