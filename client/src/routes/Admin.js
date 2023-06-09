@@ -19,6 +19,9 @@ import DecorAdd from '../Pages/Admin/DecorAdd';
 import Decorsingle from '../Pages/Admin/Decorsingle';
 import DecorEdit from '../Pages/Admin/DecorEdit';
 import Photoview from '../Pages/Admin/Photoview';
+import PhotoAdd from '../Pages/Admin/PhotoAdd';
+import PhotoSingle from '../Pages/Admin/PhotoSingle';
+import PhotoEdit from '../Pages/Admin/PhotoEdit';
 
 function Admin() {
   const {admin}=useAuthContext()
@@ -44,7 +47,10 @@ function Admin() {
         <Route path='/decorsingleview/:id'  element={admin?<Decorsingle/>:<Adminlogin/>}/>
         <Route path='/decorEdit/:id'  element={admin?<DecorEdit/>:<Adminlogin/>}/>
         <Route path='/photographerview'  element={admin?<Photoview/>:<Adminlogin/>}/>
-      
+        <Route path='/photographeradd'  element={admin?<PhotoAdd/>:<Adminlogin/>}/>
+        <Route path='/photosingleview/:id' element={admin?<PhotoSingle/>:<Adminlogin/>}/>
+        <Route path='/photoEdit/:id'  element={admin?<PhotoEdit/>:<Adminlogin/>}/>
+
        </Routes>
 
     </fragments>

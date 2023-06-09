@@ -74,7 +74,7 @@ const Photoview=()=> {
       },
       {
           name:"Image",
-          selector:(row)=><img width={90} height={90} src={row.image[0]}/>
+          selector:(row)=><img width={90} height={90} src={row.image[0].filename}/>
           
       },
       {
@@ -89,18 +89,18 @@ const Photoview=()=> {
      
       
       {
-          name:"Action",
+          name:"View",
           selector:(row)=>
           <NavLink to={`/vendor/photosingleview/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' /></button></NavLink>
 
       },
       {
-          name:"Action",
+          name:"Edit",
           selector:(row)=>
           <NavLink to={`/vendor/photoEdit/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' /></button></NavLink>
       },
       {
-        name:"Action",
+        name:"Remove",
         selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'><i class="fa-solid fa-trash-can"></i></button>
     },
       

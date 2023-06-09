@@ -30,8 +30,10 @@ router.get('/singleDecor/:id',admin.singleDecor)
 router.put("/decoredit/:id",upload.single('image',4),admin.updateDecor)
 router.delete("/deletedecor/:id",admin.Deletedecor)
 router.get('/photographerView',admin.viewphotographer)
-router.post('/addPhotographer',upload.array('image', 5),admin.photographerAdd)
-
+router.post('/addPhotographer',upload.array('image[]', 5),admin.photographerAdd)
+router.get('/singlePhotographer/:id',admin.singlePhotographer)
+router.put("/photoedit/:id",upload.single('image',5),admin.updatePhoto)
+router.delete("/deletephoto/:id",admin.Deletephoto)
 
 
 

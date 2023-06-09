@@ -406,7 +406,7 @@ photographerAdd :async (req, res) => {
       const em = el.path;
       imgArray.push(em);
     });
-    let photo = new photographer({
+    await photographer.create({
       pname: req.body.pname,
       pdesc: req.body.pdesc,
       pemail: req.body.pemail,
@@ -416,11 +416,47 @@ photographerAdd :async (req, res) => {
       rate: req.body.rate,
       image: imgArray,
     });
-
-    await photo.save();
     res.status(201).json({ message: "successfully added" });
   } catch (error) {
     console.log(error.message);
+  }
+},
+singlePhotographer :async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
+    const photosingle = await photographer.findById({ _id: id });
+    console.log(photosingle);
+    res.status(201).json(photosingle);
+  } catch (error) {
+    console.log("Error occurred in single view of photographer", error);
+  }
+},
+ updatePhoto :async (req, res) => {
+  try {
+    const Photonew = await photographer.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!Photonew) {
+      return res.status(404).json({ message: "Photographer not found" });
+    }
+    res.json({ data: Photonew, verified: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
+ Deletephoto :async (req, res) => {
+  const id = req.params.id;
+  try {
+    await photographer.findByIdAndDelete(id);
+    res.status(200).json({ message: "Photographer  deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
   }
 },
 }
