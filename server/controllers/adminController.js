@@ -12,6 +12,7 @@ const { sentMail } = require("../config/otp");
 const { response } = require("express");
 const venuecollection = require("../models/admin/Venue");
 const Decorcollection = require("../models/admin/Decoration");
+const photographer = require("../models/admin/Photographer");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -384,6 +385,42 @@ Deletedecor :async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json();
+  }
+},
+ viewphotographer :async (req, res) => {
+  try {
+    const allphotographer = await photographer.find();
+    res.status(200).json({ data: allphotographer, verified: true });
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
+  }
+},
+photographerAdd :async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.files);
+
+    const imgArray = [];
+    const multiImg = req.files;
+    multiImg.map((el) => {
+      const em = el.path;
+      imgArray.push(em);
+    });
+    let photo = new photographer({
+      pname: req.body.pname,
+      pdesc: req.body.pdesc,
+      pemail: req.body.pemail,
+      pmobile: req.body.pmobile,
+      paddress: req.body.paddress,
+      pexperiance: req.body.pexperiance,
+      rate: req.body.rate,
+      image: imgArray,
+    });
+
+    await photo.save();
+    res.status(201).json({ message: "successfully added" });
+  } catch (error) {
+    console.log(error.message);
   }
 },
 }

@@ -18,6 +18,8 @@ import DecorDisplay from '../Pages/Admin/DecorDisplay';
 import DecorAdd from '../Pages/Admin/DecorAdd';
 import Decorsingle from '../Pages/Admin/Decorsingle';
 import DecorEdit from '../Pages/Admin/DecorEdit';
+import Photoview from '../Pages/Admin/Photoview';
+
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -41,14 +43,8 @@ function Admin() {
         <Route path='/Decoradd'  element={admin?<DecorAdd/>:<Adminlogin/>}/>
         <Route path='/decorsingleview/:id'  element={admin?<Decorsingle/>:<Adminlogin/>}/>
         <Route path='/decorEdit/:id'  element={admin?<DecorEdit/>:<Adminlogin/>}/>
-
-
-
-
-
-        
-       
-       
+        <Route path='/photographerview'  element={admin?<Photoview/>:<Adminlogin/>}/>
+      
        </Routes>
 
     </fragments>

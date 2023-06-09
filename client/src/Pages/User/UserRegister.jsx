@@ -44,9 +44,9 @@ function UserRegister() {
 
     return (
         !showOtp ?
+<div style={{ backgroundImage: `url(${userRegister})` ,backgroundSize:"cover" }}>
             <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
                 <div className="hidden sm:block h-full">
-  <img className="absolute inset-0 m-0 h-full overflow-hidden rounded-none p-5 ml-25" src={userRegister} alt="User Register" />
 </div>
 
 
@@ -79,6 +79,7 @@ function UserRegister() {
 
                 </div>
 
+            </div>
             </div>
             : <Otp data={{ ...Inpval, vendor: false }} />
     )
