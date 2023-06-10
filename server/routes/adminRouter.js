@@ -10,7 +10,6 @@ const multiUpload=require('../utility/multiUpload')
 router.post('/vendor',admin.login)
 router.post('/vendorSignup',upload.single('file'),admin.postSignup)
 router.post('/otp',admin.verifyvendorSignup)
-router.get('/customerdisplay',admin.customerview)
 router.get("/providerDetails/:id",admin.providerDetails)
 router.post("/removeService", admin.removeService);
 router.post("/addService/:id", admin.addService);
@@ -34,6 +33,10 @@ router.post('/addPhotographer',multiUpload,admin.photographerAdd)
 router.get('/singlePhotographer/:id',admin.singlePhotographer)
 router.put("/photoedit/:id",multiUpload,admin.updatePhoto)
 router.delete("/deletephoto/:id",admin.Deletephoto)
+router.get('/customerdisplay',admin.customerview)
+router.put('/blockuser/:id', admin.blockUser)
+
+
 
 
 

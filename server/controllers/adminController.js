@@ -150,6 +150,27 @@ module.exports = {
     res.status(404).json({ message: "error occured" });
   }
 },
+blockUser :async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const userStatus = await userModels.findById(id);
+
+    if (userStatus.isBlocked === false) {
+      const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: true });
+      console.log(isBlocked.isBlocked);
+      res.json({ success: true });
+    } else {
+      const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: false });
+      console.log(isBlocked.isBlocked);
+      res.json({ success: true });
+    }
+  } catch (error) {
+    console.error('Error blocking/unblocking user:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+},
+
 providerDetails :async (req, res) => {
 
   try {

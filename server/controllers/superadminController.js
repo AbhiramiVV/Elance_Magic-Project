@@ -77,7 +77,6 @@ mailer.sentMail(email,otp);
 
 singleviewadmin :async (req, res) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const userindividual = await Admin.findById({ _id: id });
     console.log(userindividual);
