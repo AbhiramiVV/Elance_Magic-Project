@@ -9,6 +9,7 @@ import Bookpage from '../Pages/User/Bookpage'
 import ChangePassword from "../Component/ChangePassword";
 import Forgot from "../Pages/User/Forgot";
 import Photographer from "../Pages/User/Photographer";
+import Decor from "../Pages/User/Decor";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -22,7 +23,7 @@ function User() {
          <Route path='/forgotPassword' element={<Forgot/>}/>
          <Route path="/changePassword" element={user? <Navigate to="/home" /> : <ChangePassword />} />
          <Route path='/photo' element={user ?<Photographer/>:<Navigate to='/login'/>}/>
-
+          <Route path='/Decor' element={user?<Decor/>:<Navigate to='/login'/>}/>
 
       
     </Routes>
