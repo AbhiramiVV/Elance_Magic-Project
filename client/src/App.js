@@ -7,6 +7,7 @@ import Superadmin from "./routes/Superadmin";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '././instance/axios'
+import PageNotFound from "./Component/PageNotFound";
 
 
 function App() {
@@ -17,9 +18,10 @@ return(
     <BrowserRouter>
     <Routes>
         
-        <Route path="/*" element={<User />} />
-        <Route path="/vendor/*" element={<Admin />} />
-        <Route path="/superadmin/*" element={<Superadmin />} />
+        <Route path="/" element={<User />} />
+        <Route path="/vendor/" element={<Admin />} />
+        <Route path="/superadmin/" element={<Superadmin />} />
+        <Route path="*" element={<PageNotFound />} />
         </Routes>
     
         <ToastContainer

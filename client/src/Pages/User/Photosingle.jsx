@@ -77,6 +77,7 @@ const[amountPay,setAmountpay]=useState(0)
 
     const viewPhotoSingle = async () => {
       try {
+        console.log(photosingle);
         const res = await axios.get(`/singlePhotographer/${id}`,{
           headers: {
             Authorization: `${user.token}`,
@@ -122,6 +123,7 @@ console.log(selectedDate)
                 <div>
                   <img
                     src={image[2]}
+                   // src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
