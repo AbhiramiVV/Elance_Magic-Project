@@ -7,6 +7,8 @@ const { randomNumber } = require("../randomNum");
 const { sentMail } = require("../config/otp");
 const photographer = require("../models/admin/Photographer");
 const Decorcollection = require("../models/admin/Decoration");
+const venueCategory = require("../models/admin/Venuecat");
+const venuecollection = require("../models/admin/Venue");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -232,6 +234,13 @@ Decordisplay : async (req, res) => {
       const Decoration = await Decorcollection.find({});
       console.log(Decoration);
       res.status(201).json({ data: Decoration });
+    } catch (error) {}
+  },
+  venuedisplay :async (req, res) => {
+    try {
+      const Venuecollect = await venuecollection.find({});
+      console.log(Venuecollect);
+      res.status(201).json({ data: Venuecollect });
     } catch (error) {}
   },
 
