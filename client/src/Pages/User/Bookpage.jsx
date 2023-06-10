@@ -58,7 +58,7 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                <Link to='/photo'> <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-               WEDDING PLANNERS
+               PHOTOGRAPHY
                  </h3></Link>
                </div>
              </div>

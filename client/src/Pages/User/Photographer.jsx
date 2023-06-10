@@ -11,17 +11,6 @@ function Photographer() {
     const[photo,setPhoto]=useState([])
     const [loading, setloading] = useState(true);
  const{user}=useAuthContext()
-
-    // useEffect(()=>{
-    //     getApi('/photodisplay',(response)=>{
-        
-    //         const{message,data}=response.data
-
-
-    //         setPhoto(data)
-    
-    //     })
-    // },[])
     const getPhotographer=async()=>{
       try {
         const response=await axios.get('/photodisplay',{

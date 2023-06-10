@@ -8,6 +8,7 @@ import { useAuthContext } from "../Hooks/useAuthContext";
 import Bookpage from '../Pages/User/Bookpage'
 import ChangePassword from "../Component/ChangePassword";
 import Forgot from "../Pages/User/Forgot";
+import Photographer from "../Pages/User/Photographer";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -15,11 +16,13 @@ function User() {
         <Routes>
         <Route path='/' element={<Homepage/>}></Route>
         <Route path='/login' element={!user ?<Userlogin/>:<Navigate to='/'/>}/>
-       <Route path='/register' element={<UserRegister/>}/>
+         <Route path='/register' element={<UserRegister/>}/>
          <Route path='/otp' element={<Otp/>}/>
          <Route path='/bookpage' element={<Bookpage/>}/>
          <Route path='/forgotPassword' element={<Forgot/>}/>
          <Route path="/changePassword" element={user? <Navigate to="/home" /> : <ChangePassword />} />
+         <Route path='/photo' element={user ?<Photographer/>:<Navigate to='/login'/>}/>
+
 
       
     </Routes>

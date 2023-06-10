@@ -26,8 +26,8 @@ module.exports = {
           });
       } else {
         let otp=randomNumber();
-        twilio.sendVerificationToken(mobile,otp);
-        // sentMail(email,otp);
+        //twilio.sendVerificationToken(mobile,otp);
+        sentMail(email,otp);
 
         const userToken=jwt.sign({
           otp:otp,
