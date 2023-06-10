@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const userModels = require("../models/userModels/userDetails");
 const { randomNumber } = require("../randomNum");
 const { sentMail } = require("../config/otp");
+const photographer = require("../models/admin/Photographer");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -218,7 +219,13 @@ postResend: async (req, res) => {
       res.status(500).json("Server error. Please contact the developer.");
     }
   },
-  
+   photodisplay : async (req, res) => {
+    try {
+      const photo = await photographer.find({});
+      console.log(photo);
+      res.status(201).json({ data: photo });
+    } catch (error) {}
+  },
   
 
 };

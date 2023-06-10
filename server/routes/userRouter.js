@@ -12,6 +12,6 @@ router.post('/resendOtp',User.postResend);
 router.post('/forgotPassword',User.forgotPassword)
 router.post('/ChangePasswordOtp', User.ChangePasswordOtp);
 router.post('/changePassword', User.changePassword);
-
+router.get('/photodisplay',User.photodisplay)
 
 module.exports=router;
