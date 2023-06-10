@@ -39,7 +39,8 @@ function Photographer() {
           <div class="flex justify-center">
             <img
               class="rounded-t-lg object-cover w-full h-64"
-              src={data.image[0]}
+              // src={data.image[0]}
+              src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
               alt=""
             />
           </div>
