@@ -225,21 +225,18 @@ postResend: async (req, res) => {
    photodisplay : async (req, res) => {
     try {
       const photo = await photographer.find({});
-      console.log(photo);
       res.status(201).json({ data: photo });
     } catch (error) {}
   },
 Decordisplay : async (req, res) => {
     try {
       const Decoration = await Decorcollection.find({});
-      console.log(Decoration);
       res.status(201).json({ data: Decoration });
     } catch (error) {}
   },
   venuedisplay :async (req, res) => {
     try {
       const Venuecollect = await venuecollection.find({});
-      console.log(Venuecollect);
       res.status(201).json({ data: Venuecollect });
     } catch (error) {}
   },

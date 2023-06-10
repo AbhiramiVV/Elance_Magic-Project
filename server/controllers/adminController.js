@@ -280,9 +280,7 @@ venuecollectview :async (req, res) => {
 },
 VenuesideAdd : async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.files);
-    // console.log(req.files.image[0]);
+  
 
 
    await venuecollection.create({
