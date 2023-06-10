@@ -26,7 +26,6 @@ const{admin}=useAuthContext()
           },
         });
         const photosingle = res.data;
-        console.log(photosingle);
         setPname(photosingle.pname);
         setPdesc(photosingle.pdesc);
         setPemail(photosingle.pemail);
