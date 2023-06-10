@@ -1,59 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
-import { NavLink } from "react-router-dom";
 import axios from "../../instance/axios";
 
-
-
 function DecorAdd() {
-
-  const [data, setdData] = useState("");
-  const Navigate = useNavigate();
-
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [type, setType] = useState("");
   const [desc, setDesc] = useState("");
-  const [manager, setmanager] = useState("");
-  const [mobile, setmobile] = useState("");
+  const [manager, setManager] = useState("");
+  const [mobile, setMobile] = useState("");
   const [rent, setRent] = useState("");
-  const [image, setImage] = useState([]);
-  console.log(image);
-  const [imgeError, setImageError] = React.useState(false);
+  const [files, setFiles] = useState([]);
+  const [imageError, setImageError] = useState(false);
 
-
-  const handleImageChange = (e) => {
-    const files = e.target.files;
-
-    console.log(files.length);
-
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/;
-
-    let allValid = true;
-    const Images = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (allowedExtensions.exec(file.name)) {
-        Images.push(file);
-      } else {
-        allValid = false;
-        break;
-      }
-    }
-
-    if (!allValid) {
-      setImageError(true);
-    } else {
-      setImageError(false);
-      setImage(Images);
-    }
-    console.log(imgeError);
-  };
+  const navigate = useNavigate();
 
   const addDecoration = async (e) => {
-    console.log(name);
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -64,27 +27,29 @@ function DecorAdd() {
     formData.append("desc", desc);
     formData.append("rent", rent);
 
-    for (let i = 0; i < image.length; i++) {
-      formData.append(`image`, image[i]);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
     }
 
-    console.log(name,manager,email,type,desc,rent,image);
-
     try {
-      const response = await axios
-        .post("/vendor/addDecor", {name,manager,type,email,mobile,desc,rent,image}, {
-          headers: {
-           
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          if (response.data.message) {
-            Navigate("/vendor/Decordisplay");
-          }
-        });
-    } catch (error) {}
+      const response = await axios.post("/vendor/addDecor", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(response);
+      if (response.data.message) {
+        navigate("/vendor/Decordisplay");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const selectedFiles = e.target.files;
+    setFiles([...selectedFiles]);
   };
 
   return (
@@ -93,7 +58,7 @@ function DecorAdd() {
         <Adminsidebar />
 
         <div className="py-2">
-          <section className=" py-1 bg-blueGray-50 ">
+          <section className="py-1 bg-blueGray-50">
             <div className="w-full lg:w-full px-4 mx-auto mt-6">
               <form onSubmit={addDecoration} encType="multipart/form-data">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-l-emerald-900">
@@ -110,7 +75,7 @@ function DecorAdd() {
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
+                            htmlFor="grid-password"
                           >
                             Name
                           </label>
@@ -118,163 +83,146 @@ function DecorAdd() {
                             type="text"
                             name="name"
                             value={name}
-                            onChange={(e) => setname(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
                       </div>
                       <div className="relative">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
-                          >
-                            Type of Decoration
-                          </label>
-                            <select
-                                className="shadow appearance-none border rounded w-full py-2 px-8 leading-tight focus:outline-none focus:shadow-outline"
-                                id="type"
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                <option value={''}>--Please select--</option>
-                               
-                                    <option value='Traditional Decor'>
-                                        Traditional Decor
-                                    </option>
-                                    <option value='Modern Decor'>
-                                        Modern Decor
-                                    </option>
-                                    <option value='Royal Decor'>
-                                      Royal Decor
-                                    </option>
-                               
-                            </select>
-                            </div>
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
-                          >
-                            Manager
-                          </label>
-                          <input
-                            type="text"
-                            name="manager"
-                            value={manager}
-                            onChange={(e) => setmanager(e.target.value)}
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
-                        </div>
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Manager Name
+                        </label>
+                        <input
+                          type="text"
+                          name="manager"
+                          value={manager}
+                          onChange={(e) => setManager(e.target.value)}
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
                       </div>
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
-                          >
-                            Email
-                          </label>
-                          <input
-                            type="text"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setemail(e.target.value)}
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
-                        </div>
-                      </div>
+                    </div>
 
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
-                          >
-                            Mobile No
-                          </label>
-                          <input
-                            type="text"
-                            name="mobile"
-                            value={mobile}
-                            onChange={(e) => setmobile(e.target.value)}
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
-                        </div>
-                      </div>
+                    <div className="flex flex-wrap mt-4">
                       <div className="w-full lg:w-6/12 px-4">
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                            Description
+                            Email
                           </label>
-                          <textarea
-                          type="text"
-                            name="desc"
-                            value={desc}
-                            onChange={(e) => setDesc(e.target.value)}
+                          <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
                       </div>
+                      <div className="relative w-full px-4">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Mobile
+                        </label>
+                        <input
+                          type="number"
+                          name="mobile"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                      </div>
+                    </div>
 
+                    <div className="flex flex-wrap mt-4">
                       <div className="w-full lg:w-6/12 px-4">
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlfor="grid-password"
+                            htmlFor="grid-password"
                           >
-                            Rate Per Day
+                            Type
                           </label>
                           <input
                             type="text"
-                            name="rent"
-                            value={rent}
-                            onChange={(e) => setRent(e.target.value)}
+                            name="type"
+                            value={type}
+                            onChange={(e) => setType(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
                       </div>
-
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-5"
-                            htmlFor="image-upload"
-                          >
-                            Upload Image
-                          </label>
-                          <input
-                                  id="image"
-                                  type="file"
-                                  name="image"
-                                  accept="image/*"
-                                  multiple={true}
-                                  onChange={handleImageChange}
-                                  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                />
-
-                          {imgeError && (
-                            <p className="mx-3 text-red-500 font-Ariza">
-                              Only jpg | jpeg | png are allowed
-                            </p>
-                          )}
-                        </div>
+                      <div className="relative w-full px-4">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Rent
+                        </label>
+                        <input
+                          type="number"
+                          name="rent"
+                          value={rent}
+                          onChange={(e) => setRent(e.target.value)}
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
                       </div>
                     </div>
 
-                    <hr className="mt-6 border-b-1 border-blueGray-300" />
+                    <div className="relative w-full mt-8">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Description
+                      </label>
+                      <textarea
+                        rows="4"
+                        cols="80"
+                        name="desc"
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      ></textarea>
+                    </div>
+
+                    <div className="relative w-full mt-8">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Upload Images
+                      </label>
+                      <input
+                        type="file"
+                        name="files"
+                        multiple
+                        onChange={handleImageChange}
+                        accept="image/*"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      />
+                      {imageError && (
+                        <p className="text-red-500 text-xs mt-1">
+                          Please select valid image files (jpg, jpeg, png)
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex justify-center mt-6">
+                      <button
+                        className="text-white bg-emerald-500 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-600 rounded text-lg"
+                        type="submit"
+                      >
+                        Add Decoration
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="button flex justify-center">
-                  <button
-                    className="bg-black text-white active:bg-pink-600 font-bold uppercase text-xl px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="submit"
-                  >
-                    Save
-                  </button>
                 </div>
               </form>
             </div>

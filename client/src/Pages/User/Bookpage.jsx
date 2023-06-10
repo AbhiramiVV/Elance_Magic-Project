@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Component/Header";
 import hi from '../../assets/hi.jpg'
 import photograph from "../../assets/testimonial.jpg";
-import venue from "../../assets/venue.jpg";
+import venu from "../../assets/venue.jpg";
 import { Link } from "react-router-dom";
 import axios from "../../instance/axios";
 import { useAuthContext } from "../../Hooks/useAuthContext";
-import ven from '../../assets/ven.jpg'
+
 function Bookpage () {
  const{user}=useAuthContext()
  const[photo,setPhoto]=useState(null)
@@ -28,7 +28,7 @@ console.log(user)
   </div>
   <div class="relative p-6 py-14 px-6 md:px-12 w-full">
     <h2 class="mb-6 block font-sans text-6xl font-medium leading-[1.5] tracking-normal font-third text-white antialiased">
-     Select your Choice.................
+    What will you choose?.
     </h2>
   
   </div>
@@ -65,7 +65,7 @@ console.log(user)
            </div>
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
            <img
-               src={hi}
+               src={venu}
                alt="black chair and white table"
                className="object-cover object-center w-80 h-full"
              />
@@ -73,14 +73,14 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                 <Link to='/Decor'><h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-                   PERSONAL EVENTS
+                   DECORATION
                  </h3></Link> 
                </div>
              </div>
            </div>
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
            <img
-               src={ven}
+               src={hi}
                alt="black chair and white table"
                className="object-cover object-center w-80 h-full"
              />
@@ -88,7 +88,7 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                <Link to='/venue'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-                   BRITHDAY PARTY
+                   VENUE
                  </h3></Link>
                </div>
 

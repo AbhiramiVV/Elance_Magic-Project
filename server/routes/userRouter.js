@@ -13,4 +13,5 @@ router.post('/forgotPassword',User.forgotPassword)
 router.post('/ChangePasswordOtp', User.ChangePasswordOtp);
 router.post('/changePassword', User.changePassword);
 
+
 module.exports=router;

@@ -51,52 +51,54 @@ const ProviderSignup = () => {
   const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
-    const {'target': { value },} = event;
+    const { 'target': { value }, } = event;
     setPersonName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-  const[selectedPlace,setSelectedPlace]=useState('')
-  const[selectedService,setSelectedService]=useState('')
+  const [selectedPlace, setSelectedPlace] = useState('')
+  const [selectedService, setSelectedService] = useState('')
   const [file, setImage] = useState("")
-  const navigate=useNavigate()
-    axios.defaults.withCredentials = true;
-    const[Inpval,setInpval]=useState({
-      companyName:"",
-      description:"",
-      services:"",
-      place:"",
-      phone:"",
-      email:"",
-      password:"",
-      certificate:"",
-      vendor:false
-      });
-      const [showOtp,setShowOtp]=useState(false)
-     
-
-      const signupHandle=async (e)=>{
-        e.preventDefault();
-       
-  try{
-    axios.post('/vendor/vendorSignup',{
-        ...providerData,selectedPlace,selectedService,file,personName
-    },{headers: {
-      'content-type': 'multipart/form-data'
-  }}).then((data)=>{
-console.log(data.data);
-if(!data.data.err){
-setShowOtp(true)
-}
-    })
+  const navigate = useNavigate()
+  axios.defaults.withCredentials = true;
+  const [Inpval, setInpval] = useState({
+    companyName: "",
+    description: "",
+    services: "",
+    place: "",
+    phone: "",
+    email: "",
+    password: "",
+    certificate: "",
+    vendor: false
+  });
+  const [showOtp, setShowOtp] = useState(false)
 
 
-      }catch(err){ 
-       
-       
-}
-      };
+  const signupHandle = async (e) => {
+    e.preventDefault();
+
+    try {
+      axios.post('/vendor/vendorSignup', {
+        ...providerData, selectedPlace, selectedService, file, personName
+      }, {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      }).then((data) => {
+        console.log(data.data);
+        if (!data.data.err) {
+          setShowOtp(true)
+        }
+      })
+
+
+    } catch (err) {
+
+
+    }
+  };
 
 
 
@@ -124,19 +126,19 @@ setShowOtp(true)
   const [services, setServices] = useState([]);
   const [place, setPlace] = useState([]);
   const [providerData, setProviderData] = useState({
-    companyName:"",
-    description:"",
-  
-    place:"",
-    phone:"",
-    email:"",
-    password:"",
-    
+    companyName: "",
+    description: "",
 
- 
+    place: "",
+    phone: "",
+    email: "",
+    password: "",
+
+
+
 
   });
-  
+
 
   const [validation, setValidation] = useState({
     companyName: {
@@ -333,7 +335,7 @@ setShowOtp(true)
 
 
   const PhoneCheck = () => {
-    
+
     const expr = /^(91)?[0-9]{10}$/;
     if (!providerData.phone.match(expr)) {
       setValidation((prevState) => ({
@@ -380,160 +382,162 @@ setShowOtp(true)
   };
   return (
     !showOtp ?
-    <div className='w-full h-50 grid lg:grid-cols-3 md:grid-cols-5 bg-white'>
-      <div className='md:col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-5'>
-        <img src={logo} alt="logo" width={330} />
-        <h1 className='font-Viaoda text-7xl mb-10'>Signup</h1>
-        <input
-          type="text"
-          name='companyName'
-          placeholder='Company Name'
-          onChange={valueSetting}
-          onBlur={nameCheck}
-          value={providerData.companyName}
-          className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
-        />
-        {!validation.companyName.status && (
-          <p className=" text-red-600">{validation.companyName.message}</p>
-        )}
-        <textarea
-          name="description"
-          placeholder='Description'
-          onChange={valueSetting}
-          onBlur={descriptionCheck}
-          value={providerData.description}
-          className='w-[90%] max-h-40 mt-10 text-3xl border-2 border-black rounded-3xl text-center show-scrollbar'></textarea>
-        {!validation.description.status && (
-          <p className=" text-red-600">{validation.description.message}</p>
-        )}
-       <div className='w-[90%] mt-10 text-3xl border-2 border-black rounded-3xl text-center flex flex-col items-center justify-center break-words'>
-  <div className='w-[90%] break-words'>{services.join(', ')}</div>
-   
-  <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
-        <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-</div>
+      <div style={{ backgroundImage: `url(${event})`, backgroundSize: "cover" }}>
+        <div className='w-full h-50 grid lg:grid-cols-3 md:grid-cols-5 bg-white'>
+          <div className='md:col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-5'>
+            <img src={logo} alt="logo" width={330} />
+            <h1 className='font-Viaoda text-7xl mb-10'>SINGUP</h1>
+            <input
+              type="text"
+              name='companyName'
+              placeholder='Company Name'
+              onChange={valueSetting}
+              onBlur={nameCheck}
+              value={providerData.companyName}
+              className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
+            />
+            {!validation.companyName.status && (
+              <p className=" text-red-600">{validation.companyName.message}</p>
+            )}
+            <textarea
+              name="description"
+              placeholder='Description'
+              onChange={valueSetting}
+              onBlur={descriptionCheck}
+              value={providerData.description}
+              className='w-[90%] max-h-40 mt-10 text-3xl border-2 border-black rounded-3xl text-center show-scrollbar'></textarea>
+            {!validation.description.status && (
+              <p className=" text-red-600">{validation.description.message}</p>
+            )}
+            <div className='w-[90%] mt-10 text-3xl border-2 border-black rounded-3xl text-center flex flex-col items-center justify-center break-words'>
+              <div className='w-[90%] break-words'>{services.join(', ')}</div>
 
-        {/* {!validation.services.status && (
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={personName}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            {/* {!validation.services.status && (
           <p className=" text-red-600">{validation.services.message}</p>
         )} */}
-        <div className='w-[90%] mt-10 text-3xl border-2 border-black rounded-3xl text-center flex flex-col items-center justify-center break-words'>
-          <div className=' w-[90%] break-words'>{place.join(' , ')}</div>
-          <MdBackspace onClick={backPlace} className='self-end mr-2' />
-          <select
-            name="place"
-            value={selectedPlace}
-            onChange={(e)=>setSelectedPlace(e.target.value)}
-            onBlur={placeCheck}
-            className='h-12 bottom-0 border-none  w-full text-center rounded-3xl'>
-            <option  value="#">-- Select Places --</option>
-            <option value="Alappuzha" >Alappuzha</option>
-            <option value="Ernakulam">Ernakulam</option>
-            <option value="Idukki">Idukki</option>
-            <option value="Kannur">Kannur</option>
-            <option value="Kasaragod">Kasaragod</option>
-            <option value="Kollam">Kollam</option>
-            <option value="Kottayam">Kottayam</option>
-            <option value="Kozhikode">Kozhikode</option>
-            <option value="Malappuram">Malappuram</option>
-            <option value="Palakkad">Palakkad</option>
-            <option value="Pathanamthitta">Pathanamthitta</option>
-            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-            <option value="Thrissur">Thrissur</option>
-            <option value="Wayanad">Wayanad</option>
-          </select>
-        </div>
-        {/* {!validation.place.status && (
+            <div className='w-[90%] mt-10 text-3xl border-2 border-black rounded-3xl text-center flex flex-col items-center justify-center break-words'>
+              <div className=' w-[90%] break-words'>{place.join(' , ')}</div>
+              <MdBackspace onClick={backPlace} className='self-end mr-2' />
+              <select
+                name="place"
+                value={selectedPlace}
+                onChange={(e) => setSelectedPlace(e.target.value)}
+                onBlur={placeCheck}
+                className='h-12 bottom-0 border-none  w-full text-center rounded-3xl'>
+                <option value="#">-- Select Places --</option>
+                <option value="Alappuzha" >Alappuzha</option>
+                <option value="Ernakulam">Ernakulam</option>
+                <option value="Idukki">Idukki</option>
+                <option value="Kannur">Kannur</option>
+                <option value="Kasaragod">Kasaragod</option>
+                <option value="Kollam">Kollam</option>
+                <option value="Kottayam">Kottayam</option>
+                <option value="Kozhikode">Kozhikode</option>
+                <option value="Malappuram">Malappuram</option>
+                <option value="Palakkad">Palakkad</option>
+                <option value="Pathanamthitta">Pathanamthitta</option>
+                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="Thrissur">Thrissur</option>
+                <option value="Wayanad">Wayanad</option>
+              </select>
+            </div>
+            {/* {!validation.place.status && (
           <p className=" text-red-600">{validation.place.message}</p>
         )} */}
-        <input
-          type="text"
-          name='phone'
-          value={providerData.phone}
-          onChange={valueSetting}
-          onBlur={PhoneCheck}
-          placeholder='Phone'
-          className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
-        />
-        {!validation.phone.status && (
-          <p className=" text-red-600">{validation.phone.message}</p>
-        )}
-        <input
-          type="email"
-          name='email'
-          value={providerData.email}
-          onChange={valueSetting}
-          onBlur={emailCheck}
-          placeholder='Email'
-          className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
-        />
-        {!validation.email.status && (
-          <p className=" text-red-600">{validation.email.message}</p>
-        )}
-        <input
-          type={passwordType}
-          name='password'
-          value={providerData.password}
-          onChange={valueSetting}
-          onBlur={passwordCheck}
-          placeholder='Password'
-          className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
-        />
-        <p className="relative w-full ">
-          <i className="absolute right-10 bottom-6 z-10 pl-2" onClick={passwordTypeChange}>
-            {passwordVisible ? (
-              <FiEye size={38} opacity={0.6} />
-            ) : (
-              <FiEyeOff size={38} opacity={0.6} />
+            <input
+              type="text"
+              name='phone'
+              value={providerData.phone}
+              onChange={valueSetting}
+              onBlur={PhoneCheck}
+              placeholder='Phone'
+              className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
+            />
+            {!validation.phone.status && (
+              <p className=" text-red-600">{validation.phone.message}</p>
             )}
-          </i>
-        </p>
-        {!validation.password.status && (
-          <p className=" text-red-600">{validation.password.message}</p>
-        )}
-        <input
-          type="file"
-          name='certificate'
-          onChange={(e)=>setImage(e.target.files[0])}
-          className='w-[90%] h-20 mt-10 text-3xl p-4 border-2 border-black rounded-3xl text-center'
-        />
-        <label htmlFor="file">Gov.Approved Certificate</label>
-        {imageError && <p className='text-red-500'>Select one image</p>}
+            <input
+              type="email"
+              name='email'
+              value={providerData.email}
+              onChange={valueSetting}
+              onBlur={emailCheck}
+              placeholder='Email'
+              className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
+            />
+            {!validation.email.status && (
+              <p className=" text-red-600">{validation.email.message}</p>
+            )}
+            <input
+              type={passwordType}
+              name='password'
+              value={providerData.password}
+              onChange={valueSetting}
+              onBlur={passwordCheck}
+              placeholder='Password'
+              className='w-[90%] h-20 mt-10 text-3xl border-2 border-black rounded-3xl text-center'
+            />
+            <p className="relative w-full ">
+              <i className="absolute right-10 bottom-6 z-10 pl-2" onClick={passwordTypeChange}>
+                {passwordVisible ? (
+                  <FiEye size={38} opacity={0.6} />
+                ) : (
+                  <FiEyeOff size={38} opacity={0.6} />
+                )}
+              </i>
+            </p>
+            {!validation.password.status && (
+              <p className=" text-red-600">{validation.password.message}</p>
+            )}
+            <input
+              type="file"
+              name='certificate'
+              onChange={(e) => setImage(e.target.files[0])}
+              className='w-[90%] h-20 mt-10 text-3xl p-4 border-2 border-black rounded-3xl text-center'
+            />
+            <label htmlFor="file">Gov.Approved Certificate</label>
+            {imageError && <p className='text-red-500'>Select one image</p>}
 
 
-        <button onClick={signupHandle} className='w-[60%] h-20 mt-10 text-3xl font-semibold border-2 border-black rounded-3xl text-center'>Signup</button>
-        {!validation.signuoError.status && (
-          <p className=" text-red-600">{validation.signuoError.message}</p>
-        )}
-        <p className='mt-5'>Already a member?<a className='text-blue-900 font-semibold cursor-pointer' onClick={loginHandle}>Login</a></p>
-      </div>
-      <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2'>
+            <button onClick={signupHandle} className='w-[60%] h-20 mt-10 text-3xl font-semibold border-2 border-black rounded-3xl text-center'>Signup</button>
+            {!validation.signuoError.status && (
+              <p className=" text-red-600">{validation.signuoError.message}</p>
+            )}
+            <p className='mt-5'>Already a member?<a className='text-blue-900 font-semibold cursor-pointer' onClick={loginHandle}>Login</a></p>
+          </div>
+          <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2'>
         <img src={event} alt="LOGIN" className='w-[100%] top-1 sticky' />
-        <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3 top-0 bottom-64 sticky'>Make everything easy</h1>
       </div>
      
 
-    </div >
-    :<Otp data={{...providerData,vendor:true}} />
+        </div >
+      </div>
+      : <Otp data={{ ...providerData, vendor: true }} />
+
   )
 }
 

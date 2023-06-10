@@ -16,6 +16,7 @@ function DecorDisplay() {
 
   const fetchDecor = async () => {
     try {
+      console.log(Decor);
       const response = await axios.get('/vendor/Decorview', {
         headers: {
           Authorization: `${admin.token}`,
@@ -70,7 +71,7 @@ function DecorDisplay() {
     },
     {
       name: 'Image',
-      selector: (row) => <img width={90} height={90} src={`http://localhost:5000/uploads/${row.image[0].filename}`} />,
+      selector: (row) => <img width={90} height={90} src={`http://localhost:5000/uploads/${row.image[0].files[0].filename}`} />,
     },
     {
       name: 'Name',

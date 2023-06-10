@@ -250,7 +250,8 @@ Deletecat:async (req, res) => {
 venuecollectview :async (req, res) => {
   try {
     const allvenue = await venuecollection.find();
-    console.log(allvenue);
+
+    console.log(allvenue.image);
     res.status(200).json({ data: allvenue, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
@@ -319,6 +320,7 @@ Deletevenue : async (req, res) => {
 Decorview :async (req, res) => {
   try {
     const allDecor = await Decorcollection.find();
+    console.log(allDecor);
     res.status(200).json({ data: allDecor, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
@@ -326,16 +328,10 @@ Decorview :async (req, res) => {
 },
 Decoradd : async (req, res) => {
   try {
-    // console.log(req.body);
-    // console.log(req.files);
+    console.log(req.body);
+    console.log(req.files);
 
-    const imgArray = [];
-    const multiImg = req.files;
-    multiImg.forEach((el) => {
-      const em = el.path;
-      imgArray.push(em);
-    });
-
+    
     await Decorcollection.create({
       name: req.body.name,
       email: req.body.email,
@@ -344,7 +340,7 @@ Decoradd : async (req, res) => {
       mobile: req.body.mobile,
       desc: req.body.desc,
       rent: req.body.rent,
-      image: imgArray,
+      image:req.files,
     });
 
     res.status(201).json({ message: "Successfully added" });
@@ -397,15 +393,6 @@ Deletedecor :async (req, res) => {
 },
 photographerAdd :async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.files);
-
-    const imgArray = [];
-    const multiImg = req.files;
-    multiImg.map((el) => {
-      const em = el.path;
-      imgArray.push(em);
-    });
     await photographer.create({
       pname: req.body.pname,
       pdesc: req.body.pdesc,
@@ -414,7 +401,7 @@ photographerAdd :async (req, res) => {
       paddress: req.body.paddress,
       pexperiance: req.body.pexperiance,
       rate: req.body.rate,
-      image: imgArray,
+      image: req.files,
     });
     res.status(201).json({ message: "successfully added" });
   } catch (error) {

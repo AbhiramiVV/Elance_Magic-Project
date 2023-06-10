@@ -17,38 +17,13 @@ const PhotoAdd = () => {
   const [pexperiance, setpexperiance] = useState("");
   const [rate, setRate] = useState("");
 const [pdesc, setPdesc] = useState("");
-  const [image, setImage] = useState([]);
-  console.log(image);
+  const [files, setFiles] = useState([]);
   const [imgeError, setImageError] = React.useState(false);
+ 
   const handleImageChange = (e) => {
-    const files = e.target.files;
-
-    console.log(files.length);
-
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/;
-
-    let allValid = true;
-    const Images = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (allowedExtensions.exec(file.name)) {
-        Images.push(file);
-      } else {
-        allValid = false;
-        break;
-      }
-    }
-
-    if (!allValid) {
-      setImageError(true);
-    } else {
-      setImageError(false);
-      setImage(Images);
-    }
-    console.log(imgeError);
+    const selectedFiles = e.target.files;
+    setFiles([...selectedFiles]);
   };
-
   const addphotographer = async (e) => {
   
     e.preventDefault();
@@ -61,15 +36,15 @@ const [pdesc, setPdesc] = useState("");
     formData.append("pexperiance", pexperiance);
     formData.append("rate", rate);
     
-    for (let i = 0; i < image.length; i++) {
-        formData.append(`image`, image[i]);
+    for (let i = 0; i < files.length; i++) {
+        formData.append(`files`, files[i]);
       }
 
     console.log(formData);
 
     try {
       const response = await axios
-        .post("/vendor/addPhotographer", {pname,pdesc,pemail,pmobile,paddress,pexperiance,rate,image}, {
+        .post("/vendor/addPhotographer", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -232,7 +207,7 @@ const [pdesc, setPdesc] = useState("");
                             id="image"
                             name="image"
                             accept="image/*"
-                            multiple={true}
+                            multiple
                             onChange={handleImageChange}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />

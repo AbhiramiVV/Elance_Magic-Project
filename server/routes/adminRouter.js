@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const upload=require('../utility/multer')
-const multiUpload=require('../utility/multer')
+const multiUpload=require('../utility/multiUpload')
  const admin=require('../controllers/adminController')
 // const adminAuth=require('../middleware/adminAuth')
 
@@ -25,14 +25,14 @@ router.get('/singleVenue/:id',admin.singleVenue)
 router.put("/venuEdit/:id",upload.single('file'),admin.updateVenue)
 router.delete("/deletevenue/:id",admin.Deletevenue)
 router.get('/Decorview',admin.Decorview)
-router.post('/addDecor', upload.array('image[]', 4), admin.Decoradd);
+router.post('/addDecor', multiUpload, admin.Decoradd);
 router.get('/singleDecor/:id',admin.singleDecor)
-router.put("/decoredit/:id",upload.single('image',4),admin.updateDecor)
+router.put("/decoredit/:id",multiUpload,admin.updateDecor)
 router.delete("/deletedecor/:id",admin.Deletedecor)
 router.get('/photographerView',admin.viewphotographer)
-router.post('/addPhotographer',upload.array('image[]', 5),admin.photographerAdd)
+router.post('/addPhotographer',multiUpload,admin.photographerAdd)
 router.get('/singlePhotographer/:id',admin.singlePhotographer)
-router.put("/photoedit/:id",upload.single('image',5),admin.updatePhoto)
+router.put("/photoedit/:id",multiUpload,admin.updatePhoto)
 router.delete("/deletephoto/:id",admin.Deletephoto)
 
 

@@ -19,6 +19,7 @@ const Photoview=()=> {
 
   const fetchPhotographerView = async () => {
     try {
+      console.log(photographer);
       const response = await axios.get('/vendor/photographerView', {
         headers: {
             Authorization: `${admin.token}`,
@@ -47,7 +48,7 @@ const Photoview=()=> {
       });
   
       if (confirmResult.isConfirmed) {
-        await axios.put(`/vendor/deletephoto/${id}`, {
+        await axios.delete(`/vendor/deletephoto/${id}`, {
           headers: {
             Authorization: `${admin.token}`,
           },
@@ -74,7 +75,7 @@ const Photoview=()=> {
       },
       {
           name:"Image",
-          selector:(row)=><img width={90} height={90} src={row.image[0].filename}/>
+          selector:(row)=><img width={90} height={90} src={`http://localhost:5000/uploads/${row.image[0].files[0].filename}`}/>
           
       },
       {

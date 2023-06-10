@@ -91,7 +91,7 @@ function VenueDisplay() {
           <img
             width={90}
             height={90}
-            src={`http://localhost:5000/uploads/${row.image[0]}`}
+            src={`http://localhost:5000/uploads/${row.image.image[0].filename}`}
             alt={row.name}
           />
         ),
