@@ -107,10 +107,6 @@ postResend: async (req, res) => {
       return res.status(500).json({ err: true, message: 'Internal server error' });
   }
 },
-   
-
-
-
   login: async (req, res) => {
     try {
       const data = req.body;
