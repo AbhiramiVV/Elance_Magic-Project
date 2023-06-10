@@ -1,333 +1,318 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
-import { NavLink } from "react-router-dom";
 import axios from "../../instance/axios";
 
-
-
 function VenuecollectAdd() {
-    
-    const [data, setdData] = useState("");
-    const Navigate = useNavigate();
-  
-    const [name, setname] = useState("");
-    const [email, setemail] = useState("");
-    const [type, setType] = useState("");
-    const [address, setaddress] = useState("");
-    const [manager, setmanager] = useState("");
-    const [description, setDescription] = useState("");
-    const [mobile, setmobile] = useState("");
-    const [location, setlocation] = useState("");
-    const [seats, setseats] = useState("");
-    const [rent, setRent] = useState("");
-    
-    const [image, setImage] = useState([]);
-    console.log(image);
-    const [imgeError, setImageError] = React.useState(false);
-    const handleImageChange = (e) => {
-      const files = e.target.files;
-  
-      console.log(files.length);
-  
-      const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/;
-  
-      let allValid = true;
-      const Images = [];
-  
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        if (allowedExtensions.exec(file.name)) {
-          Images.push(file);
-        } else {
-          allValid = false;
-          break;
-        }
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [type, setType] = useState("");
+  const [address, setAddress] = useState("");
+  const [manager, setManager] = useState("");
+  const [description, setDescription] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [location, setLocation] = useState("");
+  const [seats, setSeats] = useState("");
+  const [rent, setRent] = useState("");
+  const [files, setFiles] = useState([]);
+  const [imageError, setImageError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleImageChange = (e) => {
+    const selectedFiles = e.target.files;
+    setFiles(selectedFiles);
+  };
+
+  const addVenue = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("manager", manager);
+    formData.append("address", address);
+    formData.append("location", location);
+    formData.append("email", email);
+    formData.append("mobile", mobile);
+    formData.append("type", type);
+    formData.append("description", description);
+    formData.append("rent", rent);
+    formData.append("seats", seats);
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+
+    try {
+      const response = await axios.post("/vendor/addVenueside", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response);
+      if (response.data.message) {
+        navigate("/vendor/venueDisplay");
       }
-  
-      if (!allValid) {
-        setImageError(true);
-      } else {
-        setImageError(false);
-        setImage(Images);
-      }
-      console.log(imgeError);
-    };
-  
-    const addVenue = async (e) => {
-      console.log(name);
-      e.preventDefault();
-  
-      try {
-         await axios
-          .post("/vendor/addVenueside", {name,description,manager,email,mobile,address,location,rent,seats,image}, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((response) => {
-            console.log(response);
-            if (response.data.message) {
-              Navigate("/vendor/venueDisplay");
-            }
-          });
-      } catch (error) {}
-    };
-  
-    return (
-      <div>
-        <div className="flex gap-24">
-        <Adminsidebar/>
-  
-          <div className="py-2">
-            <section className=" py-1 bg-blueGray-50 ">
-              <div className="w-full lg:w-full px-4 mx-auto mt-6">
-                <form onSubmit={addVenue} encType="multipart/form-data">
-                  <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-l-emerald-900">
-                    <div className="rounded-t bg-white mb-0 px-6 py-6">
-                      <div className="text-center flex justify-center">
-                        <h6 className="text-blueGray-700 text-xl font-bold">
-                          VENUE MANAGEMENT
-                        </h6>
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex gap-24">
+        <Adminsidebar />
+
+        <div className="py-2">
+          <section className="py-1 bg-blueGray-50 ">
+            <div className="w-full lg:w-full px-4 mx-auto mt-6">
+              <form onSubmit={addVenue} encType="multipart/form-data">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-l-emerald-900">
+                  <div className="rounded-t bg-white mb-0 px-6 py-6">
+                    <div className="text-center flex justify-center">
+                      <h6 className="text-blueGray-700 text-xl font-bold">
+                        VENUE MANAGEMENT
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="name"
+                          >
+                            Name
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                      <div className="flex flex-wrap">
-                       
-                        
-                       
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                              Name
-                            </label>
-                            <input
-                              type="text"
-                              name="name"
-                              onChange={(e) => setname(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
-                        </div>
-                        <div className="relative">
-                        <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-2"
-                            htmlfor="grid-password"
+
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="type"
                           >
-                            Type of venues
+                            Type
                           </label>
-                            <select
-                                className="shadow appearance-none border rounded w-full py-2 px-8 leading-tight focus:outline-none focus:shadow-outline"
-                                id="type"
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                <option value={''}>--Please select--</option>
-                               
-                                    <option value='Hotels'>
-                                        Hotels
-                                    </option>
-                                    <option value='Marriage Gardens'>
-                                    Marriage Gardens
-                                    </option>
-                                              <option value='Wedding Lawns'>
-                                      Wedding Lawns
-                                    </option>
-                                    <option value='Palace & Forts'>
-                                    Palace & Forts
-                                    </option>
-                                    
-                                    <option value='Places of Worship'>
-                                    Places of Worship       
-                                    </option>
-                                       <option value='Beaches & Islands'>
-                                       Beaches & Islands
-                                    </option>
-                                    
+                          <input
+                            type="text"
+                            id="type"
+                            name="type"
+                            value={type}
+                            onChange={(e) => setType(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="address"
+                          >
+                            Address
+                          </label>
+                          <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-                               
-                            </select>
-                            </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                              Description
-                            </label>
-                            <textarea
-                              type="text"
-                              name="description"
-                              onChange={(e) => setDescription(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="manager"
+                          >
+                            Manager
+                          </label>
+                          <input
+                            type="text"
+                            id="manager"
+                            name="manager"
+                            value={manager}
+                            onChange={(e) => setManager(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
                         </div>
-                       
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                               Email
-                            </label>
-                            <input
-                              type="text"
-                              name="email"
-                              onChange={(e) => setemail(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
+                      </div>
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="mobile"
+                          >
+                            Mobile
+                          </label>
+                          <input
+                            type="text"
+                            id="mobile"
+                            name="mobile"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
                         </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                               Manager
-                            </label>
-                            <input
-                              type="text"
-                              name="manager"
-                              onChange={(e) => setmanager(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
-                        </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                              Mobile No
-                            </label>
-                            <input
-                              type="text"
-                              name="mobile"
-                              onChange={(e) => setmobile(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
-                        </div>
-                        
+                      </div>
+                    </div>
 
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                        Location
-                            </label>
-                            <input
-                              type="text"
-                              name="location"
-                              onChange={(e) => setlocation(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="location"
+                          >
+                            Location
+                          </label>
+                          <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
                         </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                              Address
-                            </label>
-                            <input
-                              type="text"
-                              name="address"
-                              onChange={(e) => setaddress(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
+                      </div>
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="seats"
+                          >
+                            Seats
+                          </label>
+                          <input
+                            type="number"
+                            id="seats"
+                            name="seats"
+                            value={seats}
+                            onChange={(e) => setSeats(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
                         </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                            No of seats available
-                            </label>
-                            <input
-                              type="text"
-                              name="seats"
-                              onChange={(e) => setseats(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
-                        </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlfor="grid-password"
-                            >
-                              Rate Per Day
-                            </label>
-                            <input
-                              type="text"
-                              name="rent"
-                              onChange={(e) => setRent(e.target.value)}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                          </div>
-                        </div>
-                       
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2 mt-5"
-                              htmlFor="image-upload"
-                            >
-                              Upload Image
-                            </label>
-                            <input
-                              type="file"
-                              id="image"
-                              name="image"
-                              accept="image/*"
-                              multiple={true}
-                              onChange={(e)=>{setImage(e.target.files[0])}}
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                            {imgeError && (
-                              <p className="mx-3 text-red-500 font-Ariza">
-                                Only jpg | jpeg | png are allowed
-                              </p>
-                            )}
-                          </div>
+                      </div>
+                    </div>
 
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="rent"
+                          >
+                            Rent
+                          </label>
+                          <input
+                            type="number"
+                            id="rent"
+                            name="rent"
+                            value={rent}
+                            onChange={(e) => setRent(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
                         </div>
-                       </div>
-  
-                      <hr className="mt-6 border-b-1 border-blueGray-300" />
+                      </div>
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="description"
+                          >
+                            Description
+                          </label>
+                          <textarea
+                            id="description"
+                            name="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="images"
+                          >
+                            Images
+                          </label>
+                          <input
+                            type="file"
+                            id="images"
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          />
+                          {imageError && (
+                            <p className="text-red-500 text-xs mt-1">
+                              Please select at least one image.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center">
+                      <button
+                        type="submit"
+                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        Add Venue
+                      </button>
                     </div>
                   </div>
-                  <div className="button flex justify-center">
-                    <button
-                      className="bg-black text-white active:bg-pink-600 font-bold uppercase text-xl px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      type="submit"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </section>
-          </div>
+                </div>
+              </form>
+            </div>
+          </section>
         </div>
       </div>
-    );
-  };
-  
-export default VenuecollectAdd
+    </div>
+  );
+}
+
+export default VenuecollectAdd;

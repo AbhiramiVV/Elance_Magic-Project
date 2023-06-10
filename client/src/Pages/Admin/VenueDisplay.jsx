@@ -20,7 +20,7 @@ function VenueDisplay() {
   
     const fetchVenue = async () => {
       try {
-        
+        console.log(venue);
         const response = await axios.get('/vendor/venuecollectView', {
           headers: {
               Authorization: `${admin.token}`,
@@ -91,7 +91,7 @@ function VenueDisplay() {
           <img
             width={90}
             height={90}
-            src={`http://localhost:5000/uploads/${row.image.image[0].filename}`}
+            src={`http://localhost:5000/uploads/${row.image.files[0].filename}`}
             alt={row.name}
           />
         ),

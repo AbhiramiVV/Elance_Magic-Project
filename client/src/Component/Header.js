@@ -70,7 +70,7 @@ const Header = () => {
   hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0 
   active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900 
   dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900 
-  dark:active:border-neutral-900 dark:active:text-neutral-900"style={{fontWeight:"bolder"}}
+  dark:active:border-neutral-900 dark:active:text-neutral-900"style={{fontWeight:"bolder",color:"white"}}
   data-te-ripple-init>
     HOME
 
@@ -84,7 +84,7 @@ const Header = () => {
    hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0
     active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900
      dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900
-      dark:active:border-neutral-900 dark:active:text-neutral-900" style={{fontWeight:"bolder"}}
+      dark:active:border-neutral-900 dark:active:text-neutral-900" style={{fontWeight:"bolder",color:"white"}}
   data-te-ripple-init>
  Eventmanagement
 
