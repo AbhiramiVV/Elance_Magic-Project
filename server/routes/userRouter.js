@@ -14,6 +14,8 @@ router.post('/ChangePasswordOtp', User.ChangePasswordOtp);
 router.post('/changePassword', User.changePassword);
 router.get('/photodisplay',User.photodisplay)
 router.get('/Decordisplay',User.Decordisplay)
+router.get('/singlePhotographer/:id',User.singlePhoto)
+router.get('/Decordisplay',User.Decordisplay)
 router.get('/venuedisplay',User.venuedisplay)
 
 

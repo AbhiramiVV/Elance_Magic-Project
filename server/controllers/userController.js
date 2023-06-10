@@ -222,11 +222,22 @@ postResend: async (req, res) => {
       res.status(500).json("Server error. Please contact the developer.");
     }
   },
-   photodisplay : async (req, res) => {
+photodisplay : async (req, res) => {
     try {
       const photo = await photographer.find({});
       res.status(201).json({ data: photo });
     } catch (error) {}
+  },
+  singlePhoto :async (req, res) => {
+    try {
+      console.log(req.params);
+      const { id } = req.params;
+      const photosingle = await photographer.findById({ _id: id });
+      console.log(photosingle);
+      res.status(201).json(photosingle);
+    } catch (error) {
+      console.log("Error occurred in single view of photographer", error);
+    }
   },
 Decordisplay : async (req, res) => {
     try {
