@@ -120,8 +120,8 @@ console.log(selectedDate)
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                   src={image[2]}
-                   // src={`http://localhost:5000/uploads/${image[0].files[0].filename}`}
+                   //src={image[2]}
+                    src={`http://localhost:5000/uploads/${image[0].files[0].filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
