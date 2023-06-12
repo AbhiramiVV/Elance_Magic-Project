@@ -85,9 +85,7 @@ module.exports = {
           approved: false,
           password:   bcrypPassword,
           certificate: req.file,
-          coverPhoto: coverPhoto,
-          profilePhoto: profilePhoto,
-          gallery:gallery,
+      
         });
 
         await newAdmin.save();

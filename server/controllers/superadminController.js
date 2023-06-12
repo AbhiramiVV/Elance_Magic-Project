@@ -1,4 +1,4 @@
-const Admin = require("../models/admin/AdminSchema");
+
 const superadmin = require("../models/admin/superadmin");
 const mailer = require("../config/otp");
 const upload = require("../utility/multer");
@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User=require('../models/userModels/userDetails');
 const randomNum = require("../randomNum");
-
+const AdminSchema=require('../models/admin/AdminSchema')
 
 
 
@@ -40,7 +40,7 @@ login :async (req, res) => {
 
  viewadmin :async (req, res) => {
   try {
-    const viewdata = await Admin.find();
+    const viewdata = await AdminSchema.find();
     console.log(viewdata);
     res.json({ data: viewdata});
   } catch (error) {}
@@ -49,7 +49,7 @@ login :async (req, res) => {
 insertAdmin :async (req, res) => {
   try {
     const {email}=req.body;
-    const existingAdmin = await Admin.findOne({ email: req.body.email });
+    const existingAdmin = await AdminSchema.findOne({ email: req.body.email });
     if (existingAdmin) {
       return res.status(200).json({ error: "Email is already registered" });
     }
@@ -78,7 +78,7 @@ mailer.sentMail(email,otp);
 singleviewadmin :async (req, res) => {
   try {
     const { id } = req.params;
-    const userindividual = await Admin.findById({ _id: id });
+    const userindividual = await AdminSchema.findById({ _id: id });
     console.log(userindividual);
     res.status(201).json(userindividual);
   } catch (error) {
@@ -87,7 +87,7 @@ singleviewadmin :async (req, res) => {
 },
  updateadmin :async (req, res) => {
   try {
-    const admin = await Admin.findByIdAndUpdate(req.params.id, req.body, req.file,{
+    const admin = await AdminSchema.findByIdAndUpdate(req.params.id, req.body, req.file,{
       new: true,
     });
     if (!admin) {
@@ -107,7 +107,7 @@ blockAdmin:async (req, res) => {
  
   const id=req.params.id
   console.log(id);
-  const adminstatus=await Admin.findById({_id:id})
+  const adminstatus=await AdminSchema.findById({_id:id})
   if (adminstatus.isblocked===true){
   const isBlocked=await Admin.findByIdAndUpdate(id,{$set: {isblocked:false}})
   console.log(isBlocked.isblocked);
@@ -122,7 +122,7 @@ blockAdmin:async (req, res) => {
   approved:async(req,res)=>{
     const id=req.params.id
 
-  const admin=  await Admin.findByIdAndUpdate({_id:id},{$set:{applicationStatus:"approved"}})
+  const admin=  await AdminSchema.findByIdAndUpdate({_id:id},{$set:{applicationStatus:"approved"}})
       mailer.approvedMail(admin.email,admin.companyname);
       res.json({err:false,message:"admin is approved"})
 
@@ -134,7 +134,7 @@ blockAdmin:async (req, res) => {
 
     const id=req.params.id
 
-  const admin=  await Admin.findByIdAndUpdate({_id:id},{$set:{applicationStatus:"Rejected"}})
+  const admin=  await AdminSchema.findByIdAndUpdate({_id:id},{$set:{applicationStatus:"Rejected"}})
       mailer.approvedMail(admin.email,admin.companyname);
       res.json({err:false,message:"admin is rejected"})
     
