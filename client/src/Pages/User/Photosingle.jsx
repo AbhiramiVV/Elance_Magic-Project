@@ -77,7 +77,7 @@ const[amountPay,setAmountpay]=useState(0)
 
     const viewPhotoSingle = async () => {
       try {
-        console.log(photosingle);
+     
         const res = await axios.get(`/singlePhotographer/${id}`,{
           headers: {
             Authorization: `${user.token}`,
@@ -90,7 +90,7 @@ const[amountPay,setAmountpay]=useState(0)
         setPexperience(photosingle.pexperiance);
         setRate(photosingle.rate);
         setImage(photosingle.image);
-
+console.log(photosingle);
         const amountpay=photosingle.rate*0.1
 console.log("hiiiii"+amountpay)
 setAmountpay(amountpay)
@@ -109,9 +109,7 @@ console.log(selectedDate)
     <>
        <Header/>
       <div className="bg-white">
-       
-     
-
+      
         {/* <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6"> * */}
 
         <div class="flex flex-col md:lg:xl:flex-row bg-white">
@@ -122,8 +120,8 @@ console.log(selectedDate)
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                    src={image[2]}
-                   // src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
+                   src={image[2]}
+                   // src={`http://localhost:5000/uploads/${image[0].files[0].filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />

@@ -114,11 +114,7 @@ postResend: async (req, res) => {
   login: async (req, res) => {
     try {
       const data = req.body;
-      console.log(data.password);
-      console.log(data.email);
-
       const userExist = await userModels.findOne({ email: data.email });
-      console.log("here the details" + userExist);
 
       if (userExist) {
         id = userExist._id;
