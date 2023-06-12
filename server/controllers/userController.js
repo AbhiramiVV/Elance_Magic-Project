@@ -46,7 +46,6 @@ module.exports = {
         password:bcrypPassword,
         cpassword:bcrypPassword,
     });
-     await user.save();
 
       return res.cookie("signupToken", userToken, {
           httpOnly: true,
@@ -89,12 +88,13 @@ module.exports = {
 postResend: async (req, res) => {
   try {
     // console.log(req.body.data);
-    const phonenumber = req.body.data.mobile;
-    console.log(phonenumber);
+    //const phonenumber = req.body.data.mobile;
+    const email=req.body.data.email;
+    console.log(email);
       let otp = randomNumber();
       console.log(otp);
-      twilio.sendVerificationToken(phonenumber, otp);
-
+      //twilio.sendVerificationToken(phonenumber, otp);
+      sentMail(email,otp);
       const userToken = jwt.sign({
           otp: otp,
       }, "00f3f20c9fc43a29d4c9b6b3c2a3e18918f0b23a379c152b577ceda3256f3ffa");

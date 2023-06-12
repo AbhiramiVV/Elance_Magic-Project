@@ -41,7 +41,6 @@ login :async (req, res) => {
  viewadmin :async (req, res) => {
   try {
     const viewdata = await AdminSchema.find();
-    console.log(viewdata);
     res.json({ data: viewdata});
   } catch (error) {}
 },
