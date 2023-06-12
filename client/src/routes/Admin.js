@@ -22,6 +22,7 @@ import Photoview from '../Pages/Admin/Photoview';
 import PhotoAdd from '../Pages/Admin/PhotoAdd';
 import PhotoSingle from '../Pages/Admin/PhotoSingle';
 import PhotoEdit from '../Pages/Admin/PhotoEdit';
+import PageNotFound from '../Component/PageNotFound';
 
 function Admin() {
   const {admin}=useAuthContext()
@@ -50,7 +51,7 @@ function Admin() {
         <Route path='/photographeradd'  element={admin?<PhotoAdd/>:<Adminlogin/>}/>
         <Route path='/photosingleview/:id' element={admin?<PhotoSingle/>:<Adminlogin/>}/>
         <Route path='/photoEdit/:id'  element={admin?<PhotoEdit/>:<Adminlogin/>}/>
-
+        <Route path="*" element={<PageNotFound />} />
        </Routes>
 
     </fragments>

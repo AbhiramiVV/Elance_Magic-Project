@@ -18,10 +18,10 @@ return(
     <BrowserRouter>
     <Routes>
         
-        <Route path="/" element={<User />} />
-        <Route path="/vendor/" element={<Admin />} />
-        <Route path="/superadmin/" element={<Superadmin />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="/*" element={<User />} />
+        <Route path="/vendor/*" element={<Admin />} />
+        <Route path="/superadmin/*" element={<Superadmin />} />
+       
         </Routes>
     
         <ToastContainer

@@ -8,7 +8,7 @@ import AdminEdit from '../Pages/Superadmin/AdminEdit';
 import Individualview from '../Pages/Superadmin/Individualview';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import { Navigate } from 'react-router-dom';
-
+import PageNotFound from '../Component/PageNotFound';
 
 function Superadmin() {
   const {superadmin}=useAuthContext()
@@ -23,7 +23,7 @@ function Superadmin() {
         <Route path='/editadmin/:id'  element={superadmin?<AdminEdit/>:<Superlogin/>}/>
         <Route path='/singleview/:id'  element={superadmin?<Individualview/>:<Superlogin/>}/>
 
-        
+        <Route path="*" element={<PageNotFound />} />
        
 
 
