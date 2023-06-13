@@ -13,6 +13,10 @@ const venueSchema = mongoose.Schema({
       type:String,
       required:true,
      },
+     address:{
+        type:String,
+        required:true
+    },
      menu:{
         type:String,
         required:true
@@ -36,6 +40,7 @@ const venueSchema = mongoose.Schema({
       image: {
         type: Array,
       },
+
     });
 
 const cateringcollection = mongoose.model('Catering', venueSchema); 

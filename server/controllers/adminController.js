@@ -486,6 +486,7 @@ cateringAdd:async (req, res) => {
       mobile: req.body.mobile,
       desc: req.body.desc,
       rent: req.body.rent,
+      address:req.body.address,
       menu:req.body.menu,
       image:req.files,
     });

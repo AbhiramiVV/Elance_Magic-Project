@@ -18,7 +18,7 @@ function CateringView() {
     const [rent, setRent] = useState("");
     const [menu,setMenu]=useState("");
     const [image, setImage] = useState("");
-  
+    const [address,setAddress]=useState("");
     useEffect(() => {
       const viewCateringSingle = async () => {
         try {
@@ -38,6 +38,7 @@ function CateringView() {
           setRent(Cateringsingle.rent);
           setMenu(Cateringsingle.menu)
           setImage(Cateringsingle.image);
+          setAddress(Cateringsingle.address)
           console.log(Cateringsingle,'huhjhgghg');
         } catch (error) {
           console.log(error);
@@ -79,6 +80,10 @@ function CateringView() {
                     <p class="mt-0.5  text-black text-md">
                       <span className="text-black font-extrabold">Mobile:</span>
                       {mobile}
+                    </p>
+                    <p class="mt-0.5  text-black text-md">
+                      <span className="text-black font-extrabold">Address:</span>
+                      {address}
                     </p>
                     <p class="mt-0.5  text-black text-md">
                       <span className="text-black font-extrabold">Menu:</span>

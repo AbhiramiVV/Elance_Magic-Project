@@ -20,7 +20,7 @@ function CateringEdit() {
       const [rent, setRent] = useState("");
       const [menu,setMenu]=useState("");
       const [image, setImage] = useState([]);
-  
+      const [address,setAddress]=useState("");
   
       useEffect(()=>{
           const fetchadmin=async()=>{
@@ -39,6 +39,7 @@ function CateringEdit() {
               setRent(Catering.rent)
               setImage(Catering.image)
               setMenu(Catering.menu)
+              setAddress(Catering.address)
           }
           fetchadmin();
           
@@ -47,7 +48,7 @@ function CateringEdit() {
   
   const updateCatering=async(e)=>{
       e.preventDefault()
-      const updateCatering={name,email,mobile,type,rent,menu,image};
+      const updateCatering={name,email,mobile,type,rent,menu,address,image};
       await axios.put(`/vendor/cateringedit/${id}`,updateCatering)
       Navigate("/vendor/Catering")
       
@@ -188,6 +189,23 @@ function CateringEdit() {
                               name="mobile"
                               value={mobile}
                               onChange={(e) => setmobile(e.target.value)}
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-full lg:w-6/12 px-4">
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlfor="grid-password"
+                            >
+                              Address
+                            </label>
+                            <input
+                              type="text"
+                              name="address"
+                              value={address}
+                              onChange={(e) => setAddress(e.target.value)}
                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             />
                           </div>

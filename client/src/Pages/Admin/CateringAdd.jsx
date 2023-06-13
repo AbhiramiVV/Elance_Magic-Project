@@ -13,6 +13,7 @@ function CateringAdd() {
     const [manager, setManager] = useState("");
     const [mobile, setMobile] = useState("");
     const [rent, setRent] = useState("");
+    const [address,setAddress]=useState("");
     const [files, setFiles] = useState([]);
     const [imageError, setImageError] = useState(false);
   
@@ -28,6 +29,7 @@ function CateringAdd() {
       formData.append("type", type);
       formData.append("desc", desc);
       formData.append("rent", rent);
+      formData.append("address",address)
       formData.append("menu",menu);
       for (let i = 0; i < files.length; i++) {
         formData.append("files", files[i]);
@@ -108,6 +110,23 @@ function CateringAdd() {
                       </div>
   
                       <div className="flex flex-wrap mt-4">
+                        <div className="w-full lg:w-6/12 px-4">
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Address
+                            </label>
+                            <input
+                              type="text"
+                              name="address"
+                              value={address}
+                              onChange={(e) => setAddress(e.target.value)}
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            />
+                          </div>
+                        </div>
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="relative w-full mb-3">
                             <label
