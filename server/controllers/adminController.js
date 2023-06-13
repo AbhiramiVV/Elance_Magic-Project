@@ -13,6 +13,7 @@ const { response } = require("express");
 const venuecollection = require("../models/admin/Venue");
 const Decorcollection = require("../models/admin/Decoration");
 const photographer = require("../models/admin/Photographer");
+const cateringcollection = require("../models/admin/Catering");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -461,6 +462,38 @@ singlePhotographer :async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json();
+  }
+},
+viewCatering:async(req,res)=>{
+  try {
+    const allcatering = await cateringcollection.find();
+    res.status(200).json({ data: allcatering, verified: true });
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
+  }
+},
+cateringAdd:async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.files);
+
+    
+    await cateringcollection.create({
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      type:req.body.type,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      menu:req.body.menu,
+      image:req.files,
+    });
+
+    res.status(201).json({ message: "Successfully added" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Internal server error" });
   }
 },
 }

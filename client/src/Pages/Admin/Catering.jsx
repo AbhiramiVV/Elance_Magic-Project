@@ -68,7 +68,7 @@ function Catering() {
     useEffect(() => {
       fetchVenue();
     }, []);
-    const ImgURl='http://localhost:5000/uploads/'
+   
 
     useEffect(() => {
         setFilteredAdmin(
@@ -137,9 +137,9 @@ return (
             
               <div className='d-flex w-8/12 flex-column align-items-center mx-auto'>
               <div className="flex justify-end">
-              <NavLink to="/vendor/venuecollectadd">
+              <NavLink to="/vendor/addCatering">
               <button class="bg-green-900  text-white font-bold py-2 px-4 rounded-full mt-5 mb-5">
-          ADD NEW VENUE
+          ADD NEW CATERING
         </button>
         </NavLink>
             
