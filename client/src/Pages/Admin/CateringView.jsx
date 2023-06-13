@@ -22,6 +22,7 @@ function CateringView() {
     useEffect(() => {
       const viewCateringSingle = async () => {
         try {
+            console.log(id,'iddddddddddddddddddddddddddd');
           const res = await axios.get(`/vendor/singleCatering/${id}`,{
             headers: {
               Authorization: `${admin.token}`,
@@ -35,8 +36,9 @@ function CateringView() {
           setType(Cateringsingle.type);
           setmanager(Cateringsingle.manager);
           setRent(Cateringsingle.rent);
-          setMenu(Cateringsingle,menu)
+          setMenu(Cateringsingle.menu)
           setImage(Cateringsingle.image);
+          console.log(Cateringsingle,'huhjhgghg');
         } catch (error) {
           console.log(error);
         }
@@ -57,7 +59,7 @@ function CateringView() {
                 <div class="flex justify-between mb-4 text-center mx-auto">
                   <div>
                     <img
-                      src={`http://localhost:5000/uploads/${image}`}
+                    src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
                       className="w-32 rounded-full mx-auto"
                       alt="Avatar"
                     />
@@ -98,13 +100,13 @@ function CateringView() {
             <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
               <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
                 <div class=" rounded-lg overflow-hidden">
-                  <img class="object-cover" src={image[0]} alt="" />
+                  <img class="object-cover" src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`} alt="" />
                 </div>
                 <div class="rounded-lg overflow-hidden">
-                  <img class="object-cover" src={image[1]} alt="" />
+                  <img class="object-cover" src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`} alt="" />
                 </div>
                 <div class=" rounded-lg overflow-hidden">
-                  <img class="  object-cover" src={image[2]} alt="" />
+                  <img class="  object-cover" src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`} alt="" />
                 </div>
                 <div class="rounded-lg overflow-hidden">
                   <img class="object-cover" src={image[3]} alt="" />

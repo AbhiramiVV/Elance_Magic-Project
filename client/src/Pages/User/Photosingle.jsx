@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "../../instance/axios";
 import Header from '../../Component/Header'
@@ -117,8 +116,7 @@ console.log(selectedDate)
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                   src={image[2]}
-                   //src={`http://localhost:5000/uploads/${image[0].files[0].filename}`}
+                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
@@ -166,10 +164,10 @@ console.log(selectedDate)
           <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
             <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
               <div class=" h-64 rounded-lg overflow-hidden">
-                {/* <img class="object-cover"  src={`http://localhost:5000/uploads/${image[0].files[1].filename}`} alt="" /> */}
+                 <img class="object-cover"  src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`} alt="" /> 
               </div>
               <div class="w-full h-64 rounded-lg overflow-hidden">
-                {/* //<img class="object-cover" src={`http://localhost:5000/uploads/${image[0].files[2].filename}`} alt="" /> */}
+                <img class="object-cover" src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`} alt="" /> 
               </div>
               <div class=" h-64 rounded-lg overflow-hidden">
                 <img class="  object-cover" src={image[3]} alt="" />

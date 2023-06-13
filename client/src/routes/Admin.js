@@ -56,7 +56,7 @@ function Admin() {
         <Route path='/photoEdit/:id'  element={admin?<PhotoEdit/>:<Adminlogin/>}/>
         <Route path='/catering'  element={admin?<Catering/>:<Adminlogin/>}/>
         <Route path='/addCatering'  element={admin?<CateringAdd/>:<Adminlogin/>}/>
-        <Route path='/singleCatering/;id' element={admin?<CateringView/>:<Adminlogin/>}/>
+        <Route path='/singleCatering/:id' element={admin?<CateringView/>:<Adminlogin/>}/>
 
         <Route path="*" element={<PageNotFound />} />
        </Routes>
