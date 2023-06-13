@@ -17,6 +17,6 @@ router.get('/Decordisplay',User.Decordisplay)
 router.get('/singlePhotographer/:id',User.singlePhoto)
 router.get('/Decordisplay',User.Decordisplay)
 router.get('/venuedisplay',User.venuedisplay)
-
+router.get('/cateringedisplay',User.cateringDiaplay);
 
 module.exports=router;

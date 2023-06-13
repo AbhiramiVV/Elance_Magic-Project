@@ -9,6 +9,7 @@ const photographer = require("../models/admin/Photographer");
 const Decorcollection = require("../models/admin/Decoration");
 const venueCategory = require("../models/admin/Venuecat");
 const venuecollection = require("../models/admin/Venue");
+const cateringcollection = require("../models/admin/Catering");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -246,6 +247,12 @@ Decordisplay : async (req, res) => {
       const Venuecollect = await venuecollection.find({});
       res.status(201).json({ data: Venuecollect });
     } catch (error) {}
+  },
+  cateringDiaplay:async(req,res)=>{
+    try{
+      const CateringColl = await cateringcollection.find({});
+      res.status(201).json({data:CateringColl});
+    }catch (error){}
   },
 
 };
