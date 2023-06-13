@@ -10,8 +10,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Photosingle({data}) {
-  console.log(data);
+function Photosingle({}) {
   const { id } = useParams();
   // console.log(id);
   const {user}=useAuthContext()
