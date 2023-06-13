@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import Adminsidebar from "../../Component/Adminsidebar";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
+import axios from "../../instance/axios";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 function CateringView() {
     const{admin}=useAuthContext()
@@ -53,7 +57,7 @@ function CateringView() {
                 <div class="flex justify-between mb-4 text-center mx-auto">
                   <div>
                     <img
-                      src={`http://localhost:5000/uploads/${image[0].files[0].filename}`}
+                      src={`http://localhost:5000/uploads/${image}`}
                       className="w-32 rounded-full mx-auto"
                       alt="Avatar"
                     />

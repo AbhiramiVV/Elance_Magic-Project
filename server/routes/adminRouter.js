@@ -35,6 +35,7 @@ router.put("/photoedit/:id",multiUpload,admin.updatePhoto)
 router.delete("/deletephoto/:id",admin.Deletephoto)
 router.get("/catering",admin.viewCatering);
 router.post("/addCatering",multiUpload,admin.cateringAdd)
+router.get("/singleCatering/:id",admin.singleCatering);
 router.get('/customerdisplay',admin.customerview)
 router.put('/blockuser/:id', admin.blockUser)
 

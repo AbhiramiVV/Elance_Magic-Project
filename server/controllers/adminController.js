@@ -496,4 +496,15 @@ cateringAdd:async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 },
+singleCatering :async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
+    const decorsingle = await cateringcollection.findById({ _id: id });
+    console.log(decorsingle);
+    res.status(201).json(decorsingle);
+  } catch (error) {
+    console.log("Error occurred in single view of Decor", error);
+  }
+},
 }
