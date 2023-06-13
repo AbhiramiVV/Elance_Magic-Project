@@ -507,4 +507,18 @@ singleCatering :async (req, res) => {
     console.log("Error occurred in single view of Decor", error);
   }
 },
+updateCatering:async (req, res) => {
+  try {
+    console.log(req.body);
+    const Cateringnew = await cateringcollection.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!Cateringnew) {
+      return res.status(404).json({ message: "Catering not found" });
+    }
+    res.json({ data: Cateringnew, verified: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
 }
