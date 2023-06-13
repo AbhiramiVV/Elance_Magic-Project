@@ -29,7 +29,7 @@ function User() {
          <Route path='/photo' element={user ?<Photographer/>:<Navigate to='/login'/>}/>
         <Route path='/Decor' element={user?<Decor/>:<Navigate to='/login'/>}/>
         <Route path='/venue' element={user?<Venue/>:<Navigate to='/login'/>}/>
-        <Route path='/cateringedisplay' element={user?<CateringView/>:<Navigate to='/login'/>}/>
+        <Route path='/catering' element={user?<CateringView/>:<Navigate to='/login'/>}/>
         <Route path='/photosingle/:id' element={user?<Photosingle/>:<Navigate to='/login'/>}/>
          <Route path="*" element={<PageNotFound />} />
     </Routes>

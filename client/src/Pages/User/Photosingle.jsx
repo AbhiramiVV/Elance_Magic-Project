@@ -10,7 +10,8 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Photosingle() {
+function Photosingle({data}) {
+  console.log(data);
   const { id } = useParams();
   // console.log(id);
   const {user}=useAuthContext()
@@ -103,7 +104,7 @@ console.log(selectedDate)
 
   return (
     <>
-       <Header/>
+      
       <div className="bg-white">
       
         {/* <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6"> * */}

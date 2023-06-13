@@ -3,6 +3,7 @@ import Header from "../../Component/Header";
 import hi from '../../assets/hi.jpg'
 import photograph from "../../assets/testimonial.jpg";
 import venu from "../../assets/venue.jpg";
+import food from "../../assets/foods.jpg"
 import { Link } from "react-router-dom";
 import axios from "../../instance/axios";
 import { useAuthContext } from "../../Hooks/useAuthContext";
@@ -97,7 +98,7 @@ console.log(user)
            </div>
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
            <img
-               src={hi}
+               src={food}
                alt="black chair and white table"
                className="object-cover object-center w-80 h-full"
              />

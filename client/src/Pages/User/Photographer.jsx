@@ -1,93 +1,94 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Header from '../../Component/Header';
 import logo from '../../assets/logo.jpg';
-import axios from '../../instance/axios'
+import axios from '../../instance/axios';
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import ClipLoader from 'react-spinners/ClipLoader';
+import PhotoSingle from '../Admin/PhotoSingle';
 
 function Photographer() {
-    const[photo,setPhoto]=useState([])
-    const [loading, setloading] = useState(true);
- const{user}=useAuthContext()
-    const getPhotographer=async()=>{
-      try {
-        const response=await axios.get('/photodisplay',{
-          headers: {
-            Authorization: `${user.token}`,
-          },
-        });
-        console.log("hiii");
-        const { message, data } = response.data;
-        console.log(data);
-      
-        setPhoto(data)
-        setloading(false);
-      } catch (error) {
-        
-      }
+  const [photo, setPhoto] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [view, setView] = useState(false);
+  const { user } = useAuthContext();
+
+  const getPhotographer = async () => {
+    try {
+      const response = await axios.get('/photodisplay', {
+        headers: {
+          Authorization: `${user.token}`,
+        },
+      });
+      console.log("hiii");
+      const { message, data } = response.data;
+      console.log(data);
+
+      setPhoto(data);
+      setLoading(false);
+    } catch (error) {
+
     }
-    useEffect(() => {
-      getPhotographer()
-       }, []);
+  }
 
- const datas = photo.map((data)=>{
-	return (
-<div class="min-h-screen bg-gray-100 flex justify-center items-center">
-        <div class="max-w-sm bg-white border border-gray-300 rounded-lg shadow-lg w-full">
-          <div class="flex justify-center">
-            <img
-              class="rounded-t-lg object-cover w-full h-64"
-              // src={data.image[0]}
-              src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
-              alt=""
-            />
-          </div>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white text-center">
-                {data.pname}
-              </h5>
-            </a>
-            
-         
-  <div class="container mx-auto p-9 bg-gray-300 max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 mt-0">
-    <div class="flex justify-between items-center mt-0">
-        {/* <div class="p-2"> */}
-            <table class="text-xs my-3">
-                <tbody><tr>
-                    <td class="px-2 py-2 text-black text-lg font-extrabold">Experiance</td>
-                    <td class="px-2 py-2 text-lg font-bold">{data.pexperiance} Years</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-2 text-black  text-lg font-extrabold">Rent/Day</td>
-                    <td class="px-2 py-2 text-lg font-bold">{data.rate}</td>
-                </tr>
-                <tr><td><NavLink to={`/photosingle/${data._id}`}>
-  <button
-    type="button"
-    class="text-white text-sm font-bold bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300  rounded-lg  px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-  >
-    View
-  </button>
-</NavLink>
-</td></tr>
-            </tbody></table>
+  useEffect(() => {
+    getPhotographer();
+  }, []);
 
-           
-        {/* </div> */}
-    
-      </div>
-      </div>
-  
+  const datas = photo.map((data) => {
+    return (
+      !view && (
+        <div key={data._id} className="min-h-screen bg-gray-100 flex justify-center items-center">
+          <div className="max-w-sm bg-white border border-gray-300 rounded-lg shadow-lg w-full">
+            <div className="flex justify-center">
+              <img
+                className="rounded-t-lg object-cover w-full h-64"
+                src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
+                alt=""
+              />
+            </div>
+            <div className="p-5">
+              <a href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white text-center">
+                  {data.pname}
+                </h5>
+              </a>
+              <div className="container mx-auto p-9 bg-gray-300 max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 mt-0">
+                <div className="flex justify-between items-center mt-0">
+                  <table className="text-xs my-3">
+                    <tbody>
+                      <tr>
+                        <td className="px-2 py-2 text-black text-lg font-extrabold">Experience</td>
+                        <td className="px-2 py-2 text-lg font-bold">{data.pexperiance} Years</td>
+                      </tr>
+                      <tr>
+                        <td className="px-2 py-2 text-black text-lg font-extrabold">Rent/Day</td>
+                        <td className="px-2 py-2 text-lg font-bold">{data.rate}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <NavLink to={`/photosingle/${data._id}`}>
+                            <button
+                              type="button"
+                              className="text-white text-sm font-bold bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                            >
+                              View
+                            </button>
+                          </NavLink>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>  )
+      )
+    );
+  });
 
-})
-
-	return (
+  return (
     <div>
       <Header />
       <div className="w-full bg-white">
@@ -97,17 +98,12 @@ function Photographer() {
             <ClipLoader color={'#808080'} size={150} />
           </div>
         ) : (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">{datas}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">{datas}</div>
         )}
-     
-  
+      </div>
+      {view && <PhotoSingle data={{ view: true }} />}
     </div>
-    </div>
-
-      
-       
- 
-  )
+  );
 }
 
-export default Photographer
+export default Photographer;
