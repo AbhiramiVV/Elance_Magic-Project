@@ -31,6 +31,7 @@ function Adminsidebar() {
     {name:"Venue",link:'/vendor/venueDisplay',icon:FaPlaceOfWorship },
     {name:"Decorations",link:'/vendor/Decordisplay',icon:GiPartyFlags },
     {name:"Photography",link:'/vendor/photographerview',icon:AiFillCamera },
+    {name:"Foods And Drinks",link:'/vendor/catering',icon:FaHotel},
     {name:"Customers",link:'/vendor/customerview',icon:FaUserAlt },
     
   ];
