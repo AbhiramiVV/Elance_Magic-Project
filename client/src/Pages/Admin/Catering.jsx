@@ -19,7 +19,7 @@ function Catering() {
   
     const fetchVenue = async () => {
       try {
-        
+        console.log(catering);
         const response = await axios.get('/vendor/catering', {
           headers: {
               Authorization: `${admin.token}`,
@@ -90,7 +90,7 @@ function Catering() {
           <img
             width={90}
             height={90}
-            src={`http://localhost:5000/uploads/${row.image.files[0].filename}`}
+            src={`http://localhost:5000/uploads/${row.image[0].files[0].filename}`}
             alt={row.name}
           />
         ),
