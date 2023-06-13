@@ -475,9 +475,7 @@ viewCatering:async(req,res)=>{
 cateringAdd:async (req, res) => {
   try {
     console.log(req.body);
-    console.log(req.files);
-
-    
+    console.log(req.files); 
     await cateringcollection.create({
       name: req.body.name,
       email: req.body.email,
@@ -520,6 +518,16 @@ updateCatering:async (req, res) => {
     res.json({ data: Cateringnew, verified: true });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+},
+DeleteCatering:async (req, res) => {
+  const id = req.params.id;
+  try {
+    await cateringcollection.findByIdAndDelete(id);
+    res.status(200).json({ message: "Catering deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
   }
 },
 }

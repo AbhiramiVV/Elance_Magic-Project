@@ -13,6 +13,7 @@ import Decor from "../Pages/User/Decor";
 import Venue from "../Pages/User/Venue";
 import Photosingle from "../Pages/User/Photosingle";
 import PageNotFound from "../Component/PageNotFound";
+import CateringView from "../Pages/User/CateringView";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -28,6 +29,7 @@ function User() {
          <Route path='/photo' element={user ?<Photographer/>:<Navigate to='/login'/>}/>
         <Route path='/Decor' element={user?<Decor/>:<Navigate to='/login'/>}/>
         <Route path='/venue' element={user?<Venue/>:<Navigate to='/login'/>}/>
+        <Route path='/cateringedisplay' element={user?<CateringView/>:<Navigate to='/login'/>}/>
         <Route path='/photosingle/:id' element={user?<Photosingle/>:<Navigate to='/login'/>}/>
          <Route path="*" element={<PageNotFound />} />
     </Routes>

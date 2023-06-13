@@ -63,6 +63,7 @@ console.log(user)
                </div>
              </div>
            </div>
+           
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
            <img
                src={venu}
@@ -94,6 +95,39 @@ console.log(user)
 
              </div>
            </div>
+           <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+           <img
+               src={hi}
+               alt="black chair and white table"
+               className="object-cover object-center w-80 h-full"
+             />
+             <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+               <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
+               <div className="flex h-full items-end pb-6">
+               <Link to='/catering'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
+                   FOODS & DRINKS
+                 </h3></Link>
+               </div>
+
+             </div>
+           </div>
+           <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+           <img
+               src={hi}
+               alt="black chair and white table"
+               className="object-cover object-center w-80 h-full"
+             />
+             <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+               <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
+               <div className="flex h-full items-end pb-6">
+               <Link to='/venue'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
+                   VENUE
+                 </h3></Link>
+               </div>
+
+             </div>
+           </div>
+           
        
          </div>
      
