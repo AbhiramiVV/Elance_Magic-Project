@@ -44,7 +44,7 @@ function MakeupEdit() {
       e.preventDefault()
       const updateMake={name,email,mobile,type,rent,image};
       await axios.put(`/vendor/makeedit/${id}`,updateMake)
-      Navigate("/vendor/Makedisplay")
+      Navigate("/vendor/makeup")
       
   }
   

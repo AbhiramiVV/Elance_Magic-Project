@@ -573,4 +573,18 @@ singleMakeup:async (req, res) => {
     console.log("Error occurred in single view of Decor", error);
   }
 },
+updateMake:async (req, res) => {
+  try {
+    console.log(req.body);
+    const Makeupnew = await Makeupcollection.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!Makeupnew) {
+      return res.status(404).json({ message: "Catering not found" });
+    }
+    res.json({ data: Makeupnew, verified: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
 }
