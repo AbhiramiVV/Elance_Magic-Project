@@ -14,6 +14,8 @@ import Venue from "../Pages/User/Venue";
 import Photosingle from "../Pages/User/Photosingle";
 import PageNotFound from "../Component/PageNotFound";
 import CateringView from "../Pages/User/CateringView";
+import Decorsinglepage from "../Pages/User/Decorsinglepage";
+import Venusingle from "../Pages/User/Venusingle";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -27,10 +29,12 @@ function User() {
          <Route path='/forgotPassword' element={<Forgot/>}/>
          <Route path="/changePassword" element={user? <Navigate to="/home" /> : <ChangePassword />} />
          <Route path='/photo' element={user ?<Photographer/>:<Navigate to='/login'/>}/>
+         <Route path='/photosingle/:id' element={user?<Photosingle/>:<Navigate to='/login'/>}/>
         <Route path='/Decor' element={user?<Decor/>:<Navigate to='/login'/>}/>
+        <Route path='/Decorsingle/:id' element={user?<Decorsinglepage/>:<Navigate to='/login'/>}/>
         <Route path='/venue' element={user?<Venue/>:<Navigate to='/login'/>}/>
+            <Route path='/venuesingle/:id' element={user?<Venusingle/>:<Navigate to='/login'/>}/>
         <Route path='/catering' element={user?<CateringView/>:<Navigate to='/login'/>}/>
-        <Route path='/photosingle/:id' element={user?<Photosingle/>:<Navigate to='/login'/>}/>
          <Route path="*" element={<PageNotFound />} />
     </Routes>
       
