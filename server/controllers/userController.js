@@ -242,11 +242,33 @@ Decordisplay : async (req, res) => {
       res.status(201).json({ data: Decoration });
     } catch (error) {}
   },
+  singleDecor :async (req, res) => {
+    try {
+      console.log(req.params);
+      const { id } = req.params;
+      const decorsingle = await Decorcollection.findById({ _id: id });
+      console.log(decorsingle);
+      res.status(201).json(decorsingle);
+    } catch (error) {
+      console.log("Error occurred in single view of Decor", error);
+    }
+  },
   venuedisplay :async (req, res) => {
     try {
       const Venuecollect = await venuecollection.find({});
       res.status(201).json({ data: Venuecollect });
     } catch (error) {}
+  },
+  singleVenue :async (req, res) => {
+    try {
+      console.log(req.params);
+      const { id } = req.params;
+      const venuesingle = await venuecollection.findById({ _id: id });
+      console.log(venuesingle);
+      res.status(201).json(venuesingle);
+    } catch (error) {
+      console.log("Error occurred in single view of venue", error);
+    }
   },
   cateringDiaplay:async(req,res)=>{
     try{

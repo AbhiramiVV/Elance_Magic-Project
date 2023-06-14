@@ -124,7 +124,7 @@ setAmountpay(amountpay)
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                    src={image[2]}
+                     src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
                     className="w-50 h-50 mx-auto"
                     alt="Avatar"
                   />
@@ -185,28 +185,27 @@ setAmountpay(amountpay)
               <div>
                 <img
                   class="h-auto max-w-full rounded-lg"
-                  src={image[1]}
+                  src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
                   alt=""
                 />
               </div>
               <div>
                 <img
                   class="h-auto max-w-full rounded-lg"
-                  src={image[2]}
+                  src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`}
                   alt=""
                 />
               </div>
               <div>
                 <img
                   class="h-auto max-w-full rounded-lg"
-                  src={image[3]}
-                  alt=""
+                  src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
                 />
               </div>
               <div>
                 <img
                   class="h-auto max-w-full rounded-lg"
-                  src={image[0]}
+                  // src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
                   alt=""
                 />
               </div>
