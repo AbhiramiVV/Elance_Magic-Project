@@ -88,6 +88,7 @@ function CateringSingle() {
         setRent(Catorsingle.rent);
         setImage(Catorsingle.image);
         setMenu(Catorsingle.menu);
+        console.log(CateringSingle,'+++++++++++');
   const amountpay=(Catorsingle.rent)*0.1
   console.log(amountpay)
   setAmountpay(amountpay)

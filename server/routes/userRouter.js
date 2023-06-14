@@ -23,5 +23,5 @@ router.get('/singleDecor/:id',User.singleDecor)
 router.get('/venuedisplay',User.venuedisplay)
 router.get('/singleVenue/:id',User.singleVenue)
 router.get('/cateringedisplay',User.cateringDiaplay);
-
+router.get('/singleCater/:id',User.singleCater);
 module.exports=router;

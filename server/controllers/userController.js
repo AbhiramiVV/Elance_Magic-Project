@@ -276,5 +276,15 @@ Decordisplay : async (req, res) => {
       res.status(201).json({data:CateringColl});
     }catch (error){}
   },
+  singleCater:async(req,res)=>{
+    try{
+      const {id}=req.params;
+      const catersingle= await cateringcollection.findById({_id:id});
+      console.log(catersingle);
+      res.status(201).json(catersingle);
+    }catch(error){
+      console.log("error occured in single catering ",error);
+    }
+  },
 
 };
