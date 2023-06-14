@@ -29,14 +29,13 @@ import CateringView from '../Pages/Admin/CateringView';
 import CateringEdit from '../Pages/Admin/CateringEdit';
 import Makeup from '../Pages/Admin/Makeup';
 import MakeupAdd from '../Pages/Admin/makeupAdd';
-
+import MakeupView from '../Pages/Admin/makeupView';
 function Admin() {
   const {admin}=useAuthContext()
   return (
 <fragments>
 
     <Routes>
-     { console.log(admin)}
         <Route path='/vendor'  element={!admin?<Adminlogin/>:<Dashboard/>}/>
         <Route path='/vendorSign' element={<ProviderSignup/>}/>
         <Route path='/dashboard'  element={admin?<Dashboard/>:<Adminlogin/>}/>
@@ -63,6 +62,8 @@ function Admin() {
         <Route path='/cateringedit/:id'  element={admin?<CateringEdit/>:<Adminlogin/>}/>
         <Route path='/makeup' element={admin?<Makeup/>:<Adminlogin/>}/>
         <Route path='/addMakeup' element={admin?<MakeupAdd/>:<Adminlogin/>}/>
+        <Route path='/singleMakeup/:id' element={admin?<MakeupView/>:<Adminlogin/>}/>
+
         <Route path="*" element={<PageNotFound />} />
        </Routes>
 

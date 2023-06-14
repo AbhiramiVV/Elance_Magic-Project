@@ -38,7 +38,6 @@ login: async (req, res) => {
             console.log(passwordMatch,'passwordmach');
         if (passwordMatch) {
           const token = createToken(adminExist._id);
-            console.log(token);
           res.status(200).json({
             token,
             create: true,
@@ -562,6 +561,16 @@ makeupAdd: async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: "Internal server error" });
+  }
+},
+singleMakeup:async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
+    const makeupsingle = await Makeupcollection.findById({ _id: id });
+    res.status(201).json(makeupsingle);
+  } catch (error) {
+    console.log("Error occurred in single view of Decor", error);
   }
 },
 }
