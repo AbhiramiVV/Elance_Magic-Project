@@ -3,7 +3,7 @@ import {HiMenuAlt3} from "react-icons/hi";
 import {MdOutlineDashboard} from "react-icons/md";
 import {GiPartyPopper} from "react-icons/gi";
 import {GiPartyHat} from "react-icons/gi";
-import {FaHotel} from "react-icons/fa";
+import {FaDelicious, FaHotel, FaMapMarker, FaRing, FaUtensils} from "react-icons/fa";
 import {GiPartyFlags} from "react-icons/gi";
 import {FaPlaceOfWorship} from "react-icons/fa";
 
@@ -31,7 +31,8 @@ function Adminsidebar() {
     {name:"Venue",link:'/vendor/venueDisplay',icon:FaPlaceOfWorship },
     {name:"Decorations",link:'/vendor/Decordisplay',icon:GiPartyFlags },
     {name:"Photography",link:'/vendor/photographerview',icon:AiFillCamera },
-    {name:"Foods And Drinks",link:'/vendor/catering',icon:FaHotel},
+    {name:"Foods And Drinks",link:'/vendor/catering',icon:FaUtensils},
+    {name:"Bridal Makeup",link:'/vendor/makeup',icon:FaRing},
     {name:"Customers",link:'/vendor/customerview',icon:FaUserAlt },
     
   ];

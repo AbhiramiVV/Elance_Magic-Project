@@ -59,7 +59,7 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                <Link to='/photo'> <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-               PHOTOGRAPHY
+              EVENT PHOTOGRAPHY
                  </h3></Link>
                </div>
              </div>
@@ -75,7 +75,7 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                 <Link to='/Decor'><h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-                   DECORATION
+                 EVENT DECORATION
                  </h3></Link> 
                </div>
              </div>
@@ -90,7 +90,7 @@ console.log(user)
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
                <Link to='/venue'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-                   VENUE
+                   EVENT LOCATION
                  </h3></Link>
                </div>
 
@@ -121,8 +121,8 @@ console.log(user)
              <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"></h2>
                <div className="flex h-full items-end pb-6">
-               <Link to='/venue'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
-                   VENUE
+               <Link to='/makeup'>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">
+                   BRIDAL MAKEUP
                  </h3></Link>
                </div>
 
