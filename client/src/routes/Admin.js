@@ -27,6 +27,8 @@ import Catering from '../Pages/Admin/Catering';
 import CateringAdd from '../Pages/Admin/CateringAdd';
 import CateringView from '../Pages/Admin/CateringView';
 import CateringEdit from '../Pages/Admin/CateringEdit';
+import Makeup from '../Pages/Admin/Makeup';
+import MakeupAdd from '../Pages/Admin/makeupAdd';
 
 function Admin() {
   const {admin}=useAuthContext()
@@ -59,7 +61,8 @@ function Admin() {
         <Route path='/addCatering'  element={admin?<CateringAdd/>:<Adminlogin/>}/>
         <Route path='/singleCatering/:id' element={admin?<CateringView/>:<Adminlogin/>}/>
         <Route path='/cateringedit/:id'  element={admin?<CateringEdit/>:<Adminlogin/>}/>
-
+        <Route path='/makeup' element={admin?<Makeup/>:<Adminlogin/>}/>
+        <Route path='/addMakeup' element={admin?<MakeupAdd/>:<Adminlogin/>}/>
         <Route path="*" element={<PageNotFound />} />
        </Routes>
 

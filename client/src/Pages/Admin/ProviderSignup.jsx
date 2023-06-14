@@ -120,7 +120,7 @@ const ProviderSignup = () => {
   // onClick={()=>setOtpmodal(true)}
 
   const loginHandle = () => {
-    navigate('/providerLogin')
+    navigate('/vendor/vendor')
   }
 
   const [services, setServices] = useState([]);

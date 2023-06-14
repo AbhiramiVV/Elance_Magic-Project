@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import admin from '../../assets/super.jpg';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAdminLogin } from '../../Hooks/Admin/useAdminLogin';
-import axios from '../../instance/axios';
 
 import { toast } from 'react-toastify';
 
@@ -17,10 +16,12 @@ function Adminlogin() {
 
 
     const loginAdmin = async (e) => {
+        console.log('111111111111111111');
         e.preventDefault();
         try {
           console.log('hjsjhjhj');
           const response =await login(email, password);
+          
           const { success, token, message } = response.data;
           if (success === true) { 
             toast.success("login successfully");

@@ -14,26 +14,31 @@ const venuecollection = require("../models/admin/Venue");
 const Decorcollection = require("../models/admin/Decoration");
 const photographer = require("../models/admin/Photographer");
 const cateringcollection = require("../models/admin/Catering");
+const Makeupcollection = require("../models/admin/makeupSchema");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
 
 module.exports = {
-  login: async (req, res) => {
+login: async (req, res) => {
+    console.log(req.body,'body');
     try {
       const { email, password } = req.body;
 
       const adminExist = await adminModels.findOne({ email: email });
+        console.log(adminExist,'+++++++');
 
       if (adminExist) {
+
         const passwordMatch = await bcrypt.compare(
           password,
           adminExist.password
         );
 
+            console.log(passwordMatch,'passwordmach');
         if (passwordMatch) {
           const token = createToken(adminExist._id);
-
+            console.log(token);
           res.status(200).json({
             token,
             create: true,
@@ -51,13 +56,13 @@ module.exports = {
     }
   },
   postSignup: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body,'00++++')
     try {
       
       const {companyName,description,phone,email,password,selectedPlace,personName,certificate} =req.body
     
       const vendorExist = await adminModels.findOne({ email: email});
-
+console.log(vendorExist,'vendor');
       if (vendorExist) {
         return res.status(200).json({
           message: "Already registered using this mobile number",
@@ -107,7 +112,6 @@ module.exports = {
   },
   verifyvendorSignup:async(req,res)=>{
     
-    console.log(req.body)
     const {email,
       companyname,
       description,
@@ -528,6 +532,14 @@ DeleteCatering:async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json();
+  }
+},
+MakeupView:async(req,res)=>{
+  try {
+    const allmakeup= await Makeupcollection.find();
+    res.status(200).json({ data: allmakeup, verified: true });
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
   }
 },
 }

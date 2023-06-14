@@ -8,12 +8,14 @@ export const useAdminLogin = () => {
   const { dispatch } = useAuthContext()
 
   const login = async (email, password) => {
+    console.log('login');
     setIsLoading(true)
     setError(null)
 
     try {
       console.log(email,password)
       const response = await axios.post('/vendor/vendor', { email,password})
+      console.log(response,'34567');
       const json = response.data
       console.log(response.data)
 
