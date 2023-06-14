@@ -587,4 +587,14 @@ updateMake:async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 },
+DeleteMakeup:async (req,res)=>{
+  const id = req.params.id;
+  try {
+    await Makeupcollection.findByIdAndDelete(id);
+    res.status(200).json({ message: "makeup deleted successfully." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json();
+  }
+}
 }
