@@ -119,7 +119,6 @@ postResend: async (req, res) => {
 
       if (userExist) {
         id = userExist._id;
-        console.log("hashed password", userExist.password);
 
         const checkpassword = await bcrypt.compare(
           data.password,
@@ -131,7 +130,6 @@ postResend: async (req, res) => {
         if (data.email == userExist.email && checkpassword == true) {
           const token = createToken(userExist._id);
 
-          console.log("token", token);
 
           res.status(200).json({
             token,
@@ -227,10 +225,8 @@ photodisplay : async (req, res) => {
   },
   singlePhoto :async (req, res) => {
     try {
-      console.log(req.params);
       const { id } = req.params;
       const photosingle = await photographer.findById({ _id: id });
-      console.log(photosingle);
       res.status(201).json(photosingle);
     } catch (error) {
       console.log("Error occurred in single view of photographer", error);
@@ -244,10 +240,8 @@ Decordisplay : async (req, res) => {
   },
   singleDecor :async (req, res) => {
     try {
-      console.log(req.params);
       const { id } = req.params;
       const decorsingle = await Decorcollection.findById({ _id: id });
-      console.log(decorsingle);
       res.status(201).json(decorsingle);
     } catch (error) {
       console.log("Error occurred in single view of Decor", error);
@@ -261,10 +255,8 @@ Decordisplay : async (req, res) => {
   },
   singleVenue :async (req, res) => {
     try {
-      console.log(req.params);
       const { id } = req.params;
       const venuesingle = await venuecollection.findById({ _id: id });
-      console.log(venuesingle);
       res.status(201).json(venuesingle);
     } catch (error) {
       console.log("Error occurred in single view of venue", error);
@@ -280,7 +272,6 @@ Decordisplay : async (req, res) => {
     try{
       const {id}=req.params;
       const catersingle= await cateringcollection.findById({_id:id});
-      console.log(catersingle);
       res.status(201).json(catersingle);
     }catch(error){
       console.log("error occured in single catering ",error);
