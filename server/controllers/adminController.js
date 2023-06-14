@@ -542,4 +542,26 @@ MakeupView:async(req,res)=>{
     res.status(401).json({ err: "nothing to display" });
   }
 },
+makeupAdd: async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.files); 
+    await Makeupcollection.create({
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      type:req.body.type,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      address:req.body.address,
+      image:req.files,
+    });
+
+    res.status(201).json({ message: "Successfully added" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+},
 }
