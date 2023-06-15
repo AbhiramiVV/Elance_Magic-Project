@@ -12,6 +12,7 @@ const venuecollection = require("../models/admin/Venue");
 const cateringcollection = require("../models/admin/Catering");
 const Makeupcollection = require("../models/admin/makeupSchema");
 const PhotoBook = require("../models/userModels/PhotoBook");
+const VenueBook = require("../models/userModels/userVenueBook");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -366,4 +367,67 @@ Decordisplay : async (req, res) => {
 
 // ------------evetDate--book----------
 
+ checkVenue : async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date } = req.body;
+
+    const { authorization } = req.headers;
+    const token = authorization;
+
+    const { _id } = jwt.verify(token, "usersecretkey");
+
+    const newStartDate = new Date(date);
+    const startDate = newStartDate.toISOString().split("T")[0];
+
+    const decorExist = await VenueBook.findOne({ VenueId: id, Date: startDate });
+
+    const isExist = Boolean(decorExist);
+
+    res.status(200).json({
+      success: true,
+      isExist,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "An error occurred",
+    });
+  }
+},
+
+VenueBook : async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { selectedDate } = req.body;
+
+    const newStartDate = new Date(selectedDate);
+    const startDate = newStartDate.toISOString().split("T")[0];
+
+    const { authorization } = req.headers;
+    const token = authorization;
+
+    const { _id } = jwt.verify(token, "usersecretkey");
+
+    const venueExist = await VenueBook.findOne({ VenueId: id, Date: startDate });
+
+    if (venueExist) {
+      res.status(200).json({ success: false, message: "Already booked" });
+    } else {
+      const bookingVenue = new VenueBook({
+        userId: _id,
+        VenueId: id,
+        Date: startDate,
+      });
+      await bookingVenue.save();
+
+      res.status(200).json({ success: true, message: "Payment done successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "An error occurred",
+    });
+  }
+},
 };

@@ -17,7 +17,10 @@ router.post('/changePassword', User.changePassword);
 
 router.post('/checkDate/:id',User.checkDate)
 router.post('/photoBookadd/:id',User.PhotoBook)
-
+router.post('/BookVenue/:id',User.VenueBook)
+router.post('/checkvenueDate/:id',User.checkVenue)
+router.post('/BookDecor/:id',User.DecorBook)
+router.post('/checkdecorDate/:id',User.checkDecor)
 
 router.use(userAuth)
 
