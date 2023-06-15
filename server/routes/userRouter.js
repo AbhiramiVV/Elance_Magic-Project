@@ -14,6 +14,9 @@ router.post('/ChangePasswordOtp', User.ChangePasswordOtp);
 router.post('/changePassword', User.changePassword);
 
 
+
+router.post('/checkDate/:id',User.checkDate)
+
 router.use(userAuth)
 
 router.get('/photodisplay',User.photodisplay)

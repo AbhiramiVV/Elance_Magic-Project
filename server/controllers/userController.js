@@ -11,6 +11,7 @@ const venueCategory = require("../models/admin/Venuecat");
 const venuecollection = require("../models/admin/Venue");
 const cateringcollection = require("../models/admin/Catering");
 const Makeupcollection = require("../models/admin/makeupSchema");
+const PhotoBook = require("../models/userModels/PhotoBook");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -294,6 +295,42 @@ Decordisplay : async (req, res) => {
     }catch(error){
       console.log("error occured in single makeup",error);
     }
+  },
+
+
+// -----------------photoDate------------------
+
+  checkDate :async (req, res) => {
+    try {
+      const { id } = req.params;
+      console.log("in the check date function" );
+      const date = req.body.date;
+  
+      const { authorization } = req.headers;
+      const token = authorization;
+  
+      const { _id } = jwt.verify(token, "usersecretkey");
+  
+  console.log(date)
+  const newStartDate = new Date(date)
+        const startDate = newStartDate.toISOString().split('T')[0]
+        console.log(startDate)   
+         const photographerExist = await PhotoBook.findOne({$and:[{PhotoId:id},{Date:startDate}]})
+      console.log(photographerExist);
+      
+  const isExist =  Boolean(photographerExist) 
+      console.log(isExist);
+  
+         
+        res
+          .status(200)
+          .json({
+            isExist
+            
+          });
+      
+    } catch (error) {}
+  
   },
 
 };
