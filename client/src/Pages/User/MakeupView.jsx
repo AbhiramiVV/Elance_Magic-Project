@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../Component/Header';
-import logo from '../../assets/logo.jpg';
 import axios from '../../instance/axios';
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';

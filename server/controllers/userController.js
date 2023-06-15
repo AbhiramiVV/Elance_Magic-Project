@@ -10,6 +10,7 @@ const Decorcollection = require("../models/admin/Decoration");
 const venueCategory = require("../models/admin/Venuecat");
 const venuecollection = require("../models/admin/Venue");
 const cateringcollection = require("../models/admin/Catering");
+const Makeupcollection = require("../models/admin/makeupSchema");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -275,6 +276,14 @@ Decordisplay : async (req, res) => {
       res.status(201).json(catersingle);
     }catch(error){
       console.log("error occured in single catering ",error);
+    }
+  },
+  MakeupDiaplay:async(req,res)=>{
+    try{
+      const Makeupcoll = await Makeupcollection.find({});
+      res.status(201).json({data:Makeupcoll});
+    }catch(error){
+      console.log("error");
     }
   },
 

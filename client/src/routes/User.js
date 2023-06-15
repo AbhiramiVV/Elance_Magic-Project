@@ -17,6 +17,7 @@ import CateringView from "../Pages/User/CateringView";
 import Decorsinglepage from "../Pages/User/Decorsinglepage";
 import Venusingle from "../Pages/User/Venusingle";
 import CateringSingle from "../Pages/User/CateringSingle";
+import MakeupView from "../Pages/User/MakeupView";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -37,6 +38,7 @@ function User() {
         <Route path='/venuesingle/:id' element={user?<Venusingle/>:<Navigate to='/login'/>}/>
         <Route path='/catering' element={user?<CateringView/>:<Navigate to='/login'/>}/>
         <Route path='/Catersingle/:id' element={user?<CateringSingle/>:<Navigate to='/login'/>}/>
+        <Route path='/makeup' element={user?<MakeupView/>:<Navigate to='/login'/>}/>
          <Route path="*" element={<PageNotFound />} />
     </Routes>
       
