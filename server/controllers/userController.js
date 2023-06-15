@@ -286,5 +286,14 @@ Decordisplay : async (req, res) => {
       console.log("error");
     }
   },
+  singleMakeup:async(req,res)=>{
+    try{
+      const {id}=req.params;
+      const makeupsingle = await Makeupcollection.findById({_id:id});
+      res.status(201).json(makeupsingle);
+    }catch(error){
+      console.log("error occured in single makeup",error);
+    }
+  },
 
 };

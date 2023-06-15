@@ -25,4 +25,5 @@ router.get('/singleVenue/:id',User.singleVenue)
 router.get('/cateringedisplay',User.cateringDiaplay);
 router.get('/singleCater/:id',User.singleCater);
 router.get('/makeupdisplay',User.MakeupDiaplay);
+router.get('/singleMake/:id',User.singleMakeup);
 module.exports=router;
