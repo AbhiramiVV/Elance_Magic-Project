@@ -298,7 +298,7 @@ Decordisplay : async (req, res) => {
   },
 
 
-// -----------------photoDate------------------
+// -----------------photoDate- Book-----------------
 
   checkDate :async (req, res) => {
     try {
@@ -331,6 +331,45 @@ Decordisplay : async (req, res) => {
       
     } catch (error) {}
   
+  },
+  PhotoBook : async (req, res) => {
+    try {
+      const { id } = req.params;
+      console.log("id is here" + id);
+      const date = req.body.selectedDate;
+      console.log(date);
+      const newStartDate = new Date(date)
+      const startDate = newStartDate.toISOString().split('T')[0]
+      console.log(startDate)
+      const { authorization } = req.headers;
+      const token = authorization;
+  
+      const { _id } = jwt.verify(token, "usersecretkey");
+  
+      console.log(_id);
+  
+      const photographerExist = await PhotoBook.findOne(
+        {$and:[{PhotoId:id},{Date:startDate}]}
+      );
+      console.log(photographerExist);
+  
+    if(photographerExist){
+      res
+      .status(200)
+      .json({ message: "already booked", action: true });
+    }else{
+          const Bookingphoto = new PhotoBook({
+          userId: _id,
+          PhotoId: id,
+          Date: startDate,
+        });
+        await Bookingphoto.save();
+  
+      
+      res
+        .status(200)
+        .json({ message: "Payment done successfully", action: true });}
+    } catch (error) {}
   },
 
 };
