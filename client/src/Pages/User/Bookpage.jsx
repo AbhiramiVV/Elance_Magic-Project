@@ -4,6 +4,7 @@ import hi from '../../assets/hi.jpg'
 import photograph from "../../assets/testimonial.jpg";
 import venu from "../../assets/venue.jpg";
 import food from "../../assets/foods.jpg"
+import bride from "../../assets/img/bridal.png"
 import { Link } from "react-router-dom";
 import axios from "../../instance/axios";
 import { useAuthContext } from "../../Hooks/useAuthContext";
@@ -114,7 +115,7 @@ console.log(user)
            </div>
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
            <img
-               src={hi}
+               src={bride}
                alt="black chair and white table"
                className="object-cover object-center w-80 h-full"
              />

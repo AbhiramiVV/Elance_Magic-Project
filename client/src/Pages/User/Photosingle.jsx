@@ -195,7 +195,7 @@ console.log(selectedDate)
         <PayPalScriptProvider
           options={{
             "client-id":
-              "AR986YBuyOzayvXPq1yaXyQwaZ1oCETTKjCekqO_-iWm_EWpSkI3ZeWu2aNUAMyukJ4aIAkbQNWEqNa-",
+              "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
           }}
         >
           <PayPalButtons
