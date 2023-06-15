@@ -314,20 +314,13 @@ Decordisplay : async (req, res) => {
   console.log(date)
   const newStartDate = new Date(date)
         const startDate = newStartDate.toISOString().split('T')[0]
-        console.log(startDate)   
+        console.log(startDate,'startDate')   
          const photographerExist = await PhotoBook.findOne({$and:[{PhotoId:id},{Date:startDate}]})
-      console.log(photographerExist);
+      console.log(photographerExist,'photoexist');
       
   const isExist =  Boolean(photographerExist) 
-      console.log(isExist);
-  
-         
-        res
-          .status(200)
-          .json({
-            isExist
-            
-          });
+      console.log(isExist,'isexist');
+        res.status(200).json({isExist});
       
     } catch (error) {}
   
@@ -337,16 +330,15 @@ Decordisplay : async (req, res) => {
       const { id } = req.params;
       console.log("id is here" + id);
       const date = req.body.selectedDate;
-      console.log(date);
+      console.log(date,'date');
       const newStartDate = new Date(date)
       const startDate = newStartDate.toISOString().split('T')[0]
-      console.log(startDate)
+      console.log(startDate,'startdate')
       const { authorization } = req.headers;
       const token = authorization;
-  
       const { _id } = jwt.verify(token, "usersecretkey");
   
-      console.log(_id);
+      console.log(_id,'id of jwt');
   
       const photographerExist = await PhotoBook.findOne(
         {$and:[{PhotoId:id},{Date:startDate}]}

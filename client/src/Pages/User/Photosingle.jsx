@@ -58,6 +58,7 @@ const[amountPay,setAmountpay]=useState(0)
       const response = await axios.post(`/photoBookadd/${id}`,
       {
         selectedDate,
+
       },
       {
         headers: {
@@ -69,7 +70,6 @@ const[amountPay,setAmountpay]=useState(0)
      
   } catch (error) {}
 };
-
 
     const viewPhotoSingle = async () => {
       try {

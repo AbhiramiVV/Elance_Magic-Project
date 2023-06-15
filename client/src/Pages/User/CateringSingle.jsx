@@ -1,16 +1,13 @@
 
 import React, { useEffect, useState } from "react";
 import Header from "../../Component/Header";
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
-import ClipLoader from "react-spinners/ClipLoader";
-
 function CateringSingle() {
     const { id } = useParams();
     const { user } = useAuthContext();
