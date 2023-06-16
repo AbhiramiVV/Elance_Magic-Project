@@ -23,7 +23,7 @@ router.post('/BookDecor/:id',User.DecorBook)
 router.post('/checkdecorDate/:id',User.checkDecor)
 router.post('/checkcaterDate/:id',User.checkCater);
 router.post('/BookDecor/:id',User.CaterBook);
-
+router.post('/checkmakeDate/:id',User.checkMakeup);
 
 
 
