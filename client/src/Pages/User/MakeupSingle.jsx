@@ -23,7 +23,6 @@ function MakeupSingle() {
     const [isExist, setExist] = useState(false);
   const[amountpay,setAmountpay]=useState(0)
     const handleDateChange = async(date) => {
-      console.log(date)
       setSelectedDate(date);
       try {
        
