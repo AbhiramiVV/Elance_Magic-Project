@@ -6,7 +6,7 @@ const CaterBookSchema = mongoose.Schema({
     },
     CaterId: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'DecorSchema', 
+        ref: 'CaterSchema', 
     },
     Date: {
         type: String,

@@ -6,7 +6,7 @@ const MakeBookSchema = mongoose.Schema({
     },
     MakeId: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'DecorSchema', 
+        ref: 'MakeSchema', 
     },
     Date: {
         type: String,
