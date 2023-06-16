@@ -24,7 +24,7 @@ router.post('/checkdecorDate/:id',User.checkDecor)
 router.post('/checkcaterDate/:id',User.checkCater);
 router.post('/BookDecor/:id',User.CaterBook);
 router.post('/checkmakeDate/:id',User.checkMakeup);
-
+router.post('/BookMake/:id',User.MakeBook);
 
 
 router.use(userAuth)

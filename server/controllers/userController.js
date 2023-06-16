@@ -10,11 +10,12 @@ const Decorcollection = require("../models/admin/Decoration");
 const venueCategory = require("../models/admin/Venuecat");
 const venuecollection = require("../models/admin/Venue");
 const cateringcollection = require("../models/admin/Catering");
-const Makeupcollection = require("../models/admin/makeupSchema");
 const PhotoBook = require("../models/userModels/PhotoBook");
 const VenueBook = require("../models/userModels/userVenueBook");
 const DecorBook = require("../models/userModels/DecorBook");
 const CaterBook = require("../models/userModels/CaterBook");
+const MakeBook = require("../models/userModels/MakeBook");
+const { default: MakeupSingle } = require("../../client/src/Pages/User/MakeupSingle");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
@@ -564,6 +565,36 @@ checkMakeup:async(req,res) =>{
     res.status(200).json({success:true,isExist,});
   }catch (error){
     res.status(500).json({ success:false,error:"An error occurred"});
+  }
+},
+MakeBook:async(req,res)=>{
+  try{
+    const {id}=req.params;
+    const {selectedDate}=req.body;
+    const newStartDate = new Date(selectedDate);
+    const startDate = newStartDate.toISOString.split("T")[0];
+    const {authorization} =req.headers;
+    const token = authorization;
+    const {_id} = jwt.verify(token,"usersecretkey");
+    const cateringExist=await MakeBook.findOne({CaterId:id,Date:startDate});
+    if(cateringExist){
+      res.status(200).json({success:false,message:"Already booked"});
+    }else{
+      const Bookingmakeup=new MakeBook({
+        userId:_id,
+        MakeId:id,
+        Date:startDate,
+      });
+      await Bookingmakeup.save();
+      res.status(200).json({ success: true, message: "Payment done successfully" });
+
+    }
+
+  } catch(error){
+    res.status(500).json({
+      success:false,
+      error:"An error occured",
+    });
   }
 },
 
