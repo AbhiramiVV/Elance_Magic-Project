@@ -601,22 +601,20 @@ MakeBook:async(req,res)=>{
 
 Order : async (req, res) => {
   try {
-    console.log("ghhgfujiokpl[");
+  
     const { authorization } = req.headers;
     const token = authorization;
 
     const { _id } = jwt.verify(token, "usersecretkey");
-
-    console.log(_id);
     const photo = await PhotoBook.find({ userId: _id }).populate("PhotoId").sort({Date:-1})
-  
-    console.log(photo);
     const venue = await VenueBook.find({ userId: _id }).populate("VenueId").sort({Date:-1})
-    console.log(venue);
     const decor = await DecorBook.find({ userId: _id }).populate("DecorId").sort({Date:-1})
     console.log(decor);
+    const cater = await CaterBook.find({ userId: _id }).populate("CaterId").sort({Date:-1})
+    console.log(cater);
+    const make = await MakeBook.find({ userId: _id }).populate("MakeId").sort({Date:-1})
 
-    res.status(201).json({ photo, venue, decor });
+    res.status(201).json({ photo, venue, decor,cater,make });
   } catch (error) {}
 },
 

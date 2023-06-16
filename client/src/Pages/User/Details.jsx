@@ -19,6 +19,8 @@ const[userData,setUserdata]=useState(null)
   const [photo, setPhoto] = useState(null);
   const [venue, setVenue] = useState(null);
   const [decor, setDecor] = useState(null);
+  const [cater,setCater] =useState(null);
+  const [make,setMake] = useState(null);
   const [activeTab, setActiveTab] = useState("view");
 
 
@@ -38,13 +40,15 @@ const[userData,setUserdata]=useState(null)
         if (response.data.decor) setDecor(response.data.decor);
         if (response.data.venue) setVenue(response.data.venue);
         if (response.data.photo) setPhoto(response.data.photo);
+        if (response.data.cater) setCater(response.data.cater);
+        if(response.data.make) setMake(response.data.make);
       });
   };
   useEffect(() => {
     Order();
   
   }, []);
-  console.log(decor,'2222222');
+  console.log(cater,'2222222');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -151,20 +155,20 @@ const handlephotocancel=async(id,bookItem)=>{
               </button>
               <button
                 className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
-                  activeTab === "decor" ? "opacity-50 cursor-not-allowed" : ""
+                  activeTab === "cater" ? "opacity-50 cursor-not-allowed" : ""
                 }`}
-                onClick={() => handleTabClick("decor")}
-                disabled={activeTab === "decor"}
+                onClick={() => handleTabClick("cater")}
+                disabled={activeTab === "cater"}
               >
-                Decor Bookings
+                Catering Bookings
               </button><button
                 className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
-                  activeTab === "decor" ? "opacity-50 cursor-not-allowed" : ""
+                  activeTab === "make" ? "opacity-50 cursor-not-allowed" : ""
                 }`}
-                onClick={() => handleTabClick("decor")}
-                disabled={activeTab === "decor"}
+                onClick={() => handleTabClick("make")}
+                disabled={activeTab === "make"}
               >
-                Decor Bookings
+                Makeup Bookings
               </button>
               
             </div>
@@ -330,6 +334,133 @@ const handlephotocancel=async(id,bookItem)=>{
                           {booking.DecorId.rent}
                           <br />
                           (paid={booking.DecorId.rent * 0.1})
+                        </td>
+                        <td className="px-4 py-3">
+                          {new Date(booking.createdAt).toLocaleDateString(
+                            "en-GB"
+                          )}
+                        </td>
+                        <td className="px-4 py-3">
+                          {new Date(booking.Date).toLocaleDateString("en-GB")}
+                        </td>
+                      
+                        <td className="px-4 py-3">
+                          <button
+                            type="button"
+                            onClick={()=>handlephotocancel(booking._id,'decor')}
+                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+                          >
+                            Cancel
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </table>
+              </table>
+            )}
+
+              {activeTab === "cater" && (
+              <table className="mt-5 mx-auto">
+                <caption className="text-lg text-center font-bold m-5">
+                  Catering bookings
+                </caption>
+                <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+                  <thead>
+                    <tr className="text-left border-b-2 border-gray-300">
+                    <th className="px-4 py-3">Image</th>
+                      <th className="px-4 py-3">Name</th>
+                      <th className="px-4 py-3">Menu</th>
+
+                      <th className="px-4 py-3">Rent</th>
+                      <th className="px-4 py-3">Booking Date</th>
+                      <th className="px-4 py-3">Event Date</th>
+                    </tr>
+                  </thead>
+                  {cater &&
+                    cater.map((booking) => (
+                      <tr
+                        key={booking.id}
+                        className="bg-gray-100 border-b border-gray-200"
+                      >
+                           <td className="px-4 py-3">
+                         
+                          <img
+                              src={`http://localhost:5000/uploads/${booking.CaterId.image[0]?.files[0]?.filename}`}
+                            alt="Decor Image"
+                            className="h-10 w-10 rounded-full"
+                          />
+                        </td>
+
+                        <td className="px-4 py-3">{booking.CaterId.name}</td>
+                        <td className="px-4 py-3">{booking.CaterId.menu}</td>
+
+                        <td className="px-4 py-3">
+                          {booking.CaterId.rent}
+                          <br />
+                          (paid={booking.CaterId.rent * 0.1})
+                        </td>
+                        <td className="px-4 py-3">
+                          {new Date(booking.createdAt).toLocaleDateString(
+                            "en-GB"
+                          )}
+                        </td>
+                        <td className="px-4 py-3">
+                          {new Date(booking.Date).toLocaleDateString("en-GB")}
+                        </td>
+                      
+                        <td className="px-4 py-3">
+                          <button
+                            type="button"
+                            onClick={()=>handlephotocancel(booking._id,'decor')}
+                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+                          >
+                            Cancel
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </table>
+              </table>
+            )}
+             {activeTab === "make" && (
+              <table className="mt-5 mx-auto">
+                <caption className="text-lg text-center font-bold m-5">
+                  Makeup bookings
+                </caption>
+                <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+                  <thead>
+                    <tr className="text-left border-b-2 border-gray-300">
+                    <th className="px-4 py-3">Image</th>
+                      <th className="px-4 py-3">Name</th>
+                      <th className="px-4 py-3">Type</th>
+
+                      <th className="px-4 py-3">Rent</th>
+                      <th className="px-4 py-3">Booking Date</th>
+                      <th className="px-4 py-3">Event Date</th>
+                    </tr>
+                  </thead>
+                  {make &&
+                    make.map((booking) => (
+                      <tr
+                        key={booking.id}
+                        className="bg-gray-100 border-b border-gray-200"
+                      >
+                           <td className="px-4 py-3">
+                         
+                          <img
+                              src={`http://localhost:5000/uploads/${booking.MakeId.image[0]?.files[0]?.filename}`}
+                            alt="Makeup Image"
+                            className="h-10 w-10 rounded-full"
+                          />
+                        </td>
+
+                        <td className="px-4 py-3">{booking.MakeId.name}</td>
+                        <td className="px-4 py-3">{booking.MakeId.Type}</td>
+
+                        <td className="px-4 py-3">
+                          {booking.MakeId.rent}
+                          <br />
+                          (paid={booking.MakeId.rent * 0.1})
                         </td>
                         <td className="px-4 py-3">
                           {new Date(booking.createdAt).toLocaleDateString(
