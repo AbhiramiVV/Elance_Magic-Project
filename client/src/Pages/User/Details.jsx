@@ -27,6 +27,7 @@ const[userData,setUserdata]=useState(null)
   
 
   const Order = async () => {
+
     const response = await axios
       .get(`/Orderdisplay`, {
         headers: {
@@ -43,7 +44,7 @@ const[userData,setUserdata]=useState(null)
     Order();
   
   }, []);
-  
+  console.log(decor,'2222222');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -90,7 +91,7 @@ const handlephotocancel=async(id,bookItem)=>{
       <Header />
 
       <div className="w-full ">
-        <div class="flex h-screen w-full items-center justify-center">
+        <div class="flex h-screen w-full items-center justify-center" style={{width:"100%"}}>
           <div class="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
               <div class="grid-cols-1 lg:col-span-3"></div>
@@ -148,6 +149,24 @@ const handlephotocancel=async(id,bookItem)=>{
               >
                 Decor Bookings
               </button>
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  activeTab === "decor" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleTabClick("decor")}
+                disabled={activeTab === "decor"}
+              >
+                Decor Bookings
+              </button><button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  activeTab === "decor" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleTabClick("decor")}
+                disabled={activeTab === "decor"}
+              >
+                Decor Bookings
+              </button>
+              
             </div>
             {activeTab === "photographer" && (
               <table className="mt-5 mx-auto">
@@ -175,7 +194,7 @@ const handlephotocancel=async(id,bookItem)=>{
                           <td className="px-4 py-3">
                             {" "}
                             <img
-                              src={booking.PhotoId.image[0]}
+                              src={`http://localhost:5000/uploads/${booking.PhotoId.image[0]?.files[0]?.filename}`}
                               alt="Photographer Image"
                               className="h-10 w-10 rounded-full"
                             />
@@ -238,7 +257,7 @@ const handlephotocancel=async(id,bookItem)=>{
                         <td className="px-4 py-3">
                           {" "}
                           <img
-                            src={booking.VenueId.image[0]}
+                             src={`http://localhost:5000/uploads/${booking.VenueId.image[0]?.files[0]?.filename}`}
                             alt="Photographer Image"
                             className="h-10 w-10 rounded-full"
                           />
@@ -299,8 +318,8 @@ const handlephotocancel=async(id,bookItem)=>{
                            <td className="px-4 py-3">
                          
                           <img
-                            src={booking.DecorId.image[0]}
-                            alt="Photographer Image"
+                              src={`http://localhost:5000/uploads/${booking.DecorId.image[0]?.files[0]?.filename}`}
+                            alt="Decor Image"
                             className="h-10 w-10 rounded-full"
                           />
                         </td>
