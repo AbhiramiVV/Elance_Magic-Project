@@ -510,7 +510,7 @@ checkCater:async(req,res) =>{
     const {_id}=jwt.verify(token,"usersecretkey");
     const newStartDate=new Date(date);
     const startDate =newStartDate.toISOString().split("T")[0];
-    const cateringExist=await CaterBook.findOne({DecorId:id,Date:startDate});
+    const cateringExist=await CaterBook.findOne({CaterId:id,Date:startDate});
     const isExist = Boolean(cateringExist);
     res.status(200).json({success:true,isExist,});
   }catch (error){
@@ -526,7 +526,7 @@ CaterBook:async(req,res)=>{
     const {authorization} =req.headers;
     const token = authorization;
     const {_id} = jwt.verify(token,"usersecretkey");
-    const cateringExist=await CaterBook.findOne({DecorId:id,Date:startDate});
+    const cateringExist=await CaterBook.findOne({CaterId:id,Date:startDate});
     if(cateringExist){
       res.status(200).json({success:false,message:"Already booked"});
     }else{
@@ -559,8 +559,8 @@ checkMakeup:async(req,res) =>{
     const {_id}=jwt.verify(token,"usersecretkey");
     const newStartDate=new Date(date);
     const startDate =newStartDate.toISOString().split("T")[0];
-    const cateringExist=await MakeBook.findOne({DecorId:id,Date:startDate});
-    const isExist = Boolean(cateringExist);
+    const MakeExist=await MakeBook.findOne({MakeId:id,Date:startDate});
+    const isExist = Boolean(MakeExist);
     res.status(200).json({success:true,isExist,});
   }catch (error){
     res.status(500).json({ success:false,error:"An error occurred"});

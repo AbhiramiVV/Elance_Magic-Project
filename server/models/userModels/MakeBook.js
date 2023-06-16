@@ -1,10 +1,10 @@
 const mongoose=require('mongoose')
-const CaterBookSchema = mongoose.Schema({
+const MakeBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
         ref: 'User', 
     },
-    CaterId: {
+    MakeId: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'DecorSchema', 
     },
@@ -15,5 +15,5 @@ const CaterBookSchema = mongoose.Schema({
       timestamps: true, 
     }
 );
-const CaterBook=mongoose.model("CaterBook",CaterBookSchema)
-module.exports=CaterBook;
+const MakeBook=mongoose.model("MakeBook",MakeBookSchema)
+module.exports=MakeBook;
