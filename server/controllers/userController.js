@@ -576,7 +576,7 @@ MakeBook:async(req,res)=>{
     const {authorization} =req.headers;
     const token = authorization;
     const {_id} = jwt.verify(token,"usersecretkey");
-    const cateringExist=await MakeBook.findOne({CaterId:id,Date:startDate});
+    const cateringExist=await MakeBook.findOne({MakeId:id,Date:startDate});
     if(cateringExist){
       res.status(200).json({success:false,message:"Already booked"});
     }else{
