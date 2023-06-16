@@ -21,7 +21,7 @@ router.post('/BookVenue/:id',User.VenueBook)
 router.post('/checkvenueDate/:id',User.checkVenue)
 router.post('/BookDecor/:id',User.DecorBook)
 router.post('/checkdecorDate/:id',User.checkDecor)
-
+router.post('/checkcaterDate/:id',User.checkCater);
 router.use(userAuth)
 
 router.get('/photodisplay',User.photodisplay)

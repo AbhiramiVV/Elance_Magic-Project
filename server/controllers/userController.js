@@ -497,5 +497,11 @@ DecorBook : async (req, res) => {
     });
   }
 },
-
+checkCater:async(req,res) =>{
+  try{
+    const { id}=req.params;
+    const {date}=req.body;
+    
+  }
+}
 };
