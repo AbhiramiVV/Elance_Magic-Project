@@ -505,8 +505,12 @@ checkCater:async(req,res) =>{
     const token = authorization;
     const {_id}=jwt.verify(token,"usersecretkey");
     const newStartDate=new Date(date);
-    
-
+    const startDate =newStartDate.toISOString().split("T")[0];
+    const decorExist=await DecorBook.findOne({DecorId:id,Date:startDate});
+    const isExist = Boolean(decorExist);
+    res.status(200).json({success:true,isExist,});
+  }catch (error){
+    res.status(500).json({ success:false,error:"An error occurred"});
   }
 }
 };
