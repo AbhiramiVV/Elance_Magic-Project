@@ -52,7 +52,7 @@ const[userData,setUserdata]=useState(null)
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-  console.log(user);
+
 
 const handlephotocancel=async(id,bookItem)=>{
   try {
@@ -161,7 +161,8 @@ const handlephotocancel=async(id,bookItem)=>{
                 disabled={activeTab === "cater"}
               >
                 Catering Bookings
-              </button><button
+              </button>
+              <button
                 className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
                   activeTab === "make" ? "opacity-50 cursor-not-allowed" : ""
                 }`}
@@ -307,7 +308,6 @@ const handlephotocancel=async(id,bookItem)=>{
                     <tr className="text-left border-b-2 border-gray-300">
                     <th className="px-4 py-3">Image</th>
                       <th className="px-4 py-3">Name</th>
-                     
                       <th className="px-4 py-3">Rent</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
