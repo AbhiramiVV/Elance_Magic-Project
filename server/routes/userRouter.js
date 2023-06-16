@@ -26,6 +26,9 @@ router.post('/BookDecor/:id',User.CaterBook);
 router.post('/checkmakeDate/:id',User.checkMakeup);
 router.post('/BookMake/:id',User.MakeBook);
 
+router.get('/Orderdisplay',User.Order)
+
+
 
 router.use(userAuth)
 
