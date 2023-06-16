@@ -433,7 +433,6 @@ const handlephotocancel=async(id,bookItem)=>{
                     <th className="px-4 py-3">Image</th>
                       <th className="px-4 py-3">Name</th>
                       <th className="px-4 py-3">Type</th>
-
                       <th className="px-4 py-3">Rent</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
