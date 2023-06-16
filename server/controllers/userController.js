@@ -501,7 +501,12 @@ checkCater:async(req,res) =>{
   try{
     const { id}=req.params;
     const {date}=req.body;
+    const {authorization} = req.headers;
+    const token = authorization;
+    const {_id}=jwt.verify(token,"usersecretkey");
+    const newStartDate=new Date(date);
     
+
   }
 }
 };
