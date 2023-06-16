@@ -15,6 +15,7 @@ const VenueBook = require("../models/userModels/userVenueBook");
 const DecorBook = require("../models/userModels/DecorBook");
 const CaterBook = require("../models/userModels/CaterBook");
 const MakeBook = require("../models/userModels/MakeBook");
+const Makeupcollection = require("../models/admin/makeupSchema");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });

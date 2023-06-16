@@ -96,7 +96,6 @@ function MakeupSingle() {
         viewMakeSingle();
     }, [id]);
     
-  console.log(selectedDate)
     return (
       <>
         <Header />
