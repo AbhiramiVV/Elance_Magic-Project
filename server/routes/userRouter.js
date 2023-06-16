@@ -23,6 +23,10 @@ router.post('/BookDecor/:id',User.DecorBook)
 router.post('/checkdecorDate/:id',User.checkDecor)
 router.post('/checkcaterDate/:id',User.checkCater);
 router.post('/BookDecor/:id',User.CaterBook);
+
+
+
+
 router.use(userAuth)
 
 router.get('/photodisplay',User.photodisplay)
