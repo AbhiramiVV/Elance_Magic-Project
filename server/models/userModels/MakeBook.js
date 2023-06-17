@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const make=require('../admin/makeupSchema')
 const MakeBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
