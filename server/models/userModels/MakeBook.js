@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const make=require('../admin/makeupSchema')
+const makeupSchema=require('../admin/makeupSchema')
 const MakeBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
@@ -7,7 +7,7 @@ const MakeBookSchema = mongoose.Schema({
     },
     MakeId: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'MakeSchema', 
+        ref: 'makeupSchema', 
     },
     Date: {
         type: String,

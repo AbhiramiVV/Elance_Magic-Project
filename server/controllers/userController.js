@@ -567,37 +567,35 @@ checkMakeup:async(req,res) =>{
     res.status(500).json({ success:false,error:"An error occurred"});
   }
 },
-MakeBook:async(req,res)=>{
-  try{
-    const {id}=req.params;
-    const {selectedDate}=req.body;
+MakeBook:async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { selectedDate } = req.body;
     const newStartDate = new Date(selectedDate);
-    const startDate = newStartDate.toISOString.split("T")[0];
-    const {authorization} =req.headers;
+    const startDate = newStartDate.toISOString().split("T")[0]; // Add parentheses after toISOString()
+    const { authorization } = req.headers;
     const token = authorization;
-    const {_id} = jwt.verify(token,"usersecretkey");
-    const cateringExist=await MakeBook.findOne({MakeId:id,Date:startDate});
-    if(cateringExist){
-      res.status(200).json({success:false,message:"Already booked"});
-    }else{
-      const Bookingmakeup=new MakeBook({
-        userId:_id,
-        MakeId:id,
-        Date:startDate,
+    const { _id } = jwt.verify(token, "usersecretkey");
+    const makeupExist = await MakeBook.findOne({ CaterId: id, Date: startDate });
+    console.log(makeupExist,'0000000000000');
+    if (makeupExist) {
+      res.status(200).json({ success: false, message: "Already booked" });
+    } else {
+      const Bookingmakeup = new MakeBook({
+        userId: _id,
+        CaterId: id,
+        Date: startDate,
       });
       await Bookingmakeup.save();
       res.status(200).json({ success: true, message: "Payment done successfully" });
-
     }
-
-  } catch(error){
+  } catch (error) {
     res.status(500).json({
-      success:false,
-      error:"An error occured",
+      success: false,
+      error: "An error occurred",
     });
   }
 },
-
 
 Order: async (req, res) => {
   try {
