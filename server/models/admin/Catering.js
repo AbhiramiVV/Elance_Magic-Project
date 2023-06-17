@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const venueSchema = mongoose.Schema({
+const cateringSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -43,5 +43,5 @@ const venueSchema = mongoose.Schema({
 
     });
 
-const cateringcollection = mongoose.model('Catering', venueSchema); 
+const cateringcollection = mongoose.model('Catering', cateringSchema); 
 module.exports = cateringcollection;

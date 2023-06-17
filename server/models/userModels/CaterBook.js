@@ -1,20 +1,21 @@
-const mongoose=require('mongoose')
-const cater=require('../admin/Catering')
+const mongoose = require('mongoose');
+const Catering = require('../admin/Catering');
+
 const CaterBookSchema = mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
-        ref: 'User', 
-    },
-    CaterId: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'CaterSchema', 
-    },
-    Date: {
-        type: String,
-    },},
-    {
-      timestamps: true, 
-    }
-);
-const CaterBook=mongoose.model("CaterBook",CaterBookSchema)
-module.exports=CaterBook;
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  CaterId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Catering', // Update to the correct model name 'Catering'
+  },
+  Date: {
+    type: String,
+  },
+}, {
+  timestamps: true,
+});
+
+const CaterBook = mongoose.model('CaterBook', CaterBookSchema);
+module.exports = CaterBook;

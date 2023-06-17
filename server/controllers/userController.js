@@ -479,7 +479,7 @@ DecorBook : async (req, res) => {
     const { _id } = jwt.verify(token, "usersecretkey");
 
     const decorExist = await DecorBook.findOne({ DecorId: id, Date: startDate });
-
+  
     if (decorExist) {
       res.status(200).json({ success: false, message: "Already booked" });
     } else {
@@ -518,36 +518,36 @@ checkCater:async(req,res) =>{
     res.status(500).json({ success:false,error:"An error occurred"});
   }
 },
-CaterBook:async(req,res)=>{
-  try{
-    const {id}=req.params;
-    const {selectedDate}=req.body;
+CaterBook: async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { selectedDate } = req.body;
     const newStartDate = new Date(selectedDate);
-    const startDate = newStartDate.toISOString.split("T")[0];
-    const {authorization} =req.headers;
+    const startDate = newStartDate.toISOString().split("T")[0]; // Add parentheses after toISOString()
+    const { authorization } = req.headers;
     const token = authorization;
-    const {_id} = jwt.verify(token,"usersecretkey");
-    const cateringExist=await CaterBook.findOne({CaterId:id,Date:startDate});
-    if(cateringExist){
-      res.status(200).json({success:false,message:"Already booked"});
-    }else{
-      const Bookingcatering=new CaterBook({
-        userId:_id,
-        CaterId:id,
-        Date:startDate,
+    const { _id } = jwt.verify(token, "usersecretkey");
+    const cateringExist = await CaterBook.findOne({ CaterId: id, Date: startDate });
+    console.log(cateringExist,'0000000000000');
+    if (cateringExist) {
+      res.status(200).json({ success: false, message: "Already booked" });
+    } else {
+      const Bookingcatering = new CaterBook({
+        userId: _id,
+        CaterId: id,
+        Date: startDate,
       });
       await Bookingcatering.save();
       res.status(200).json({ success: true, message: "Payment done successfully" });
-
     }
-
-  } catch(error){
+  } catch (error) {
     res.status(500).json({
-      success:false,
-      error:"An error occured",
+      success: false,
+      error: "An error occurred",
     });
   }
 },
+
 
 // -------------------makeupDate-----Book---------
 
@@ -606,12 +606,10 @@ Order: async (req, res) => {
 
     const { _id } = jwt.verify(token, "usersecretkey");
     const photo = await PhotoBook.find({ userId: _id }).populate("PhotoId").sort({ Date: -1 });
-    console.log(photo, '111111111111111');
     const venue = await VenueBook.find({ userId: _id }).populate("VenueId").sort({ Date: -1 });
     const decor = await DecorBook.find({ userId: _id }).populate("DecorId").sort({ Date: -1 });
-    console.log(decor);
     const cater = await CaterBook.find({ userId: _id }).populate("CaterId").sort({ Date: -1 });
-    console.log(cater);
+    console.log(cater,'9999999999');
     const make = await MakeBook.find({ userId: _id }).populate("MakeId").sort({ Date: -1 });
 
     res.status(201).json({ photo, venue, decor, cater, make });

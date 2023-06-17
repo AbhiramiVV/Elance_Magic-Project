@@ -46,7 +46,7 @@ function CateringSingle() {
     } catch (error) {}
     };
     
-    const BookDecor =  async () => {
+    const BookCater =  async () => {
   
       try {
        
@@ -70,7 +70,7 @@ function CateringSingle() {
   
   
   
-    const viewDecorSingle = async () => {
+    const viewCaterSingle = async () => {
       try {
         const res = await axios.get(`/singleCater/${id}`, {
           headers: {
@@ -96,7 +96,7 @@ function CateringSingle() {
     };
   
     useEffect(() => {
-      viewDecorSingle();
+      viewCaterSingle();
     }, [id]);
     
   console.log(selectedDate)
@@ -223,7 +223,7 @@ function CateringSingle() {
                         }}
                         onApprove={async (data, actions) => {
                           await actions.order.capture();
-                          BookDecor(selectedDate);
+                          BookCater(selectedDate);
                         }}
                         onCancel={() => {
                           toast.error("Payment cancelled");
