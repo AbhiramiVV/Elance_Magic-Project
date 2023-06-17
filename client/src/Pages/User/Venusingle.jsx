@@ -83,7 +83,6 @@ const viewVenueSingle = async () => {
       },
     });
     const venuesingle = res.data;
-    console.log(venuesingle,'+++++++++++');
     setname(venuesingle.name);
     setdescription(venuesingle.description);
     setType(venuesingle.type);

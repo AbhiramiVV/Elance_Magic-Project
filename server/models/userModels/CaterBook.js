@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const cater=require('../admin/Catering')
 const CaterBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId

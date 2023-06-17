@@ -36,7 +36,7 @@ function Details() {
   useEffect(() => {
     Order();
   }, []);
-  console.log(photo, "2222222");
+  console.log(cater, "2222222");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -254,7 +254,7 @@ function Details() {
                         <td className="px-4 py-3">
                           {" "}
                           <img
-                            src={`http://localhost:5000/uploads/${booking.VenueId.image[0]?.files[0]?.filename}`}
+                            src={`http://localhost:5000/uploads/${booking.VenueId.image?.files[0]?.filename}`}
                             alt="Photographer Image"
                             className="h-10 w-10 rounded-full"
                           />

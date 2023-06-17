@@ -12,13 +12,12 @@ function CateringSingle() {
     const { id } = useParams();
     const { user } = useAuthContext();
     const [selectedDate, setSelectedDate] = useState(new Date());
-   
-  
     const [name, setname] = useState("");
     const [desc, setdesc] = useState("");
     const [type, setType] = useState("");
     const [rent, setRent] = useState("");
     const [menu,setMenu] =useState("");
+    const [address, setaddress] = useState("");
     const [image, setImage] = useState("");
     const [modal, setModal] = useState(false);
     const [loading, setloading] = useState(true);
@@ -53,7 +52,7 @@ function CateringSingle() {
        
         
         const response = await axios
-        .post(`/BookDecor/${id}`,
+        .post(`/BookCater/${id}`,
         {
           selectedDate,
         },
@@ -85,7 +84,8 @@ function CateringSingle() {
         setRent(Catorsingle.rent);
         setImage(Catorsingle.image);
         setMenu(Catorsingle.menu);
-        console.log(CateringSingle,'+++++++++++');
+        setaddress(Catorsingle.address);
+        console.log(Catorsingle,'+++++++++++');
   const amountpay=(Catorsingle.rent)*0.1
   console.log(amountpay)
   setAmountpay(amountpay)
@@ -133,6 +133,10 @@ function CateringSingle() {
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Rent:</span>{" "}
                       {rent}
+                    </p>
+                    <p class="mt-0.5  text-black text-sm">
+                      <span className="text-red-900 font-extrabold">Address:</span>{" "}
+                      {address}
                     </p>
                   </div>
                 </div>
