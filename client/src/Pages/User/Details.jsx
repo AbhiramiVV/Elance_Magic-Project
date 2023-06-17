@@ -36,7 +36,7 @@ function Details() {
   useEffect(() => {
     Order();
   }, []);
-  console.log(cater, "2222222");
+  console.log(make, "2222222");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };

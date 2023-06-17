@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const makeupSchema=require('../admin/makeupSchema')
+const makeupSchema=require('../admin/makeupSchema');
 const MakeBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
