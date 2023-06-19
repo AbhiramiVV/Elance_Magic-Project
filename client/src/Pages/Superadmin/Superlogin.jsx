@@ -15,11 +15,11 @@ function Superlogin() {
     console.log('hiiiii');
     try {
       const response = await login(email, password);
-
+console.log(response,'++++++++++++++++++');
       toast.success("login successful")
       }
      catch (error) {
-      // toast.error("Invalid login details");
+       toast.error("Invalid login details");
     }
   }    
 

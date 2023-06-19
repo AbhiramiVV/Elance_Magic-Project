@@ -31,8 +31,8 @@ dbConnect();
 // })
 
 app.use("/vendor", adminRoutes);
-app.use('/',userRoute);
 app.use("/superadmin", superadminRoutes);
+app.use('/',userRoute);
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });

@@ -19,7 +19,7 @@ module.exports = {
 login :async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(req.body);
+    console.log(req.body,'+++++++++++++++');
 
     const superwe = await superadmin.findOne({ email: req.body.email });
     console.log(superwe);
