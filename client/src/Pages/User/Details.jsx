@@ -41,40 +41,6 @@ console.log(make,'11111111111111111');
     setActiveTab(tab);
   };
 
-  const handlephotocancel = async (id, bookItem) => {
-    try {
-      console.log(bookItem);
-      const confirmResult = await Swal.fire({
-        title: "Are you sure?",
-        text: `You are about to cancel ${bookItem}. This action cannot be undone.This order no longer displayed`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Cancel",
-        cancelButtonText: "Cancel",
-      });
-
-      if (confirmResult.isConfirmed) {
-        await axios.put(
-          `/invoice/${id}`,
-          {
-            bookItem: bookItem,
-          },
-          {
-            headers: {
-              Authorization: `${user.token}`,
-            },
-          }
-        );
-        await Order();
-        toast.success("Order Has been cancelled successfully");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to cancel.");
-    }
-  };
 
   return (
     <>
@@ -212,17 +178,7 @@ console.log(make,'11111111111111111');
                             {booking.PhotoId.eventDate}
                           </td>
 
-                          <td className="px-4 py-3">
-                            <button
-                              type="button"
-                              className="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-                              onClick={() =>
-                                handlephotocancel(booking._id, "photographer")
-                              }
-                            >
-                              Download Invoice
-                            </button>
-                          </td>
+                       
                         </tr>
                       ))}
                   </tbody>
@@ -275,17 +231,7 @@ console.log(make,'11111111111111111');
                         <td className="px-4 py-3">
                           {new Date(booking.Date).toLocaleDateString("en-GB")}
                         </td>
-                        <td className="px-4 py-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handlephotocancel(booking._id, "venue")
-                            }
-                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-                          >
-                            Download Invoice
-                          </button>
-                        </td>
+                        
                       </tr>
                     ))}
                 </table>
@@ -337,17 +283,7 @@ console.log(make,'11111111111111111');
                           {new Date(booking.Date).toLocaleDateString("en-GB")}
                         </td>
 
-                        <td className="px-4 py-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handlephotocancel(booking._id, "decor")
-                            }
-                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-                          >
-                             Download Invoice
-                          </button>
-                        </td>
+                        
                       </tr>
                     ))}
                 </table>
@@ -402,17 +338,7 @@ console.log(make,'11111111111111111');
                           {new Date(booking.Date).toLocaleDateString("en-GB")}
                         </td>
 
-                        <td className="px-4 py-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handlephotocancel(booking._id, "decor")
-                            }
-                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-                          >
-                          Download Invoice
-                          </button>
-                        </td>
+                        
                       </tr>
                     ))}
                 </table>
@@ -466,17 +392,7 @@ console.log(make,'11111111111111111');
                           {new Date(booking.Date).toLocaleDateString("en-GB")}
                         </td>
 
-                        <td className="px-4 py-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handlephotocancel(booking._id, "decor")
-                            }
-                            class="inline-block rounded bg-green-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-                          >
-                            Download Invoice
-                          </button>
-                        </td>
+                        
                       </tr>
                     ))}
                 </table>
