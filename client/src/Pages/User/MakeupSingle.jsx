@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 function MakeupSingle() {
     const { id } = useParams();
     const { user } = useAuthContext();
