@@ -197,7 +197,6 @@ function Details() {
                       <th className="px-4 py-3">Rent</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
-                      <th className="px-4 py-3">Cancel</th>
                     </tr>
                   </thead>
                   {venue &&
