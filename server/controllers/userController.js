@@ -577,13 +577,13 @@ MakeBook:async (req, res) => {
     const { authorization } = req.headers;
     const token = authorization;
     const { _id } = jwt.verify(token, "usersecretkey");
-    const makeupExist = await MakeBook.findOne({ CaterId: id, Date: startDate });
+    const makeupExist = await MakeBook.findOne({ MakeId: id, Date: startDate });
     if (makeupExist) {
       res.status(200).json({ success: false, message: "Already booked" });
     } else {
       const Bookingmakeup = new MakeBook({
         userId: _id,
-        CaterId: id,
+        MakeId: id,
         Date: startDate,
       });
       await Bookingmakeup.save();
@@ -603,11 +603,11 @@ Order: async (req, res) => {
     const token = authorization;
 
     const { _id } = jwt.verify(token, "usersecretkey");
-    console.log(_id,'111111111111');
     const photo = await PhotoBook.find({ userId: _id }).populate("PhotoId").sort({ Date: -1 });
     const venue = await VenueBook.find({ userId: _id }).populate("VenueId").sort({ Date: -1 });
     const decor = await DecorBook.find({ userId: _id }).populate("DecorId").sort({ Date: -1 });
     const cater = await CaterBook.find({ userId: _id }).populate("CaterId").sort({ Date: -1 });
+    console.log(cater,'22222222222222222222');
     const make = await MakeBook.find({ userId: _id }).populate("MakeId").sort({ Date: -1 });
     console.log(make, '555555555555');
 
