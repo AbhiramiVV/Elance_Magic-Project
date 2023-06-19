@@ -9,6 +9,8 @@ import { useAuthContext } from "../../Hooks/useAuthContext";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 function Photosingle({}) {
   const { id } = useParams();
@@ -67,10 +69,36 @@ const[amountPay,setAmountpay]=useState(0)
       })
       
       toast.success(response.data.message);
+      generateInvoice(pname, pdesc, pemail, rate, selectedDate);
      
   } catch (error) {}
 };
+const generateInvoice = (pname, pdesc, pemail, rate, selectedDate) => {
+  const doc = new jsPDF();
+  // Set the title for the document
+  doc.setFontSize(20);
+  doc.text("Invoice", 10, 20);
 
+  // Define the table columns and rows
+  const tableColumns = ["Item", "Description", "Quantity", "Price"];
+  const tableRows = [
+    ["Name", pname, "", ""],
+    ["Description", pdesc, "", ""],
+    ["Email", pemail, "", ""],
+    ["Rent", (rate)*0.1, "", ""],
+    ["Selected Date", selectedDate.toDateString(), "", ""],
+  ];
+
+  // Set the table headers and rows using AutoTable plugin
+  doc.autoTable({
+    head: [tableColumns],
+    body: tableRows,
+    startY: 30,
+  });
+
+  // Save the PDF file
+  doc.save('invoice.pdf');
+};
     const viewPhotoSingle = async () => {
       try {
      
@@ -207,6 +235,8 @@ console.log(selectedDate)
             onApprove={async (data, actions) => {
               await actions.order.capture();
               photobook(selectedDate);
+              generateInvoice(); 
+
             }}
             onCancel={() => {
               toast.error("Payment cancelled");
