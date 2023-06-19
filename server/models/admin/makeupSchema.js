@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const makeupSchema = mongoose.Schema({
+const MakeupSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -36,5 +36,5 @@ const makeupSchema = mongoose.Schema({
     type: Array,
   },
 });
-const Makeupcollection = mongoose.model("makeupSchema", makeupSchema);
+const Makeupcollection = mongoose.model("MakeupSchema", MakeupSchema);
 module.exports = Makeupcollection;

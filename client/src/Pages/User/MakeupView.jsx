@@ -29,7 +29,7 @@ function MakeupView() {
         console.log(error);
       }
     };
-  
+  console.log(makeup,'5555555555555');
     useEffect(() => {
         getMakeup();
     }, []);

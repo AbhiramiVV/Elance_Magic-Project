@@ -4,6 +4,6 @@ console.log("dfg" , BaseUrl);
 
 const instance = axios.create({
 
-    baseURL:'http://localhost:5000'
+    baseURL:BaseUrl
 })
 export default instance;

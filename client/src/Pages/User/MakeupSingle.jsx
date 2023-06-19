@@ -81,7 +81,6 @@ function MakeupSingle() {
         setType(Makesingle.type);
         setRent(Makesingle.rent);
         setImage(Makesingle.image);
-        console.log(Makesingle,'+++++++++++');
   const amountpay=(Makesingle.rent)*0.1
   console.log(amountpay)
   setAmountpay(amountpay)
