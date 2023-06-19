@@ -9,7 +9,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Navigate } from "react-router-dom";
-mport { jsPDF } from 'jspdf';
+import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 function Venusingle() {
   const { id } = useParams();
