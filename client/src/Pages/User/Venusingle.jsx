@@ -9,7 +9,8 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Navigate } from "react-router-dom";
-
+mport { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 function Venusingle() {
   const { id } = useParams();
   const { user } = useAuthContext();
@@ -68,11 +69,37 @@ function Venusingle() {
       console.log(response.data.message)
       console.log(response.data.status)
       toast.success(response.data.message);
+      generateInvoice(name, description, type, rent, selectedDate);
      
   } catch (error) {}
 };
 
+const generateInvoice = (name, description, type, rent, selectedDate) => {
+  const doc = new jsPDF();
+  // Set the title for the document
+  doc.setFontSize(20);
+  doc.text("Invoice", 10, 20);
 
+  // Define the table columns and rows
+  const tableColumns = ["Item", "Description", "Quantity", "Price"];
+  const tableRows = [
+    ["Name", name, "", ""],
+    ["Description", description, "", ""],
+    ["Type", type, "", ""],
+    ["Rent", (rent)*0.1, "", ""],
+    ["Selected Date", selectedDate.toDateString(), "", ""],
+  ];
+
+  // Set the table headers and rows using AutoTable plugin
+  doc.autoTable({
+    head: [tableColumns],
+    body: tableRows,
+    startY: 30,
+  });
+
+  // Save the PDF file
+  doc.save('invoice.pdf');
+};
 
 
 const viewVenueSingle = async () => {
@@ -102,6 +129,7 @@ setAmountpay(amountpay)
     console.log(error);
   }
 };
+
   useEffect(() => {
    
     viewVenueSingle();
