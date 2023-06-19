@@ -36,7 +36,6 @@ function Details() {
   useEffect(() => {
     Order();
   }, []);
-console.log(make,'11111111111111111');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
