@@ -96,9 +96,9 @@ const ChangePassword = () => {
         {/* <Link to={'/login'} className='mt-3 underline font-semibold text-gray-600'>Cancel?</Link> */}
 
       </div>
-      <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2 'style={{marginTop:"220px"}}>
-        <img src={forg} alt="LOGIN" className='w-[100%]' />
-        <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3'>Make everything easy</h1>
+      <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2 '>
+        <img src={forg} alt="LOGIN" className='w-[90%]' />
+        {/* <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3'>Make everything easy</h1> */}
       </div>
 
     </div>
