@@ -46,7 +46,7 @@ const Forgotpassword = () => {
             </div>
             <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2'>
                 <img src={side} alt="LOGIN" className='w-[100%]' />
-                <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3'>Make everything easy</h1>
+                <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3'>Simplify everything for your convenience.</h1>
             </div>
             <ForgotOTPModal onClose={addServiceClose} visible={Optmodal} phone={phone} />
 
