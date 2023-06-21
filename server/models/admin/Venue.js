@@ -26,7 +26,7 @@ const venueSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
+  sevices: {
     type: String,
     required: true,
   },
