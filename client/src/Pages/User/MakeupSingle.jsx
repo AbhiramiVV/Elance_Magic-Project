@@ -43,6 +43,16 @@ function getStyles(name, personName, theme) {
 }
 
 function MakeupSingle() {
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const { 'target': { value }, } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
     const { id } = useParams();
     const { user } = useAuthContext();
     const [selectedDate, setSelectedDate] = useState(new Date());
