@@ -84,5 +84,4 @@ function UserRegister() {
             : <Otp data={{ ...Inpval, vendor: false }} />
     )
 }
-
 export default UserRegister
