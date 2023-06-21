@@ -129,7 +129,7 @@ function CateringSingle() {
       ["Name", name, "", ""],
       ["Description", desc, "", ""],
       ["Type", type, "", ""],
-      ["Rent", (rent)*0.1, "", ""],
+      ["Amount", (rent)*0.1, "", ""],
       ["Selected Date", selectedDate.toDateString(), "", ""],
     ];
   
