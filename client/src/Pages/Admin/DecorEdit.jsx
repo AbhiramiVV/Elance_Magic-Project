@@ -172,7 +172,7 @@ const updateDecor=async(e)=>{
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                            Services
+                            Description
                           </label>
                           <textarea
                             name="desc"
