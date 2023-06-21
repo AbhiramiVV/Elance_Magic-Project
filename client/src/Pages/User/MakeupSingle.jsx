@@ -147,10 +147,10 @@ function MakeupSingle() {
                     <span class="text-orange-500  mt-6 px-3 text-sm py-1.5 bg-red-50 rounded-lg font-bold">
                       {desc}
                     </span>
-                    <p class="mt-0.5  text-black text-sm">
+                    {/* <p class="mt-0.5  text-black text-sm">
                       <span className="text-black font-extrabold">Category:</span>{" "}
                       {type}
-                    </p>
+                    </p> */}
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Service Charge:</span>{" "}
                       {rent}
