@@ -98,6 +98,7 @@ function MakeupSingle() {
         .post(`/BookMake/${id}`,
         {
           selectedDate,
+          paymentOption,
         },
         {
           headers: {
