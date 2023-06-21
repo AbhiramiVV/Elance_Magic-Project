@@ -29,15 +29,13 @@ const MenuProps = {
   },
 };
 const names = [
-  'Salads',
-  'Main Courses',
-  'Desserts',
-  'Beverages',
-  'Cocktails',
-  'Seafood',
-  'Vegetarian',
-  'Vegan',
-  'Gluten-free',
+  'Accommodation and Lodging',
+  'Staff and Security',
+  'Event Amenities',
+  'Event Planning and Coordination',
+  'Setup and Decoration',
+  'Audiovisual Equipment and Technology',
+  'Parking and Transportation',
 ];
 function getStyles(name, personName, theme) {
   return {
@@ -223,10 +221,32 @@ setAmountpay(amountpay)
                     </span>{" "}
                     {address} 
                   </p>
-                  <p class="mt-0.5  text-black text-sm">
+                  {/* <p class="mt-0.5  text-black text-sm">
                     <span className="text-red-900 font-extrabold">Location:</span>{" "}
                     {location}
-                  </p>
+                  </p> */}
+                  <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Services</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={personName}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
                   <p class="mt-0.5  text-black text-sm">
                     <span className="text-red-900 font-extrabold">Seats:</span>{" "}
                     {seats}
