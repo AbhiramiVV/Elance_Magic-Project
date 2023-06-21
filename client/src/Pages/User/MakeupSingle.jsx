@@ -4,9 +4,12 @@ import { useParams} from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Theme, useTheme } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
@@ -66,6 +69,7 @@ function MakeupSingle() {
     const [modal, setModal] = useState(false);
     const [loading, setloading] = useState(true);
     const [isExist, setExist] = useState(false);
+    const [paymentOption, setPaymentOption] = useState("advance");
   const[amountpay,setAmountpay]=useState(0)
     const handleDateChange = async(date) => {
       setSelectedDate(date);
@@ -331,7 +335,7 @@ function MakeupSingle() {
                         }}
                         onApprove={async (data, actions) => {
                           await actions.order.capture();
-                          BookCater(selectedDate);
+                          BookMakeup(selectedDate);
                           generateInvoice(); 
                         }}
                         onCancel={() => {
@@ -357,7 +361,7 @@ function MakeupSingle() {
                           }}
                           onApprove={async (data, actions) => {
                             await actions.order.capture();
-                            BookCater(selectedDate);
+                            BookMakeup(selectedDate);
                             generateInvoice(); 
                           }}
                           onCancel={() => {
