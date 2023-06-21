@@ -230,8 +230,12 @@ function CateringSingle() {
               </FormControl>
                     </p>
                     <p class="mt-0.5  text-black text-sm">
-                      <span className="text-red-900 font-extrabold">Rent:</span>{" "}
+                      <span className="text-red-900 font-extrabold">Total Amount:</span>{" "}
                       {rent}
+                    </p>
+                    <p class="mt-0.5  text-black text-sm">
+                      <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
+                      {(rent)*0.1}
                     </p>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Address:</span>{" "}
