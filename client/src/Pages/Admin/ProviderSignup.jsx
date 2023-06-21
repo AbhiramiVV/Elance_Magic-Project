@@ -192,12 +192,6 @@ const ProviderSignup = () => {
     servicesCheck()
   }
 
-  // const selectPlace = (e) => {
-  //   place.includes(e.target.value) ?
-  //     setPlace((prevState) => [...prevState]) :
-  //     setPlace((prevState) => [...prevState, e.target.value])
-  // }
-
   const backPlace = () => {
     setPlace(place.slice(0, -1))
     placeCheck()
