@@ -4,11 +4,44 @@ import { useParams} from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+const names = [
+  'Salads',
+  'Main Courses',
+  'Desserts',
+  'Beverages',
+  'Cocktails',
+  'Seafood',
+  'Vegetarian',
+  'Vegan',
+  'Gluten-free',
+];
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 function MakeupSingle() {
     const { id } = useParams();
     const { user } = useAuthContext();
