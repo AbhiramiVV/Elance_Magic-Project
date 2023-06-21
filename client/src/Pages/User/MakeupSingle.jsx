@@ -152,8 +152,12 @@ function MakeupSingle() {
                       {type}
                     </p>
                     <p class="mt-0.5  text-black text-sm">
-                      <span className="text-red-900 font-extrabold">Rent:</span>{" "}
+                      <span className="text-red-900 font-extrabold">Service Charge:</span>{" "}
                       {rent}
+                    </p>
+                    <p class="mt-0.5  text-black text-sm">
+                      <span className="text-red-900 font-extrabold">Advace:</span>{" "}
+                      {(rent)*0.1}
                     </p>
                   </div>
                 </div>
