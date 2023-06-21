@@ -195,6 +195,28 @@ function MakeupSingle() {
                       <span className="text-black font-extrabold">Category:</span>{" "}
                       {type}
                     </p> */}
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Menu</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={personName}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Service Charge:</span>{" "}
                       {rent}
@@ -218,11 +240,30 @@ function MakeupSingle() {
                         />
                 </div>
   
-                     {isExist?<p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">Sorry.Decor team is not available on this date</p>:
-                        <button className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end"  onClick={() => setModal(!modal)}>
-                          Book Now
-                        </button>
-                        }
+                <div className="flex justify-center items-center mt-4">
+  <button
+    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded mr-2 ${
+      paymentOption === "advance" ? "bg-green-500" : "bg-gray-500"
+    }`}
+    onClick={() => {
+      setPaymentOption("advance");
+      setModal(true); // Add this line to open the payment modal
+    }}
+  >
+    Advance Payment
+  </button>
+  <button
+    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded ml-2 ${
+      paymentOption === "full" ? "bg-green-500" : "bg-gray-500"
+    }`}
+    onClick={() => {
+      setPaymentOption("full");
+      setModal(true); // Add this line to open the payment modal
+    }}
+  >
+    Full Payment
+  </button>
+</div>
               </div>
             </div>
   
@@ -259,6 +300,7 @@ function MakeupSingle() {
               </div>
             </div>
   
+            
             {modal && (
               <div className="fixed z-20 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
                 <div className="bg-white p-2 rounded w-96 m-5">
@@ -274,6 +316,7 @@ function MakeupSingle() {
                     </button>
                   </div>
                   <div className="flex flex-col  p-5">
+                  {paymentOption === "advance" ? (
                     <PayPalScriptProvider
                       options={{
                         "client-id":
@@ -288,7 +331,7 @@ function MakeupSingle() {
                         }}
                         onApprove={async (data, actions) => {
                           await actions.order.capture();
-                          BookMakeup(selectedDate);
+                          BookCater(selectedDate);
                           generateInvoice(); 
                         }}
                         onCancel={() => {
@@ -299,6 +342,33 @@ function MakeupSingle() {
                         }}
                       />
                     </PayPalScriptProvider>
+                     ) : (
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        }}
+                      >
+                        <PayPalButtons
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [{ amount: { value: rent } }],
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            await actions.order.capture();
+                            BookCater(selectedDate);
+                            generateInvoice(); 
+                          }}
+                          onCancel={() => {
+                            toast.error("Payment cancelled");
+                          }}
+                          onError={() => {
+                            toast.error("Payment failed");
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    )}
                   </div>
                 </div>
               </div>
