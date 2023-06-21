@@ -200,7 +200,7 @@ function MakeupSingle() {
                       {type}
                     </p> */}
                     <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-name-label">Menu</InputLabel>
+                <InputLabel id="demo-multiple-name-label">Catergory</InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
