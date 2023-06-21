@@ -11,7 +11,7 @@ function VenuecollectAdd() {
   const [manager, setManager] = useState("");
   const [description, setDescription] = useState("");
   const [mobile, setMobile] = useState("");
-  const [sevices, setService] = useState("");
+  const [services, setService] = useState("");
   const [seats, setSeats] = useState("");
   const [rent, setRent] = useState("");
   const [files, setFiles] = useState([]);
@@ -29,7 +29,7 @@ function VenuecollectAdd() {
     formData.append("name", name);
     formData.append("manager", manager);
     formData.append("address", address);
-    formData.append("sevices", sevices);
+    formData.append("services", services);
     formData.append("email", email);
     formData.append("mobile", mobile);
     formData.append("type", type);
@@ -202,9 +202,9 @@ function VenuecollectAdd() {
                           </label>
                           <input
                             type="text"
-                            id="sevices"
-                            name="sevices"
-                            value={sevices}
+                            id="services"
+                            name="services"
+                            value={services}
                             onChange={(e) => setService(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
                           />

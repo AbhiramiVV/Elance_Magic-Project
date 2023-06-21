@@ -293,7 +293,7 @@ VenuesideAdd : async (req, res) => {
     mobile: req.body.mobile,
     address: req.body.address,
     seats: req.body.seats,
-    location: req.body.location,
+    services: req.body.services,
     rent: req.body.rent,
     image: req.files
    }).then((result)=>{
