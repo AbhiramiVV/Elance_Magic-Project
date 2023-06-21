@@ -26,15 +26,16 @@ const MenuProps = {
   },
 };
 const names = [
-  'Salads',
-  'Main Courses',
-  'Desserts',
-  'Beverages',
-  'Cocktails',
-  'Seafood',
-  'Vegetarian',
-  'Vegan',
-  'Gluten-free',
+  'Bridal Makeup',
+  'Bridesmaid Makeup',
+  'Mother of the Bride/Groom Makeup',
+  'Wedding Guest Makeup',
+  'Engagement Makeup',
+  'Pre-Wedding Photoshoot Makeup',
+ 'Rehearsal Dinner Makeup',
+  'Bridal Shower Makeup',
+  'Honeymoon Makeup',
+  'Anniversary Makeup'
 ];
 function getStyles(name, personName, theme) {
   return {

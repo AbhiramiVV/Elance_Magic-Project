@@ -89,7 +89,7 @@ function MakeupEdit() {
                               className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                               htmlfor="grid-password"
                             >
-                              Type of Decoration
+                              Catergories
                             </label>
                               <select
                                   className="shadow appearance-none border rounded w-full py-2 px-8 leading-tight focus:outline-none focus:shadow-outline"
@@ -100,10 +100,10 @@ function MakeupEdit() {
                                   <option value={''}>--Please select--</option>
                                  
                                       <option value='Traditional Decor'>
-                                          Traditional Makeup
+                                          Wedding Makeup
                                       </option>
                                       <option value='Modern Decor'>
-                                          Modern Makeup
+                                          Save the date Makeup
                                       </option>
                                       <option value='Royal Decor'>
                                         Royal Makeup
