@@ -522,7 +522,7 @@ checkCater:async(req,res) =>{
 CaterBook: async (req, res) => {
   try {
     const { id } = req.params;
-    const { selectedDate } = req.body;
+    const { selectedDate, paymentOption } = req.body;
     const newStartDate = new Date(selectedDate);
     const startDate = newStartDate.toISOString().split("T")[0]; // Add parentheses after toISOString()
     const { authorization } = req.headers;

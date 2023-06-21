@@ -71,6 +71,8 @@ function CateringSingle() {
     const [modal, setModal] = useState(false);
     const [loading, setloading] = useState(true);
     const [isExist, setExist] = useState(false);
+    const [paymentOption, setPaymentOption] = useState("advance");
+
   const[amountpay,setAmountpay]=useState(0)
     const handleDateChange = async(date) => {
       console.log(date)
@@ -104,6 +106,7 @@ function CateringSingle() {
         .post(`/BookCater/${id}`,
         {
           selectedDate,
+          paymentOption,
         },
         {
           headers: {
@@ -129,7 +132,8 @@ function CateringSingle() {
       ["Name", name, "", ""],
       ["Description", desc, "", ""],
       ["Type", type, "", ""],
-      ["Amount", (rent)*0.1, "", ""],
+      ["Total Amount", (rent), "", ""],
+      ["Advace Amount", (rent)*0.1, "", ""],
       ["Selected Date", selectedDate.toDateString(), "", ""],
     ];
   
@@ -230,7 +234,7 @@ function CateringSingle() {
               </FormControl>
                     </p>
                     <p class="mt-0.5  text-black text-sm">
-                      <span className="text-red-900 font-extrabold">Total Amount:</span>{" "}
+                      <span className="text-red-900 font-extrabold">Total Amount(include GST):</span>{" "}
                       {rent}
                     </p>
                     <p class="mt-0.5  text-black text-sm">
@@ -256,11 +260,30 @@ function CateringSingle() {
                         />
                 </div>
   
-                     {isExist?<p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">Sorry.Decor team is not available on this date</p>:
-                        <button className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end"  onClick={() => setModal(!modal)}>
-                          Book Now
-                        </button>
-                        }
+                <div className="flex justify-center items-center mt-4">
+  <button
+    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded mr-2 ${
+      paymentOption === "advance" ? "bg-green-500" : "bg-gray-500"
+    }`}
+    onClick={() => {
+      setPaymentOption("advance");
+      setModal(true); // Add this line to open the payment modal
+    }}
+  >
+    Advance Payment
+  </button>
+  <button
+    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded ml-2 ${
+      paymentOption === "full" ? "bg-green-500" : "bg-gray-500"
+    }`}
+    onClick={() => {
+      setPaymentOption("full");
+      setModal(true); // Add this line to open the payment modal
+    }}
+  >
+    Full Payment
+  </button>
+</div>
               </div>
             </div>
   
@@ -312,6 +335,7 @@ function CateringSingle() {
                     </button>
                   </div>
                   <div className="flex flex-col  p-5">
+                  {paymentOption === "advance" ? (
                     <PayPalScriptProvider
                       options={{
                         "client-id":
@@ -337,6 +361,33 @@ function CateringSingle() {
                         }}
                       />
                     </PayPalScriptProvider>
+                     ) : (
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        }}
+                      >
+                        <PayPalButtons
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [{ amount: { value: rent } }],
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            await actions.order.capture();
+                            BookCater(selectedDate);
+                            generateInvoice(); 
+                          }}
+                          onCancel={() => {
+                            toast.error("Payment cancelled");
+                          }}
+                          onError={() => {
+                            toast.error("Payment failed");
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    )}
                   </div>
                 </div>
               </div>
