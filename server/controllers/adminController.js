@@ -372,7 +372,6 @@ Decoradd : async (req, res) => {
 },
 singleDecor :async (req, res) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const decorsingle = await Decorcollection.findById({ _id: id });
     console.log(decorsingle);
@@ -383,6 +382,7 @@ singleDecor :async (req, res) => {
 },
 updateDecor :async (req, res) => {
   try {
+    console.log(req.body,'5555555555555555');
     const Decornew = await Decorcollection.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });

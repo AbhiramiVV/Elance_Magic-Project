@@ -45,7 +45,7 @@ function DecorEdit() {
 
 const updateDecor=async(e)=>{
     e.preventDefault()
-    const updateDecor={name,email,mobile,type,rent,image};
+    const updateDecor={name,email,mobile,type,rent,desc,image};
     await axios.put(`/vendor/decoredit/${id}`,updateDecor)
     Navigate("/vendor/Decordisplay")
     
