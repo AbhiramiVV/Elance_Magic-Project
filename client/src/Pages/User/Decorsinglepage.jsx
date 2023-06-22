@@ -30,15 +30,15 @@ const MenuProps = {
   },
 };
 const names = [
-  'Salads',
-  'Main Courses',
-  'Desserts',
-  'Beverages',
-  'Cocktails',
-  'Seafood',
-  'Vegetarian',
-  'Vegan',
-  'Gluten-free',
+  'Floral Decorations',
+  'Personalized Touches',
+  'Lighting Effects',
+  'Themed Decor',
+  'Balloon Decorations',
+  'Table Settings',
+  'Signage and Backdrops',
+  'Hanging Installations',
+  'Fabric Draping',
 ];
 function getStyles(name, personName, theme) {
   return {
