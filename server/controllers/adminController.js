@@ -15,12 +15,6 @@ const Decorcollection = require("../models/admin/Decoration");
 const photographer = require("../models/admin/Photographer");
 const cateringcollection = require("../models/admin/Catering");
 const Makeupcollection = require("../models/admin/makeupSchema");
-const PhotoBook=require("../models/userModels/PhotoBook")
-const CaterBook=require("../models/userModels/CaterBook");
-const MakeBook=require("../models/userModels/MakeBook")
-const DecorBook=require("../models/userModels/DecorBook")
-const VenueBook=require("../models/userModels/userVenueBook")
-const { PhotoBook } = require("./userController");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -378,6 +372,7 @@ Decoradd : async (req, res) => {
 },
 singleDecor :async (req, res) => {
   try {
+    console.log(req.params);
     const { id } = req.params;
     const decorsingle = await Decorcollection.findById({ _id: id });
     console.log(decorsingle);
@@ -601,53 +596,5 @@ DeleteMakeup:async (req,res)=>{
     console.log(error);
     res.status(500).json();
   }
-},
- getAdmin:async(req,res)=>{
-  countuser=await userModels.find({}).count()
-  console.log(countuser)
- 
-  const venuecount=await Venue.find({}).count()
- console.log(venuecount);
- 
- const photocount=await photographer.find({}).count()
- console.log(photocount);
- 
- const Decorcount=await Decorcollection.find({}).count()
- console.log(Decorcount);
- const admin=await adminModels.find().count()
- console.log(admin);
- const venue=await Venue.find()
- const decor=await Decorcollection.find()
- const user=await userModels.find()
- 
- const photoBookRecords = await PhotoBook.find();
- let totalRevenue ;
- let photoBookings = 0;
-  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
-   photoBookings =parseInt( data.PhotoId.rate)+photoBookings
- }))
- 
- console.log(photoBookings)
- 
- 
- let DecorBookings=0;
- await DecorBooking.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
- }))
- 
- 
-   console.log(DecorBookings);
- 
- 
-   let VenueBookings=0;
-   await VenueBooking.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
-     VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
-   }))
- 
-   console.log(VenueBookings)
- 
-   const TotalRevenue=VenueBookings+DecorBookings+photoBookings
- 
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
- }
+}
 }

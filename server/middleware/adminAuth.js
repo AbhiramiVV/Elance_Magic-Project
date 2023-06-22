@@ -2,9 +2,8 @@ const jwt=require('jsonwebtoken')
 const Admin=require('../models/admin/AdminSchema')
 
 const adminAuth=async(req,res,next)=>{
-    console.log("auth");
    const {authorization} =req.headers
-   console.log('dgdfh' + authorization);
+ 
    if(!authorization){
        return res.status(401).json({error: "Authorization token required"})
    }
