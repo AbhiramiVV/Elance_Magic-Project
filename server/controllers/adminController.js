@@ -603,52 +603,52 @@ DeleteMakeup:async (req,res)=>{
   }
 },
 
-getAdmin:async(req,res)=>{
-  countuser=await userModels.find({}).count()
-  console.log(countuser,"111111")
+// getAdmin:async(req,res)=>{
+//   countuser=await userModels.find({}).count()
+//   console.log(countuser,"111111")
  
-  const venuecount=await Venue.find({}).count()
- console.log(venuecount);
+//   const venuecount=await Venue.find({}).count()
+//  console.log(venuecount);
  
- const photocount=await photographer.find({}).count()
- console.log(photocount);
+//  const photocount=await photographer.find({}).count()
+//  console.log(photocount);
  
- const Decorcount=await Decorcollection.find({}).count()
- console.log(Decorcount);
- const admin=await adminModels.find().count()
- console.log(admin);
- const venue=await Venue.find()
- const decor=await Decorcollection.find()
- const user=await userModels.find()
+//  const Decorcount=await Decorcollection.find({}).count()
+//  console.log(Decorcount);
+//  const admin=await adminModels.find().count()
+//  console.log(admin);
+//  const venue=await Venue.find()
+//  const decor=await Decorcollection.find()
+//  const user=await userModels.find()
  
- const photoBookRecords = await PhotoBook.find();
- let totalRevenue ;
- let photoBookings = 0;
-  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
-   photoBookings =parseInt( data.PhotoId.rate)+photoBookings
- }))
+//  const photoBookRecords = await PhotoBook.find();
+//  let totalRevenue ;
+//  let photoBookings = 0;
+//   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
+//    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+//  }))
  
- console.log(photoBookings)
- 
- 
- let DecorBookings=0;
- await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
- }))
+//  console.log(photoBookings)
  
  
-   console.log(DecorBookings);
+//  let DecorBookings=0;
+//  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+//  }))
  
  
-   let VenueBookings=0;
-   await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
-     VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
-   }))
+//    console.log(DecorBookings);
  
-   console.log(VenueBookings)
  
-   const TotalRevenue=VenueBookings+DecorBookings+photoBookings
+//    let VenueBookings=0;
+//    await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
+//      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
+//    }))
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
- },
+//    console.log(VenueBookings)
+ 
+//    const TotalRevenue=VenueBookings+DecorBookings+photoBookings
+ 
+//  res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
+//  },
 }
