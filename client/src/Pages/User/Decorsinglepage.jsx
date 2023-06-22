@@ -299,49 +299,77 @@ setAmountpay(amountpay)
           </div>
 
           {modal && (
-            <div className="fixed z-20 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
-              <div className="bg-white p-2 rounded w-96 m-5">
-                <div className="flex justify-between">
-                  <h1 className="font-semibold text-center text-2xl px-5 my-5 text-gray-700">
-                    {"Details"}
-                  </h1>
-                  <button
-                    className="font-semibold mr-3 mb-8 text-xl"
-                    onClick={() => setModal(!modal)}
-                  >
-                    X
-                  </button>
-                </div>
-                <div className="flex flex-col  p-5">
-                  <PayPalScriptProvider
-                    options={{
-                      "client-id":
-                      "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
-                    }}
-                  >
-                    <PayPalButtons
-                      createOrder={(data, actions) => {
-                        return actions.order.create({
-                          purchase_units: [{ amount: { value:rent*0.1 } }],
-                        });
+              <div className="fixed z-20 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+                <div className="bg-white p-2 rounded w-96 m-5">
+                  <div className="flex justify-between">
+                    <h1 className="font-semibold text-center text-2xl px-5 my-5 text-gray-700">
+                      {"Details"}
+                    </h1>
+                    <button
+                      className="font-semibold mr-3 mb-8 text-xl"
+                      onClick={() => setModal(!modal)}
+                    >
+                      X
+                    </button>
+                  </div>
+                  <div className="flex flex-col  p-5">
+                  {paymentOption === "advance" ? (
+                    <PayPalScriptProvider
+                      options={{
+                        "client-id":
+                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
                       }}
-                      onApprove={async (data, actions) => {
-                        await actions.order.capture();
-                        BookDecor(selectedDate);
-                        generateInvoice(); 
-                      }}
-                      onCancel={() => {
-                        toast.error("Payment cancelled");
-                      }}
-                      onError={() => {
-                        toast.error("Payment failed");
-                      }}
-                    />
-                  </PayPalScriptProvider>
+                    >
+                      <PayPalButtons
+                        createOrder={(data, actions) => {
+                          return actions.order.create({
+                            purchase_units: [{ amount: { value:rent*0.1 } }],
+                          });
+                        }}
+                        onApprove={async (data, actions) => {
+                          await actions.order.capture();
+                          BookDecor(selectedDate);
+                          generateInvoice(); 
+                        }}
+                        onCancel={() => {
+                          toast.error("Payment cancelled");
+                        }}
+                        onError={() => {
+                          toast.error("Payment failed");
+                        }}
+                      />
+                    </PayPalScriptProvider>
+                     ) : (
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        }}
+                      >
+                        <PayPalButtons
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [{ amount: { value: rent } }],
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            await actions.order.capture();
+                            BookDecor(selectedDate);
+                            generateInvoice(); 
+                          }}
+                          onCancel={() => {
+                            toast.error("Payment cancelled");
+                          }}
+                          onError={() => {
+                            toast.error("Payment failed");
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
        </div>
       </div>
    
