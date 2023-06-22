@@ -170,8 +170,7 @@ setAmountpay(amountpay)
   useEffect(() => {
     viewDecorSingle();
   }, [id]);
-  
-console.log(selectedDate)
+
   return (
     <>
       <Header />

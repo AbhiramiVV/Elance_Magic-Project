@@ -179,8 +179,7 @@ function CateringSingle() {
     useEffect(() => {
       viewCaterSingle();
     }, [id]);
-    
-  console.log(selectedDate)
+ 
     return (
       <>
         <Header />
