@@ -149,13 +149,25 @@ function DecorAdd() {
                           >
                             Type
                           </label>
-                          <input
-                            type="text"
-                            name="type"
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+                          <select
+                                className="shadow appearance-none border rounded w-full py-2 px-8 leading-tight focus:outline-none focus:shadow-outline"
+                                id="type"
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                            >
+                                <option value={''}>--Please select--</option>
+                               
+                                    <option value='Traditional Decor'>
+                                        Traditional Decor
+                                    </option>
+                                    <option value='Modern Decor'>
+                                        Modern Decor
+                                    </option>
+                                    <option value='Royal Decor'>
+                                      Royal Decor
+                                    </option>
+                               
+                            </select>
                         </div>
                       </div>
                       <div className="relative w-full px-4">
