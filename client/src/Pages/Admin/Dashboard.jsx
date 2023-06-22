@@ -21,7 +21,7 @@ function Dashboard() {
 
   const getDash = async () => {
     try {
-      const response = await axios.get("/admin/getall", {
+      const response = await axios.get("/vendor/getall", {
         headers: {
           Authorization: `${admin.token}`,
         },

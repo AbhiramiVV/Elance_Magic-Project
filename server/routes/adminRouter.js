@@ -46,20 +46,6 @@ router.put('/makeedit/:id',admin.updateMake);
 router.delete('/makeup/:id',admin.DeleteMakeup);
 router.get('/customerdisplay',admin.customerview)
 router.put('/blockuser/:id', admin.blockUser)
-
-
-
-
-
-
-
-
-   
-
-
-// router.use(adminAuth)
-
-
-
+router.get('/getall', admin.getAdmin)
 
  module.exports=router;
