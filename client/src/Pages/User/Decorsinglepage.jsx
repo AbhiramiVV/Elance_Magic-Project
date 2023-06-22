@@ -222,7 +222,7 @@ setAmountpay(amountpay)
                 </Select>
               </FormControl>
               <p class="mt-0.5  text-black text-sm">
-                      <span className="text-red-900 font-extrabold">Total Amount(include GST):</span>{" "}
+                      <span className="text-red-900 font-extrabold">Total Amount(include GST)/PER DAY:</span>{" "}
                       {rent}
                     </p>
                     <p class="mt-0.5  text-black text-sm">
