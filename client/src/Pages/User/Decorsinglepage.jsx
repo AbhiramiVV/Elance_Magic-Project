@@ -100,6 +100,7 @@ const[amountpay,setAmountpay]=useState(0)
       .post(`/BookDecor/${id}`,
       {
         selectedDate,
+        paymentOption,
       },
       {
         headers: {
@@ -126,7 +127,8 @@ const generateInvoice = (name, desc, type, rent, selectedDate) => {
     ["Name", name, "", ""],
     ["Description", desc, "", ""],
     ["Type", type, "", ""],
-    ["Rent", (rent)*0.1, "", ""],
+    ["Total Amount", (rent), "", ""],
+    ["Advace Amount", (rent)*0.1, "", ""],
     ["Selected Date", selectedDate.toDateString(), "", ""],
   ];
 
