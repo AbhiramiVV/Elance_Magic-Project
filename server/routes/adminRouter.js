@@ -3,13 +3,14 @@ const router=express.Router();
 const upload=require('../utility/multer')
 const multiUpload=require('../utility/multiUpload')
  const admin=require('../controllers/adminController')
-// const adminAuth=require('../middleware/adminAuth')
+ const adminAuth=require('../middleware/adminAuth')
 
 
 
 router.post('/vendor',admin.login)
 router.post('/vendorSignup',upload.single('file'),admin.postSignup)
 router.post('/otp',admin.verifyvendorSignup)
+ router.use(adminAuth)
 router.get("/providerDetails/:id",admin.providerDetails)
 router.post("/removeService", admin.removeService);
 router.post("/addService/:id", admin.addService);
@@ -45,6 +46,8 @@ router.put('/makeedit/:id',admin.updateMake);
 router.delete('/makeup/:id',admin.DeleteMakeup);
 router.get('/customerdisplay',admin.customerview)
 router.put('/blockuser/:id', admin.blockUser)
+
+router.get('/getall', admin.getAdmin)
 
 
 
