@@ -157,15 +157,34 @@ function DecorAdd() {
                             >
                                 <option value={''}>--Please select--</option>
                                
-                                    <option value='Traditional Decor'>
-                                        Traditional Decor
+                                <option value='Floral Decorations'>
+                                    Floral Decorations
                                     </option>
-                                    <option value='Modern Decor'>
-                                        Modern Decor
+                                    <option value='Lighting Effects'>
+                                    Lighting Effects
                                     </option>
-                                    <option value='Royal Decor'>
-                                      Royal Decor
+                                    <option value='Themed Decor'>
+                                    Themed Decor
                                     </option>
+                                    <option value='Balloon Decorations'>
+                                    Balloon Decorations
+                                    </option>
+                                    <option value='Fabric Draping'>
+                                    Fabric Draping
+                                    </option>
+                                    <option value='Table Settings'>
+                                    Table Settings
+                                    </option>
+                                    <option value='Signage and Backdrops'>
+                                    Signage and Backdrops
+                                    </option>
+                                    <option value='Hanging Installations'>
+                                    Hanging Installations
+                                    </option>
+                                    <option value='Personalized Touches'>
+                                    Personalized Touches
+                                    </option>
+
                                
                             </select>
                         </div>
