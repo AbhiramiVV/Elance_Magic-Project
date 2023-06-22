@@ -12,8 +12,47 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+const names = [
+  'Salads',
+  'Main Courses',
+  'Desserts',
+  'Beverages',
+  'Cocktails',
+  'Seafood',
+  'Vegetarian',
+  'Vegan',
+  'Gluten-free',
+];
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 function Decorsinglepage() {
-  
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const { 'target': { value }, } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
   const { id } = useParams();
   const { user } = useAuthContext();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -27,6 +66,7 @@ function Decorsinglepage() {
   const [modal, setModal] = useState(false);
   const [loading, setloading] = useState(true);
   const [isExist, setExist] = useState(false);
+  const [paymentOption, setPaymentOption] = useState("advance");
 const[amountpay,setAmountpay]=useState(0)
   const handleDateChange = async(date) => {
     console.log(date)
