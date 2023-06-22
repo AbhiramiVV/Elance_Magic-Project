@@ -193,14 +193,36 @@ setAmountpay(amountpay)
                   <span class="text-orange-500  mt-6 px-3 text-sm py-1.5 bg-red-50 rounded-lg font-bold">
                     {desc}
                   </span>
-                  <p class="mt-0.5  text-black text-sm">
-                    <span className="text-black font-extrabold">Category:</span>{" "}
-                    {type}
-                  </p>
-                  <p class="mt-0.5  text-black text-sm">
-                    <span className="text-red-900 font-extrabold">Rent:</span>{" "}
-                    {rent}
-                  </p>
+                  <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Category</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={personName}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <p class="mt-0.5  text-black text-sm">
+                      <span className="text-red-900 font-extrabold">Total Amount(include GST):</span>{" "}
+                      {rent}
+                    </p>
+                    <p class="mt-0.5  text-black text-sm">
+                      <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
+                      {(rent)*0.1}
+                    </p>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center mt-2">
