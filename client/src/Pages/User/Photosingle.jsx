@@ -236,8 +236,12 @@ console.log(selectedDate)
                     {pexperiance} years
                   </p>
                   <p class="mt-0.5  text-black text-sm">
-                    <span className="text-red-900 font-extrabold">Rate:</span>{" "}
+                    <span className="text-red-900 font-extrabold">Total Amount/PER DAY:</span>{" "}
                     {rate}
+                  </p>
+                  <p class="mt-0.5  text-black text-sm">
+                    <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
+                    {(rate)*0.1}
                   </p>
                 </div>
               </div>
