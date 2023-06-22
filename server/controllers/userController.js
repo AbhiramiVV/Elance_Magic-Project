@@ -529,7 +529,6 @@ CaterBook: async (req, res) => {
     const token = authorization;
     const { _id } = jwt.verify(token, "usersecretkey");
     const cateringExist = await CaterBook.findOne({ CaterId: id, Date: startDate });
-    console.log(cateringExist,'0000000000000');
     if (cateringExist) {
       res.status(200).json({ success: false, message: "Already booked" });
     } else {
