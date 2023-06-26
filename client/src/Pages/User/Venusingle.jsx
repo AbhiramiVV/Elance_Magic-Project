@@ -353,7 +353,7 @@ setAmountpay(amountpay)
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.ACCESS_KEY,
                       }}
                     >
                       <PayPalButtons
