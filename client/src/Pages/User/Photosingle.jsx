@@ -29,15 +29,14 @@ const MenuProps = {
   },
 };
 const names = [
-  'Salads',
-  'Main Courses',
-  'Desserts',
-  'Beverages',
-  'Cocktails',
-  'Seafood',
-  'Vegetarian',
-  'Vegan',
-  'Gluten-free',
+  'Wedding Photography',
+  'Corporate Event Photography',
+  'Concert and Music Photography',
+  'Sports Event Photography',
+  'Birthday and Party Photography:',
+  'Fashion Event Photography',
+  'Cultural and Social Events',
+
 ];
 function getStyles(name, personName, theme) {
   return {
