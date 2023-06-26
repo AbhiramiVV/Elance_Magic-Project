@@ -28,17 +28,6 @@
   color: #61dafb;
 }
 
-.banner-img{
-  background-image: url(./assets/img/hero-bg.png);
-  background-size: cover;
-  background-position: center;
-  padding: 50px 50px;
-  margin-left: 15rem;
-  margin-right: 15rem;
- 
-  border-radius: 17px;
-  width: 75%;
-}
 
 @keyframes App-logo-spin {
   from {

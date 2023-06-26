@@ -10,15 +10,13 @@ import Testimonial from '../../Component/Testimonial';
 import Footer from '../../Component/Footer';
 import photo from '../../Pages/User/Photographer'
 import ring from '../../assets/ring.jpg'
-
+import Header from '../../Component/Header';
 
 function Homepage() {
   return (
-    <>
-    <Hero/>
-
-    <div className='w-full max-w-[1440px] mx-auto bg-white ' style={{marginTop:"80px"}}>
-
+    <div className='w-full max-w-[1440px] mx-auto bg-white'>
+ <Header/>
+<Hero/>
 
 <div class="relative grid h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700">
   <div class="absolute inset-0 m-0 h-full overflow-hidden rounded-none bg-transparent bg-[url('https://img.freepik.com/free-photo/decorative-floral-composition-table_8353-9811.jpg')] bg-cover bg-clip-border bg-center text-gray-700 shadow-none w-full">
@@ -40,7 +38,6 @@ function Homepage() {
       <Testimonial />
       <Footer />
      </div>
-     </>
     
   )
 }

@@ -35,21 +35,22 @@ const Header = () => {
   });
   return (
     <header
-      className={`
-     left-0 py-8 z-10 w-full  transition-all duration-200` }
+      className={`${
+        // if bg is true
+        bg
+          ? "bg-white py-4 lg:py-6"
+          : // if bg is false
+            "bg-white"
+      }
+    fixed left-0 py-8 z-10 w-full  transition-all duration-200`}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           {/* logo */}
-          <div style={{ opacity:"0.5" , width: "44%",borderRadius: "27.1px", height: "71px"}}>
-          <h1 className="text-5xl font-extrabold  mr-90 mt-2 italic text-white-1000" style={{color:"white",opacity:"1.5",textShadow: "5px 3px 8px black"}} >
-  Enlance Magico    
-</h1>
-
-
-          </div>
-   
-
+        
+            <h1 className=" text-5xl font-extrabold font-secondary mr-90 mt-2italic text-gray-900"  style={{ color: 'orange' }}> 
+              Enlance Magico
+            </h1>
          
           {/* menu icon */}
           <div
@@ -62,31 +63,21 @@ const Header = () => {
           <nav className="hidden md:flex">
             <ul className="md:flex md:gap-x-4">
               
-                             <NavLink to="/bookpage">
+                             <NavLink to="/">
                       <button
   type="button"
-  class="inline-block rounded-full border-2 border-neutral-800 px-6 pb-[6px] pt-2 text-md font-medium 
-  uppercase leading-normal text-neutral-800 transition duration-150 ease-in-out hover:border-neutral-800 hover:bg-neutral-500 
-  hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0 
-  active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900 
-  dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900 
-  dark:active:border-neutral-900 dark:active:text-neutral-900"style={{fontWeight:"bolder",color:"white"}}
+  class="inline-block rounded-full border-2 border-neutral-800 px-6 pb-[6px] pt-2 text-md font-medium uppercase leading-normal text-neutral-800 transition duration-150 ease-in-out hover:border-neutral-800 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0 active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900 dark:active:border-neutral-900 dark:active:text-neutral-900"
   data-te-ripple-init>
     HOME
 
 </button></NavLink>
 
-<NavLink to="/vendor/vendor">
+<NavLink to="/admin">
                       <button
   type="button"
-  class="inline-block rounded-full border-2 border-neutral-800 px-6 pb-[6px] pt-2 text-md font-medium uppercase 
-  leading-normal text-neutral-800 transition duration-150 ease-in-out hover:border-neutral-800 hover:bg-neutral-500
-   hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0
-    active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900
-     dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900
-      dark:active:border-neutral-900 dark:active:text-neutral-900" style={{fontWeight:"bolder",color:"white"}}
+  class="inline-block rounded-full border-2 border-neutral-800 px-6 pb-[6px] pt-2 text-md font-medium uppercase leading-normal text-neutral-800 transition duration-150 ease-in-out hover:border-neutral-800 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-800 focus:border-neutral-800 focus:text-neutral-800 focus:outline-none focus:ring-0 active:border-neutral-900 active:text-neutral-900 dark:border-neutral-900 dark:text-neutral-900 dark:hover:border-neutral-900 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-neutral-900 dark:focus:border-neutral-900 dark:focus:text-neutral-900 dark:active:border-neutral-900 dark:active:text-neutral-900"
   data-te-ripple-init>
- Eventmanagement
+ Event 
 
 </button></NavLink>
 
