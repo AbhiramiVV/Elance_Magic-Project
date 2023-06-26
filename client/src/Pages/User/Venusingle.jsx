@@ -351,10 +351,10 @@ setAmountpay(amountpay)
                   <div className="flex flex-col  p-5">
                   {paymentOption === "advance" ? (
                     <PayPalScriptProvider
-                      options={{
-                        "client-id":
-                        process.env.ACCESS_KEY,
-                      }}
+                    options={{
+                      "client-id":
+                      "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                    }}
                     >
                       <PayPalButtons
                         createOrder={(data, actions) => {
@@ -377,10 +377,10 @@ setAmountpay(amountpay)
                     </PayPalScriptProvider>
                      ) : (
                       <PayPalScriptProvider
-                        options={{
-                          "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
-                        }}
+                      options={{
+                        "client-id":
+                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                      }}
                       >
                         <PayPalButtons
                           createOrder={(data, actions) => {
