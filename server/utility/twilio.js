@@ -21,8 +21,8 @@ exports.checkVerificationToken = (otp, phoneNumber) => {
       });
   });
 };
-var accountSid = 'ACdd53a2db9c28de2a9a2e7d2c5fc95ab1'
-var authToken = 'ab3e587b9417628f9368f3ffda2924ac'
+var accountSid = process.env.TWILIO_ACCOUNT_SID
+var authToken = process.env.TWILIO_SERVICE_ID
 var twilio = require('twilio');
 
 exports.sendVerificationToken = function(number, otp) {

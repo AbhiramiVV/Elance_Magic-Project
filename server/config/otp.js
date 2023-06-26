@@ -7,12 +7,12 @@ module.exports={
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-          user:"abhiramivv77@gmail.com",
-          pass: 'spcanujclhwpdaaj'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
       }
   });
   var mailOptions = {
-      from:"abhiramivv77@gmail.com",
+    from:process.env.EMAIL,
       to: email,
       subject: "Elance Magico mail verification",
       html: `
@@ -39,12 +39,12 @@ approvedMail:(email,name)=> {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user:"abhiramivv77@gmail.com",
-      pass: 'spcanujclhwpdaaj'
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
     }
 });
 var mailOptions = {
-    from:'abhiramivv77@gmail.com',
+  from:process.env.EMAIL,
     to: email,
     subject: "Application status",
     html: `   <h5> Dear ${name} <h5><br>
@@ -70,8 +70,8 @@ transporter.sendMail(mailOptions,(err,res)=>{
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user:"abhiramivv77@gmail.com",
-      pass: 'spcanujclhwpdaaj'
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
     }
 });
 var mailOptions = {
