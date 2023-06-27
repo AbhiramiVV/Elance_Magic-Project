@@ -16,6 +16,7 @@ router.post("/superlogin",superadminController.login)
  router.put("/adminedit/:id", upload.single('file') ,superadminController.updateadmin);
  router.get("/approved/:id",superadminController.approved);
 router.get("/reject/:id",superadminController.reject);
+router.get("/transactions", superadminController.transactions);
 
 
 router.put('/blockadmin/:id', superadminController.blockAdmin)

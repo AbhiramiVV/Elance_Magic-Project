@@ -13,7 +13,10 @@ const CaterBookSchema = mongoose.Schema({
   Date: {
     type: String,
   },
-}, {
+  Paid: { type: Boolean, default: false },
+}, 
+
+{
   timestamps: true,
 });
 

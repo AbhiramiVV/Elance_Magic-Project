@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User=require('../models/userModels/userDetails');
 const randomNum = require("../randomNum");
-const AdminSchema=require('../models/admin/AdminSchema')
+const AdminSchema=require('../models/admin/AdminSchema');
+const CaterBook=require("../models/userModels/CaterBook")
+
 
 
 
@@ -138,6 +140,15 @@ blockAdmin:async (req, res) => {
       res.json({err:false,message:"admin is rejected"})
     
   },
+  
+transactions : async (req, res) => {
+  try {
+    const result = await CaterBook.find({ paid: true })
+    res.status(201).json({data:result});
+  } catch (error) {
+    res.status(500).json(error);
+  }
+},
 
  
 getAdmin:async(req,res)=>{

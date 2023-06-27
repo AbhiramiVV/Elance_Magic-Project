@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {HiMenuAlt3} from "react-icons/hi";
 import {MdOutlineDashboard} from "react-icons/md";
 import {GiPartyPopper} from "react-icons/gi";
-import {FaUserAlt} from "react-icons/fa";
+import {FaExchangeAlt, FaUserAlt} from "react-icons/fa";
 import {IoIosLogOut} from "react-icons/io";
 import { Link } from 'react-router-dom';
 import {GiPartyHat} from "react-icons/gi";
@@ -34,6 +34,7 @@ function Superadminbar() {
         {name:"Dashboard",link:'/superadmin/dashboard',icon:MdOutlineDashboard },
         
         {name:"Admins",link:'/superadmin/getadmin',icon:FaUserAlt },
+        {name:"Transaction",link:'/superadmin/transaction',  icon: FaExchangeAlt},
         {name:"Venue-Category",link:'/superadmin/showvenuecat',icon:FaHotel },
      
       ];

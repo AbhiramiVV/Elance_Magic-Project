@@ -359,6 +359,7 @@ Decordisplay : async (req, res) => {
           userId: _id,
           PhotoId: id,
           Date: startDate,
+          Paid:true
         });
         await Bookingphoto.save();
   
@@ -422,6 +423,7 @@ VenueBook : async (req, res) => {
         userId: _id,
         VenueId: id,
         Date: startDate,
+        Paid:true
       });
       await bookingVenue.save();
 
@@ -488,6 +490,7 @@ DecorBook : async (req, res) => {
         userId: _id,
         DecorId: id,
         Date: startDate,
+        Paid:true
       });
       await Bookingdecor.save();
 
@@ -536,6 +539,7 @@ CaterBook: async (req, res) => {
         userId: _id,
         CaterId: id,
         Date: startDate,
+        Paid:true
       });
       await Bookingcatering.save();
       res.status(200).json({ success: true, message: "Payment done successfully" });
@@ -584,6 +588,7 @@ MakeBook:async (req, res) => {
         userId: _id,
         MakeId: id,
         Date: startDate,
+        Paid:true,
       });
       await Bookingmakeup.save();
       res.status(200).json({ success: true, message: "Payment done successfully" });
