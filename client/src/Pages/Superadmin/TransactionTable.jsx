@@ -60,7 +60,7 @@ const TransactionTable = () => {
     const {superadmin}=useAuthContext();
     const [data, setData] = useState([]);
 
-    useEffect(() => {
+
       const fetchTransactions = async () => {
         try {
           const response = await axios.get('/superadmin/transactions', {
@@ -75,6 +75,7 @@ const TransactionTable = () => {
           console.error(error);
         }
       };
+      useEffect(() => {
   
       fetchTransactions();
     }, []);
@@ -93,13 +94,15 @@ const TransactionTable = () => {
         doc.setFontSize(15);
 
         const title = "Transaction Report";
-        const headers = [["ManagerId", "UserId", "Estimate Amount", "Advance"]];
+        const headers = [["ManagerId", "UserId", "Date", "Payment Status"]];
 
         const datas = filteredItems.map((elt) => [
-            elt.managerId,
+            elt.CaterId,
             elt.userId,
-            elt.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0),
-            Math.floor(elt.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0) / 2)
+            elt.Date,
+            elt.Paid,
+            // elt.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0),
+            // Math.floor(elt.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0) / 2)
         ])
 
         let content = {
@@ -132,7 +135,7 @@ const TransactionTable = () => {
 
                     ctr++;
                 } else {
-                    result += item[key].reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0);
+                    // result += item[key].reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0);
 
                     ctr++;
                 }
@@ -177,19 +180,20 @@ const TransactionTable = () => {
     const columns = [
         {
             name: 'ManagerId',
-            selector: row => row.managerId,
+            selector: row => row.CaterId,
         },
         {
             name: 'UsreId',
             selector: row => row.userId,
         },
         {
-            name: 'Total Amount',
-            selector: row => row.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0),
+            name: 'Date',
+            selector: row => row.Date,
         },
         {
-            name: 'Advance',
-            cell: row => Math.floor(row.estimate.reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0) / 2)
+            name: 'Payment Status',
+            selector: row => row.Paid,
+
         },
     ];
 
@@ -198,15 +202,15 @@ const TransactionTable = () => {
     const [filterText, setFilterText] = useState('');
     const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
     const filteredItems = data.filter(
-        item => item.managerId && item.managerId.toLowerCase().includes(filterText.toLowerCase()),
-    );
-
-    const subHeaderComponentMemo = useMemo(() => {
+        item => item.CaterId && item.CaterId.toLowerCase().includes(filterText.toLowerCase())
+      );
+    
+      const subHeaderComponentMemo = useMemo(() => {
         const handleClear = () => {
-            if (filterText) {
-                setResetPaginationToggle(!resetPaginationToggle);
-                setFilterText('');
-            }
+          if (filterText) {
+            setResetPaginationToggle(!resetPaginationToggle);
+            setFilterText('');
+          }
         };
 
         return (
@@ -223,7 +227,7 @@ const TransactionTable = () => {
 
         < div >
 
-            <Button onClick={() => exportPDF()} className="left-[84%]">Transaction Report</Button>
+            <Button onClick={() => exportPDF()} className="left-[45%]">Transaction Report</Button>
             < DataTable
                 columns={columns}
                 data={filteredItems}

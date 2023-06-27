@@ -32,8 +32,8 @@ function Superadminbar() {
   }
     const menus=[
         {name:"Dashboard",link:'/superadmin/dashboard',icon:MdOutlineDashboard },
-        
-        {name:"Admins",link:'/superadmin/getadmin',icon:FaUserAlt },
+        {name:"Customers",link:'/superadmin/customerview',icon:FaUserAlt },
+        {name:"Vendors",link:'/superadmin/getadmin',icon:FaUserAlt },
         {name:"Transaction",link:'/superadmin/transaction',  icon: FaExchangeAlt},
         {name:"Venue-Category",link:'/superadmin/showvenuecat',icon:FaHotel },
      

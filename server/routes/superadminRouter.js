@@ -10,6 +10,8 @@ router.post("/superlogin",superadminController.login)
 
 
   router.use(superAuth)
+  router.get('/customerdisplay',superadminController.customerview)
+  router.put('/blockuser/:id', superadminController.blockUser)
  router.get('/viewadmin', superadminController.viewadmin)
   router.post("/addadmin",superadminController.insertAdmin)
  router.get("/viewadminsingle/:id",superadminController.singleviewadmin)

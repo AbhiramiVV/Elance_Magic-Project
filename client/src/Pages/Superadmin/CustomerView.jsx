@@ -8,16 +8,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from '../../Hooks/useAuthContext'
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from 'sweetalert2';
+import Superadminbar from '../../Component/Superadminbar'
 const CustomerView = () => {
-  const { admin } = useAuthContext();
+const {superadmin}=useAuthContext();
   const [customer, setCustomer] = useState([]);
   const [loading, setloading] = useState(true);
  
     const getCustomer = async () => {
       try {
-        const response = await axios.get('/vendor/customerdisplay', {
+        const response = await axios.get('/superadmin/customerdisplay', {
           headers: {
-            Authorization: `${admin.token}`,
+            Authorization: `${superadmin.token}`,
           },
         });
         const { message, data } = response.data;
@@ -48,7 +49,7 @@ const CustomerView = () => {
       if (confirmResult.isConfirmed) {
         const response=await axios.put(`/vendor/blockuser/${id}`, null,{
           headers: {
-            Authorization: `${admin.token}`,
+            Authorization: `${superadmin.token}`,
           },
         });
   
@@ -115,7 +116,7 @@ const CustomerView = () => {
     <div>
          <div>
    <div className='flex gap-24 mx-auto'>
-              <Adminsidebar/>
+              <Superadminbar/>
                 
                   <div className='d-flex w-8/12 flex-column align-items-center'>
                   

@@ -9,7 +9,7 @@ const User=require('../models/userModels/userDetails');
 const randomNum = require("../randomNum");
 const AdminSchema=require('../models/admin/AdminSchema');
 const CaterBook=require("../models/userModels/CaterBook")
-
+const userModels=require("../models/userModels/userDetails")
 
 
 
@@ -39,7 +39,34 @@ login :async (req, res) => {
   }
 },
 
+customerview :async (req, res) => {
+  try {
+    const alluser = await userModels.find();
+    res.status(201).json({ data: alluser });
+  } catch (error) {
+    res.status(404).json({ message: "error occured" });
+  }
+},
+blockUser :async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const userStatus = await userModels.findById(id);
 
+    if (userStatus.isBlocked === false) {
+      const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: true });
+      console.log(isBlocked.isBlocked);
+      res.json({ success: true });
+    } else {
+      const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: false });
+      console.log(isBlocked.isBlocked);
+      res.json({ success: true });
+    }
+  } catch (error) {
+    console.error('Error blocking/unblocking user:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+},
  viewadmin :async (req, res) => {
   try {
     const viewdata = await AdminSchema.find();
@@ -143,7 +170,8 @@ blockAdmin:async (req, res) => {
   
 transactions : async (req, res) => {
   try {
-    const result = await CaterBook.find({ paid: true })
+    const result = await CaterBook.find({ Paid: true })
+    console.log(result,'8888888888888');
     res.status(201).json({data:result});
   } catch (error) {
     res.status(500).json(error);

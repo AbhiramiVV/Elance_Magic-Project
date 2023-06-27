@@ -33,7 +33,7 @@ function Adminsidebar() {
     {name:"Photography",link:'/vendor/photographerview',icon:AiFillCamera },
     {name:"Foods And Drinks",link:'/vendor/catering',icon:FaUtensils},
     {name:"Bridal Makeup",link:'/vendor/makeup',icon:FaRing},
-    {name:"Customers",link:'/vendor/customerview',icon:FaUserAlt },
+ 
     
   ];
   const [open,setOpen]=useState(true)
