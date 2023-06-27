@@ -47,7 +47,7 @@ const {superadmin}=useAuthContext();
       });
   
       if (confirmResult.isConfirmed) {
-        const response=await axios.put(`/vendor/blockuser/${id}`, null,{
+        const response=await axios.put(`/superadmin/blockuser/${id}`, null,{
           headers: {
             Authorization: `${superadmin.token}`,
           },
@@ -55,13 +55,14 @@ const {superadmin}=useAuthContext();
   
         await getCustomer();
         if(response.success==true){
-          toast.error(response.data.message);
+          toast.success(response.message);
+          
 
         }else{
           toast.error(response.data.message)
 
         }
-        // toast.success('User blocked/unblocked successfully.');
+         toast.success('User blocked/unblocked successfully.');
       }
     } catch (error) {
       console.log(error);

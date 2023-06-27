@@ -55,12 +55,11 @@ blockUser :async (req, res) => {
 
     if (userStatus.isBlocked === false) {
       const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: true });
-      console.log(isBlocked.isBlocked);
-      res.json({ success: true });
+     
+      res.json({ success: true ,message:"User Blocked succesfully"});
     } else {
       const isBlocked = await userModels.findByIdAndUpdate(id, { isBlocked: false });
-      console.log(isBlocked.isBlocked);
-      res.json({ success: true });
+      res.json({ success: true ,message:"user UnBlocked succesfully"});
     }
   } catch (error) {
     console.error('Error blocking/unblocking user:', error);
@@ -131,19 +130,16 @@ singleviewadmin :async (req, res) => {
 
 
 blockAdmin:async (req, res) => {
-  
- 
+
   const id=req.params.id
-  console.log(id);
-  const adminstatus=await AdminSchema.findById({_id:id})
-  if (adminstatus.isblocked===true){
-  const isBlocked=await Admin.findByIdAndUpdate(id,{$set: {isblocked:false}})
-  console.log(isBlocked.isblocked);
-  res.json({success:true,message:"Admin unblocked successfully"})
+  const adminstatus=await AdminSchema.findById(id);
+console.log(adminstatus);
+  if (adminstatus.isBlocked===false){
+  const isBlocked=await AdminSchema.findByIdAndUpdate(id,{isBlocked:true})
+  res.json({success:true,message:"Admin blocked successfully"})
   }else{
-    const isBlocked = await Admin.findByIdAndUpdate(id,{$set:{isblocked:true}})
-    console.log(isBlocked.isblocked);
-    res.json({success:false,message:"Admin blocked successfully"})
+    const isBlocked = await AdminSchema.findByIdAndUpdate(id,{isBlocked:false})
+    res.json({success:false,message:"Admin unblocked successfully"})
   }
   
   },

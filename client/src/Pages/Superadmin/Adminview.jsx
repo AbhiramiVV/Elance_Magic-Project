@@ -59,11 +59,11 @@ const Adminview = () => {
   
         await getAdmin();
         if(response.success==true){
-          toast.error(response.data.message);
+          toast.success(response.data.message);
         }else{
           toast.error(response.data.message)
         }
-        
+      
       }
     } catch (error) {
       console.log(error);
