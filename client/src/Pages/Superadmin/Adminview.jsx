@@ -140,7 +140,7 @@ useEffect(() => {
       <button
   onClick={() => handleBlock(row._id)}
   className={`${
-    row.isblocked ? "bg-red-700" : "bg-green-700"
+    row.isblocked ? 'bg-green-700 ':'bg-red-700'
   } text-white font-bold py-2 px-4 rounded-full`}
 >
   {row.isblocked ? "Unblock" : "Block"}
