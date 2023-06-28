@@ -65,7 +65,7 @@ export const hero = {
 export const stats = [
   {
     value: '1+',
-    text: 'Couples',
+    text: 'Planning',
   },
   {
     value: '1+',
