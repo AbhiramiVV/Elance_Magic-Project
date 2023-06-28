@@ -13,7 +13,7 @@ import TransactionTable from '../Pages/Superadmin/TransactionTable';
 import CustomerView from  '../Pages/Superadmin/CustomerView'
 function Superadmin() {
   const {superadmin}=useAuthContext()
-  console.log(7538541,superadmin)
+
   return (
     <fragments>
         <Routes>
