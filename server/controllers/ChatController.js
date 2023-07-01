@@ -14,6 +14,21 @@ module.exports={
         }catch (error){
             res.status(500).json(error)
         }
+    },
+    userChats:async(req,res)=>{
+        try{
+            const chat= await ChatModel.find({
+                members: {$in: [req.params.userId]}
+            })
+            res.status(200).json(chat)
+
+        }catch (error){
+            res.status(500).json(error)
+        }
+    },
+    findChat:async(req,res)=>{
+        
     }
+
 
 }
