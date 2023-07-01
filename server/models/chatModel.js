@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose=require('mongoose')
 
-const ChatSchema = new mongoose.Schema(
+const ChatSchema = mongoose.Schema(
     {
         members: {
             type: Array,

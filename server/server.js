@@ -7,6 +7,7 @@ const path = require("path");
 const userRoute=require('./routes/userRouter.js')
 const adminRoutes=require('./routes/adminRouter.js')
 const superadminRoutes=require('./routes/superadminRouter.js')
+const ChatRoutes=require('./routes/ChatRouter.js')
 const morgan = require('morgan')
 const app = express();
 app.use(express.json());
@@ -32,6 +33,7 @@ dbConnect();
 
 app.use("/vendor", adminRoutes);
 app.use("/superadmin", superadminRoutes);
+app.use("/chat",ChatRoutes)
 app.use('/',userRoute);
 app.listen(5000, () => {
   console.log("Server running on port 5000");

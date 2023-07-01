@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-  const MessageSchema = new mongoose.Schema({
+const  mongoose =require('mongoose');
+  const MessageSchema = mongoose.Schema({
     chatId:{
         type:String
     },
