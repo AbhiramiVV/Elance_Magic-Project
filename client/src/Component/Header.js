@@ -3,7 +3,7 @@ import { CgMenuRight, CgClose } from "react-icons/cg";
 import { IoMdLock } from "react-icons/io";
 import { useLogout } from "../Hooks/User/useLogout";
 
-
+import chatLogo from "../../src/assets/chat.png"
 import { CalendarIcon } from '@heroicons/react/solid';
 
 // Initialization for ES Users
@@ -14,7 +14,7 @@ import logo from "../assets/logo.jpg";
 import { navigation } from "../data";
 // import components
 import NavMobile from "./NavMobile";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Hooks/useAuthContext";
 const Header = () => {
   const{logout}=useLogout()
@@ -26,6 +26,11 @@ const Header = () => {
     logout()
     
   }
+  const navigate = useNavigate()
+
+    const chatHandler = () => {
+    navigate('/chat')
+  }  
   useEffect(() => {
     // add event listener
     window.addEventListener("scroll", () => {
@@ -80,6 +85,9 @@ const Header = () => {
  EVENT MANAGEMENT
 
 </button></NavLink>
+<li onClick={chatHandler} className="p-4 font-bold cursor-pointer">
+  <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
+</li>
 
                     
 

@@ -4,7 +4,7 @@ const router=express.Router();
 const Message=require("../controllers/MessageController")
 
 router.post('/',Message.addMessage)
-router('/:chatId',Message.getMessages)
+router.get('/:chatId',Message.getMessages)
 
 
 

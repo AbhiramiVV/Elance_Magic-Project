@@ -1,5 +1,5 @@
-const ChatModel=require("../models/chatModel")
-
+const jwt = require("jsonwebtoken");
+const { ChatModel } = require("../models/chatModel");
 
 module.exports={
 
@@ -16,15 +16,21 @@ module.exports={
         }
     },
     userChats:async(req,res)=>{
+        const { authorization } = req.headers;
+        const token = authorization;
+        const { _id } = jwt.verify(token, 'usersecretkey');
+        console.log(_id);
         try{
-            const chat= await ChatModel.find({
-                members: {$in: [req.params.userId]}
-            })
-            res.status(200).json(chat)
+            const chat = await ChatModel.find({
+                members: { $in: [_id] }
+            });
+            console.log(chat, '000000000');
+            res.status(200).json(chat);
 
-        }catch (error){
-            res.status(500).json(error)
         }
+      catch (error) {
+        res.status(500).json(error);
+      }
     },
     findChat:async(req,res)=>{
         try{

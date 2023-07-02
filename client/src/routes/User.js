@@ -20,6 +20,7 @@ import CateringSingle from "../Pages/User/CateringSingle";
 import MakeupView from "../Pages/User/MakeupView";
 import MakeupSingle from "../Pages/User/MakeupSingle";
 import Details from "../Pages/User/Details";
+import Chat from "../Pages/Chat/Chat";
 function User() {
   const {user}=useAuthContext()
   return (
@@ -43,6 +44,7 @@ function User() {
         <Route path='/makeup' element={user?<MakeupView/>:<Navigate to='/login'/>}/>
         <Route path='/Makeupsingle/:id' element={user?<MakeupSingle/>:<Navigate to='/login'/>}/>
         <Route path='/details' element={user?<Details/>:<Navigate to='/login'/>}/>
+        <Route path='/chat' element={user?<Chat/>:<Navigate to='/login'/>}/>
 
          <Route path="*" element={<PageNotFound />} />
     </Routes>
