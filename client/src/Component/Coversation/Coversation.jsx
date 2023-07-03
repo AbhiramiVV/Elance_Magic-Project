@@ -19,8 +19,8 @@ const {user}=useAuthContext()
             setUserData(response.data.data[0])
         }
         getUser();
-    },[user])
-   console.log(userData);
+    },[data,currentUser])
+  
     return (
         <>
       

@@ -4,7 +4,6 @@ const { ChatModel } = require("../models/chatModel");
 module.exports={
 
     createChat:async(req,res)=>{
-        console.log(req.body);
 
         const newChat=new ChatModel({
             members :[req.body.senderId,req.body.id]

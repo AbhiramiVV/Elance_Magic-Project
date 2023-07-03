@@ -622,7 +622,7 @@ Order: async (req, res) => {
 },
 feachUser: async (req,res) =>{
   const id=req.params.userId
-  console.log(id,'55555555555');
+
   try{
     const data= await userDetails.find({_id:id})
     res.status(200).json({data})

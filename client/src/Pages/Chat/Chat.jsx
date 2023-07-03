@@ -8,7 +8,11 @@ import Conversation from "../../Component/Coversation/Coversation"
 const Chat = () => {
   const { user } = useAuthContext();
   const [chats, setChats] = useState([]);
+//   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
   const userId=user.userExist._id;
+  const showEstimateClose = () => setShowEstimate(false);
+
   useEffect(() => {
 
     const getChats = async () => {
@@ -20,12 +24,12 @@ const Chat = () => {
           })
         setChats(data);
       } catch (error) {
-        console.log(error);
+        
       }
     };
     getChats();
   }, []);
-  console.log("User details:", user);
+ 
     return (
         <>
             <div className="Chat p-5">
@@ -38,14 +42,14 @@ const Chat = () => {
                             {chats.map((chat, i) => (
                                 <div
                                     onClick={() => {
-                                        // setCurrentChat(chat);
+                                        setCurrentChat(chat);
                                     }}
                                 >
                                     <Conversation
                                         key={i}
                                         data={chat}
                                         currentUser={user.id}
-                                        // online={checkOnlineStatus(chat)}
+                                        online={checkOnlineStatus(chat)}
                                         type="user"
                                     />
                                 </div>
