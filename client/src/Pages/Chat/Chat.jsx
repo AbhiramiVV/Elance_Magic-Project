@@ -8,22 +8,23 @@ import Conversation from "../../Component/Coversation/Coversation"
 const Chat = () => {
   const { user } = useAuthContext();
   const [chats, setChats] = useState([]);
+  const userId=user.userExist._id;
   useEffect(() => {
+
     const getChats = async () => {
       try {
-        const { data } = await axios.get("/chat", {
-          headers: {
-            Authorization: `${user.token}`,
-          },
-        });
-        console.log(data, "Chats:", data);
+        const { data }= await axios.get(`/chat/${userId}`,{
+            headers: {
+              Authorization: `${user.token}`,
+            },
+          })
         setChats(data);
       } catch (error) {
         console.log(error);
       }
     };
     getChats();
-  }, [user]);
+  }, []);
   console.log("User details:", user);
     return (
         <>
@@ -37,15 +38,15 @@ const Chat = () => {
                             {chats.map((chat, i) => (
                                 <div
                                     onClick={() => {
-                                        setCurrentChat(chat);
+                                        // setCurrentChat(chat);
                                     }}
                                 >
                                     <Conversation
-                                        // key={i}
-                                        // data={chat}
-                                        // currentUser={user.id}
+                                        key={i}
+                                        data={chat}
+                                        currentUser={user.id}
                                         // online={checkOnlineStatus(chat)}
-                                        // type="user"
+                                        type="user"
                                     />
                                 </div>
                             ))}

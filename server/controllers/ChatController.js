@@ -4,10 +4,12 @@ const { ChatModel } = require("../models/chatModel");
 module.exports={
 
     createChat:async(req,res)=>{
+        console.log(req.body);
 
         const newChat=new ChatModel({
-            members :[req.body.senderId,req.body.receiverId]
+            members :[req.body.senderId,req.body.id]
         });
+ 
         try{
             const result =await newChat.save();
             res.status(200).json(result);
@@ -16,15 +18,10 @@ module.exports={
         }
     },
     userChats:async(req,res)=>{
-        const { authorization } = req.headers;
-        const token = authorization;
-        const { _id } = jwt.verify(token, 'usersecretkey');
-        console.log(_id);
         try{
             const chat = await ChatModel.find({
-                members: { $in: [_id] }
+                members: { $in: [req.params.userId] }
             });
-            console.log(chat, '000000000');
             res.status(200).json(chat);
 
         }

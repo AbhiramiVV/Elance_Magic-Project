@@ -27,7 +27,7 @@ router.post('/checkmakeDate/:id',User.checkMakeup);
 router.post('/BookMake/:id',User.MakeBook);
 
 router.get('/Orderdisplay',User.Order)
-
+router.get('/userchat/:userId',User.feachUser);
 
 
 router.use(userAuth)

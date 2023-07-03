@@ -6,7 +6,7 @@ const userAuth=require('../middleware/userAuth')
 router.post("/",Chat.createChat)
 router.use(userAuth)
 
-router.get("/",Chat.userChats)
+router.get("/:userId",Chat.userChats)
 router.get("/find/:firstId/:secondId",Chat.findChat)
 
 module.exports=router;

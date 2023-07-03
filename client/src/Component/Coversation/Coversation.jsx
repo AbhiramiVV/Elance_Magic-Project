@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-
+import axios from "../../instance/axios"
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 const Conversation = ({ data, currentUser, online, type }) => {
 
     const [userData, setUserData] = useState(null)
 
-
+const {user}=useAuthContext()
     useEffect(() => {
 
         const userId = data.members.find((id) => id !== currentUser)
         console.log(userId,'9999');
-
-    },[])
+        const getUser = async()=>{
+            const {data}=await axios.get(`/userchat/${userId}`,{headers: {
+                Authorization: `${user.token}`,
+              }})
+              console.log(data,'dataa');
+            setUserData(data)
+        }
+        getUser();
+    },[user])
     return (
         <>
-        <div>
-            conversation
-        </div>
-            {/* <div className="follower conversation ">
+      
+            <div className="follower conversation ">
                 <div className="flex items-center">
                     {online && <div className="online-dot"></div>}
                     <img
@@ -33,7 +39,7 @@ const Conversation = ({ data, currentUser, online, type }) => {
                     </div>
                 </div>
             </div>
-            <hr style={{ width: "85%", border: "0.1px solid #ececec" }} /> */}
+            <hr style={{ width: "85%", border: "0.1px solid #ececec" }} />
         </>
     );
 };

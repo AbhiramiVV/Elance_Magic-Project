@@ -13,13 +13,13 @@ export const useLogin = () => {
 
     try {
       const response = await axios.post('/login', { email, password })
-      const json = response.data
-console.log(json,'555555555');
+      const json = response.data.json
+      const userExist=response.data.userExist
       // save the user to the local storage
-      localStorage.setItem('user', JSON.stringify(json))
+      localStorage.setItem('user', JSON.stringify(response.data))
 
       // update the auth context
-      dispatch({ type: 'LOGIN', payload: json })
+      dispatch({ type: 'LOGIN', payload:response.data})
 
       setIsLoading(false)
     } catch (error) {

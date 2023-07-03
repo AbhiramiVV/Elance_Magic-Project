@@ -16,7 +16,7 @@ const DecorBook = require("../models/userModels/DecorBook");
 const CaterBook = require("../models/userModels/CaterBook");
 const MakeBook = require("../models/userModels/MakeBook");
 const Makeupcollection = require("../models/admin/makeupSchema");
-
+const userDetails=require("../models/userModels/userDetails")
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
 };
@@ -138,7 +138,7 @@ postResend: async (req, res) => {
 
 
           res.status(200).json({
-            token,
+            token,userExist
           });
 
           console.log("login successful");
@@ -611,15 +611,26 @@ Order: async (req, res) => {
     const venue = await VenueBook.find({ userId: _id }).populate("VenueId").sort({ Date: -1 });
     const decor = await DecorBook.find({ userId: _id }).populate("DecorId").sort({ Date: -1 });
     const cater = await CaterBook.find({ userId: _id }).populate("CaterId").sort({ Date: -1 });
-    console.log(cater,'22222222222222222222');
+
     const make = await MakeBook.find({ userId: _id }).populate("MakeId").sort({ Date: -1 });
-    console.log(make, '555555555555');
 
     res.status(201).json({ photo, venue, decor, cater, make });
   } catch (error) {
     console.error(error); // Log the error for debugging purposes
     res.status(500).json({ error: "Internal Server Error" });
   }
+},
+feachUser: async (req,res) =>{
+  const id=req.params.userId
+  console.log(id,'55555555555');
+  try{
+    const data= await userDetails.find({_id:id})
+    console.log(data,'datass');
+    res.status(200).json({data})
+  } catch (error){
+    res.status(500).json(error)
+  }
+
 }
 
 

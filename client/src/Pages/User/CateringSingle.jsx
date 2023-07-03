@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import Header from "../../Component/Header";
-import {  useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import chatLogo from "../../assets/chat.png"
 import { toast } from "react-toastify";
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
@@ -96,7 +97,22 @@ function CateringSingle() {
        
     } catch (error) {}
     };
-    
+    const navigate = useNavigate();
+    const senderId=user.userExist._id;
+
+    const chatHandler = async () => {
+        const response=await axios.post('/chat', {id,senderId},{
+          headers: {
+            Authorization: `${user.token}`,
+          }})
+      
+          {
+          navigate('/chat')
+        }
+  
+
+     
+    }  
     const BookCater =  async () => {
   
       try {
@@ -283,8 +299,14 @@ function CateringSingle() {
     Full Payment
   </button>
 </div>
+<button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
+  <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
+  Chat With Us
+</button>
+
               </div>
             </div>
+ 
   
             <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
               <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
