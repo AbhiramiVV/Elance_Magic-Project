@@ -625,7 +625,6 @@ feachUser: async (req,res) =>{
   console.log(id,'55555555555');
   try{
     const data= await userDetails.find({_id:id})
-    console.log(data,'datass');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)

@@ -11,16 +11,16 @@ const {user}=useAuthContext()
     useEffect(() => {
 
         const userId = data.members.find((id) => id !== currentUser)
-        console.log(userId,'9999');
+    
         const getUser = async()=>{
-            const {data}=await axios.get(`/userchat/${userId}`,{headers: {
+            const response=await axios.get(`/userchat/${userId}`,{headers: {
                 Authorization: `${user.token}`,
               }})
-              console.log(data,'dataa');
-            setUserData(data)
+            setUserData(response.data.data[0])
         }
         getUser();
     },[user])
+   console.log(userData);
     return (
         <>
       
@@ -34,7 +34,7 @@ const {user}=useAuthContext()
                         style={{ width: "50px", height: "50px" }}
                     />
                     <div className="name flex flex-col ml-4" style={{ fontSize: '0.8rem' }}>
-                        <span className="text-xl font-bold break-all">{userData?.companyname ? userData?.companyname : userData?.email}</span>
+                        <span className="text-xl font-bold break-all">{userData?.name ? userData?.name : userData?.email}</span>
                         <span style={{ color: online ? "#51e200" : "" }}>{online ? "Online" : "Offline"}</span>
                     </div>
                 </div>
