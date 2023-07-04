@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "../../instance/axios";
 import "./chat.css";
 import { useAuthContext } from "../../Hooks/useAuthContext";
@@ -7,7 +7,9 @@ import { AuthContext } from "../../Context/AuthContext";
 import Conversation from "../../Component/Coversation/Coversation"
 import ChatBox from "../../Component/ChatBox/ChatBox";
 import Header from "../../Component/Header";
+import {io} from 'socket.io-client'
 const Chat = () => {
+    const socket = useRef();
   const { user } = useAuthContext();
   const [chats, setChats] = useState([]);
  const [onlineUsers, setOnlineUsers] = useState([]);
@@ -35,6 +37,15 @@ const Chat = () => {
     };
     getChats();
   }, []);
+
+   // Connect to Socket.io
+   useEffect(() => {
+    socket.current = io('http://localhost:8800');
+    socket.current.emit("new-user-add", userId);
+    socket.current.on("get-users", (users) => {
+        setOnlineUsers(users);
+    });
+}, [userId]);
  
 
   const checkOnlineStatus = (chat) => {
