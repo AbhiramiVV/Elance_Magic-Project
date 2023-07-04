@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const cateringSchema = mongoose.Schema({
+  VendorId:{
+    type: String,
+ 
+  },
     name: {
         type: String,
         required: true,

@@ -1,4 +1,4 @@
-const MessageModel=require("../models/MessageModel")
+const { MessageModel } = require("../models/messageModel");
 
 
 

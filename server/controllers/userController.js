@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const userModels = require("../models/userModels/userDetails");
 const { randomNumber } = require("../randomNum");
 const { sentMail } = require("../config/otp");
+
 const photographer = require("../models/admin/Photographer");
 const Decorcollection = require("../models/admin/Decoration");
 const venueCategory = require("../models/admin/Venuecat");
@@ -16,7 +17,8 @@ const DecorBook = require("../models/userModels/DecorBook");
 const CaterBook = require("../models/userModels/CaterBook");
 const MakeBook = require("../models/userModels/MakeBook");
 const Makeupcollection = require("../models/admin/makeupSchema");
-const userDetails=require("../models/userModels/userDetails")
+const userDetails=require("../models/userModels/userDetails");
+const adminModels = require("../models/admin/AdminSchema");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "usersecretkey", { expiresIn: "3d" });
 };
@@ -278,6 +280,7 @@ Decordisplay : async (req, res) => {
     try{
       const {id}=req.params;
       const catersingle= await cateringcollection.findById({_id:id});
+      console.log(catersingle,"pppppppppppppppppp");
       res.status(201).json(catersingle);
     }catch(error){
       console.log("error occured in single catering ",error);
@@ -630,7 +633,16 @@ feachUser: async (req,res) =>{
     res.status(500).json(error)
   }
 
-}
+},
+feachVendor:async(req,res)=>{
+  const id=req.params.users;
 
+  try{
+    const data = await adminModels.find({_id:id})
+    res.status(200).json({data})
+  }catch (error){
+    res.status(500).json(error)
+  }
+}
 
 };

@@ -455,8 +455,10 @@ viewCatering:async(req,res)=>{
   }
 },
 cateringAdd:async (req, res) => {
+
   try {
     await cateringcollection.create({
+      VendorId:req.body.VendorId,
       name: req.body.name,
       email: req.body.email,
       manager: req.body.manager,
@@ -574,6 +576,8 @@ DeleteMakeup:async (req,res)=>{
     res.status(500).json();
   }
 },
+
+
 
 // getAdmin:async(req,res)=>{
 //   countuser=await userModels.find({}).count()

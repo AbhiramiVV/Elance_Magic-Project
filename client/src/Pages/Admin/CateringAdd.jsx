@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
 import axios from "../../instance/axios";
 
+import { useAuthContext } from "../../Hooks/useAuthContext";
+
 
 function CateringAdd() {
+  const {admin}=useAuthContext();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [type, setType] = useState("");
@@ -16,12 +19,14 @@ function CateringAdd() {
     const [address,setAddress]=useState("");
     const [files, setFiles] = useState([]);
     const [imageError, setImageError] = useState(false);
-  
+   const id=admin.adminExist._id
+   console.log(id,'8888888888');
     const navigate = useNavigate();
   
     const addCatering = async (e) => {
       e.preventDefault();
       const formData = new FormData();
+      formData.append("VendorId",id)
       formData.append("name", name);
       formData.append("manager", manager);
       formData.append("email", email);
@@ -36,7 +41,7 @@ function CateringAdd() {
       }
   
       try {
-        const response = await axios.post("/vendor/addCatering", formData, {
+        const response = await axios.post("/vendor/addCatering", formData ,{
           headers: {
             "Content-Type": "multipart/form-data",
           },

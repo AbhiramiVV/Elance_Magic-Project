@@ -5,11 +5,17 @@ import { useAuthContext } from "../../Hooks/useAuthContext";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import Conversation from "../../Component/Coversation/Coversation"
+import ChatBox from "../../Component/ChatBox/ChatBox";
+import Header from "../../Component/Header";
 const Chat = () => {
   const { user } = useAuthContext();
   const [chats, setChats] = useState([]);
-//   const [onlineUsers, setOnlineUsers] = useState([]);
+ const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
+  const [sendMessage, setSendMessage] = useState(null);
+  const [receivedMessage, setReceivedMessage] = useState(null);
+  const [showEstimate, setShowEstimate] = useState(false);
+  const [receiver, setReceiver] = useState("");
   const userId=user.userExist._id;
   const showEstimateClose = () => setShowEstimate(false);
 
@@ -30,8 +36,15 @@ const Chat = () => {
     getChats();
   }, []);
  
+
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== userId);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+};
     return (
         <>
+     
             <div className="Chat p-5">
                 {/* Left Side */}
                 <div className="Left-side-chat">
@@ -64,7 +77,7 @@ const Chat = () => {
                     {/* <div style={{ width: "20rem", alignSelf: "flex-end" }}>
                     <NavIcons />
                 </div> */}
-                    {/* <ChatBox
+                    <ChatBox
                         chat={currentChat}
                         currentUser={userId}
                         setSendMessage={setSendMessage}
@@ -72,10 +85,10 @@ const Chat = () => {
                         type="user"
                         showEstimate={setShowEstimate}
                         setReceiver={setReceiver}
-                    /> */}
+                    />
                 </div>
             </div>
-            {/* <ShowEstimateModal onClose={showEstimateClose} visible={showEstimate} userId={userId} managerId={receiver} /> */}
+      
         </>
     );
 };

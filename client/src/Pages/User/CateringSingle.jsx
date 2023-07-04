@@ -60,10 +60,13 @@ function CateringSingle() {
     );
   };
     const { id } = useParams();
-    const { user } = useAuthContext();
+    
+    const { user} = useAuthContext();
+ 
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [name, setname] = useState("");
     const [desc, setdesc] = useState("");
+    const [Id,setId]= useState("")
     const [type, setType] = useState("");
     const [rent, setRent] = useState("");
     const [menu,setMenu] =useState("");
@@ -97,22 +100,7 @@ function CateringSingle() {
        
     } catch (error) {}
     };
-    const navigate = useNavigate();
-    const senderId=user.userExist._id;
-
-    const chatHandler = async () => {
-        const response=await axios.post('/chat', {id,senderId},{
-          headers: {
-            Authorization: `${user.token}`,
-          }})
-      
-          {
-          navigate('/chat')
-        }
-  
-
-     
-    }  
+   
     const BookCater =  async () => {
   
       try {
@@ -174,6 +162,7 @@ function CateringSingle() {
             Authorization: `${user.token}`,
           },
         });
+
         const Catorsingle = res.data;
         setname(Catorsingle.name);
         setdesc(Catorsingle.desc);
@@ -182,7 +171,7 @@ function CateringSingle() {
         setImage(Catorsingle.image);
         setMenu(Catorsingle.menu);
         setaddress(Catorsingle.address);
-        console.log(Catorsingle,'+++++++++++');
+        setId(Catorsingle.VendorId);
   const amountpay=(Catorsingle.rent)*0.1
   console.log(amountpay)
   setAmountpay(amountpay)
@@ -191,7 +180,32 @@ function CateringSingle() {
         console.log(error);
       }
     };
-  
+    const navigate = useNavigate();
+    const senderId=user.userExist._id;
+console.log(senderId,'9999999999999');
+console.log(Id,'rrrrrrrrrrr');
+    const chatHandler = async () => {
+      try{
+
+      
+        const response=await axios.post('/chat', {senderId, Id},{
+          headers: {
+            Authorization: `${user.token}`,
+          }})
+       
+      
+    if (response.data.sucess) {
+      navigate('/chat');
+    } else {
+      
+      console.log('Chat creation failed');
+    }
+  } catch (error) {
+    // Handle error
+    console.error(error);
+  }
+};
+    
     useEffect(() => {
       viewCaterSingle();
     }, [id]);

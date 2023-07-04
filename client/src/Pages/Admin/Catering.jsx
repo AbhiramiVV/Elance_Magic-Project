@@ -12,6 +12,7 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 function Catering() {
  
     const{admin}=useAuthContext()
+ 
     const[catering,setCaterig]=useState([])
     const [search, setsearch] = useState("");
     const [filteredAdmin, setFilteredAdmin] = useState([]);

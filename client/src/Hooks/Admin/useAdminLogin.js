@@ -15,16 +15,17 @@ export const useAdminLogin = () => {
     try {
       console.log(email,password)
       const response = await axios.post('/vendor/vendor', { email,password})
-      console.log(response,'34567');
-      const json = response.data
+      console.log(response.data,'34567');
+      const json = response.data.json
+      const adminExist=response.data.adminExist
       console.log(response.data)
 
 
       // save the user to the local storage
-      localStorage.setItem('admin', JSON.stringify(json))
+      localStorage.setItem('admin', JSON.stringify(response.data))
 
       // update the auth context
-      dispatch({ type: 'ADMINLOGIN', payload: json })
+      dispatch({ type: 'ADMINLOGIN', payload: response.data })
 
       setIsLoading(false)
     } catch (error) {
