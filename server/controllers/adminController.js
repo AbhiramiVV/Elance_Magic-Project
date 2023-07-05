@@ -616,10 +616,20 @@ getAdmin:async(req,res)=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
    }))
  
-   console.log(VenueBookings)
+   let CaterBookings = 0;
+   await CaterBook.find().populate('CaterId', 'rent').then(datas => {
+     datas.forEach(data => {
+       if (data.CaterId && data.CaterId.rent) {
+         CaterBookings += parseInt(data.CaterId.rent);
+       }
+     });
+   });
  
-   const TotalRevenue=VenueBookings+DecorBookings+photoBookings
+   
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
+ 
+   const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
+ 
+ res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,CaterBookings})
  },
 }

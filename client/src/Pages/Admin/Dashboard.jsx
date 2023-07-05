@@ -29,7 +29,7 @@ function Dashboard() {
 
       console.log(response.data);
       setDashboardData(response.data);
-      console.log(dashboardData)
+ 
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
     }
@@ -103,21 +103,21 @@ function Dashboard() {
         color: "hsl(90, 70%, 50%)",
       },
       {
-        id: "venue",
-        label: "Venue",
+        id: "Decor",
+        label: "Decor",
         value: dashboardData?.DecorBookings,
         color: "hsl(56, 70%, 50%)",
       },
       {
-        id: "decor",
-        label: "Decor",
+        id: "Venue",
+        label: "Venue",
         value: dashboardData?.VenueBookings,
         color: "hsl(103, 70%, 50%)",
       },
       {
         id: "cater",
         label: "cater",
-        value: dashboardData?.VenueBookings,
+        value: dashboardData?.CaterBookings,
         color: "hsl(103, 70%, 50%)",
       },
 
