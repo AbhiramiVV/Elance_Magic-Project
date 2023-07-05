@@ -580,7 +580,7 @@ DeleteMakeup:async (req,res)=>{
 
 
 getAdmin:async(req,res)=>{
-  const countuser=await userModels.find({}).count()
+
   const venuecount=await Venue.find({}).count()
  const photocount=await photographer.find({}).count()
  const Decorcount=await Decorcollection.find({}).count()
@@ -591,7 +591,7 @@ getAdmin:async(req,res)=>{
  const decor=await Decorcollection.find()
  const user=await userModels.find()
  
- const photoBookRecords = await PhotoBook.find();
+ const photo = await photographer.find();
  let totalRevenue ;
  let photoBookings = 0;
   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
@@ -622,12 +622,16 @@ getAdmin:async(req,res)=>{
        }
      });
    });
- 
+   let MakeBookings=0;
+   await MakeBook.find().populate('MakeId','rent').then(datas=>datas.map(data=>{
+    MakeBookings=parseInt(data.MakeId.rent)+MakeBookings
+   }))
+
    
  
  
    const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,MakeCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,CaterBookings})
+ res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
  },
 }

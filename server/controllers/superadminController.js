@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const User=require('../models/userModels/userDetails');
 const randomNum = require("../randomNum");
 const AdminSchema=require('../models/admin/AdminSchema');
-const CaterBook=require("../models/userModels/CaterBook")
 const userModels=require("../models/userModels/userDetails")
 const venuecollection = require("../models/admin/Venue");
 const Decorcollection = require("../models/admin/Decoration");
@@ -21,6 +20,7 @@ const VenueBook=require("../models/userModels/userVenueBook")
 const DecorBook=require("../models/userModels/DecorBook")
 const Venue=require("../models/admin/Venue");
 const adminModels = require("../models/admin/AdminSchema");
+const CaterBook= require("../models/userModels/CaterBook")
 
 const createToken = (_id) => {
   return jwt.sign({_id},'superadminSecretkey',{expiresIn:'3d'})
@@ -207,18 +207,21 @@ getAdmin:async(req,res)=>{
    await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
    }))
-   let CaterBookings=0;
-   await CaterBook.find().populate('CaterId','rent').then(datas=>datas.map(data=>{
-    CaterBookings=parseInt(data.CaterId.rent)+CaterBookings
+   let MakeBookings=0;
+   await MakeBook.find().populate('MakeId','rent').then(datas=>datas.map(data=>{
+    MakeBookings=parseInt(data.MakeId.rent)+MakeBookings
    }))
-
+  //  let CaterBookings=0;
+  //  await CaterBook.find().populate('CaterId','rent').then(datas=>datas.map(data=>{
+  //   CaterBookings=parseInt(data.CaterId.rent)+CaterBookings
+  //  }))
 
    
 
  
- const TotalRevenue=VenueBookings+DecorBookings+photoBookings
+ const TotalRevenue=VenueBookings+DecorBookings+photoBookings+MakeBookings
  
- res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,CaterBookings,TotalRevenue})
+ res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,MakeBookings,TotalRevenue})
  }
 
 
