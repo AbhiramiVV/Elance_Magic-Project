@@ -36,6 +36,10 @@ function Dashboard() {
   const BarChart = () => {
     const data = [
       {
+        day: "Makeup",
+        degress: dashboardData?.makecount
+      },
+      {
         day: "Venue",
         degress: dashboardData?.venuecount
       },
@@ -89,6 +93,12 @@ function Dashboard() {
   
   const PieChart = () => {
     const data = [
+      {
+        id: "make",
+        label: "make",
+        value: dashboardData?.makeBookings,
+        color: "hsl(80, 70%, 50%)",
+      },
       {
         id: "photo",
         label: "Photographer",
