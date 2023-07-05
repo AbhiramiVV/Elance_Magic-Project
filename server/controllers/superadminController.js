@@ -171,7 +171,6 @@ console.log(adminstatus);
 transactions : async (req, res) => {
   try {
     const result = await CaterBook.find({ Paid: true })
-    console.log(result,'8888888888888');
     res.status(201).json({data:result});
   } catch (error) {
     res.status(500).json(error);
@@ -196,7 +195,7 @@ getAdmin:async(req,res)=>{
  const photoBookRecords = await PhotoBooking.find();
  let totalRevenue ;
  let photoBookings = 0;
-  await PhotoBooking.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
+  await photographer.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
  
@@ -204,7 +203,7 @@ getAdmin:async(req,res)=>{
  
  
  let DecorBookings=0;
- await DecorBooking.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+ await Decorcollection.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
  }))
  
@@ -213,7 +212,7 @@ getAdmin:async(req,res)=>{
  
  
    let VenueBookings=0;
-   await VenueBooking.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
+   await Venue.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
    }))
  
