@@ -19,8 +19,7 @@ router.post("/superlogin",superadminController.login)
  router.get("/approved/:id",superadminController.approved);
 router.get("/reject/:id",superadminController.reject);
 router.get("/transactions", superadminController.transactions);
-
-
 router.put('/blockadmin/:id', superadminController.blockAdmin)
+router.get('/getall', superadminController.getAdmin)
 
 module.exports=router;

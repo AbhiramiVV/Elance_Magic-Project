@@ -10,8 +10,17 @@ const randomNum = require("../randomNum");
 const AdminSchema=require('../models/admin/AdminSchema');
 const CaterBook=require("../models/userModels/CaterBook")
 const userModels=require("../models/userModels/userDetails")
-
-
+const venuecollection = require("../models/admin/Venue");
+const Decorcollection = require("../models/admin/Decoration");
+const photographer = require("../models/admin/Photographer");
+const cateringcollection = require("../models/admin/catering");
+const Makeupcollection = require("../models/admin/makeupSchema");
+const PhotoBook=require("../models/userModels/PhotoBook");
+const MakeBook=require("../models/userModels/MakeBook");
+const VenueBook=require("../models/userModels/userVenueBook")
+const DecorBook=require("../models/userModels/DecorBook")
+const Venue=require("../models/admin/Venue");
+const adminModels = require("../models/admin/AdminSchema");
 
 const createToken = (_id) => {
   return jwt.sign({_id},'superadminSecretkey',{expiresIn:'3d'})
@@ -24,9 +33,9 @@ login :async (req, res) => {
     const superwe = await superadmin.findOne({ email: req.body.email });
     if (email === superwe.email && password === superwe.password) {
       const token = createToken(superwe._id);
-      return res.status(200).json({ token, message: "Login successful" });
+      return res.status(200).json({ err:false,token, message: "Login successful" });
     } else {
-      return res.status(200).json({  success: true,error: "Incorrect login details" });
+      return res.status(200).json({  err: true,error: "Incorrect login details" });
     }
   } catch (error) {
     console.error(error);
@@ -171,10 +180,50 @@ transactions : async (req, res) => {
 
  
 getAdmin:async(req,res)=>{
- countuser=await User.find({}).count()
- console.log(countuser)
+  const countuser=await User.find({}).count()
+ 
+  const venuecount=await Venue.find({}).count()
+ 
+ const photocount=await photographer.find({}).count()
+ 
+ const Decorcount=await Decorcollection.find({}).count()
+ const admin=await adminModels.find().count()
+
+ const venue=await Venue.find()
+ const decor=await Decorcollection.find()
+ const user=await User.find()
+ 
+ const photoBookRecords = await PhotoBooking.find();
+ let totalRevenue ;
+ let photoBookings = 0;
+  await PhotoBooking.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
+   photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+ }))
+ 
+ console.log(photoBookings)
+ 
+ 
+ let DecorBookings=0;
+ await DecorBooking.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+ }))
+ 
+ 
+   console.log(DecorBookings);
+ 
+ 
+   let VenueBookings=0;
+   await VenueBooking.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
+     VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
+   }))
+ 
+   console.log(VenueBookings)
+ 
+ const TotalRevenue=VenueBookings+DecorBookings+photoBookings
+ 
+ res.status(200).json({venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,TotalRevenue})
+ }
 
 
 
-},
 }
