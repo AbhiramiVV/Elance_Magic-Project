@@ -585,6 +585,7 @@ getAdmin:async(req,res)=>{
  const photocount=await photographer.find({}).count()
  const Decorcount=await Decorcollection.find({}).count()
  const CaterCount=await CaterBook.find({}).count()
+ const MakeCount=await MakeBook.find({}).count()
  const admin=await adminModels.find().count()
  const venue=await Venue.find()
  const decor=await Decorcollection.find()
@@ -630,6 +631,6 @@ getAdmin:async(req,res)=>{
  
    const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,CaterBookings})
+ res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,MakeCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,CaterBookings})
  },
 }
