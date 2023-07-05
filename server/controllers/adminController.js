@@ -606,8 +606,7 @@ getAdmin:async(req,res)=>{
    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
  }))
  
- 
-   console.log(DecorBookings);
+
  
  
    let VenueBookings=0;
