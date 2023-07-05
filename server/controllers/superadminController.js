@@ -33,9 +33,9 @@ login :async (req, res) => {
     const superwe = await superadmin.findOne({ email: req.body.email });
     if (email === superwe.email && password === superwe.password) {
       const token = createToken(superwe._id);
-      return res.status(200).json({ err:false,token, message: "Login successful" });
+      return res.status(200).json({ token, message: "Login successful" });
     } else {
-      return res.status(200).json({  err: true,error: "Incorrect login details" });
+      return res.status(200).json({  success: true,error: "Incorrect login details" });
     }
   } catch (error) {
     console.error(error);
@@ -180,30 +180,33 @@ transactions : async (req, res) => {
  
 getAdmin:async(req,res)=>{
   const countuser=await User.find({}).count()
+  console.log(countuser,'1');
  
   const venuecount=await Venue.find({}).count()
- 
+  console.log(venuecount,'2');
+  const venue=await Venue.find()
  const photocount=await photographer.find({}).count()
+ console.log(photocount,'33');
  
  const Decorcount=await Decorcollection.find({}).count()
+ console.log(Decorcount,'4');
  const admin=await adminModels.find().count()
+ console.log(admin,'55');
 
- const venue=await Venue.find()
  const decor=await Decorcollection.find()
  const user=await User.find()
  
- const photoBookRecords = await PhotoBooking.find();
+ const photoBookRecords = await PhotoBook.find();
  let totalRevenue ;
  let photoBookings = 0;
-  await photographer.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
+  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
- 
- console.log(photoBookings)
+
  
  
  let DecorBookings=0;
- await Decorcollection.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+ await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
  }))
  
@@ -212,7 +215,7 @@ getAdmin:async(req,res)=>{
  
  
    let VenueBookings=0;
-   await Venue.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
+   await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
    }))
  

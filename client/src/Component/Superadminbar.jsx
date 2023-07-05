@@ -14,24 +14,11 @@ import { useSuperLogout } from '../Hooks/Superadmin/useSuperLogout';
 import { useAuthContext } from '../Hooks/useAuthContext';
 function Superadminbar() {
   const{logout}=useSuperLogout()
-
- 
-
- 
-      
-
-
-
-
-
-
-
-
   const handlelogout=()=>{
     logout()
   }
     const menus=[
-        {name:"Dashboard",link:'/superadmin/dashboard',icon:MdOutlineDashboard },
+        {name:"Dashboard",link:'/superadmin/',icon:MdOutlineDashboard },
         {name:"Customers",link:'/superadmin/customerview',icon:FaUserAlt },
         {name:"Vendors",link:'/superadmin/getadmin',icon:FaUserAlt },
         {name:"Transaction",link:'/superadmin/transaction',  icon: FaExchangeAlt},
