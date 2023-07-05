@@ -9,19 +9,19 @@ function Superlogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('hiiiii');
+  
     try {
       const response = await login(email, password);
-console.log(response,'++++++++++++++++++');
-      toast.success("login successful")
-      }
-     catch (error) {
-       toast.error("Invalid login details");
+      toast.success("Login successful");
+      // Perform additional actions after successful login
+    } catch (error) {
+      toast.error(error.response.data.error || "Invalid login details");
+      // Handle error and prevent login
     }
-  }    
+  };
+  
 
   return (
     <div>

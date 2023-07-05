@@ -14,7 +14,7 @@ export const useSuperLogin = () => {
       const response = await axios.post('/superadmin/superlogin', { email, password })
 
       const json = response.data
-console.log(json);
+
       // save the user to the local storage
       localStorage.setItem('superadmin', JSON.stringify(json))
 

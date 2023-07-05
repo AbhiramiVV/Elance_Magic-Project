@@ -21,14 +21,9 @@ module.exports = {
 login :async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(req.body,'+++++++++++++++');
-
     const superwe = await superadmin.findOne({ email: req.body.email });
-    console.log(superwe);
-
     if (email === superwe.email && password === superwe.password) {
       const token = createToken(superwe._id);
-      console.log("Token created: " + token);
       return res.status(200).json({ token, message: "Login successful" });
     } else {
       return res.status(200).json({  success: true,error: "Incorrect login details" });
