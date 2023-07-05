@@ -180,50 +180,45 @@ transactions : async (req, res) => {
  
 getAdmin:async(req,res)=>{
   const countuser=await User.find({}).count()
-  console.log(countuser,'1');
  
   const venuecount=await Venue.find({}).count()
-  console.log(venuecount,'2');
   const venue=await Venue.find()
  const photocount=await photographer.find({}).count()
- console.log(photocount,'33');
- 
+ const catercount=await cateringcollection.find({}).count()
+ const cater=await cateringcollection.find()
  const Decorcount=await Decorcollection.find({}).count()
- console.log(Decorcount,'4');
  const admin=await adminModels.find().count()
- console.log(admin,'55');
-
  const decor=await Decorcollection.find()
  const user=await User.find()
- 
- const photoBookRecords = await PhotoBook.find();
+ const photo = await photographer.find();
+ const makecount=await Makeupcollection.find({}).count()
+ const make=await Makeupcollection.find()
  let totalRevenue ;
  let photoBookings = 0;
   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
 
- 
- 
  let DecorBookings=0;
  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
  }))
- 
- 
-   console.log(DecorBookings);
- 
- 
-   let VenueBookings=0;
+  let VenueBookings=0;
    await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
    }))
- 
-   console.log(VenueBookings)
+   let CaterBookings=0;
+   await CaterBook.find().populate('CaterId','rent').then(datas=>datas.map(data=>{
+    CaterBookings=parseInt(data.CaterId.rent)+CaterBookings
+   }))
+
+
+   
+
  
  const TotalRevenue=VenueBookings+DecorBookings+photoBookings
  
- res.status(200).json({venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,TotalRevenue})
+ res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,CaterBookings,TotalRevenue})
  }
 
 

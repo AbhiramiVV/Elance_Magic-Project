@@ -600,13 +600,11 @@ getAdmin:async(req,res)=>{
  
  
  
+
  let DecorBookings=0;
- await DecorBook.find().populate('DecorId','rent').then((response)=>{
-  console.log(response,'999999999999');
- })
-//  (datas=>datas.map(data=>{
-//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
-//  }))
+ await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+ }))
  
  
    console.log(DecorBookings);
