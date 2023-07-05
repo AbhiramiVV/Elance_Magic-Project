@@ -30,6 +30,7 @@ const Chat = () => {
               Authorization: `${user.token}`,
             },
           })
+         
         setChats(data);
       } catch (error) {
         
@@ -47,6 +48,24 @@ const Chat = () => {
     });
 }, [userId]);
  
+
+ // Send Message to socket server
+ useEffect(() => {
+    if (sendMessage !== null) {
+        socket.current.emit("send-message", sendMessage);
+    }
+}, [sendMessage]);
+
+
+// Get the message from socket server
+useEffect(() => {
+    socket.current.on("recieve-message", (data) => {
+        setReceivedMessage(data);
+    }
+
+    );
+}, []);
+
 
   const checkOnlineStatus = (chat) => {
     const chatMember = chat.members.find((member) => member !== userId);
@@ -72,7 +91,7 @@ const Chat = () => {
                                     <Conversation
                                         key={i}
                                         data={chat}
-                                        currentUser={user.id}
+                                        currentUser={userId}
                                         online={checkOnlineStatus(chat)}
                                         type="user"
                                     />

@@ -16,7 +16,7 @@ const toastConfig = {
   progress: undefined,
   theme: "colored",
 };
-function ChatBox({chat,currentUser, setSendMessage,setReceiver}) {
+function ChatBox({chat,currentUser, setSendMessage, receivedMessage,setReceiver}) {
     const [userData,setUserData]=useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -105,6 +105,15 @@ function ChatBox({chat,currentUser, setSendMessage,setReceiver}) {
       }
   }
 
+
+    // Receive Message from parent component
+    useEffect(() => {
+      if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
+          setMessages([...messages, receivedMessage]);
+      }
+
+  }, [receivedMessage])
+
     
     return (
       <>
@@ -127,7 +136,7 @@ function ChatBox({chat,currentUser, setSendMessage,setReceiver}) {
                                         />
                     <div className="name" style={{ fontSize: "0.9rem" }}>
                       <span>
-                        {userData?.companyname} {userData?.companyname}
+                        {userData?.companyname ? userData?.companyname : userData?.email}
                       </span>
                     </div>
                   </div>

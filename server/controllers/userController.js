@@ -627,7 +627,7 @@ feachUser: async (req,res) =>{
   const id=req.params.userId
 
   try{
-    const data= await userDetails.find({_id:id})
+    const data= await adminModels.find({_id:id})
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)
