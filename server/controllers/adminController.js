@@ -13,7 +13,7 @@ const { response } = require("express");
 const venuecollection = require("../models/admin/Venue");
 const Decorcollection = require("../models/admin/Decoration");
 const photographer = require("../models/admin/Photographer");
-const cateringcollection = require("../models/admin/Catering");
+const cateringcollection = require("../models/admin/catering");
 const Makeupcollection = require("../models/admin/makeupSchema");
 const PhotoBook=require("../models/userModels/PhotoBook");
 const CaterBook=require("../models/userModels/CaterBook");
@@ -580,19 +580,12 @@ DeleteMakeup:async (req,res)=>{
 
 
 getAdmin:async(req,res)=>{
-  countuser=await userModels.find({}).count()
-  console.log(countuser,"111111")
- 
+  const countuser=await userModels.find({}).count()
   const venuecount=await Venue.find({}).count()
- console.log(venuecount);
- 
  const photocount=await photographer.find({}).count()
- console.log(photocount);
- 
  const Decorcount=await Decorcollection.find({}).count()
- console.log(Decorcount);
+ const CaterCount=await CaterBook.find({}).count()
  const admin=await adminModels.find().count()
- console.log(admin);
  const venue=await Venue.find()
  const decor=await Decorcollection.find()
  const user=await userModels.find()
@@ -604,13 +597,15 @@ getAdmin:async(req,res)=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
  
- console.log(photoBookings)
  
  
  let DecorBookings=0;
- await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
- }))
+ await DecorBook.find().populate('DecorId','rent').then((response)=>{
+  console.log(response,'999999999999');
+ })
+//  (datas=>datas.map(data=>{
+//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+//  }))
  
  
    console.log(DecorBookings);
@@ -625,6 +620,6 @@ getAdmin:async(req,res)=>{
  
    const TotalRevenue=VenueBookings+DecorBookings+photoBookings
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
+ res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,venue,decor,admin,user,DecorBookings,photoBookings,VenueBookings,})
  },
 }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Catering = require('../admin/Catering');
+const Catering = require('../admin/catering');
 
 const CaterBookSchema = mongoose.Schema({
   userId: {

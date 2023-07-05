@@ -39,6 +39,10 @@ function Dashboard() {
   const BarChart = () => {
     const data = [
       {
+        day: "Catering",
+        degress: dashboardData?.CaterCount
+      },
+      {
         day: "Venue",
         degress: dashboardData?.venuecount
       },
@@ -100,16 +104,23 @@ function Dashboard() {
       },
       {
         id: "venue",
-        label: "Decor",
+        label: "Venue",
         value: dashboardData?.DecorBookings,
         color: "hsl(56, 70%, 50%)",
       },
       {
         id: "decor",
-        label: "Venue",
+        label: "Decor",
         value: dashboardData?.VenueBookings,
         color: "hsl(103, 70%, 50%)",
       },
+      {
+        id: "cater",
+        label: "cater",
+        value: dashboardData?.VenueBookings,
+        color: "hsl(103, 70%, 50%)",
+      },
+
     ];
   
     return (
