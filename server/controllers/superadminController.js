@@ -193,7 +193,6 @@ getAdmin:async(req,res)=>{
  const photo = await photographer.find();
  const makecount=await Makeupcollection.find({}).count()
  const make=await Makeupcollection.find()
- let totalRevenue ;
  let photoBookings = 0;
   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
@@ -211,17 +210,18 @@ getAdmin:async(req,res)=>{
    await MakeBook.find().populate('MakeId','rent').then(datas=>datas.map(data=>{
     MakeBookings=parseInt(data.MakeId.rent)+MakeBookings
    }))
-  //  let CaterBookings=0;
-  //  await CaterBook.find().populate('CaterId','rent').then(datas=>datas.map(data=>{
-  //   CaterBookings=parseInt(data.CaterId.rent)+CaterBookings
-  //  }))
-
-   
-
+   let CaterBookings = 0;
+   await CaterBook.find().populate('CaterId', 'rent').then(datas => {
+     datas.forEach(data => {
+       if (data.CaterId && data.CaterId.rent) {
+         CaterBookings += parseInt(data.CaterId.rent);
+       }
+     });
+   });
  
  const TotalRevenue=VenueBookings+DecorBookings+photoBookings+MakeBookings
  
- res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,MakeBookings,TotalRevenue})
+ res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,CaterBookings,DecorBookings,photoBookings,VenueBookings,MakeBookings,TotalRevenue})
  }
 
 

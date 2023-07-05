@@ -632,6 +632,6 @@ getAdmin:async(req,res)=>{
  
    const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
  
- res.status(200).json({TotalRevenue,venuecount,countuser,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
+ res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
  },
 }

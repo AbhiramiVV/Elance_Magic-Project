@@ -48,7 +48,7 @@ function Dashboard() {
         degress: dashboardData?.photocount
       },
       {
-        day: "Admin",
+        day: "Mnagers",
         degress: dashboardData?.admin
       },
       {
@@ -184,7 +184,7 @@ function Dashboard() {
                           </svg>
                         </div>
                         <div class="px-4 text-gray-700">
-                          <h3 class="text-md text-black tracking-wider">Total Admins</h3>
+                          <h3 class="text-md text-black tracking-wider">Total Managers</h3>
                           <p class="text-3xl">{dashboardData?.admin}</p>
                         </div>
                       </div>
