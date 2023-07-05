@@ -39,6 +39,10 @@ function Dashboard() {
   const BarChart = () => {
     const data = [
       {
+        day:"MakeUp",
+        degress:dashboardData?.MakeCount
+      },
+      {
         day: "Catering",
         degress: dashboardData?.CaterCount
       },
@@ -96,6 +100,7 @@ function Dashboard() {
   
   const PieChart = () => {
     const data = [
+    
       {
         id: "photo",
         label: "Photographer",
