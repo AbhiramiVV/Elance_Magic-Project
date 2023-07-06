@@ -266,6 +266,7 @@ VenuesideAdd : async (req, res) => {
 
 
    await venuecollection.create({
+    VendorId:req.body.VendorId,
     name: req.body.name,
     description: req.body.description,
     email: req.body.email,
@@ -334,6 +335,7 @@ Decoradd : async (req, res) => {
 
     
     await Decorcollection.create({
+      VendorId:req.body.VendorId,
       name: req.body.name,
       email: req.body.email,
       manager: req.body.manager,
@@ -352,7 +354,6 @@ Decoradd : async (req, res) => {
 },
 singleDecor :async (req, res) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const decorsingle = await Decorcollection.findById({ _id: id });
     console.log(decorsingle);
@@ -395,6 +396,7 @@ Deletedecor :async (req, res) => {
 photographerAdd :async (req, res) => {
   try {
     await photographer.create({
+      VendorId:req.body.VendorId,
       pname: req.body.pname,
       pdesc: req.body.pdesc,
       pemail: req.body.pemail,
@@ -480,7 +482,6 @@ cateringAdd:async (req, res) => {
 },
 singleCatering :async (req, res) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const decorsingle = await cateringcollection.findById({ _id: id });
     console.log(decorsingle);
@@ -526,6 +527,7 @@ makeupAdd: async (req, res) => {
     console.log(req.body);
     console.log(req.files); 
     await Makeupcollection.create({
+      VendorId:req.body.VendorId,
       name: req.body.name,
       email: req.body.email,
       manager: req.body.manager,
