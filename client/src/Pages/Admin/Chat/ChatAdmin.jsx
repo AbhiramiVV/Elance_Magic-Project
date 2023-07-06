@@ -3,7 +3,7 @@ import axios from "../../../instance/axios";
 import "./chatAdmin.css";
 import {io} from 'socket.io-client'
 import { useAuthContext } from "../../../Hooks/useAuthContext";
-import ConversationAdmin from "../../../Component/CoversationAdmin";
+import ConversationAdmin from "../CoversationAdmin";
 import ChatBoxadmin from "../../../Component/ChatBox Admin/ChatBoxadmin";
 const ChatAdmin = () => {
     const socket = useRef();
@@ -27,7 +27,7 @@ const ChatAdmin = () => {
               Authorization: `${admin.token}`,
             },
           })
-         
+   
         setChats(data);
       } catch (error) {
         
@@ -65,7 +65,7 @@ useEffect(() => {
 
 
   const checkOnlineStatus = (chat) => {
-    const chatMember = chat.members.find((member) => member !== userId);
+    const chatMember = chat.members.find((member) => member !== vendorId);
     const online = onlineUsers.find((user) => user.userId === chatMember);
     return online ? true : false;
 };

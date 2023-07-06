@@ -635,12 +635,14 @@ getAdmin:async(req,res)=>{
  
  res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
  },
- 
+
  adminChats:async(req,res)=>{
   try{
       const chat = await ChatModel.find({
           members: { $in: [req.params.vendorId] }
+        
       });
+      console.log(chat,'99999999999');
       res.status(200).json(chat);
 
   }
@@ -652,22 +654,23 @@ fetchVendor: async (req,res) =>{
   const id=req.params.vendorId;
 
   try{
-    const data= await adminModels.find({_id:id})
+    const data= await userModels.find({_id:id})
+    console.log(data,'88888888888888');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)
   }
 
 },
-// fetchVendor:async(req,res)=>{
-//   const id=req.params.vendorId;
+getVendor:async(req,res)=>{
+  const id=req.params.vendorId;
 
-//   try{
-//     const data = await adminModels.find({_id:id})
-//     res.status(200).json({data})
-//   }catch (error){
-//     res.status(500).json(error)
-//   }
-// }
+  try{
+    const data = await userModels.find({_id:id})
+    res.status(200).json({data})
+  }catch (error){
+    res.status(500).json(error)
+  }
+}
 
 }

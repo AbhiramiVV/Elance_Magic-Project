@@ -25,7 +25,7 @@ function ChatBoxadmin({chat,currentUser, setSendMessage, receivedMessage,setRece
     // const scroll = useRef();
     const imageRef = useRef();
 
-    const {user}=useAuthContext()
+    const {admin}=useAuthContext();
   
     // feaching data for header
     useEffect (()=>{
@@ -33,8 +33,8 @@ function ChatBoxadmin({chat,currentUser, setSendMessage, receivedMessage,setRece
      
         const getUserData = async () => {
                 try {
-                    const response= await axios.get(`/vendorchat/${users}`,{headers: {
-                        Authorization: `${user.token}`,
+                    const response= await axios.get(`/vendor/vendorchat/${users}`,{headers: {
+                        Authorization: `${admin.token}`,
                       }})
                       setUserData(response.data.data[0])
                 } catch (error) {
@@ -136,7 +136,7 @@ function ChatBoxadmin({chat,currentUser, setSendMessage, receivedMessage,setRece
                                         />
                     <div className="name" style={{ fontSize: "0.9rem" }}>
                       <span>
-                        {userData?.companyname ? userData?.companyname : userData?.email}
+                        {userData?.name ? userData?.name : userData?.email}
                       </span>
                     </div>
                   </div>

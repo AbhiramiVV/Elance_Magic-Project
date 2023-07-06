@@ -48,6 +48,6 @@ router.delete('/makeup/:id',admin.DeleteMakeup);
 router.get('/getall', admin.getAdmin)
 router.get("/:vendorId",admin.adminChats)
 router.get('/vendorchat/:vendorId',admin.fetchVendor);
-// router.get('/vendorchat/:users',admin.feachVendor);
+router.get('/vendorchat/:users',admin.getVendor);
 
  module.exports=router;
