@@ -642,7 +642,7 @@ getAdmin:async(req,res)=>{
           members: { $in: [req.params.vendorId] }
         
       });
-      console.log(chat,'99999999999');
+   
       res.status(200).json(chat);
 
   }
@@ -655,7 +655,6 @@ fetchVendor: async (req,res) =>{
 
   try{
     const data= await userModels.find({_id:id})
-    console.log(data,'88888888888888');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)
