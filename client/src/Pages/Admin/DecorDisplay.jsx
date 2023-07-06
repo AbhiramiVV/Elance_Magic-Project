@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../instance/axios';
 import { NavLink } from 'react-router-dom';
+import { FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import Basetable from '../../Component/Basetable';
 import Adminsidebar from '../../Component/Adminsidebar';
 import { toast } from 'react-toastify';
@@ -86,9 +87,9 @@ function DecorDisplay() {
       name: 'View',
       selector: (row) => (
         <NavLink to={`/vendor/decorsingleview/${row._id}`}>
-          <button className='bg-green-900 text-white font-bold py-2 px-4 rounded'>
-            <i className='fa fa-eye' />
-          </button>
+         
+         <FaEye className="text-green-900" />
+          
         </NavLink>
       ),
     },
@@ -96,9 +97,8 @@ function DecorDisplay() {
       name: 'Edit',
       selector: (row) => (
         <NavLink to={`/vendor/decorEdit/${row._id}`}>
-          <button className='bg-green-900 text-white font-bold py-2 px-4 rounded'>
-            <i className='fa fa-pencil' />
-          </button>
+             <FaPencilAlt className="text-green-900" />
+         
         </NavLink>
       ),
     },
@@ -106,7 +106,7 @@ function DecorDisplay() {
       name: 'Remove',
       selector: (row) => (
         <button onClick={() => handleDelete(row._id)} className='bg-red-900 text-white font-bold py-2 px-4 rounded'>
-          <i className='fa-solid fa-trash-can'></i>
+            <FaTrashAlt />
         </button>
       ),
     },
