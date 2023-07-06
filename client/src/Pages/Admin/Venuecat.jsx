@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { FaTrashAlt } from 'react-icons/fa';
 import axios from '../../instance/axios'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
@@ -94,7 +95,7 @@ const Venuecat=()=> {
     
      {
          name:"Action",
-         selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'><i class="fa-solid fa-trash-can"></i></button>
+         selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'>            <FaTrashAlt /></button>
      },
     
      
