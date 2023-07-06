@@ -77,35 +77,6 @@ blockUser :async (req, res) => {
   } catch (error) {}
 },
 
-insertAdmin :async (req, res) => {
-  try {
-    const {email}=req.body;
-    const existingAdmin = await AdminSchema.findOne({ email: req.body.email });
-    if (existingAdmin) {
-      return res.status(200).json({ error: "Email is already registered" });
-    }
-    let otp=randomNum.randomNumber();
-mailer.sentMail(email,otp);
-    const newAdmin = new Admin({
-      email: req.body.email,
-      companyname: req.body.companyName,
-      description: req.body.description,
-      category: req.body.selectedService,
-      place: req.body.selectedPlace,
-      mobile: req.body.phone,
-      verified: true,
-      approved: false,
-    });
-
-    await newAdmin.save();
-    res.status(200).json({ message: "Admin details added" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-}
-,
-
 singleviewadmin :async (req, res) => {
   try {
     const { id } = req.params;

@@ -13,7 +13,6 @@ router.post("/superlogin",superadminController.login)
   router.get('/customerdisplay',superadminController.customerview)
   router.put('/blockuser/:id', superadminController.blockUser)
  router.get('/viewadmin', superadminController.viewadmin)
-  router.post("/addadmin",superadminController.insertAdmin)
  router.get("/viewadminsingle/:id",superadminController.singleviewadmin)
  router.put("/adminedit/:id", upload.single('file') ,superadminController.updateadmin);
  router.get("/approved/:id",superadminController.approved);
