@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../instance/axios";
+import { FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import BaseTable from "../../Component/Basetable";
 import { NavLink, Link, Navigate, Await } from "react-router-dom";
 import Superadminbar from "../../Component/Superadminbar";
@@ -116,9 +117,8 @@ useEffect(() => {
       selector: (row) => (
         <>
           <NavLink to={`/superadmin/singleview/${row._id}`}>
-            <button className="bg-green-900  text-white font-bold py-2 px-4 rounded ">
-              <i className="fa fa-eye" />
-            </button>
+          <FaEye className="text-green-900" />
+         
           </NavLink>
         </>
       ),
@@ -127,9 +127,7 @@ useEffect(() => {
       name: "Edit",
       selector: (row) => (
         <NavLink to={`/superadmin/editadmin/${row._id}`}>
-          <button className="bg-blue-500  text-white font-bold py-2 px-4 rounded">
-            <i className="fa fa-pencil" />
-          </button>
+          <FaPencilAlt className="text-green-900" />
         </NavLink>
       ),
     },
