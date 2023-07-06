@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const MakeupSchema = mongoose.Schema({
+  VendorId:{
+    type: String,
+ 
+  },
   name: {
     type: String,
     required: true,
