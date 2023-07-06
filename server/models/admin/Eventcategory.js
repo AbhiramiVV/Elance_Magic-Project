@@ -1,6 +1,10 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema;
 const eventcategorySchema=new Schema({
+    VendorId:{
+        type: String,
+     
+      },
     name:{
         type:String,
         required:true
