@@ -1,5 +1,9 @@
 const mongoose=require('mongoose')
 const photographerSchema=mongoose.Schema({
+    VendorId:{
+        type: String,
+     
+      },
 
     pname:{
         type:String,
