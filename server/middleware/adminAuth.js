@@ -3,7 +3,7 @@ const Admin=require('../models/admin/AdminSchema')
 
 const adminAuth=async(req,res,next)=>{
    const {authorization} =req.headers
- 
+ console.log(req.headers,'99999999999999999999');
    if(!authorization){
        return res.status(401).json({error: "Authorization token required"})
    }

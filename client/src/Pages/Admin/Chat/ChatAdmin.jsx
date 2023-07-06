@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "../../instance/axios";
-import "./chat.css";
-import { useAuthContext } from "../../Hooks/useAuthContext";
-import { useParams } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext";
-import Conversation from "../../Component/Coversation/Coversation"
-import ChatBox from "../../Component/ChatBox/ChatBox";
-import Header from "../../Component/Header";
+import axios from "../../../instance/axios";
+import "./chatAdmin.css";
 import {io} from 'socket.io-client'
-const Chat = () => {
+import { useAuthContext } from "../../../Hooks/useAuthContext";
+import ConversationAdmin from "../../../Component/CoversationAdmin";
+import ChatBoxadmin from "../../../Component/ChatBox Admin/ChatBoxadmin";
+const ChatAdmin = () => {
     const socket = useRef();
-  const { user } = useAuthContext();
+  const { admin } = useAuthContext();
   const [chats, setChats] = useState([]);
  const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -18,16 +15,16 @@ const Chat = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [showEstimate, setShowEstimate] = useState(false);
   const [receiver, setReceiver] = useState("");
-  const vendoId=user.userExist._id;
+  const vendorId=admin.adminExist._id;
   const showEstimateClose = () => setShowEstimate(false);
 
   useEffect(() => {
 
     const getChats = async () => {
       try {
-        const { data }= await axios.get(`/chat/${userId}`,{
+        const { data }= await axios.get(`/vendor/${vendorId}`,{
             headers: {
-              Authorization: `${user.token}`,
+              Authorization: `${admin.token}`,
             },
           })
          
@@ -42,11 +39,11 @@ const Chat = () => {
    // Connect to Socket.io
    useEffect(() => {
     socket.current = io('http://localhost:8800');
-    socket.current.emit("new-user-add", userId);
+    socket.current.emit("new-user-add", vendorId);
     socket.current.on("get-users", (users) => {
         setOnlineUsers(users);
     });
-}, [userId]);
+}, [vendorId]);
  
 
  // Send Message to socket server
@@ -88,13 +85,15 @@ useEffect(() => {
                                         setCurrentChat(chat);
                                     }}
                                 >
-                                    <Conversation
-                                        key={i}
-                                        data={chat}
-                                        currentUser={userId}
-                                        online={checkOnlineStatus(chat)}
-                                        type="user"
+                                    <ConversationAdmin
+                                    key={i}
+                                    data={chat}
+                                    currentUser={vendorId}
+                                    online={checkOnlineStatus(chat)}
+                                    
                                     />
+
+                                   
                                 </div>
                             ))}
                         </div>
@@ -107,9 +106,9 @@ useEffect(() => {
                     {/* <div style={{ width: "20rem", alignSelf: "flex-end" }}>
                     <NavIcons />
                 </div> */}
-                    <ChatBox
+                    <ChatBoxadmin
                         chat={currentChat}
-                        currentUser={userId}
+                        currentUser={vendorId}
                         setSendMessage={setSendMessage}
                         receivedMessage={receivedMessage}
                         type="user"
@@ -123,4 +122,4 @@ useEffect(() => {
     );
 };
 
-export default Chat;
+export default ChatAdmin;

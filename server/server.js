@@ -9,7 +9,7 @@ const adminRoutes=require('./routes/adminRouter.js')
 const superadminRoutes=require('./routes/superadminRouter.js')
 const ChatRoutes=require('./routes/ChatRouter.js')
 const MessageRoutes=require('./routes/MessageRouter.js')
-const morgan = require('morgan')
+const morgan = require('morgan');
 const app = express();
 app.use(express.json());
 app.use(cookieParser());

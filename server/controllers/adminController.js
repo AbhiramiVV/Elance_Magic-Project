@@ -19,7 +19,8 @@ const PhotoBook=require("../models/userModels/PhotoBook");
 const CaterBook=require("../models/userModels/CaterBook");
 const MakeBook=require("../models/userModels/MakeBook");
 const VenueBook=require("../models/userModels/userVenueBook")
-const DecorBook=require("../models/userModels/DecorBook")
+const DecorBook=require("../models/userModels/DecorBook");
+const { ChatModel } = require("../models/chatModel");
 const createToken = (_id) => {
   return jwt.sign({ _id }, "adminsecretkey", { expiresIn: "3d" });
 };
@@ -634,4 +635,39 @@ getAdmin:async(req,res)=>{
  
  res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
  },
+ 
+ adminChats:async(req,res)=>{
+  try{
+      const chat = await ChatModel.find({
+          members: { $in: [req.params.vendorId] }
+      });
+      res.status(200).json(chat);
+
+  }
+catch (error) {
+  res.status(500).json(error);
+}
+},
+fetchVendor: async (req,res) =>{
+  const id=req.params.vendorId;
+
+  try{
+    const data= await adminModels.find({_id:id})
+    res.status(200).json({data})
+  } catch (error){
+    res.status(500).json(error)
+  }
+
+},
+// fetchVendor:async(req,res)=>{
+//   const id=req.params.vendorId;
+
+//   try{
+//     const data = await adminModels.find({_id:id})
+//     res.status(200).json({data})
+//   }catch (error){
+//     res.status(500).json(error)
+//   }
+// }
+
 }

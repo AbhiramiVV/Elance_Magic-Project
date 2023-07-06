@@ -30,6 +30,9 @@ import Makeup from '../Pages/Admin/Makeup';
 import MakeupAdd from '../Pages/Admin/makeupAdd';
 import MakeupView from '../Pages/Admin/makeupView';
 import MakeupEdit from '../Pages/Admin/MakeupEdit';
+import ChatAdmin from '../Pages/Admin/Chat/ChatAdmin';
+ 
+
 function Admin() {
   const {admin}=useAuthContext()
   return (
@@ -63,6 +66,8 @@ function Admin() {
         <Route path='/addMakeup' element={admin?<MakeupAdd/>:<Adminlogin/>}/>
         <Route path='/singleMakeup/:id' element={admin?<MakeupView/>:<Adminlogin/>}/>
         <Route path='/makeupEdit/:id'  element={admin?<MakeupEdit/>:<Adminlogin/>}/>
+        <Route path='/chat'  element={admin?<ChatAdmin/>:<Adminlogin/>}/>
+
         <Route path="*" element={<PageNotFound />} />
        </Routes>
 

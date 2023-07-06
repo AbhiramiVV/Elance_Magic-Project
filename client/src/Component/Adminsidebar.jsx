@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {HiMenuAlt3} from "react-icons/hi";
-import {MdOutlineDashboard} from "react-icons/md";
+import {MdChat, MdOutlineDashboard} from "react-icons/md";
 import {GiPartyPopper} from "react-icons/gi";
 import {GiPartyHat} from "react-icons/gi";
 import {FaDelicious, FaHotel, FaMapMarker, FaRing, FaUtensils} from "react-icons/fa";
@@ -33,6 +33,8 @@ function Adminsidebar() {
     {name:"Photography",link:'/vendor/photographerview',icon:AiFillCamera },
     {name:"Foods And Drinks",link:'/vendor/catering',icon:FaUtensils},
     {name:"Bridal Makeup",link:'/vendor/makeup',icon:FaRing},
+    {name:"Chat",link:'/vendor/chat',icon:MdChat},
+    
  
     
   ];
