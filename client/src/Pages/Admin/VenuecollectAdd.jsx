@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
 import axios from "../../instance/axios";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 function VenuecollectAdd() {
+  const {admin}=useAuthContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("");
@@ -17,7 +19,7 @@ function VenuecollectAdd() {
   const [files, setFiles] = useState([]);
   const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
-
+  const id=admin.adminExist._id
   const handleImageChange = (e) => {
     const selectedFiles = e.target.files;
     setFiles(selectedFiles);
@@ -26,6 +28,7 @@ function VenuecollectAdd() {
   const addVenue = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("VendorId",id);
     formData.append("name", name);
     formData.append("manager", manager);
     formData.append("address", address);

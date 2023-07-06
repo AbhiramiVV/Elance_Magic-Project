@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
 import axios from "../../instance/axios";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 function MakeupAdd() {
+  const {admin}=useAuthContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("");
@@ -14,12 +16,14 @@ function MakeupAdd() {
   const [address, setAddress] = useState("");
   const [files, setFiles] = useState([]);
   const [imageError, setImageError] = useState(false);
+  const id=admin.adminExist._id
 
   const navigate = useNavigate();
 
   const addMakeup = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("VendorId",id);
     formData.append("name", name);
     formData.append("manager", manager);
     formData.append("email", email);

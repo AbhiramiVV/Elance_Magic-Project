@@ -13,6 +13,7 @@ const VenuecatAdd=()=> {
     const [name,setName]=useState("")
     const[file,setImage]=useState("")
     const[loading,setloading]=useState(true)
+    const id=admin.adminExist._id
 
     const addVenuecat=async(e)=>{
         console.log(name)
@@ -20,7 +21,7 @@ const VenuecatAdd=()=> {
         
         try {
             
-            await axios.post('/vendor/Venueadd',{name,file},{
+            await axios.post('/vendor/Venueadd',{name,file,id},{
                 headers: {
                   
                     'content-type': 'multipart/form-data'

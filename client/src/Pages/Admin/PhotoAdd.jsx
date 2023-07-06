@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
 import axios from "../../instance/axios";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 
 const PhotoAdd = () => {
-  
+  const {admin}=useAuthContext();
   const [data, setdData] = useState("");
   const Navigate = useNavigate();
 
@@ -19,7 +20,8 @@ const PhotoAdd = () => {
 const [pdesc, setPdesc] = useState("");
   const [files, setFiles] = useState([]);
   const [imgeError, setImageError] = React.useState(false);
- 
+  const id=admin.adminExist._id
+
   const handleImageChange = (e) => {
     const selectedFiles = e.target.files;
     setFiles([...selectedFiles]);
@@ -28,6 +30,7 @@ const [pdesc, setPdesc] = useState("");
   
     e.preventDefault();
     const formData = new FormData();
+    formData.append("VendorId",id);
     formData.append("pname", pname);
     formData.append("pdesc", pdesc);
     formData.append("pemail", pemail);
