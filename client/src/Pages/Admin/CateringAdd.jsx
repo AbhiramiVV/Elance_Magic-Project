@@ -20,7 +20,7 @@ function CateringAdd() {
     const [files, setFiles] = useState([]);
     const [imageError, setImageError] = useState(false);
    const id=admin.adminExist._id
-   console.log(id,'8888888888');
+  
     const navigate = useNavigate();
   
     const addCatering = async (e) => {

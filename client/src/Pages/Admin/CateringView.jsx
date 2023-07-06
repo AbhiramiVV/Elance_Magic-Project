@@ -22,7 +22,6 @@ function CateringView() {
     useEffect(() => {
       const viewCateringSingle = async () => {
         try {
-            console.log(id,'iddddddddddddddddddddddddddd');
           const res = await axios.get(`/vendor/singleCatering/${id}`,{
             headers: {
               Authorization: `${admin.token}`,
