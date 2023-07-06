@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const venueSchema = mongoose.Schema({
+  VendorId:{
+    type: String,
+ 
+  },
   name: {
     type: String,
     required: true,
