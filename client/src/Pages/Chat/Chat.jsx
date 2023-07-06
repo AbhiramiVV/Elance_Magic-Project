@@ -18,7 +18,7 @@ const Chat = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [showEstimate, setShowEstimate] = useState(false);
   const [receiver, setReceiver] = useState("");
-  const vendoId=user.userExist._id;
+  const userId=user.userExist._id;
   const showEstimateClose = () => setShowEstimate(false);
 
   useEffect(() => {
