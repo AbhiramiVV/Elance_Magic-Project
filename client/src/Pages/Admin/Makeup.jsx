@@ -1,5 +1,6 @@
 
 import React ,{useEffect,useState}from 'react'
+import { FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import axios from '../../instance/axios'
 import { NavLink } from 'react-router-dom';
 import Basetable from '../../Component/Basetable';
@@ -110,18 +111,25 @@ const [loading, setloading] = useState(true);
     {
         name:"View",
         selector:(row)=>
-        <NavLink to={`/vendor/singleMakeup/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' /></button></NavLink>
+        <NavLink to={`/vendor/singleMakeup/${row._id}`}>
+          <FaEye className="text-green-900" />
+        </NavLink>
 
 
     },
     {
         name:"Edit",
         selector:(row)=>
-        <NavLink to={`/vendor/makeupEdit/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' /></button></NavLink>
+        <NavLink to={`/vendor/makeupEdit/${row._id}`}>
+           <FaPencilAlt className="text-green-900" />
+        </NavLink>
     },
     {
       name:"Remove",
-      selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'><i class="fa-solid fa-trash-can"></i></button>
+      selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'>
+
+<FaTrashAlt />
+      </button>
   },
     
     
