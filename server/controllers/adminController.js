@@ -262,7 +262,6 @@ venuecollectview :async (req, res) => {
 },
 VenuesideAdd : async (req, res) => {
   try {
-  
 
 
    await venuecollection.create({
@@ -272,6 +271,7 @@ VenuesideAdd : async (req, res) => {
     email: req.body.email,
     manager: req.body.manager,
     mobile: req.body.mobile,
+    location:req.body.location,
     address: req.body.address,
     seats: req.body.seats,
     services: req.body.services,

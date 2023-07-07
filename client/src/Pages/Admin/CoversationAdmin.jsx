@@ -14,12 +14,10 @@ const {admin}=useAuthContext();
     useEffect(() => {
 
         const userId = data?.members?.find((id) => id !== currentUser)
-            console.log(userId,'888888888888888');
         const getUser = async()=>{
             const response=await axios.get(`/vendor/vendorchat/${userId}`,{headers: {
                 Authorization: `${admin.token}`,
               }})
-              console.log(response,'000000000000000');
             setUserData(response.data.data[0])
         }
         getUser();
