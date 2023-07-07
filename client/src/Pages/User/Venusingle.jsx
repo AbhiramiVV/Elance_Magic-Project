@@ -329,12 +329,13 @@ console.error(error);
         Full Payment
       </button>
     </div>
-    <button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
+   
+  </div>
+)}
+ <button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
       <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
       Chat With Us
     </button>
-  </div>
-)}
 
             </div>
           </div>
