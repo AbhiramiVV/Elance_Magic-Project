@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
+import chatLogo from "../../assets/chat.png"
 import ClipLoader from "react-spinners/ClipLoader";
 import { Navigate } from "react-router-dom";
 import { jsPDF } from 'jspdf';

@@ -9,6 +9,7 @@ import { Theme, useTheme } from '@mui/material/styles';
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import chatLogo from "../../assets/chat.png"
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
