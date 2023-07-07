@@ -253,8 +253,7 @@ Deletecat:async (req, res) => {
 venuecollectview :async (req, res) => {
   try {
     const allvenue = await venuecollection.find();
-
-    console.log(allvenue.image);
+ 
     res.status(200).json({ data: allvenue, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
@@ -582,61 +581,61 @@ DeleteMakeup:async (req,res)=>{
 
 
 
-getAdmin:async(req,res)=>{
+// getAdmin:async(req,res)=>{
 
-  const venuecount=await Venue.find({}).count()
- const photocount=await photographer.find({}).count()
- const Decorcount=await Decorcollection.find({}).count()
- const CaterCount=await CaterBook.find({}).count()
- const MakeCount=await MakeBook.find({}).count()
- const admin=await adminModels.find().count()
- const venue=await Venue.find()
- const decor=await Decorcollection.find()
- const user=await userModels.find()
+//   const venuecount=await Venue.find({}).count()
+//  const photocount=await photographer.find({}).count()
+//  const Decorcount=await Decorcollection.find({}).count()
+//  const CaterCount=await CaterBook.find({}).count()
+//  const MakeCount=await MakeBook.find({}).count()
+//  const admin=await adminModels.find().count()
+//  const venue=await Venue.find()
+//  const decor=await Decorcollection.find()
+//  const user=await userModels.find()
  
- const photo = await photographer.find();
- let totalRevenue ;
- let photoBookings = 0;
-  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
-   photoBookings =parseInt( data.PhotoId.rate)+photoBookings
- }))
+//  const photo = await photographer.find();
+// //  let totalRevenue ;
+// //  let photoBookings = 0;
+// //   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
+// //    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+// //  }))
  
  
- 
-
- let DecorBookings=0;
- await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-   DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
- }))
  
 
+//  let DecorBookings=0;
+//  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
+//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+//  }))
+ 
+
  
  
-   let VenueBookings=0;
-   await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
-     VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
-   }))
+//    let VenueBookings=0;
+//    await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
+//      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
+//    }))
  
-   let CaterBookings = 0;
-   await CaterBook.find().populate('CaterId', 'rent').then(datas => {
-     datas.forEach(data => {
-       if (data.CaterId && data.CaterId.rent) {
-         CaterBookings += parseInt(data.CaterId.rent);
-       }
-     });
-   });
-   let MakeBookings=0;
-   await MakeBook.find().populate('MakeId','rent').then(datas=>datas.map(data=>{
-    MakeBookings=parseInt(data.MakeId.rent)+MakeBookings
-   }))
+//    let CaterBookings = 0;
+//    await CaterBook.find().populate('CaterId', 'rent').then(datas => {
+//      datas.forEach(data => {
+//        if (data.CaterId && data.CaterId.rent) {
+//          CaterBookings += parseInt(data.CaterId.rent);
+//        }
+//      });
+//    });
+//    let MakeBookings=0;
+//    await MakeBook.find().populate('MakeId','rent').then(datas=>datas.map(data=>{
+//     MakeBookings=parseInt(data.MakeId.rent)+MakeBookings
+//    }))
 
    
  
  
-   const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
+//    const TotalRevenue=VenueBookings+DecorBookings+photoBookings+CaterBookings
  
- res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
- },
+//  res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,DecorBookings,photoBookings,VenueBookings,CaterBookings,MakeBookings})
+//  },
 
  adminChats:async(req,res)=>{
   try{

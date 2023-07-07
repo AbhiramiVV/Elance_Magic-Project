@@ -187,7 +187,7 @@ getAdmin:async(req,res)=>{
        if (data.CaterId && data.CaterId.rent) {
          CaterBookings += parseInt(data.CaterId.rent);
        }
-     });
+     }); 
    });
  
  const TotalRevenue=VenueBookings+DecorBookings+photoBookings+MakeBookings

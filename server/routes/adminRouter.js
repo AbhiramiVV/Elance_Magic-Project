@@ -45,7 +45,7 @@ router.get('/singleMakeup/:id',admin.singleMakeup);
 router.put('/makeedit/:id',admin.updateMake);
 router.delete('/makeup/:id',admin.DeleteMakeup);
 
-router.get('/getall', admin.getAdmin)
+// router.get('/getall', admin.getAdmin)
 router.get("/:vendorId",admin.adminChats)
 router.get('/vendorchat/:vendorId',admin.fetchVendor);
 router.get('/vendorchat/:users',admin.getVendor);

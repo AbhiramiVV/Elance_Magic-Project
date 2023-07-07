@@ -182,8 +182,6 @@ function CateringSingle() {
     };
     const navigate = useNavigate();
     const senderId=user.userExist._id;
-console.log(senderId,'9999999999999');
-console.log(Id,'rrrrrrrrrrr');
     const chatHandler = async () => {
       try{
 
