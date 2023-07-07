@@ -336,12 +336,9 @@ Decordisplay : async (req, res) => {
   PhotoBook : async (req, res) => {
     try {
       const { id } = req.params;
-      console.log("id is here" + id);
       const date = req.body.selectedDate;
-      console.log(date,'date');
       const newStartDate = new Date(date)
       const startDate = newStartDate.toISOString().split('T')[0]
-      console.log(startDate,'startdate')
       const { authorization } = req.headers;
       const token = authorization;
       const { _id } = jwt.verify(token, "usersecretkey");
@@ -351,7 +348,7 @@ Decordisplay : async (req, res) => {
       const photographerExist = await PhotoBook.findOne(
         {$and:[{PhotoId:id},{Date:startDate}]}
       );
-      console.log(photographerExist);
+    
   
     if(photographerExist){
       res

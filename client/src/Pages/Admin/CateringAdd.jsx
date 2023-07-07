@@ -46,8 +46,7 @@ function CateringAdd() {
             "Content-Type": "multipart/form-data",
           },
         });
-  
-        console.log(response);
+
         if (response.data.message) {
           navigate("/vendor/Catering");
         }

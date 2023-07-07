@@ -94,7 +94,7 @@ const [paymentOption, setPaymentOption] = useState("advance");
           Authorization: `${user.token}`,
         },
       })
-      console.log(response.data.isExist)
+
       setExist(response.data.isExist)
      
      
@@ -165,7 +165,6 @@ const generateInvoice = (pname, pdesc, pemail, rate, selectedDate) => {
         setImage(photosingle.image);
 console.log(photosingle);
         const amountpay=photosingle.rate*0.1
-console.log("hiiiii"+amountpay)
 setAmountpay(amountpay)
       setloading(false);
       } catch (error) {
@@ -176,7 +175,7 @@ setAmountpay(amountpay)
       viewPhotoSingle();
     },[id])
    
-console.log(selectedDate)
+
 
   return (
     <>
@@ -256,7 +255,9 @@ console.log(selectedDate)
                         withPortal
                       />
                       </div>
-                      <div className="flex justify-center items-center mt-4">
+                              {isExist?<p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">Sorry.photographer is not available on this date</p>:
+                     
+                      (<div className="flex justify-center items-center mt-4">
   <button
     className={`bg-black text-white text-xl font-bold py-2 px-12 rounded mr-2 ${
       paymentOption === "advance" ? "bg-green-500" : "bg-gray-500"
@@ -279,10 +280,12 @@ console.log(selectedDate)
   >
     Full Payment
   </button>
-</div>
+  
+</div>)}
             
             </div>
           </div>
+  
           <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
             <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
               <div class=" h-64 rounded-lg overflow-hidden">
@@ -337,7 +340,7 @@ console.log(selectedDate)
                           toast.error("Payment cancelled");
                         }}
                         onError={() => {
-                          toast.error("Payment failed");
+                          // toast.error("Payment failed");
                         }}
                       />
                     </PayPalScriptProvider>
@@ -363,7 +366,7 @@ console.log(selectedDate)
                             toast.error("Payment cancelled");
                           }}
                           onError={() => {
-                            toast.error("Payment failed");
+                          //  toast.error("Payment failed");
                           }}
                         />
                       </PayPalScriptProvider>

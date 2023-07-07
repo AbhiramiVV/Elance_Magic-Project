@@ -274,6 +274,11 @@ setAmountpay(amountpay)
                         withPortal
                       />
                       </div>
+                      {isExist?<p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">Sorry.photographer is not available on this date</p>:
+                      <button className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end"  onClick={() => setModal(!modal)}>
+                        Book Now
+                      </button>
+                      }
                    
                 <div className="flex justify-center items-center mt-4">
   <button
