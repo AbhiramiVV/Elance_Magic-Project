@@ -304,10 +304,14 @@ function MakeupSingle() {
   </div>
 )}
 
-<button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
-      <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
-      Chat With Us
-    </button>
+<button
+  onClick={chatHandler}
+  className="p-4 font-bold cursor-pointer flex items-center bg-orange-500 text-white rounded"
+>
+  <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
+  Chat With Us
+</button>
+
     </div>
             </div>
   
