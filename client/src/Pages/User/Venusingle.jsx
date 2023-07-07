@@ -75,6 +75,7 @@ function Venusingle() {
    const [isExist, setExist] = useState(false);
    const[amountpay,setAmountpay]=useState(0)
    const [paymentOption, setPaymentOption] = useState("advance");
+   const [Id,setId]= useState("")
 
   const handleDateChange = async(date) => {
     console.log(date)
@@ -167,7 +168,7 @@ const viewVenueSingle = async () => {
     setImage(venuesingle.image);
     setaddress(venuesingle.address);
     setlocation(venuesingle.location);
-  
+  setId(venuesingle.VendorId)
     setseats(venuesingle.seats);
 
 
@@ -184,6 +185,29 @@ setAmountpay(amountpay)
    
     viewVenueSingle();
   }, [id]);
+  const senderId=user.userExist._id;
+
+const chatHandler = async () => {
+  try{
+
+  
+    const response=await axios.post('/chat', {senderId, Id},{
+      headers: {
+        Authorization: `${user.token}`,
+      }})
+   
+  
+if (response.data.sucess) {
+  navigate('/chat');
+} else {
+  
+  console.log('Chat creation failed');
+}
+} catch (error) {
+// Handle error
+console.error(error);
+}
+};
 
   return (
     <>
@@ -274,36 +298,43 @@ setAmountpay(amountpay)
                         withPortal
                       />
                       </div>
-                      {isExist?<p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">Sorry.photographer is not available on this date</p>:
-                      <button className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end"  onClick={() => setModal(!modal)}>
-                        Book Now
-                      </button>
-                      }
-                   
-                <div className="flex justify-center items-center mt-4">
-  <button
-    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded mr-2 ${
-      paymentOption === "advance" ? "bg-green-500" : "bg-gray-500"
-    }`}
-    onClick={() => {
-      setPaymentOption("advance");
-      setModal(true); // Add this line to open the payment modal
-    }}
-  >
-    Advance Payment
-  </button>
-  <button
-    className={`bg-black text-white text-xl font-bold py-2 px-12 rounded ml-2 ${
-      paymentOption === "full" ? "bg-green-500" : "bg-gray-500"
-    }`}
-    onClick={() => {
-      setPaymentOption("full");
-      setModal(true); // Add this line to open the payment modal
-    }}
-  >
-    Full Payment
-  </button>
-</div>
+                      {isExist ? (
+  <p className="mt-4 bg-black text-white text-xl font-bold py-2 px-12 rounded justify-end">
+    Sorry, the venue is not available on this date
+  </p>
+) : (
+  <div>
+    <div className="flex justify-center items-center mt-4">
+      <button
+        className={`bg-black text-white text-xl font-bold py-2 px-12 rounded mr-2 ${
+          paymentOption === "advance" ? "bg-green-500" : "bg-gray-500"
+        }`}
+        onClick={() => {
+          setPaymentOption("advance");
+          setModal(true); // Add this line to open the payment modal
+        }}
+      >
+        Advance Payment
+      </button>
+      <button
+        className={`bg-black text-white text-xl font-bold py-2 px-12 rounded ml-2 ${
+          paymentOption === "full" ? "bg-green-500" : "bg-gray-500"
+        }`}
+        onClick={() => {
+          setPaymentOption("full");
+          setModal(true); // Add this line to open the payment modal
+        }}
+      >
+        Full Payment
+      </button>
+    </div>
+    <button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
+      <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
+      Chat With Us
+    </button>
+  </div>
+)}
+
             </div>
           </div>
 
