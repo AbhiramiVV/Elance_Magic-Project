@@ -603,12 +603,12 @@ getAdmin:async(req,res)=>{
  
  
 
-//  let DecorBookings=0;
-//  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
-//  }))
- 
-
+ let DecorBookings=0;
+ await DecorBook.find().populate('DecorId','rent').then(datas=>datas.forEach(data=>{
+  if(data.DecorId && data.DecorId.rent){
+    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+  }
+ }))
  
  
    let VenueBookings=0;
@@ -634,9 +634,9 @@ getAdmin:async(req,res)=>{
    
  
  
-   const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings
+   const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings
  
- res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,photoBookings,VenueBookings,CaterBookings,MakeBookings})
+ res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,photoBookings,VenueBookings,CaterBookings,DecorBookings,MakeBookings})
  },
 
  adminChats:async(req,res)=>{

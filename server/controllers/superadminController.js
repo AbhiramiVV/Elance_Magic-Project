@@ -169,10 +169,13 @@ getAdmin:async(req,res)=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
 
-//  let DecorBookings=0;
-//  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.map(data=>{
-//    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
-//  }))
+ let DecorBookings=0;
+ await DecorBook.find().populate('DecorId','rent').then(datas=>datas.forEach(data=>{
+  if(data.DecorId && data.DecorId.rent){
+    DecorBookings=parseInt(data.DecorId.rent)+DecorBookings
+  }
+ }))
+
   let VenueBookings=0;
    await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
@@ -193,9 +196,8 @@ getAdmin:async(req,res)=>{
      }); 
    });
  
- const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings
- 
- res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,photoBookings,VenueBookings,TotalRevenue,MakeBookings})
+ const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings 
+ res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings})
  }
 
 
