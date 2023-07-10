@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {HiMenuAlt3} from "react-icons/hi";
 import {MdOutlineDashboard} from "react-icons/md";
 import {GiPartyPopper} from "react-icons/gi";
-import {FaExchangeAlt, FaUserAlt} from "react-icons/fa";
+import {FaClipboardList, FaExchangeAlt, FaUserAlt, FaUserTie} from "react-icons/fa";
 import {IoIosLogOut} from "react-icons/io";
 import { Link } from 'react-router-dom';
 import {GiPartyHat} from "react-icons/gi";
@@ -20,9 +20,9 @@ function Superadminbar() {
     const menus=[
         {name:"Dashboard",link:'/superadmin/',icon:MdOutlineDashboard },
         {name:"Customers",link:'/superadmin/customerview',icon:FaUserAlt },
-        {name:"Vendors",link:'/superadmin/getadmin',icon:FaUserAlt },
+        {name:"Vendors",link:'/superadmin/getadmin',icon:FaUserTie },
         {name:"Transaction",link:'/superadmin/transaction',  icon: FaExchangeAlt},
-        {name:"Venue-Category",link:'/superadmin/showvenuecat',icon:FaHotel },
+        {name:"Orders",link:'/superadmin/orders',icon:FaClipboardList },
      
       ];
       const [open,setOpen]=useState(true)
