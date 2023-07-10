@@ -173,7 +173,7 @@ function CateringSingle() {
         setaddress(Catorsingle.address);
         setId(Catorsingle.VendorId);
   const amountpay=(Catorsingle.rent)*0.1
-  console.log(amountpay)
+  
   setAmountpay(amountpay)
         setloading(false);
       } catch (error) {

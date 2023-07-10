@@ -11,14 +11,16 @@ const {user}=useAuthContext()
     useEffect(() => {
 
         const userId = data?.members?.find((id) => id !== currentUser)
-            
-        const getUser = async()=>{
-            const response=await axios.get(`/userchat/${userId}`,{headers: {
+         
+             axios.get(`/userchat/${userId}`,{headers: {
                 Authorization: `${user.token}`,
-              }})
-            setUserData(response.data.data[0])
-        }
-        getUser();
+              }}).then((response)=>{
+
+                  setUserData(response.data.data[0])
+              }).catch((err)=>{
+                console.log(err)
+              })
+ 
     },[data,currentUser])
   
     return (

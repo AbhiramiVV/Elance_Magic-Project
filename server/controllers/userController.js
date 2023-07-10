@@ -622,9 +622,10 @@ Order: async (req, res) => {
 },
 feachUser: async (req,res) =>{
   const id=req.params.userId
-
+console.log(id);
   try{
     const data= await adminModels.find({_id:id})
+    console.log(data,'88888888888');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)

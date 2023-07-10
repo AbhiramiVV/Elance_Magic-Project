@@ -151,6 +151,7 @@ const generateInvoice = (name, desc, type, rent, selectedDate) => {
   // Save the PDF file
   doc.save('invoice.pdf');
 };
+const navigate=useNavigate();
 const senderId=user.userExist._id;
 
 const chatHandler = async () => {

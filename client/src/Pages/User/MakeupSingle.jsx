@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../Component/Header";
-import { useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -156,13 +156,14 @@ function MakeupSingle() {
             Authorization: `${user.token}`,
           },
         });
+        console.log(res.data,'77777777777777777');
         const Makesingle = res.data;
         setname(Makesingle.name);
         setdesc(Makesingle.desc);
         setType(Makesingle.type);
         setRent(Makesingle.rent);
         setImage(Makesingle.image);
-        setId(Makesingle,VendorId);
+        setId(Makesingle.VendorId);
   const amountpay=(Makesingle.rent)*0.1
   console.log(amountpay)
   setAmountpay(amountpay)
@@ -175,9 +176,8 @@ function MakeupSingle() {
     useEffect(() => {
         viewMakeSingle();
     }, [id]);
-
+    const navigate = useNavigate();
     const senderId=user.userExist._id;
-
     const chatHandler = async () => {
       try{
 
@@ -304,14 +304,10 @@ function MakeupSingle() {
   </div>
 )}
 
-<button
-  onClick={chatHandler}
-  className="p-4 font-bold cursor-pointer flex items-center bg-orange-500 text-white rounded"
->
-  <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
-  Chat With Us
-</button>
-
+<button onClick={chatHandler} className="p-4 font-bold cursor-pointer flex items-center">
+      <img src={chatLogo} alt="Chat Logo" className="w-10 h-10 mr-4" />
+      Chat With Us
+    </button>
     </div>
             </div>
   

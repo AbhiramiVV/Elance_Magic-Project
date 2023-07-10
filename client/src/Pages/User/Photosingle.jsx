@@ -176,6 +176,7 @@ setAmountpay(amountpay)
     useEffect(()=>{
       viewPhotoSingle();
     },[id])
+    const navigate=useNavigate();
     const senderId=user.userExist._id;
 
     const chatHandler = async () => {
