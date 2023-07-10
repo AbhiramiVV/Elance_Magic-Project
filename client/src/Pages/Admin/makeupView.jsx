@@ -87,13 +87,33 @@ function MakeupView() {
               </span>
             </div>
           </div>
-          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
-            <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
-              {image.map((file, index) => (
-                <div className="rounded-lg overflow-hidden" key={index}>
-                  <img className="object-cover" src={`http://localhost:5000/uploads/${file}`} alt="" />
-                </div>
-              ))}
+          <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
+            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <div class=" rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
+                
+                    alt="Avatar"
+                  />
+              </div>
+              <div class="rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`}
+                 
+                    alt="Avatar"
+                  />              </div>
+              <div class=" rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
+                   
+                    alt="Avatar"
+                  />              </div>
+              <div class="rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
+               
+                    alt="Avatar"
+                  />              </div>
             </div>
           </div>
         </div>

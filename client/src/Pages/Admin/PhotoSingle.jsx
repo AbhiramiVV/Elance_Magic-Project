@@ -94,21 +94,34 @@ const{admin}=useAuthContext()
            </div>
          </div>
          <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
-           <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-             <div class=" h-64 rounded-lg overflow-hidden">
-               <img class="object-cover" src={image[0]} alt="" />
-             </div>
-             <div class="w-full h-64 rounded-lg overflow-hidden">
-               <img class="object-cover" src={image[1]} alt="" />
-             </div>
-             <div class=" h-64 rounded-lg overflow-hidden">
-               <img class="  object-cover" src={image[3]} alt="" />
-             </div>
-             <div class=" h-64 rounded-lg overflow-hidden">
-               <img class="object-cover" src={image[4]} alt="" />
-             </div>
-           </div>
-         </div>
+            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <div class=" rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
+                
+                    alt="Avatar"
+                  />
+              </div>
+              <div class="rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`}
+                 
+                    alt="Avatar"
+                  />              </div>
+              <div class=" rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
+                   
+                    alt="Avatar"
+                  />              </div>
+              <div class="rounded-lg overflow-hidden">
+              <img
+                   src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
+               
+                    alt="Avatar"
+                  />              </div>
+            </div>
+          </div>
        </div>
      </div>
    </>
