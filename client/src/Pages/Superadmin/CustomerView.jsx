@@ -30,6 +30,7 @@ const {superadmin}=useAuthContext();
         console.error(error);
       }
     };
+    
     useEffect(() => {
     getCustomer();
   }, []);

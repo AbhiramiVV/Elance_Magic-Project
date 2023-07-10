@@ -24,7 +24,6 @@ const Adminview = () => {
           Authorization: `${superadmin.token}`,
         },
       });
-      console.log(superadmin.token);
       const { message, data } = response.data;
       console.log(data);
 

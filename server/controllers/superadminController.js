@@ -118,16 +118,27 @@ console.log(adminstatus);
   }
   
   },
+
+Order: async (req, res) => {
+  try {
+    const photo = await PhotoBook.find({ Paid: true }).populate("PhotoId");
+    const venue= await VenueBook.find({Paid:true}).populate("VenueId");
+    const cater= await CaterBook.find({Paid:true}).populate("CaterId");
+    const make= await MakeBook.find({Paid:true}).populate("MakeId");
+    const decor= await DecorBook.find({Paid:true}).populate("DecorId");
+   
+    res.status(200).json({ photo,venue,cater,make,decor});
+  } catch (error) {
+    console.error(error); // Log the error for debugging purposes
+    res.status(404).json({ error: "Internal Server Error" });
+  }
+},
   approved:async(req,res)=>{
     const id=req.params.id
 
   const admin=  await AdminSchema.findByIdAndUpdate({_id:id},{$set:{applicationStatus:"approved"}})
       mailer.approvedMail(admin.email,admin.companyname);
       res.json({err:false,message:"admin is approved"})
-
-
-    
-    
   },
   reject:async(req,res)=>{
 
