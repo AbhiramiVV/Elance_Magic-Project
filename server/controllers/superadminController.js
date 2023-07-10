@@ -141,7 +141,8 @@ console.log(adminstatus);
   
 transactions : async (req, res) => {
   try {
-    const result = await CaterBook.find({ Paid: true })
+    const result = await CaterBook.find({ Paid: true }).populate('CaterId','VendorId')
+    
     res.status(201).json({data:result});
   } catch (error) {
     res.status(500).json(error);

@@ -1,22 +1,22 @@
 import { Button } from '@chakra-ui/react';
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import axios from "../../instance/axios";
 import DataTable from 'react-data-table-component';
 import styled from 'styled-components';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { useAuthContext } from '../../Hooks/useAuthContext';
+import Superadminbar from '../../Component/Superadminbar';
 
 const TextField = styled.input`
-  height: 50px;
-  width: 250px;
-  margin-top: 20px;
+  height: 38px;
+  width: 200px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border: 2px solid black;
-  padding: 0 32px 0 16px;
+  padding: 0 16px;
 
   &:hover {
     cursor: text;
@@ -28,13 +28,12 @@ const ClearButton = styled.button`
   border-bottom-left-radius: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  height: 50px;
+  height: 38px;
   width: 32px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 `;
 
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
@@ -47,7 +46,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
       value={filterText}
       onChange={onFilter}
     />
-    <ClearButton className='font-bold text-xl text-white bg-black hover:scale-105' type="button" onClick={onClear}>
+    <ClearButton type="button" onClick={onClear}>
       X
     </ClearButton>
   </>
@@ -65,7 +64,6 @@ const TransactionTable = () => {
         },
       });
       const { data } = response.data;
-      console.log(data, '1111111111111111111');
       setData(data);
     } catch (error) {
       console.error(error);
@@ -117,97 +115,97 @@ const TransactionTable = () => {
     result += keys.join(columnDelimiter);
     result += lineDelimiter;
 
-    array.forEach((item) =>{
-        let ctr = 0;
-        keys.forEach((key) => {
-          if (ctr > 0) result += columnDelimiter;
-          if (key !== "estimate") {
-            result += item[key];
+    array.forEach((item) => {
+      let ctr = 0;
+      keys.forEach((key) => {
+        if (ctr > 0) result += columnDelimiter;
+        if (key !== "estimate") {
+          result += item[key];
 
-            ctr++;
-          } else {
-            // result += item[key].reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0);
+          ctr++;
+        } else {
+          // result += item[key].reduce((sum, amount) => { return (Number(sum) + Number(amount.price)) }, 0);
 
-            ctr++;
-          }
-        });
-        result += lineDelimiter;
-      });
-
-      return result;
-    }
-
-    function downloadCSV(array) {
-      const link = document.createElement("a");
-      let csv = convertArrayOfObjectsToCSV(array);
-      if (csv == null) return;
-
-      const filename = "export.csv";
-
-      if (!csv.match(/^data:text\/csv/i)) {
-        csv = `data:text/csv;charset=utf-8,${csv}`;
-      }
-
-      link.setAttribute("href", encodeURI(csv));
-      link.setAttribute("download", filename);
-      link.click();
-    }
-
-    const Export = ({ onExport }) => (
-      <Button onClick={(e) => onExport(e.target.value)}>Export to CSV</Button>
-    );
-
-    const columns = [
-      {
-        name: "ManagerId",
-        selector: (row) => row.CaterId,
-      },
-      {
-        name: "UsreId",
-        selector: (row) => row.userId,
-      },
-      {
-        name: "Date",
-        selector: (row) => row.Date,
-      },
-      {
-        name: "Payment Status",
-        selector: (row) => row.Paid,
-      },
-    ];
-
-    const [filterText, setFilterText] = useState("");
-    const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-    const filteredItems = data.filter((item) =>
-      item.CaterId && item.CaterId.toLowerCase().includes(filterText.toLowerCase())
-    );
-
-    const subHeaderComponentMemo = useMemo(() => {
-      const handleClear = () => {
-        if (filterText) {
-          setResetPaginationToggle(!resetPaginationToggle);
-          setFilterText("");
+          ctr++;
         }
-      };
+      });
+      result += lineDelimiter;
+    });
 
-      return (
-        <FilterComponent
-          onFilter={(e) => setFilterText(e.target.value)}
-          onClear={handleClear}
-          filterText={filterText}
-        />
-      );
-    }, [filterText, resetPaginationToggle]);
+    return result;
+  }
 
-    const actionsMemo = React.useMemo(
-      () => <Export onExport={() => downloadCSV(data)} />,
-      []
-    );
+  function downloadCSV(array) {
+    const link = document.createElement("a");
+    let csv = convertArrayOfObjectsToCSV(array);
+    if (csv == null) return;
+
+    const filename = "export.csv";
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = `data:text/csv;charset=utf-8,${csv}`;
+    }
+
+    link.setAttribute("href", encodeURI(csv));
+    link.setAttribute("download", filename);
+    link.click();
+  }
+
+  const Export = ({ onExport }) => (
+    <Button onClick={(e) => onExport(e.target.value)}>Export to CSV</Button>
+  );
+
+  const columns = [
+    {
+      name: "ManagerId",
+      selector: (row) => row.CaterId.VendorId,
+    },
+    {
+      name: "UserId",
+      selector: (row) => row.userId,
+    },
+    {
+      name: "Date",
+      selector: (row) => row.Date,
+    },
+    {
+      name: "Payment Status",
+      selector: (row) => row.Paid,
+    },
+  ];
+
+  const [filterText, setFilterText] = useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const filteredItems = data.filter((item) =>
+    item.CaterId.VendorId && item.CaterId.VendorId.toLowerCase().includes(filterText.toLowerCase())
+  );
+  const subHeaderComponentMemo = useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setResetPaginationToggle(!resetPaginationToggle);
+        setFilterText("");
+      }
+    };
 
     return (
-        <>
-      <div>
-        <Button onClick={() => exportPDF()} className="left-[45%]">
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPaginationToggle]);
+
+  const actionsMemo = useMemo(
+    () => <Export onExport={() => downloadCSV(data)} />,
+    []
+  );
+
+  return (
+    <div className="flex">
+      <Superadminbar />
+      <div className="ml-72 mx-auto max-w-[2000px]" style={{width:"50%"}}>
+        <Button onClick={() => exportPDF()} className="mx-auto mb-4">
           Transaction Report
         </Button>
         <DataTable
@@ -218,10 +216,14 @@ const TransactionTable = () => {
           subHeader
           subHeaderComponent={subHeaderComponentMemo}
           actions={actionsMemo}
+          responsive
+          dense
+          noHeader
+          style={{ width: '100%' }}
         />
       </div>
-        </>
-    );
+    </div>
+  );
 };
 
 export default TransactionTable;
