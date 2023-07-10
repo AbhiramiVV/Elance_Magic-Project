@@ -4,7 +4,7 @@ import { MdBackspace } from 'react-icons/md'
 import axios from '../../instance/axios'
 import BeatLoader from "react-spinners/BeatLoader";
 import { useAuthContext } from '../../Hooks/useAuthContext'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
 const {admin}=useAuthContext();
@@ -121,7 +121,7 @@ const {admin}=useAuthContext();
     }
   };
 
-
+const Navigate=useNavigate();
 
   useEffect(() => {
     try {
@@ -160,7 +160,7 @@ const {admin}=useAuthContext();
     try {
       const response = await axios.patch("/vendor/editProfile", values);
       if (response.status === 201) {
-        Navigate('vendor/profile');
+        Navigate('/vendor/profile');
         toast({
           position: "top",
           variant: "left-accent",
@@ -168,7 +168,7 @@ const {admin}=useAuthContext();
           isClosable: true,
           title: "Profile updated successfully",
         });
-        Navigate('vendor/profile');
+        Navigate('/vendor/profile');
       } else {
         toast({
           position: "top",
