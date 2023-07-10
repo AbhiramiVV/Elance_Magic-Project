@@ -381,7 +381,7 @@ setAmountpay(amountpay)
                           toast.error("Payment cancelled");
                         }}
                         onError={() => {
-                          toast.error("Payment failed");
+                          // toast.error("Payment failed");
                         }}
                       />
                     </PayPalScriptProvider>
@@ -407,7 +407,7 @@ setAmountpay(amountpay)
                             toast.error("Payment cancelled");
                           }}
                           onError={() => {
-                            toast.error("Payment failed");
+                            // toast.error("Payment failed");
                           }}
                         />
                       </PayPalScriptProvider>

@@ -382,7 +382,7 @@ function MakeupSingle() {
                           toast.error("Payment cancelled");
                         }}
                         onError={() => {
-                          toast.error("Payment failed");
+                          // toast.error("Payment failed");
                         }}
                       />
                     </PayPalScriptProvider>
@@ -408,7 +408,7 @@ function MakeupSingle() {
                             toast.error("Payment cancelled");
                           }}
                           onError={() => {
-                            toast.error("Payment failed");
+                            // toast.error("Payment failed");
                           }}
                         />
                       </PayPalScriptProvider>

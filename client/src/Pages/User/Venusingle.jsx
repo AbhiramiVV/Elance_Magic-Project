@@ -410,7 +410,7 @@ console.error(error);
                           toast.error("Payment cancelled");
                         }}
                         onError={() => {
-                          toast.error("Payment failed");
+                          // toast.error("Payment failed");
                         }}
                       />
                     </PayPalScriptProvider>
@@ -436,7 +436,7 @@ console.error(error);
                             toast.error("Payment cancelled");
                           }}
                           onError={() => {
-                            toast.error("Payment failed");
+                            // toast.error("Payment failed");
                           }}
                         />
                       </PayPalScriptProvider>
