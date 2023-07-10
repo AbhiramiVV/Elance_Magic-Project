@@ -27,7 +27,7 @@ function Dashboard() {
         },
       });
 
-      console.log(response.data);
+
       setDashboardData(response.data);
  
     } catch (error) {
