@@ -2,7 +2,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {
-      primary: 'Saira',
+      primary: 'sans-serif',
       secondary:['Satisfy','cursive'],
       third:'Sedgwick Ave Display'
      

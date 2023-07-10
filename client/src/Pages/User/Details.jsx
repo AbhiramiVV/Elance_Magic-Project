@@ -136,9 +136,9 @@ function Details() {
                 <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                   <thead>
                     <tr className="text-left border-b-2 border-gray-300">
-                      <th className="px-4 py-3">Image</th>
-                      <th className="px-4 py-3">Name</th>
-                      <th className="px-4 py-3">Rent</th>
+                      <th className="px-4 py-3">Image Of Event</th>
+                      <th className="px-4 py-3">Name of Company</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
@@ -192,9 +192,9 @@ function Details() {
                 <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                   <thead>
                     <tr className="text-left border-b-2 border-gray-300">
-                      <th className="px-4 py-3">Image</th>
-                      <th className="px-4 py-3">Name</th>
-                      <th className="px-4 py-3">Rent</th>
+                    <th className="px-4 py-3">Image Of Event</th>
+                      <th className="px-4 py-3">Name of Company</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
@@ -244,9 +244,9 @@ function Details() {
                 <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                   <thead>
                     <tr className="text-left border-b-2 border-gray-300">
-                      <th className="px-4 py-3">Image</th>
-                      <th className="px-4 py-3">Name</th>
-                      <th className="px-4 py-3">Rent</th>
+                    <th className="px-4 py-3">Image Of Event</th>
+                      <th className="px-4 py-3">Name of Company</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
@@ -296,11 +296,10 @@ function Details() {
                 <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                   <thead>
                     <tr className="text-left border-b-2 border-gray-300">
-                      <th className="px-4 py-3">Image</th>
-                      <th className="px-4 py-3">Name</th>
+                    <th className="px-4 py-3">Image Of Event</th>
+                      <th className="px-4 py-3">Name of Company</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Menu</th>
-
-                      <th className="px-4 py-3">Rent</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
@@ -350,10 +349,10 @@ function Details() {
                 <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                   <thead>
                     <tr className="text-left border-b-2 border-gray-300">
-                      <th className="px-4 py-3">Image</th>
-                      <th className="px-4 py-3">Name</th>
+                    <th className="px-4 py-3">Image Of Event</th>
+                      <th className="px-4 py-3">Name of Company</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Type</th>
-                      <th className="px-4 py-3">Rent</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
