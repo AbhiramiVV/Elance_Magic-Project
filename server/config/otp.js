@@ -103,6 +103,30 @@ transporter.sendMail(mailOptions,(err,res)=>{
 });
   })
   
+},
+ cancelMail :(email, bookItem) => {
+  return new Promise((resolve, reject) => {
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'abhiramivv77@gmail.com',
+        pass: 'spcanujclhwpdaaj'
+      }
+    });
+    let mailDetails = {
+      from: 'abhiramivv77@gmail.com',
+      to: email,
+      subject: 'Enlance Magico',
+      html: `<p>Your ${bookItem} has been cancelled. For a refund of your payment, please contact this number: 9084876544</p>`
+    };
+    transporter.sendMail(mailDetails, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ message: 'Your order has been cancelled.' });
+      }
+    });
+  });
 }
 
 }

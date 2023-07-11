@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const userModels = require("../models/userModels/userDetails");
 const { randomNumber } = require("../randomNum");
 const { sentMail } = require("../config/otp");
-
+const mailer = require("../config/otp");
 const photographer = require("../models/admin/Photographer");
 const Decorcollection = require("../models/admin/Decoration");
 const venueCategory = require("../models/admin/Venuecat");
@@ -618,6 +618,39 @@ Order: async (req, res) => {
   } catch (error) {
     console.error(error); // Log the error for debugging purposes
     res.status(500).json({ error: "Internal Server Error" });
+  }
+},
+itemCancel:async(req,res)=>{
+  const id=req.params.id;
+  const { bookItem } = req.body;
+  try {
+
+    const { authorization } = req.headers;
+    const token = authorization;
+
+    const { _id } = jwt.verify(token, "usersecretkey");
+
+    const user=await userModels.findById({_id})
+  
+    let email=user.email
+    if(bookItem=='photographer'){
+    await PhotoBook.findByIdAndDelete(id);
+    mailer.cancelMail(email,bookItem)
+    res.status(200).json({err:false,message:"Your photographer  order cancelled"})
+    }
+    if(bookItem=='venue'){
+    await VenueBook.findByIdAndDelete(id);
+    mailer.cancelMail(email,bookItem)
+  
+        res.status(200).json({err:false,message:"Your venue order cancelled"})
+    }
+    if(bookItem=='decor'){
+    await DecorBook.findByIdAndDelete(id);
+    mailer.cancelMail(email,bookItem)
+    res.status(200).json({err:false,message:"Your decoration order cancelled"})
+    }
+  } catch (error) {
+    console.log(error)
   }
 },
 feachUser: async (req,res) =>{
