@@ -122,6 +122,12 @@ function Dashboard() {
         value: dashboardData?.CaterBookings,
         color: "hsl(103, 70%, 50%)",
       },
+      {
+        id: "make",
+        label: "make",
+        value: dashboardData?.makeBookings,
+        color: "hsl(80, 70%, 50%)",
+      },
 
     ];
   

@@ -14,7 +14,7 @@ function Bookpage () {
  const[photo,setPhoto]=useState(null)
  const[venue,setVenue]=useState(null)
  const[decor,setDecor]=useState(null)
-console.log(user)
+
 
 
 

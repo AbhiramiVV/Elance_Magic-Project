@@ -49,11 +49,12 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          {/* logo */}
+         {/* {logo}  */}
         
-            <h1 className=" text-5xl font-extrabold font-secondary mr-90 mt-2italic text-gray-900"  > 
-              Enlance Magico
-            </h1>
+          <h1 className="text-5xl font-extrabold font-serif italic text-gray-900 text-center">
+  Enlance Mágico
+</h1>
+
          
           {/* menu icon */}
           <div

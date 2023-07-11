@@ -56,6 +56,12 @@ console.log(orders,'8888888888888');
       selector: (row) => row.Date,
       sortable: true,
     },
+    {
+      name: "Payment Status",
+      cell: (row) => (
+        <div>{row.Paid ? "Paid" : "Not Paid"}</div>
+      ),
+    }
     // {
     //   name: "Block",
     //   cell: (row) => (
@@ -85,7 +91,7 @@ console.log(orders,'8888888888888');
                 <Basetable
                   columns={columns}
                   data={orders}
-                  title={"ORDER MANAGEMENT"}
+                  title={"ORDERS"}
                   pagination
                   fixedHeader
                   highlightOnHover

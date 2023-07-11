@@ -582,19 +582,24 @@ DeleteMakeup:async (req,res)=>{
 
 
 getAdmin:async(req,res)=>{
-
-  const venuecount=await Venue.find({}).count()
- const photocount=await photographer.find({}).count()
- const Decorcount=await Decorcollection.find({}).count()
- const CaterCount=await CaterBook.find({}).count()
- const MakeCount=await MakeBook.find({}).count()
- const admin=await adminModels.find().count()
- const venue=await Venue.find()
- const decor=await Decorcollection.find()
- const user=await userModels.find()
+  const countuser=await User.find({}).count()
  
+  const venuecount=await Venue.find({}).count()
+  const venue=await Venue.find()
+ const photocount=await photographer.find({}).count()
+ const catercount=await cateringcollection.find({}).count()
+ const cater=await cateringcollection.find()
+ const Decorcount=await Decorcollection.find({}).count()
+ const admin=await adminModels.find().count()
+ const decor=await Decorcollection.find()
+ const user=await user.find()
  const photo = await photographer.find();
- let totalRevenue ;
+ const makecount=await Makeupcollection.find({}).count()
+ const make=await Makeupcollection.find()
+
+
+
+ 
  let photoBookings = 0;
   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
@@ -636,9 +641,8 @@ getAdmin:async(req,res)=>{
  
    const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings
  
- res.status(200).json({TotalRevenue,venuecount,photocount,Decorcount,CaterCount,MakeCount,venue,decor,photo,admin,photoBookings,VenueBookings,CaterBookings,DecorBookings,MakeBookings})
- },
-
+   res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings})
+  },
  adminChats:async(req,res)=>{
   try{
       const chat = await ChatModel.find({

@@ -35,6 +35,10 @@ function Dashboard() {
   const BarChart = () => {
     const data = [
       {
+        day: "Catering",
+        degress: dashboardData?.catercount
+      },
+      {
         day: "Makeup",
         degress: dashboardData?.makecount
       },
@@ -95,7 +99,7 @@ function Dashboard() {
       {
         id: "make",
         label: "make",
-        value: dashboardData?.makeBookings,
+        value: dashboardData?.MakeBookings,
         color: "hsl(80, 70%, 50%)",
       },
       {
@@ -114,6 +118,12 @@ function Dashboard() {
         id: "decor",
         label: "Venue",
         value: dashboardData?.VenueBookings,
+        color: "hsl(103, 70%, 50%)",
+      },
+      {
+        id: "cater",
+        label: "cater",
+        value: dashboardData?.CaterBookings,
         color: "hsl(103, 70%, 50%)",
       },
     ];
@@ -176,6 +186,29 @@ function Dashboard() {
                         </div>
                       </div>
                       <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
+  <div class="p-4 bg-blue-400">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-12 w-12 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 4C6.48 4 2 8.48 2 14c0 1.65.41 3.22 1.12 4.6L12 22l8.88-3.4C21.59 17.22 22 15.65 22 14c0-5.52-4.48-10-10-10zm0 16l-4-4h8l-4 4zm0-6a2 2 0 100-4 2 2 0 000 4z"
+      ></path>
+    </svg>
+  </div>
+  <div class="px-4 text-gray-700">
+    <h3 class="text-md text-black tracking-wider">Total Managers</h3>
+    <p class="text-3xl">{dashboardData?.admin}</p>
+  </div>
+</div>
+
+                      <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
                         <div class="p-4 bg-blue-400">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -193,32 +226,33 @@ function Dashboard() {
                           </svg>
                         </div>
                         <div class="px-4 text-gray-700">
-                          <h3 class="text-md text-black tracking-wider">Total Managers</h3>
-                          <p class="text-3xl">{dashboardData?.admin}</p>
+                          <h3 class="text-md text-black tracking-wider">Total Orders</h3>
+                          <p class="text-3xl">{dashboardData?.Orders}</p>
                         </div>
                       </div>
                       <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-                        <div class="p-4 bg-indigo-400">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-12 w-12 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div class="px-4 text-gray-700">
-                          <h3 class="text-md text-black  tracking-wider">Total Revenue</h3>
-                          <p class="text-3xl">{dashboardData?.TotalRevenue}</p>
-                        </div>
-                      </div>
+  <div class="p-4 bg-yellow-500">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-12 w-12 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 10h7a2 2 0 012 2v7a2 2 0 01-2 2h-7a2 2 0 01-2-2v-7a2 2 0 012-2zm-4 0H5a2 2 0 012-2V5a2 2 0 012-2h3M9 14H5m0 0v3m0-3h3m9.707-7.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L12 6.414l2.293 2.293a1 1 0 001.414-1.414z"
+      ></path>
+    </svg>
+  </div>
+  <div class="px-4 text-gray-700">
+    <h3 class="text-md text-black tracking-wider">Total Revenue</h3>
+    <p class="text-3xl">{dashboardData?.TotalRevenue}</p>
+  </div>
+</div>
+
                 
                     </div>
                   </div>
