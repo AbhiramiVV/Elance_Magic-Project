@@ -153,7 +153,7 @@ postResend: async (req, res) => {
     }
   },
   forgotPassword :async (req, res) => {
-    
+
     try {
       const user = await userModels.findOne({
         email: req.body.phone,

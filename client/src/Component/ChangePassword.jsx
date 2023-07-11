@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import ForgotOTPModal from '../Component/ForgotOTPModal';
 import axios from '../instance/axios'
 import { useAuthContext } from '../Hooks/useAuthContext';
-import forg from '../assets/forgot.gif'
+import forg from '../assets/logo.jpg'
 
 const ChangePassword = () => {
   const {user}=useAuthContext;
@@ -91,14 +91,14 @@ const ChangePassword = () => {
         {<p className="text-red-500">{errMsg}</p>}
         
 
-        <button onClick={submitHandler} className='w-[60%] h-20 mt-10 text-3xl font-semibold border-2 border-black rounded-3xl text-center hover:scale-105 hover:bg-black hover:text-white'>Save</button>
+        <button onClick={submitHandler} className='w-[50%] h-20 mt-10 text-3xl font-semibold border-2 border-black rounded-3xl text-center hover:scale-105 hover:bg-black hover:text-white'>Save</button>
 
         {/* <Link to={'/login'} className='mt-3 underline font-semibold text-gray-600'>Cancel?</Link> */}
 
       </div>
       <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2 '>
-        <img src={forg} alt="LOGIN" className='w-[90%]' />
-        <h1 className='font-Viaoda text-7xl text-gray-500 absolute top-2/3'>Simplify everything for your convenience.
+        <img src={forg} alt="LOGIN" className='w-[50%]' />
+        <h1 className='font-Viaoda text-6xl text-gray-500 absolute top-2/3 right-2'>Simplify everything for your convenience.
 
 
 

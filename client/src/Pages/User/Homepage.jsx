@@ -26,7 +26,7 @@ function Homepage() {
     <h2 class="mb-6 block font-sans text-6xl font-medium leading-[1.5] tracking-normal font-secondary text-white antialiased">
     A goal without a plan is just a wish.
     </h2>
-    <Link to='/bookpage'><button type="button" class="text-white bg-gradient-to-r from-cyan-500  hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg  px-8 py-3 text-center mb-2 mx-auto block text-3xl">Book your event now </button></Link>
+    <Link to='/bookpage'><button type="button" class="text-white bg-gradient-to-r from-cyan-500  hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg  px-8 py-3 text-center mb-2 mx-auto block text-3xl">View  our events now </button></Link>
   </div>
 </div>
 
