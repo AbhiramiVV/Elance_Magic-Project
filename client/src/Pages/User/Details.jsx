@@ -39,14 +39,13 @@ function Details() {
     useEffect(() => {
       Order();
     }, []);
-    console.log(decor,'8888888888888');
+    console.log(make,'8888888888888');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   const handlephotocancel=async(id,bookItem)=>{
     try {
-      console.log(bookItem,'9999999999999')
       const confirmResult = await Swal.fire({
         title: 'Are you sure?',
         text: `You are about to cancel ${bookItem}. This action cannot be undone.This order no longer displayed`,
@@ -422,8 +421,8 @@ function Details() {
                     <tr className="text-left border-b-2 border-gray-300">
                     <th className="px-4 py-3">Image Of Event</th>
                       <th className="px-4 py-3">Name of Company</th>
-                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Type</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
@@ -444,7 +443,7 @@ function Details() {
 
                         <td className="px-4 py-3">{booking.MakeId.name}</td>
 
-                        <td className="px-4 py-3">{booking.MakeId.Type}</td>
+                        <td className="px-4 py-3">{booking.MakeId.type}</td>
 
                         <td className="px-4 py-3">
                           {booking.MakeId.rent}
