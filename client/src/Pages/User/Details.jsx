@@ -17,11 +17,11 @@ function Details() {
   const [cater, setCater] = useState(null);
   const [make, setMake] = useState(null);
   const [activeTab, setActiveTab] = useState("view");
-
+  
   const Order = async () => {
     await axios
-      .get(`/Orderdisplay`, {
-        headers: {
+    .get(`/Orderdisplay`, {
+      headers: {
           Authorization: `${user.token}`,
         },
       })
@@ -31,11 +31,15 @@ function Details() {
         if (response.data.photo) setPhoto(response.data.photo);
         if (response.data.cater) setCater(response.data.cater);
         if (response.data.make) setMake(response.data.make);
-      });
-  };
-  useEffect(() => {
-    Order();
-  }, []);
+      }).catch(err=>{
+        console.log(err);
+      })
+      
+    };
+    useEffect(() => {
+      Order();
+    }, []);
+    console.log(decor,'8888888888888');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -303,11 +307,12 @@ function Details() {
                   </thead>
                   {decor &&
                     decor.map((booking) => (
-                      <tr
+                  <tr
                         key={booking.id}
                         className="bg-gray-100 border-b border-gray-200"
                       >
                         <td className="px-4 py-3">
+                        
                           <img
                             src={`http://localhost:5000/uploads/${booking.DecorId.image[0]?.files[0]?.filename}`}
                             alt="Decor Image"
@@ -315,7 +320,7 @@ function Details() {
                           />
                         </td>
 
-                        <td className="px-4 py-3">{booking.DecorId.name}</td>
+                        <td className="px-4 py-3">  {booking.DecorId.name}</td>
 
                         <td className="px-4 py-3">
                           {booking.DecorId.rent}
