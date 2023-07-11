@@ -168,12 +168,12 @@ function ChatBoxadmin({chat,currentUser, setSendMessage, receivedMessage,setRece
               </div>
               {/* chat-sender */}
               <div className="chat-sender">
-                <div onClick={() => imageRef.current.click()}>+</div>
+                {/* <div onClick={() => imageRef.current.click()}>+</div> */}
                 <InputEmoji
                   value={newMessage}
                   onChange={handleChange}
                 />
-                <div className="send-button button" onClick = {handleSend}>Send</div>
+                <div className="cursor-pointer border-2 border-black rounded-md w-28 h-10 bg-green-400" onClick = {handleSend}>Send</div>
                 <input
                   type="file"
                   name=""

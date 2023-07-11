@@ -23,9 +23,10 @@ function Homepage() {
     <div class="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50"></div>
   </div>
   <div class="relative p-6 py-14 px-6 md:px-12 w-full">
-    <h2 class="mb-6 block font-sans text-6xl font-medium leading-[1.5] tracking-normal font-secondary text-white antialiased">
+  <h2 class="mb-6 block font-sans text-6xl font-medium leading-[1.5] tracking-tight font-secondary text-white antialiased caption-font">
     A goal without a plan is just a wish.
-    </h2>
+</h2>
+
     <Link to='/bookpage'><button type="button" class="text-white bg-gradient-to-r from-cyan-500  hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg  px-8 py-3 text-center mb-2 mx-auto block text-3xl">View  our events now </button></Link>
   </div>
 </div>
