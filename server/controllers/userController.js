@@ -649,6 +649,16 @@ itemCancel:async(req,res)=>{
     mailer.cancelMail(email,bookItem)
     res.status(200).json({err:false,message:"Your decoration order cancelled"})
     }
+    if(bookItem=='cater'){
+      await CaterBook.findByIdAndDelete(id);
+      mailer.cancelMail(email,bookItem)
+      res.status(200).json({err:false,message:"Your catering order cancelled"})
+      }
+      if(bookItem=='make'){
+        await MakeBook.findByIdAndDelete(id);
+        mailer.cancelMail(email,bookItem)
+        res.status(200).json({err:false,message:"Your makeup  order cancelled"})
+        }
   } catch (error) {
     console.log(error)
   }

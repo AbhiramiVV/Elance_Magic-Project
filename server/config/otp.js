@@ -117,7 +117,7 @@ transporter.sendMail(mailOptions,(err,res)=>{
       from: 'abhiramivv77@gmail.com',
       to: email,
       subject: 'Enlance Magico',
-      html: `<p>Your ${bookItem} has been cancelled. For a refund of your payment, please contact this number: 9084876544</p>`
+      html: `<p>Your ${bookItem} has been cancelled. For a refund of your payment, please contact this number: 8606301771</p>`
     };
     transporter.sendMail(mailDetails, (err, data) => {
       if (err) {
