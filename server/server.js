@@ -28,10 +28,6 @@ app.use(
 
 dbConnect();
 
-// app.post("/vendor/vendor" , (req , res) =>{
-//   res.json({message : "vendeoaoijao"})
-// })
-
 app.use("/vendor", adminRoutes);
 app.use("/superadmin", superadminRoutes);
 app.use("/chat",ChatRoutes);
