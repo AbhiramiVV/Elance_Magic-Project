@@ -127,7 +127,7 @@ function ChatBoxadmin({chat,currentUser, setSendMessage, receivedMessage,setRece
                   <img
                                             src={
 
-                                                userData?.profilePhoto ? userData.profilePhoto : "img-scelton.png"
+                                                userData?.profilePhoto ? userData.profilePhoto :"admin.png"
                                             }
                                             alt="Profile"
                                             className="rounded-full "

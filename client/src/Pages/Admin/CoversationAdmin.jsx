@@ -30,7 +30,7 @@ const {admin}=useAuthContext();
                 <div className="flex items-center">
                     {online && <div className="online-dot"></div>}
                     <img
-                        src={userData?.profilePhoto ? userData.profilePhoto : "img-scelton.png"}
+                        src={userData?.profilePhoto ? userData.profilePhoto : "admin.png"}
                         alt="Profile"
                         className="rounded-full"
                         style={{ width: "50px", height: "50px" }}
