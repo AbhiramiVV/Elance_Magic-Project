@@ -42,7 +42,7 @@ function Details() {
 
   const handlephotocancel=async(id,bookItem)=>{
     try {
-      console.log(bookItem)
+      console.log(bookItem,'9999999999999')
       const confirmResult = await Swal.fire({
         title: 'Are you sure?',
         text: `You are about to cancel ${bookItem}. This action cannot be undone.This order no longer displayed`,
@@ -50,7 +50,7 @@ function Details() {
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Cancel',
+        confirmButtonText: 'ok',
         cancelButtonText: 'Cancel',
       });
   
@@ -356,8 +356,8 @@ function Details() {
                     <tr className="text-left border-b-2 border-gray-300">
                     <th className="px-4 py-3">Image Of Event</th>
                       <th className="px-4 py-3">Name of Company</th>
-                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Menu</th>
+                      <th className="px-4 py-3">Payment Amount</th>
                       <th className="px-4 py-3">Booking Date</th>
                       <th className="px-4 py-3">Event Date</th>
                     </tr>
