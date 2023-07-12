@@ -132,7 +132,7 @@ const generateInvoice = (pname, pdesc, pemail, rate, selectedDate) => {
     ["Description", pdesc, "", ""],
     ["Email", pemail, "", ""],
     ["Total Amount", (rate), "", ""],
-    ["Advace Amount", (rate)*0.1, "", ""],
+    ["Advace Amount", (rate)/2, "", ""],
     ["Selected Date", selectedDate.toDateString(), "", ""],
   ];
 
@@ -166,7 +166,7 @@ const generateInvoice = (pname, pdesc, pemail, rate, selectedDate) => {
         setImage(photosingle.image);
         setId(photosingle.vendorId);
 console.log(photosingle);
-        const amountpay=photosingle.rate*0.1
+        const amountpay=photosingle.rate/2
 setAmountpay(amountpay)
       setloading(false);
       } catch (error) {
@@ -264,7 +264,7 @@ setAmountpay(amountpay)
                   </p>
                   <p class="mt-0.5  text-black text-sm">
                     <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
-                    {(rate)*0.1}
+                    {(rate)/2}
                   </p>
                 </div>
               </div>
@@ -364,7 +364,7 @@ setAmountpay(amountpay)
                       <PayPalButtons
                         createOrder={(data, actions) => {
                           return actions.order.create({
-                            purchase_units: [{ amount: { value:(rate)*0.1 } }],
+                            purchase_units: [{ amount: { value:(rate)/2 } }],
                           });
                         }}
                         onApprove={async (data, actions) => {

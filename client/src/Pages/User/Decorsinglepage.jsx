@@ -137,7 +137,7 @@ const generateInvoice = (name, desc, type, rent, selectedDate) => {
     ["Description", desc, "", ""],
     ["Type", type, "", ""],
     ["Total Amount", (rent), "", ""],
-    ["Advace Amount", (rent)*0.1, "", ""],
+    ["Advace Amount", (rent)/2, "", ""],
     ["Selected Date", selectedDate.toDateString(), "", ""],
   ];
 
@@ -191,7 +191,7 @@ console.error(error);
       setRent(Decorsingle.rent);
       setImage(Decorsingle.image);
       setId(Decorsingle.VendorId)
-const amountpay=(Decorsingle.rent)*0.1
+const amountpay=(Decorsingle.rent)/2
 console.log(amountpay)
 setAmountpay(amountpay)
       setloading(false);
@@ -254,7 +254,7 @@ setAmountpay(amountpay)
                     </p>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
-                      {(rent)*0.1}
+                      {(rent)/2}
                     </p>
                 </div>
               </div>
@@ -369,7 +369,7 @@ setAmountpay(amountpay)
                       <PayPalButtons
                         createOrder={(data, actions) => {
                           return actions.order.create({
-                            purchase_units: [{ amount: { value:rent*0.1 } }],
+                            purchase_units: [{ amount: { value:rent/2 } }],
                           });
                         }}
                         onApprove={async (data, actions) => {

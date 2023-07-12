@@ -131,7 +131,7 @@ function MakeupSingle() {
       ["Name", name, "", ""],
       ["Description", desc, "", ""],
       ["Type", type, "", ""],
-      ["Rent", (rent)*0.1, "", ""],
+      ["Rent", (rent)/2, "", ""],
       ["Selected Date", selectedDate.toDateString(), "", ""],
     ];
   
@@ -156,7 +156,7 @@ function MakeupSingle() {
             Authorization: `${user.token}`,
           },
         });
-        console.log(res.data,'77777777777777777');
+   
         const Makesingle = res.data;
         setname(Makesingle.name);
         setdesc(Makesingle.desc);
@@ -164,7 +164,7 @@ function MakeupSingle() {
         setRent(Makesingle.rent);
         setImage(Makesingle.image);
         setId(Makesingle.VendorId);
-  const amountpay=(Makesingle.rent)*0.1
+  const amountpay=(Makesingle.rent)/2
   console.log(amountpay)
   setAmountpay(amountpay)
         setloading(false);
@@ -254,7 +254,7 @@ function MakeupSingle() {
                     </p>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Advace:</span>{" "}
-                      {(rent)*0.1}
+                      {(rent)/2}
                     </p>
                   </div>
                 </div>
@@ -370,7 +370,7 @@ function MakeupSingle() {
                       <PayPalButtons
                         createOrder={(data, actions) => {
                           return actions.order.create({
-                            purchase_units: [{ amount: { value:rent*0.1 } }],
+                            purchase_units: [{ amount: { value:rent/2 } }],
                           });
                         }}
                         onApprove={async (data, actions) => {

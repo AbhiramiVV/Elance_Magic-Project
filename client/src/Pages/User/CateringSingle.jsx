@@ -137,7 +137,7 @@ function CateringSingle() {
       ["Description", desc, "", ""],
       ["Type", type, "", ""],
       ["Total Amount", (rent), "", ""],
-      ["Advace Amount", (rent)*0.1, "", ""],
+      ["Advace Amount", (rent)/2, "", ""],
       ["Selected Date", selectedDate.toDateString(), "", ""],
     ];
   
@@ -172,7 +172,7 @@ function CateringSingle() {
         setMenu(Catorsingle.menu);
         setaddress(Catorsingle.address);
         setId(Catorsingle.VendorId);
-  const amountpay=(Catorsingle.rent)*0.1
+  const amountpay=(Catorsingle.rent)/2
   
   setAmountpay(amountpay)
         setloading(false);
@@ -267,7 +267,7 @@ function CateringSingle() {
                     </p>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Advace Amount:</span>{" "}
-                      {(rent)*0.1}
+                      {(rent)/2}
                     </p>
                     <p class="mt-0.5  text-black text-sm">
                       <span className="text-red-900 font-extrabold">Address:</span>{" "}
@@ -388,7 +388,7 @@ function CateringSingle() {
                       <PayPalButtons
                         createOrder={(data, actions) => {
                           return actions.order.create({
-                            purchase_units: [{ amount: { value:rent*0.1 } }],
+                            purchase_units: [{ amount: { value:rent/2} }],
                           });
                         }}
                         onApprove={async (data, actions) => {
