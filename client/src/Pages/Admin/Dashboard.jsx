@@ -27,7 +27,7 @@ function Dashboard() {
         },
       });
 
-
+console.log(response,'8888888');
       setDashboardData(response.data);
  
     } catch (error) {
@@ -40,11 +40,11 @@ function Dashboard() {
     const data = [
       {
         day:"MakeUp",
-        degress:dashboardData?.MakeCount
+        degress:dashboardData?.makecount
       },
       {
         day: "Catering",
-        degress: dashboardData?.CaterCount
+        degress: dashboardData?.catercount
       },
       {
         day: "Venue",
@@ -62,6 +62,7 @@ function Dashboard() {
         day: "Total Managers",
         degress: dashboardData?.admin
       },
+     
       
     ];
   
@@ -125,7 +126,7 @@ function Dashboard() {
       {
         id: "make",
         label: "make",
-        value: dashboardData?.makeBookings,
+        value: dashboardData?.MakeBookings,
         color: "hsl(80, 70%, 50%)",
       },
 

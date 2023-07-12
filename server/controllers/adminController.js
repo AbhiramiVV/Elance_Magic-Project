@@ -582,7 +582,7 @@ DeleteMakeup:async (req,res)=>{
 
 
 getAdmin:async(req,res)=>{
-  const countuser=await User.find({}).count()
+  const countuser=await userModels.find({}).count()
  
   const venuecount=await Venue.find({}).count()
   const venue=await Venue.find()
@@ -592,7 +592,7 @@ getAdmin:async(req,res)=>{
  const Decorcount=await Decorcollection.find({}).count()
  const admin=await adminModels.find().count()
  const decor=await Decorcollection.find()
- const user=await user.find()
+ const user=await userModels.find()
  const photo = await photographer.find();
  const makecount=await Makeupcollection.find({}).count()
  const make=await Makeupcollection.find()
@@ -641,7 +641,7 @@ getAdmin:async(req,res)=>{
  
    const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings
  
-   res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings})
+   res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,CaterBookings,VenueBookings,TotalRevenue,MakeBookings})
   },
  adminChats:async(req,res)=>{
   try{
