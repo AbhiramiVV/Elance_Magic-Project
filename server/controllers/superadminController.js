@@ -213,7 +213,7 @@ getAdmin:async(req,res)=>{
    const makeOrder= await MakeBook.find({Paid:true}).count();
    const decorOrder= await DecorBook.find({Paid:true}).count()
    const Orders=photoOrder+venueOrder+caterOrder+makeOrder+decorOrder
-   console.log(Orders,'8888888888888888');
+
   
  const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings 
  res.status(200).json({Orders,venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings,CaterBookings})
