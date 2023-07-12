@@ -13,6 +13,7 @@ export const useLogin = () => {
 
     try {
       const response = await axios.post('/login', { email, password })
+      console.log(response,'888888888888');
       const json = response.data.json
       const userExist=response.data.userExist
       // save the user to the local storage
