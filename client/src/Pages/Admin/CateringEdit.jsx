@@ -7,7 +7,7 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 function CateringEdit() {
     const {id}=useParams();
     const{admin}=useAuthContext()
-      //const history = useHistory();
+   
       const Navigate=useNavigate()
       
       console.log(id)

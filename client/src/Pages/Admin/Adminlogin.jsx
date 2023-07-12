@@ -16,10 +16,8 @@ function Adminlogin() {
 
 
     const loginAdmin = async (e) => {
-        console.log('111111111111111111');
         e.preventDefault();
         try {
-          console.log('hjsjhjhj');
           const response =await login(email, password);
           
           const { success, token, message } = response.data;
