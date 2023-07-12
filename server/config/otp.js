@@ -39,8 +39,8 @@ approvedMail:(email,name)=> {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
+      user: 'abhiramivv77@gmail.com',
+      pass: 'spcanujclhwpdaaj'
     }
 });
 var mailOptions = {
@@ -70,8 +70,8 @@ transporter.sendMail(mailOptions,(err,res)=>{
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
+      user: 'abhiramivv77@gmail.com',
+      pass: 'spcanujclhwpdaaj'
     }
 });
 var mailOptions = {

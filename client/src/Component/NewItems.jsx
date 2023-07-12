@@ -1,5 +1,5 @@
 import React from 'react';
-import NewItemsSlider from '../Component/NewItemsSlider'
+import NewItemsSlider from './NewItemsSlider'
 import logo from '../assets/logo.jpg'
 
 import { newInStore } from '../data';

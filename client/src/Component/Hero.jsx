@@ -1,6 +1,6 @@
 import React from 'react';
 import { hero } from '../data';
-import Stats from '../Component/Stats';
+import Stats from './Stats';
 import logo from '../assets/logo.jpg';
 
 const Hero = () => {

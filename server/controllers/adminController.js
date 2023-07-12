@@ -27,12 +27,12 @@ const createToken = (_id) => {
 
 module.exports = {
 login: async (req, res) => {
-    console.log(req.body,'body');
+
     try {
       const { email, password } = req.body;
 
       const adminExist = await adminModels.findOne({ email: email });
-        console.log(adminExist,'+++++++');
+       
 
       if (adminExist) {
 
