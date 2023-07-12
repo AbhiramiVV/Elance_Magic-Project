@@ -48,7 +48,7 @@ function Superadminbar() {
       </Link>
         ))
       }
-       <Link to="/superadmin/" className="flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md">
+       <Link to="/superadmin" className="flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md">
              <IoIosLogOut/>
               <h2 onClick={handlelogout}>Logout</h2>
             </Link>
