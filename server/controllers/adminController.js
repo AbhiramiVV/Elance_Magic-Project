@@ -242,7 +242,7 @@ addVenue : async (req, res) => {
 Deletecat:async (req, res) => {
   const id = req.params.id;
   try {
-    await Venuecat.findByIdAndDelete(id);
+    await venueCategory.findByIdAndDelete(id);
     res.status(200).json({ message: "Venue category deleted successfully." });
   } catch (error) {
     console.log(error);
@@ -555,6 +555,7 @@ singleMakeup:async (req, res) => {
   }
 },
 updateMake:async (req, res) => {
+  console.log(req.body,'8888888888888');
   try {
     console.log(req.body);
     const Makeupnew = await Makeupcollection.findByIdAndUpdate(req.params.id, req.body, {

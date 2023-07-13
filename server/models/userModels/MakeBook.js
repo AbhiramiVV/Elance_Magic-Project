@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const MakeBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', 
+        ref: 'userDetails', 
     },
     MakeId: {
         type: mongoose.Schema.Types.ObjectId,

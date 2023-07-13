@@ -3,7 +3,7 @@ const Decor=require('../admin/Decoration')
 const DecorBookSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // change type to ObjectId
-        ref: 'User', 
+        ref: 'userDetails', 
     },
     DecorId: {
         type: mongoose.Schema.Types.ObjectId, 

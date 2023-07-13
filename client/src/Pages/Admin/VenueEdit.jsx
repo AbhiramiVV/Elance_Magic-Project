@@ -21,6 +21,7 @@ function VenueEdit() {
     const [mobile, setmobile] = useState("");
     const [rent, setRent] = useState("");
     const [image, setImage] = useState([]);
+    const [uploadedImages, setUploadedImages] = useState([]);
 
 
     useEffect(()=>{
@@ -41,7 +42,7 @@ function VenueEdit() {
             setmobile(Venue.mobile)
             setType(Venue.type)
             setRent(Venue.rent)
-            setImage(Venue.image)
+            setImage(Venue.uploadedImages)
         }
         fetchadmin();
         
@@ -50,8 +51,7 @@ function VenueEdit() {
 
 const updateVenue=async(e)=>{
     e.preventDefault()
-    const updateVenue={name,email,mobile,type,rent,address,location, description,image,seats};
-    console.log(updateVenue);
+    const updateVenue={name,email,mobile,type,rent,address,location, description,uploadedImages,seats};
     await axios.put(`/vendor/venuEdit/${id}`,updateVenue)
     Navigate("/vendor/venueDisplay")
     
@@ -279,16 +279,14 @@ const updateVenue=async(e)=>{
                             Upload Image
                           </label>
                           <input
-                            type="file"
-                            id="image"
-                            
-                            name="image"
-                            accept="image/*"
-                            multiple={true}
-        
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
-                          
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  multiple={true}
+  onChange={(e) => setUploadedImages(Array.from(e.target.files))}
+  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+/>
                         </div>
                       </div>
                     </div>

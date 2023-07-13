@@ -18,7 +18,7 @@ function Venuesingle() {
   const [location, setlocation] = useState("");
   const [rent, setRent] = useState("");
   const [image, setImage] = useState("");
-console.log(image,'55555555555555555');
+
   useEffect(() => {
     const viewvenueSingle = async () => {
       try {
@@ -63,7 +63,7 @@ console.log(image,'55555555555555555');
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
+                   src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
@@ -114,26 +114,26 @@ console.log(image,'55555555555555555');
             <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
               <div class=" rounded-lg overflow-hidden">
               <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
+                   src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
                 
                     alt="Avatar"
                   />
               </div>
               <div class="rounded-lg overflow-hidden">
               <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`}
+                   src={`http://localhost:5000/uploads/${image?.files[1]?.filename}`}
                  
                     alt="Avatar"
                   />              </div>
               <div class=" rounded-lg overflow-hidden">
               <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
+                   src={`http://localhost:5000/uploads/${image?.files[2]?.filename}`}
                    
                     alt="Avatar"
                   />              </div>
               <div class="rounded-lg overflow-hidden">
               <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
+                   src={`http://localhost:5000/uploads/${image?.files[3]?.filename}`}
                
                     alt="Avatar"
                   />              </div>

@@ -9,8 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Order() {
   const { superadmin } = useAuthContext();
-  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [data, setData] = useState(null);
 
   const getOrders = async () => {
     try {
@@ -19,61 +20,163 @@ function Order() {
           Authorization: `${superadmin.token}`,
         },
       });
+
       const data = response.data;
-      const mergedOrders = Object.values(data).flat();
-      setOrders(mergedOrders);
+    
+      setData(data);
       setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
-console.log(orders,'8888888888888');
+
   useEffect(() => {
     getOrders();
   }, []);
 
-  const handleBlock = async (id) => {
-    // Your block/unblock logic goes here
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  
   };
 
-  const columns = [
-    {
-      name: "#",
-      cell: (row, index) => <div>{index + 1}</div>,
-    },
-    {
-        name: "Manager Id",
-        selector: (row) => row._id ,
-        sortable: true,
-      },
-    {
-      name: "User Id",
-      selector: (row) => row.userId ,
-      sortable: true,
-    },
-    {
-      name: "Date For Booking",
-      selector: (row) => row.Date,
-      sortable: true,
-    },
-    {
-      name: "Payment Status",
-      cell: (row) => (
-        <div>{row.Paid ? "Paid" : "Not Paid"}</div>
-      ),
+  const getColumns = () => {
+    if (selectedCategory === "photo") {
+      return [
+        {
+          name: "#",
+          cell: (row, index) => <div>{index + 1}</div>,
+        },
+        {
+          name: "Name of Customer",
+          cell: (row) => <div>{row.userId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Name Of Management Team",
+          cell: (row) => <div>{row.PhotoId.pname}</div>,
+          sortable: true,
+        },
+        {
+          name: "Date of Event",
+          cell: (row) => <div>{row.Date}</div>,
+          sortable: true,
+        },
+        {
+          name: "Payment Amount",
+          cell: (row) => <div>{row.PhotoId.rate}</div>,
+          sortable: true,
+        },
+      ];
+    } else if (selectedCategory === "cater") {
+      return [
+        {
+          name: "#",
+          cell: (row, index) => <div>{index + 1}</div>,
+        },
+        {
+          name: "Name of Customer",
+          cell: (row) => <div>{row.userId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Name Of Management Team",
+          cell: (row) => <div>{row.CaterId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Date of Event",
+          cell: (row) => <div>{row.Date}</div>,
+          sortable: true,
+        },
+        {
+          name: "Payment Amount",
+          cell: (row) => <div>{row.CaterId.rent}</div>,
+          sortable: true,
+        },
+      ];
+    } else if (selectedCategory === "make") {
+      return [
+        {
+          name: "#",
+          cell: (row, index) => <div>{index + 1}</div>,
+        },
+        {
+          name: "Name of Customer",
+          cell: (row) => <div>{row.userId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Name Of Management Team",
+          cell: (row) => <div>{row.MakeId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Date of Event",
+          cell: (row) => <div>{row.Date}</div>,
+          sortable: true,
+        },
+        {
+          name: "Payment Amount",
+          cell: (row) => <div>{row.MakeId.rent}</div>,
+          sortable: true,
+        },
+      ];
+    } else if (selectedCategory === "decor") {
+      return [
+        {
+          name: "#",
+          cell: (row, index) => <div>{index + 1}</div>,
+        },
+        {
+          name: "Name of Customer",
+          cell: (row) => <div>{row.userId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Name Of Management Team",
+          cell: (row) => <div>{row.DecorId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Date of Event",
+          cell: (row) => <div>{row.Date}</div>,
+          sortable: true,
+        },
+        {
+          name: "Payment Amount",
+          cell: (row) => <div>{row.DecorId.rent}</div>,
+          sortable: true,
+        },
+      ];
+    } else if (selectedCategory === "venue") {
+      return [
+        {
+          name: "#",
+          cell: (row, index) => <div>{index + 1}</div>,
+        },
+        {
+          name: "Name of Customer",
+          cell: (row) => <div>{row.userId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Name Of Management Team",
+          cell: (row) => <div>{row.VenueId.name}</div>,
+          sortable: true,
+        },
+        {
+          name: "Date of Event",
+          cell: (row) => <div>{row.Date}</div>,
+          sortable: true,
+        },
+        {
+          name: "Payment Amount",
+          cell: (row) => <div>{row.VenueId.rent}</div>,
+          sortable: true,
+        },
+      ];
     }
-    // {
-    //   name: "Block",
-    //   cell: (row) => (
-    //     <button
-    //       onClick={() => handleBlock(row._id)}
-    //       className={`${row.isBlocked ? 'bg-green-700' : 'bg-red-700'} text-white font-bold py-2 px-4 rounded-full`}
-    //     >
-    //       {row.isBlocked ? 'Unblock' : 'Block'}
-    //     </button>
-    //   ),
-    // },
-  ];
+  };
 
   return (
     <>
@@ -81,29 +184,78 @@ console.log(orders,'8888888888888');
         <div className='flex gap-24 mx-auto'>
           <Superadminbar />
           <div className='d-flex w-8/12 flex-column align-items-center'>
-            {/* Add your search input and button here */}
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  selectedCategory === "photo" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleCategoryClick("photo")}
+                disabled={selectedCategory === "photo"}
+              >
+                Photo
+              </button>
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  selectedCategory === "cater" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleCategoryClick("cater")}
+                disabled={selectedCategory === "cater"}
+              >
+                Cater
+              </button>
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  selectedCategory === "make" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleCategoryClick("make")}
+                disabled={selectedCategory === "make"}
+              >
+                Makeup
+              </button>
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  selectedCategory === "decor" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleCategoryClick("decor")}
+                disabled={selectedCategory === "decor"}
+              >
+                Decoration
+              </button>
+              <button
+                className={`bg-black text-white font-bold py-2 px-4 rounded-full ${
+                  selectedCategory === "venue" ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => handleCategoryClick("venue")}
+                disabled={selectedCategory === "venue"}
+              >
+                Venue
+              </button>
+            </div>
             {loading ? (
               <div className="loader-container absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
                 <ClipLoader color={"#808080"} size={150} />
               </div>
             ) : (
               <div>
-                <Basetable
-                  columns={columns}
-                  data={orders}
-                  title={"ORDERS"}
-                  pagination
-                  fixedHeader
-                  highlightOnHover
-                  subHeader
-                  subHeaderComponent={
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black"
-                    />
-                  }
-                />
+                {selectedCategory && (
+                  <Basetable
+                    key={selectedCategory}
+                    columns={getColumns()}
+                    data={data[selectedCategory]}
+                    title={selectedCategory}
+                    pagination
+                    fixedHeader
+                    highlightOnHover
+                    subHeader
+                    subHeaderComponent={
+                      <input
+                        type="text"
+                        placeholder="Search"
+                        className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black"
+                      />
+                    }
+                  />
+                )}
               </div>
             )}
           </div>

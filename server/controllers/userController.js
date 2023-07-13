@@ -66,6 +66,9 @@ module.exports = {
       }
     } catch (error) {
       console.log("error", error);
+      return res.status(500).json({ err: true, message: 'Internal server error' });
+
+
     }
   },
    verifyUserSignup:async(req,res)=>{
@@ -150,6 +153,8 @@ postResend: async (req, res) => {
       }
     } catch (error) {
       console.log(error);
+      return res.status(500).json({ err: true, message: 'Internal server error' });
+
     }
   },
   forgotPassword :async (req, res) => {
@@ -177,6 +182,8 @@ postResend: async (req, res) => {
   }
 }catch(err){
     console.log(err);
+    return res.status(500).json({ err: true, message: 'Internal server error' });
+
   }
   },
 
@@ -229,7 +236,9 @@ photodisplay : async (req, res) => {
     try {
       const photo = await photographer.find({});
       res.status(201).json({ data: photo });
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json("Server error. Please contact the developer.");
+    }
   },
   singlePhoto :async (req, res) => {
     try {
@@ -238,13 +247,17 @@ photodisplay : async (req, res) => {
       res.status(201).json(photosingle);
     } catch (error) {
       console.log("Error occurred in single view of photographer", error);
+      res.status(500).json("Server error. Please contact the developer.");
     }
   },
 Decordisplay : async (req, res) => {
     try {
       const Decoration = await Decorcollection.find({});
       res.status(201).json({ data: Decoration });
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json("Server error. Please contact the developer.");
+
+    }
   },
   singleDecor :async (req, res) => {
     try {

@@ -30,7 +30,7 @@ const VenuecatAdd=()=> {
             }) .then((response) => {
               console.log(response);
               if (response.data.message) {
-                Navigate("/admin/Venueview");
+                Navigate("/vendor/Venueview");
               }
             });
             

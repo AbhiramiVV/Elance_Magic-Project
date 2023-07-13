@@ -59,9 +59,9 @@ function Venusingle() {
       typeof value === 'string' ? value.split(',') : value,
     );
   };
+  const navigate=useNavigate();
   const { id } = useParams();
   const { user } = useAuthContext();
-  console.log(id);
   const [selectedDate, setSelectedDate] = useState(null);
   const [loading, setloading] = useState(true);
   const [name, setname] = useState("");
@@ -119,8 +119,10 @@ function Venusingle() {
       })
       console.log(response.data.message)
       console.log(response.data.status)
+      
       toast.success(response.data.message);
       generateInvoice(name, description, type, rent, selectedDate);
+      navigate("/success");
      
   } catch (error) {}
 };
@@ -186,7 +188,7 @@ setAmountpay(amountpay)
    
     viewVenueSingle();
   }, [id]);
-  const navigate=useNavigate();
+ 
   const senderId=user.userExist._id;
 
 const chatHandler = async () => {
@@ -287,7 +289,7 @@ console.error(error);
                   </p>
                 </div>
               </div>
-<div className="flex flex-col items-center justify-center mt-2">
+              <div className="flex flex-col items-center justify-center mt-2">
                       <DatePicker
                         selected={selectedDate}
                         name='date'

@@ -121,11 +121,18 @@ console.log(adminstatus);
 
 Order: async (req, res) => {
   try {
-    const photo = await PhotoBook.find({ Paid: true }).populate("PhotoId");
-    const venue= await VenueBook.find({Paid:true}).populate("VenueId");
-    const cater= await CaterBook.find({Paid:true}).populate("CaterId");
-    const make= await MakeBook.find({Paid:true}).populate("MakeId");
-    const decor= await DecorBook.find({Paid:true}).populate("DecorId");
+    const photo= await PhotoBook.find({ Paid: true })
+    .populate('userId', 'name ') 
+    .populate('PhotoId', 'pname rate');
+  
+    const venue= await VenueBook.find({Paid:true}).populate("userId","name")
+    .populate("VenueId","name rent");
+    const cater= await CaterBook.find({Paid:true}).populate("userId","name")
+    .populate("CaterId","name rent");
+    const make= await MakeBook.find({Paid:true}).populate("userId","name")
+    .populate("MakeId","name rent");
+    const decor= await DecorBook.find({Paid:true}).populate("userId","name")
+    .populate("DecorId","name rent");
    
     res.status(200).json({ photo,venue,cater,make,decor});
   } catch (error) {

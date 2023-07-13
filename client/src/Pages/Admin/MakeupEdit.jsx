@@ -18,6 +18,7 @@ function MakeupEdit() {
       const [mobile, setmobile] = useState("");
       const [rent, setRent] = useState("");
       const [image, setImage] = useState([]);
+      const [uploadedImages, setUploadedImages] = useState([]);
       useEffect(()=>{
           const fetchadmin=async()=>{
               const response = await axios.get(`/vendor/singleMakeup/${id}`,{
@@ -33,7 +34,7 @@ function MakeupEdit() {
               setmobile(Make.mobile)
               setType(Make.type)
               setRent(Make.rent)
-              setImage(Make.image)
+              setImage(Make.uploadedImages)
           }
           fetchadmin();
           
@@ -42,7 +43,8 @@ function MakeupEdit() {
   
   const updateMake=async(e)=>{
       e.preventDefault()
-      const updateMake={name,email,mobile,type,rent,image};
+      const updateMake={name,email,mobile,type,rent,uploadedImages};
+  
       await axios.put(`/vendor/makeedit/${id}`,updateMake)
       Navigate("/vendor/makeup")
       
@@ -207,16 +209,15 @@ function MakeupEdit() {
                               Upload Image
                             </label>
                             <input
-                              type="file"
-                              id="image"
-                              
-                              name="image"
-                              accept="image/*"
-                              multiple={true}
-          
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
-                            
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  multiple={true}
+  onChange={(e) => setUploadedImages(Array.from(e.target.files))}
+  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+/>
+   
                           </div>
                         </div>
                       </div>

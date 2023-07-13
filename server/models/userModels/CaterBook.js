@@ -4,7 +4,7 @@ const Catering = require('../admin/catering');
 const CaterBookSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'userDetails',
   },
   CaterId: {
     type: mongoose.Schema.Types.ObjectId,

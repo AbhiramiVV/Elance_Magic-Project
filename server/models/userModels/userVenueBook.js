@@ -3,7 +3,7 @@ const Venue=require('../admin/Venue')
 const VenueBookSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'userDetails',
   },
   VenueId: {
     type: mongoose.Schema.Types.ObjectId,

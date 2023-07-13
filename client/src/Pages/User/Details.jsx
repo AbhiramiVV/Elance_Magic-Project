@@ -198,7 +198,7 @@ function Details() {
                           <td className="px-4 py-3">
                             {booking.PhotoId.rate}
                             <br />
-                            (paid={booking.PhotoId.rate * 0.1})
+                            (paid={booking.PhotoId.rate / 2})
                           </td>
 
                           <td className="px-4 py-3">

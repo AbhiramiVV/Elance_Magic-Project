@@ -7,8 +7,8 @@ module.exports={
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'abhiramivv77@gmail.com',
-        pass: 'spcanujclhwpdaaj'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
       }
   });
   var mailOptions = {
@@ -39,8 +39,8 @@ approvedMail:(email,name)=> {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'abhiramivv77@gmail.com',
-      pass: 'spcanujclhwpdaaj'
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
     }
 });
 var mailOptions = {
@@ -70,8 +70,8 @@ transporter.sendMail(mailOptions,(err,res)=>{
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'abhiramivv77@gmail.com',
-      pass: 'spcanujclhwpdaaj'
+      user: process.env.EMAIL,
+        pass: process.env.PASSWORD
     }
 });
 var mailOptions = {
@@ -109,12 +109,12 @@ transporter.sendMail(mailOptions,(err,res)=>{
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'abhiramivv77@gmail.com',
-        pass: 'spcanujclhwpdaaj'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
       }
     });
     let mailDetails = {
-      from: 'abhiramivv77@gmail.com',
+      from: process.env.EMAIL,
       to: email,
       subject: 'Enlance Magico',
       html: `<p>Your ${bookItem} has been cancelled. For a refund of your payment, please contact this number: 8606301771</p>`

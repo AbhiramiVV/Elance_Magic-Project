@@ -11,6 +11,7 @@ const ChatRoutes=require('./routes/ChatRouter.js')
 const MessageRoutes=require('./routes/MessageRouter.js')
 const morgan = require('morgan');
 const app = express();
+require('dotenv').config()
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
