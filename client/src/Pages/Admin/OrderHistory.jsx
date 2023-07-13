@@ -23,7 +23,6 @@ function OrderHistory() {
         });
   
         const data = response.data;
-      console.log(data,'8888888888888');
         setData(data);
         setLoading(false);
       } catch (error) {
