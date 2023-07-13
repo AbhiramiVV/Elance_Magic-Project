@@ -644,6 +644,26 @@ getAdmin:async(req,res)=>{
  
    res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,CaterBookings,VenueBookings,TotalRevenue,MakeBookings})
   },
+  orderAdmin: async (req, res) => {
+    try {
+      const photo= await PhotoBook.find({ Paid: true })
+      .populate('userId', 'name ') 
+      .populate('PhotoId', 'pname rate');
+      const venue= await VenueBook.find({Paid:true}).populate("userId","name")
+      .populate("VenueId","name rent");
+      const cater= await CaterBook.find({Paid:true}).populate("userId","name")
+      .populate("CaterId","name rent");
+      const make= await MakeBook.find({Paid:true}).populate("userId","name")
+      .populate("MakeId","name rent");
+      const decor= await DecorBook.find({Paid:true}).populate("userId","name")
+      .populate("DecorId","name rent");
+     
+      res.status(200).json({ photo,venue,cater,make,decor});
+    } catch (error) {
+      console.error(error); // Log the error for debugging purposes
+      res.status(404).json({ error: "Internal Server Error" });
+    }
+  },
  adminChats:async(req,res)=>{
   try{
       const chat = await ChatModel.find({
@@ -678,6 +698,9 @@ getVendor:async(req,res)=>{
   }catch (error){
     res.status(500).json(error)
   }
-}
+},
 
+hello:(req,res)=>{
+res.send('sgafg')
+}
 }

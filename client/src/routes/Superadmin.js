@@ -8,7 +8,6 @@ import Individualview from '../Pages/Superadmin/Individualview';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import { Navigate } from 'react-router-dom';
 import PageNotFound from '../Component/PageNotFound';
-import TransactionTable from '../Pages/Superadmin/TransactionTable';
 import CustomerView from  '../Pages/Superadmin/CustomerView'
 import Order from '../Pages/Superadmin/Order';
 function Superadmin() {
@@ -23,7 +22,6 @@ function Superadmin() {
         <Route path='/getadmin'  element={superadmin?<Adminview/>:<Superlogin/>}/>
         <Route path='/editadmin/:id'  element={superadmin?<AdminEdit/>:<Superlogin/>}/>
         <Route path='/singleview/:id'  element={superadmin?<Individualview/>:<Superlogin/>}/>
-        <Route path='/transaction' element={superadmin?<TransactionTable/>:<Superlogin/>}/>
         <Route path='/orders' element={superadmin?<Order/>:<Superlogin/>}/>
         <Route path="*" element={<PageNotFound />} />
        

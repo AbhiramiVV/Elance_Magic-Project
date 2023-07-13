@@ -31,6 +31,7 @@ import MakeupAdd from '../Pages/Admin/makeupAdd';
 import MakeupView from '../Pages/Admin/makeupView';
 import MakeupEdit from '../Pages/Admin/MakeupEdit';
 import ChatAdmin from '../Pages/Admin/Chat/ChatAdmin';
+import OrderHistory from '../Pages/Admin/OrderHistory';
  
 
 function Admin() {
@@ -67,6 +68,8 @@ function Admin() {
         <Route path='/singleMakeup/:id' element={admin?<MakeupView/>:<Adminlogin/>}/>
         <Route path='/makeupEdit/:id'  element={admin?<MakeupEdit/>:<Adminlogin/>}/>
         <Route path='/chat'  element={admin?<ChatAdmin/>:<Adminlogin/>}/>
+        <Route path='/order'  element={admin?<OrderHistory/>:<Adminlogin/>}/>
+
 
         <Route path="*" element={<PageNotFound />} />
        </Routes>

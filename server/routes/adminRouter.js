@@ -4,12 +4,11 @@ const upload = require("../utility/multer");
 const multiUpload = require("../utility/multiUpload");
 const admin = require("../controllers/adminController");
 const adminAuth = require("../middleware/adminAuth");
-//router.use(adminAuth)
 
 router.post("/vendor", admin.login);
 router.post("/vendorSignup", upload.single("file"), admin.postSignup);
 router.post("/otp", admin.verifyvendorSignup);
-
+router.use(adminAuth)
 router.get("/providerDetails/:id", admin.providerDetails);
 router.post("/removeService", admin.removeService);
 router.post("/addService/:id", admin.addService);
@@ -43,7 +42,7 @@ router.post("/addMakeup", multiUpload, admin.makeupAdd);
 router.get("/singleMakeup/:id", admin.singleMakeup);
 router.put("/makeedit/:id", multiUpload,admin.updateMake);
 router.delete("/makeup/:id", admin.DeleteMakeup);
-
+router.get("/orderDetails", admin.orderAdmin);
 router.get("/getall", admin.getAdmin);
 router.get("/:vendorId", admin.adminChats);
 router.get("/vendorchat/:vendorId", admin.fetchVendor);

@@ -15,7 +15,6 @@ export const useAdminLogin = () => {
     try {
       console.log(email,password)
       const response = await axios.post('/vendor/vendor', { email,password})
-      console.log(response.data,'34567');
       const json = response.data.json
       const adminExist=response.data.adminExist
       console.log(response.data)

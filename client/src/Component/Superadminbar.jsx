@@ -21,8 +21,7 @@ function Superadminbar() {
         {name:"Dashboard",link:'/superadmin/',icon:MdOutlineDashboard },
         {name:"Customers",link:'/superadmin/customerview',icon:FaUserAlt },
         {name:"Vendors",link:'/superadmin/getadmin',icon:FaUserTie },
-        {name:"Transaction",link:'/superadmin/transaction',  icon: FaExchangeAlt},
-        {name:"Orders",link:'/superadmin/orders',icon:FaClipboardList },
+        {name:"Transaction",link:'/superadmin/orders',icon: FaExchangeAlt },
      
       ];
       const [open,setOpen]=useState(true)
