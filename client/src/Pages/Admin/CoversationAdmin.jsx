@@ -4,24 +4,23 @@ import axios from "../../instance/axios"
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
 const CoversationAdmin = ({ data, currentUser, online, type }) => {
-
-    useEffect (()=>{
-        console.log("hhhhhhh");
-    })
     const [userData, setUserData] = useState(null)
+    const {admin}=useAuthContext();
 
-const {admin}=useAuthContext();
-    useEffect(() => {
+       
+    
+        useEffect(() => {
+    
+            const userId = data?.members?.find((id) => id !== currentUser)
+            const getUser = async()=>{
+                const response=await axios.get(`/vendor/vendorchat/${userId}`,{headers: {
+                    Authorization: `${admin.token}`,
+                  }})
+                setUserData(response.data.data[0])
+            }
+            getUser();
+        },[data,currentUser])
 
-        const userId = data?.members?.find((id) => id !== currentUser)
-        const getUser = async()=>{
-            const response=await axios.get(`/vendor/vendorchat/${userId}`,{headers: {
-                Authorization: `${admin.token}`,
-              }})
-            setUserData(response.data.data[0])
-        }
-        getUser();
-    },[data,currentUser])
   
     return (
         <>

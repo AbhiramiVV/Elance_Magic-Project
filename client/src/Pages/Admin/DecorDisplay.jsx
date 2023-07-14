@@ -14,7 +14,7 @@ function DecorDisplay() {
   const [Decor, setDecor] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [filteredAdmin, setFilteredAdmin] = useState([]);
   const fetchDecor = async () => {
     try {
       console.log(Decor);
@@ -24,9 +24,9 @@ function DecorDisplay() {
         },
       });
       const { message, data } = response.data;
-      console.log(response.data);
       console.log('Successful');
-      setDecor(data);
+      setDecor(data.reverse());
+      setFilteredAdmin(data);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching decor:', error);
@@ -64,7 +64,11 @@ function DecorDisplay() {
   useEffect(() => {
     fetchDecor();
   }, []);
-
+  useEffect(() => {
+    setFilteredAdmin(
+      Decor.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+    );
+  }, [search, admin]);
   const columns = [
     {
       name: '#',
@@ -132,7 +136,7 @@ function DecorDisplay() {
           ) : (
             <Basetable
               columns={columns}
-              data={Decor}
+              data={filteredAdmin}
               title={'DECOR MANAGEMENT'}
               pagination
               fixedHeader

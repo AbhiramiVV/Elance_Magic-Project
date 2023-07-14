@@ -36,6 +36,7 @@ function ChatBox({chat,currentUser, setSendMessage, receivedMessage,setReceiver}
                     const response= await axios.get(`/vendorchat/${users}`,{headers: {
                         Authorization: `${user.token}`,
                       }})
+                      
                       setUserData(response.data.data[0])
                 } catch (error) {
                     alert("No chat are available")
