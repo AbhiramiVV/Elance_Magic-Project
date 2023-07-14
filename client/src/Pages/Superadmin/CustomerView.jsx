@@ -12,6 +12,8 @@ import Superadminbar from '../../Component/Superadminbar'
 const CustomerView = () => {
 const {superadmin}=useAuthContext();
   const [customer, setCustomer] = useState([]);
+  const [search, setsearch] = useState('');
+  const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
  
     const getCustomer = async () => {
@@ -24,7 +26,9 @@ const {superadmin}=useAuthContext();
         const { message, data } = response.data;
         console.log(response.data);
         console.log('Successful');
-        setCustomer(data);
+        setCustomer(data.reverse());
+        setFilteredAdmin(data);
+
         setloading(false);
       } catch (error) {
         console.error(error);
@@ -34,6 +38,12 @@ const {superadmin}=useAuthContext();
     useEffect(() => {
     getCustomer();
   }, []);
+
+  useEffect(() => {
+    setFilteredAdmin(
+      customer.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+    );
+  }, [search, superadmin]);
   const handleBlock = async (id) => {
     try {
       const confirmResult = await Swal.fire({
@@ -134,7 +144,7 @@ const {superadmin}=useAuthContext();
   
                       <Basetable
                           columns={columns}
-                           data={customer}
+                           data={filteredAdmin}
                           title={"CUSTOMER MANAGEMENT"}
                           pagination
                           fixedHeader
