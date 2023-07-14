@@ -17,6 +17,7 @@ const Photoview=()=> {
   const[photographer,setPhotographer]=useState([])
   const [search, setsearch] = useState("");
   const [loading, setloading] = useState(true);
+  const [filteredAdmin, setFilteredAdmin] = useState([]);
 
   const fetchPhotographerView = async () => {
     try {
@@ -29,7 +30,8 @@ const Photoview=()=> {
       const { message, data } = response.data;
       console.log(response.data);
       console.log('Successful');
-       setPhotographer(data);
+       setPhotographer(data.reverse());
+       setFilteredAdmin(data);
          setloading(false);
     } catch (error) {
       console.error('Error fetching photographer view:', error);
@@ -67,7 +69,11 @@ const Photoview=()=> {
     fetchPhotographerView();
   }, []);
   
-  
+  useEffect(() => {
+    setFilteredAdmin(
+      photographer.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+    );
+  }, [search, admin]);
 
     const columns=[
       {
@@ -132,7 +138,7 @@ return (
             ) : (
                   <BaseTable
                       columns={columns}
-                       data={photographer}
+                       data={filteredAdmin}
                       title={"Photographer MANAGEMENT"}
                       pagination
                       fixedHeader

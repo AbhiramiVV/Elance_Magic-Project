@@ -30,8 +30,7 @@ function VenueDisplay() {
         const { message, data } = response.data;
         console.log(response.data);
         console.log('Successful');
-        setVenue(data);
-
+        setVenue(data.reverse());
         setFilteredAdmin(data);
 
       setloading(false);
@@ -153,7 +152,7 @@ return (
             ) : (
                   <Basetable
                       columns={columns}
-                       data={venue}
+                       data={filteredAdmin}
                       title={"VENUE MANAGEMENT"}
                       pagination
                       fixedHeader

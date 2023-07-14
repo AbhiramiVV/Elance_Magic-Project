@@ -28,7 +28,8 @@ const Venuecat=()=> {
           const { message, data } = response.data;
         console.log(response.data);
         console.log('Successful');
-         setVenuecat(data);
+         setVenuecat(data.reverse());
+         setFiltervenue(data);
             setloading(false);
 
         } catch (error) {
@@ -69,7 +70,11 @@ const Venuecat=()=> {
  useEffect(() => {
         fetchVenueCategories();
       }, []);
-
+      useEffect(() => {
+        setFiltervenue(
+          venuecat.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+        );
+      }, [search, admin]);
 
       const ImgURl='http://localhost:5000/uploads/'
 
@@ -125,7 +130,7 @@ const Venuecat=()=> {
 
                     <Basetable
                         columns={columns}
-                         data={venuecat}
+                         data={filtervenue}
                         title={"VENUE CATEGORY MANAGEMENT"}
                         pagination
                         fixedHeader

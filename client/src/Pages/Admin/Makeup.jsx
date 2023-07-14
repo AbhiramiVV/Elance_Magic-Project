@@ -28,7 +28,7 @@ const [loading, setloading] = useState(true);
       const { message, data } = response.data;
       console.log(response.data);
       console.log('Successful');
-      setMakeup(data);
+      setMakeup(data.reverse());
 
       setFilteredAdmin(data);
 
@@ -158,7 +158,7 @@ return (
           ) : (
                 <Basetable
                     columns={columns}
-                     data={makeup}
+                     data={filteredAdmin}
                     title={"CATERING MANAGEMENT"}
                     pagination
                     fixedHeader
