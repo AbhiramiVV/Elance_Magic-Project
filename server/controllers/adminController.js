@@ -493,7 +493,7 @@ viewCatering:async(req,res)=>{
   }
 },
 cateringAdd:async (req, res) => {
-
+console.log(req.body);
   try {
     await cateringcollection.create({
       VendorId:req.body.VendorId,
@@ -527,7 +527,6 @@ singleCatering :async (req, res) => {
 },
 updateCatering:async (req, res) => {
   try {
-    console.log(req.body);
     const Cateringnew = await cateringcollection.findByIdAndUpdate(req.params.id, {
       VendorId:req.body.VendorId,
       name: req.body.name,
@@ -571,8 +570,7 @@ MakeupView:async(req,res)=>{
 },
 makeupAdd: async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.files); 
+    
     await Makeupcollection.create({
       VendorId:req.body.VendorId,
       name: req.body.name,

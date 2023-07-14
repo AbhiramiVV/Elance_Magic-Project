@@ -47,8 +47,10 @@ function VenuecollectAdd() {
     try {
       const response = await axios.post("/vendor/addVenueside", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+  
+  
+      },
       });
       console.log(response);
       if (response.data.message) {

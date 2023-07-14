@@ -49,8 +49,10 @@ const [pdesc, setPdesc] = useState("");
       const response = await axios
         .post("/vendor/addPhotographer", formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+    
+    
+        },
         })
         .then((response) => {
           console.log(response);

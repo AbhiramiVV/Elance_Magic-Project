@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Adminsidebar from "../../Component/Adminsidebar";
 import axios from "../../instance/axios";
-
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
 
@@ -43,8 +42,10 @@ function CateringAdd() {
       try {
         const response = await axios.post("/vendor/addCatering", formData ,{
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+    
+    
+        },
         });
 
         if (response.data.message) {

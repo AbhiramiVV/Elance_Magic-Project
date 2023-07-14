@@ -39,8 +39,10 @@ function MakeupAdd() {
     try {
       const response = await axios.post("/vendor/addMakeup", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+  
+  
+      }
       });
 
       console.log(response);

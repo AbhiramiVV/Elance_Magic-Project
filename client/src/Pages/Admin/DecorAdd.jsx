@@ -37,8 +37,10 @@ const id=admin.adminExist._id;
     try {
       const response = await axios.post("/vendor/addDecor", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+  
+  
+      }
       });
 
       console.log(response);
