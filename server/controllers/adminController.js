@@ -441,7 +441,17 @@ singlePhotographer :async (req, res) => {
   try {
     const Photonew = await photographer.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      {
+        VendorId:req.body.VendorId,
+        pname: req.body.pname,
+        pdesc: req.body.pdesc,
+        pemail: req.body.pemail,
+        pmobile: req.body.pmobile,
+        paddress: req.body.paddress,
+        pexperiance: req.body.pexperiance,
+        rate: req.body.rate,
+        image: req.files,
+      },
       {
         new: true,
       }
