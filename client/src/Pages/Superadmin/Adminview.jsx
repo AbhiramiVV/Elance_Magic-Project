@@ -91,10 +91,7 @@ const Adminview = () => {
       name: "#",
       cell: (row, index) => <div>{index + 1}</div>,
     },
-    // {
-    //   name: "Image",
-    //   selector: (row) => <img width={90} height={90} src={row.image} />,
-    // },
+
     {
 			name: 'Company Name',
 			selector: row => row.companyname,
