@@ -17,7 +17,7 @@ function PhotoEdit() {
   const [paddress, setAddress] = useState("");
   const [pmobile, setmobile] = useState("");
   const [rent, setRent] = useState("");
-  const [image, setImage] = useState([]);
+  const [files, setFiles] = useState([]);
 
 
   useEffect(()=>{
@@ -31,7 +31,7 @@ function PhotoEdit() {
           setmobile(photo.pmobile)
           setExperiance(photo.pexperiance)
           setRent(photo.rate)
-          setImage(photo.image)
+          setFiles(photo.files)
       }
       fetchPhoto();
       
@@ -40,8 +40,13 @@ function PhotoEdit() {
 
 const updatePhoto=async(e)=>{
   e.preventDefault()
-  const updatePhoto={pname,pemail,pmobile,paddress,pexperiance,rent,image};
-  await axios.put(`/vendor/photoedit/${id}`,updatePhoto)
+  const updatePhoto={pname,pemail,pmobile,paddress,pexperiance,rent,files};
+  await axios.put(`/vendor/photoedit/${id}`,updatePhoto,{
+    headers: {
+      Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+
+
+  },})
   Navigate("/vendor/photographerview")
   
 }
@@ -196,15 +201,14 @@ return (
                           Upload Image
                         </label>
                         <input
-                          type="file"
-                          id="image"
-                          
-                          name="image"
-                          accept="image/*"
-                          multiple={true}
-      
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        />
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  multiple={true}
+  onChange={(e) => setFiles((e.target.files[0]))}
+  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+/>
                         
                       </div>
                     </div>
