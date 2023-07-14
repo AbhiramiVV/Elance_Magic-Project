@@ -63,8 +63,7 @@ function Decorsinglepage() {
   const { id } = useParams();
   const { user } = useAuthContext();
   const [selectedDate, setSelectedDate] = useState(new Date());
- 
-
+  const navigate=useNavigate();
   const [name, setname] = useState("");
   const [desc, setdesc] = useState("");
   const [type, setType] = useState("");
@@ -120,6 +119,8 @@ const[amountpay,setAmountpay]=useState(0)
       console.log(response.data.status)
       toast.success(response.data.message);
       generateInvoice(name, desc, type, rent, selectedDate);
+      navigate("/success");
+
      
   } catch (error) {}
 };
@@ -151,7 +152,6 @@ const generateInvoice = (name, desc, type, rent, selectedDate) => {
   // Save the PDF file
   doc.save('invoice.pdf');
 };
-const navigate=useNavigate();
 const senderId=user.userExist._id;
 
 const chatHandler = async () => {
@@ -363,7 +363,8 @@ setAmountpay(amountpay)
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.REACT_APP_ACCESS_KEY,
+                        
                       }}
                     >
                       <PayPalButtons
@@ -389,7 +390,9 @@ setAmountpay(amountpay)
                       <PayPalScriptProvider
                         options={{
                           "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                          process.env.REACT_APP_ACCESS_KEY,
+
+                          
                         }}
                       >
                         <PayPalButtons
