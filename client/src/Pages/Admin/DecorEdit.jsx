@@ -18,7 +18,7 @@ function DecorEdit() {
     const [manager, setmanager] = useState("");
     const [mobile, setmobile] = useState("");
     const [rent, setRent] = useState("");
-    const [image, setImage] = useState([]);
+    const [files, setFiles] = useState([]);
 
 
     useEffect(()=>{
@@ -36,7 +36,7 @@ function DecorEdit() {
             setmobile(Decor.mobile)
             setType(Decor.type)
             setRent(Decor.rent)
-            setImage(Decor.image)
+            setFiles(Decor.files)
         }
         fetchadmin();
         
@@ -46,7 +46,12 @@ function DecorEdit() {
 const updateDecor=async(e)=>{
     e.preventDefault()
     const updateDecor={name,email,mobile,type,rent,desc,image};
-    await axios.put(`/vendor/decoredit/${id}`,updateDecor)
+    await axios.put(`/vendor/decoredit/${id}`,updateDecor,{
+      headers: {
+        Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+
+
+    },})
     Navigate("/vendor/Decordisplay")
     
 }
@@ -229,15 +234,14 @@ const updateDecor=async(e)=>{
                             Upload Image
                           </label>
                           <input
-                            type="file"
-                            id="image"
-                            
-                            name="image"
-                            accept="image/*"
-                            multiple={true}
-        
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  multiple={true}
+  onChange={(e) => setFiles((e.target.files[0]))}
+  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+/>
                           
                         </div>
                       </div>
