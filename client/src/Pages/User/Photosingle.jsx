@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "../../instance/axios";
-import Header from "../../Component/Header";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Navigate } from "react-router-dom";
@@ -328,39 +329,20 @@ function Photosingle({}) {
             </div>
           </div>
 
-          <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
-            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-              <div class=" h-64 rounded-lg overflow-hidden">
-                <img
-                  class="object-cover"
-                  src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
-                  alt=""
-                />
-              </div>
-              <div class="w-full h-64 rounded-lg overflow-hidden">
-                <img
-                  class="object-cover"
-                  src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
-                  alt=""
-                />
-              </div>
-              <div class=" h-64 rounded-lg overflow-hidden">
-                <img
-                  class="  object-cover"
-                  src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
-                  alt=""
-                />
-              </div>
-              <div class=" h-64 rounded-lg overflow-hidden">
-                <img
-                  class="object-cover"
-                  src={`http://localhost:5000/uploads/${image[0]?.files[4]?.filename}`}
-                  alt=""
-                />
-              </div>
+          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
+            <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <Carousel showThumbs={false}>
+                {image[0]?.files.slice(1).map((file, index) => (
+                  <div key={index}>
+                    <img
+                      src={`http://localhost:5000/uploads/${file.filename}`}
+                      alt={`Carousel Item ${index}`}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
-
           {modal && (
             <div className="fixed z-20 inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
               <div className="bg-white p-2 rounded w-96 m-5">

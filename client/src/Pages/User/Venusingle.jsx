@@ -4,6 +4,8 @@ import { NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "../../instance/axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Theme, useTheme } from '@mui/material/styles';
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import FormControl from '@mui/material/FormControl';
@@ -344,35 +346,19 @@ console.error(error);
           </div>
 
 
-          <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
-            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src={`http://localhost:5000/uploads/${image?.files[1]?.filename}`}
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src={`http://localhost:5000/uploads/${image?.files[2]?.filename}`}
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src={`http://localhost:5000/uploads/${image?.files[3]?.filename}`}
-                  alt=""
-                />
-              </div>
+          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
+            <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <Carousel showThumbs={false}>
+                {Array.isArray(image.files) &&
+                  image.files.map((file, index) => (
+                    <div key={index}>
+                      <img
+                        src={file ? `http://localhost:5000/uploads/${file.filename}` : ''}
+                        alt={`Carousel Item ${index}`}
+                      />
+                    </div>
+                  ))}
+              </Carousel>
             </div>
           </div>
           {modal && (
