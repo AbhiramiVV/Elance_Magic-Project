@@ -296,9 +296,25 @@ singleVenue :async (req, res) => {
 },
 updateVenue : async (req, res) => {
   try {
-    const Venuenew = await venuecollection.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const Venuenew = await venuecollection.findByIdAndUpdate(
+      req.params.id,
+      {
+        VendorId: req.body.VendorId,
+        name: req.body.name,
+        description: req.body.description,
+        email: req.body.email,
+        manager: req.body.manager,
+        mobile: req.body.mobile,
+        location: req.body.location,
+        address: req.body.address,
+        seats: req.body.seats,
+        services: req.body.services,
+        rent: req.body.rent,
+        image: req.files,
+      },
+      { new: true }
+    );
+    
     if (!Venuenew) {
       return res.status(404).json({ message: "venue not found" });
     }

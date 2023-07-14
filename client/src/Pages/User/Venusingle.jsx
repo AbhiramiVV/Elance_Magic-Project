@@ -394,7 +394,7 @@ console.error(error);
                     <PayPalScriptProvider
                     options={{
                       "client-id":
-                      "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                      process.env.REACT_APP_ACCESS_KEY,
                     }}
                     >
                       <PayPalButtons
@@ -420,7 +420,7 @@ console.error(error);
                       <PayPalScriptProvider
                       options={{
                         "client-id":
-                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.REACT_APP_ACCESS_KEY,
                       }}
                       >
                         <PayPalButtons

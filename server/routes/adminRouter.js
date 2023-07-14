@@ -20,7 +20,7 @@ router.delete("/deletecat/:id", admin.Deletecat);
 router.get("/venuecollectView", admin.venuecollectview);
 router.post("/addVenueside", multiUpload, admin.VenuesideAdd);
 router.get("/singleVenue/:id", admin.singleVenue);
-router.put("/venuEdit/:id", upload.single("file"), admin.updateVenue);
+router.put("/venuEdit/:id", multiUpload, admin.updateVenue);
 router.delete("/deletevenue/:id", admin.Deletevenue);
 router.get("/Decorview", admin.Decorview);
 router.post("/addDecor", multiUpload, admin.Decoradd);

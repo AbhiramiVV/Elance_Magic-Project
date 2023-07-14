@@ -75,6 +75,7 @@ function Photosingle({}) {
   const [isExist, setExist] = useState(false);
   const [amountPay, setAmountpay] = useState(0);
   const [paymentOption, setPaymentOption] = useState("advance");
+  const navigate = useNavigate();
 
   const handleDateChange = async (date) => {
     setSelectedDate(date);
@@ -112,6 +113,8 @@ function Photosingle({}) {
 
       toast.success(response.data.message);
       generateInvoice(pname, pdesc, pemail, rate, selectedDate);
+      navigate("/success");
+
     } catch (error) {}
   };
   const generateInvoice = (pname, pdesc, pemail, rate, selectedDate) => {
@@ -168,7 +171,6 @@ function Photosingle({}) {
   useEffect(() => {
     viewPhotoSingle();
   }, [id]);
-  const navigate = useNavigate();
   const senderId = user.userExist._id;
 
   const chatHandler = async () => {
@@ -378,7 +380,8 @@ function Photosingle({}) {
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                       process.env.REACT_APP_ACCESS_KEY,
+                        
                       }}
                     >
                       <PayPalButtons
@@ -404,7 +407,8 @@ function Photosingle({}) {
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.REACT_APP_ACCESS_KEY,
+                        
                       }}
                     >
                       <PayPalButtons

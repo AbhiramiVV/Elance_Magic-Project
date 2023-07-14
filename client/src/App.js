@@ -11,6 +11,7 @@ import PageNotFound from "./Component/PageNotFound";
 
 
 function App() {
+    console.log(process.env);
     axios.defaults.withCredentials = true;
 return(
     <>
