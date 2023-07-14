@@ -61,7 +61,7 @@ function MakeupSingle() {
     const { id } = useParams();
     const { user } = useAuthContext();
     const [selectedDate, setSelectedDate] = useState(new Date());
-   
+    const navigate = useNavigate();
     const [Id,setId]= useState("");
     const [name, setname] = useState("");
     const [desc, setdesc] = useState("");
@@ -115,7 +115,7 @@ function MakeupSingle() {
         console.log(response.data.status)
         toast.success(response.data.message);
         generateInvoice(name, desc, type, rent, selectedDate);
-       
+        navigate("/success");
     } catch (error) {}
   };
 
@@ -176,7 +176,6 @@ function MakeupSingle() {
     useEffect(() => {
         viewMakeSingle();
     }, [id]);
-    const navigate = useNavigate();
     const senderId=user.userExist._id;
     const chatHandler = async () => {
       try{
@@ -364,7 +363,8 @@ function MakeupSingle() {
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.REACT_APP_ACCESS_KEY,
+
                       }}
                     >
                       <PayPalButtons
@@ -390,7 +390,8 @@ function MakeupSingle() {
                       <PayPalScriptProvider
                         options={{
                           "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                          process.env.REACT_APP_ACCESS_KEY,
+
                         }}
                       >
                         <PayPalButtons
