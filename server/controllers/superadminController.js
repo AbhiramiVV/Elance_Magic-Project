@@ -54,7 +54,6 @@ customerview :async (req, res) => {
 blockUser :async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id);
     const userStatus = await userModels.findById(id);
 
     if (userStatus.isBlocked === false) {
@@ -81,7 +80,6 @@ singleviewadmin :async (req, res) => {
   try {
     const { id } = req.params;
     const userindividual = await AdminSchema.findById({ _id: id });
-    console.log(userindividual);
     res.status(201).json(userindividual);
   } catch (error) {
     console.log("error");
@@ -100,15 +98,10 @@ singleviewadmin :async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 },
-
-
-
-
 blockAdmin:async (req, res) => {
 
   const id=req.params.id
   const adminstatus=await AdminSchema.findById(id);
-console.log(adminstatus);
   if (adminstatus.isBlocked===false){
   const isBlocked=await AdminSchema.findByIdAndUpdate(id,{isBlocked:true})
   res.json({success:true,message:"Admin blocked successfully"})
@@ -223,7 +216,6 @@ getAdmin:async(req,res)=>{
    const makeOrder= await MakeBook.find({Paid:true}).count();
    const decorOrder= await DecorBook.find({Paid:true}).count()
    const Orders=photoOrder+venueOrder+caterOrder+makeOrder+decorOrder
-
   
  const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings 
  res.status(200).json({Orders,venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings,CaterBookings})

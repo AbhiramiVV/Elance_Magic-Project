@@ -61,13 +61,11 @@ login: async (req, res) => {
     }
   },
   postSignup: async (req, res) => {
-    console.log(req.body,'00++++')
     try {
       
       const {companyName,description,phone,email,password,selectedPlace,personName,certificate} =req.body
     
       const vendorExist = await adminModels.findOne({ email: email});
-console.log(vendorExist,'vendor');
       if (vendorExist) {
         return res.status(200).json({
           message: "Already registered using this mobile number",
@@ -156,7 +154,6 @@ console.log(vendorExist,'vendor');
 providerDetails :async (req, res) => {
 
   try {
-    console.log(req.params.id);
     const id=req.params.id;
     const provider = await adminModels.findOne({ _id: id});
     res.status(200).json({ data: provider });
@@ -169,9 +166,7 @@ removeService:async(req,res)=>{
   {
     
     try {
-      console.log(name);
       await adminModels.updateOne({ _id:data._id},{ $pull: { category:name} }).then((response)=>{
-        console.log(response);
       })
       res.status(201).json({ message: "success" })
     } catch (error) {
@@ -185,7 +180,6 @@ addService :async (req, res) => {
   {
     try {
       await adminModels.updateOne({ _id:id}, { $push: { category: data} }).then((response)=>{
-        console.log(response);
       })
       res.status(201).json({ message: "success" })
     } catch (error) {
@@ -218,7 +212,6 @@ editProfilePatch: async (req, res) => {
  Venuecategory :async (req, res) => {
   try {
     const venue = await venueCategory.find();
-    console.log(venue);
     res.status(201).json({ data: venue });
   } catch (error) {}
 },
@@ -337,7 +330,6 @@ Deletevenue : async (req, res) => {
 Decorview :async (req, res) => {
   try {
     const allDecor = await Decorcollection.find();
-    console.log(allDecor);
     res.status(200).json({ data: allDecor, verified: true });
   } catch (error) {
     res.status(401).json({ err: "nothing to display" });
@@ -345,8 +337,6 @@ Decorview :async (req, res) => {
 },
 Decoradd : async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.files);
 
     
     await Decorcollection.create({
@@ -371,7 +361,6 @@ singleDecor :async (req, res) => {
   try {
     const { id } = req.params;
     const decorsingle = await Decorcollection.findById({ _id: id });
-    console.log(decorsingle);
     res.status(201).json(decorsingle);
   } catch (error) {
     console.log("Error occurred in single view of Decor", error);
@@ -592,7 +581,6 @@ makeupAdd: async (req, res) => {
 },
 singleMakeup:async (req, res) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const makeupsingle = await Makeupcollection.findById({ _id: id });
     res.status(201).json(makeupsingle);
@@ -639,7 +627,6 @@ DeleteMakeup:async (req,res)=>{
 
 getAdmin:async(req,res)=>{
   const countuser=await userModels.find({}).count()
- 
   const venuecount=await Venue.find({}).count()
   const venue=await Venue.find()
  const photocount=await photographer.find({}).count()
@@ -652,17 +639,10 @@ getAdmin:async(req,res)=>{
  const photo = await photographer.find();
  const makecount=await Makeupcollection.find({}).count()
  const make=await Makeupcollection.find()
-
-
-
- 
  let photoBookings = 0;
   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
    photoBookings =parseInt( data.PhotoId.rate)+photoBookings
  }))
- 
- 
- 
 
  let DecorBookings=0;
  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.forEach(data=>{
@@ -694,9 +674,6 @@ getAdmin:async(req,res)=>{
     }
    }))
 
-   
- 
- 
    const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings
  
    res.status(200).json({venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,CaterBookings,VenueBookings,TotalRevenue,MakeBookings})
@@ -757,7 +734,5 @@ getVendor:async(req,res)=>{
   }
 },
 
-hello:(req,res)=>{
-res.send('sgafg')
-}
+
 }

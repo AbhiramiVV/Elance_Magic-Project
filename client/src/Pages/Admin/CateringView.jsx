@@ -40,7 +40,6 @@ function CateringView() {
           setMenu(Cateringsingle.menu)
           setImage(Cateringsingle.image);
           setAddress(Cateringsingle.address)
-          console.log(Cateringsingle,'huhjhgghg');
         } catch (error) {
           console.log(error);
         }
