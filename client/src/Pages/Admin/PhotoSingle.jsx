@@ -98,7 +98,7 @@ console.log(image,'00000000000000');
          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
             <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
               <Carousel showThumbs={false}>
-                {image[0]?.files.slice(1).map((file, index) => (
+                {image[0]?.files.map((file, index) => (
                   <div key={index}>
                     <img
                       src={`http://localhost:5000/uploads/${file.filename}`}

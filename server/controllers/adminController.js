@@ -671,10 +671,12 @@ getAdmin:async(req,res)=>{
   }
  }))
  
- 
-   let VenueBookings=0;
-   await VenueBook.find().populate('VenueId','rent').then(datas=>datas.map(data=>{
-     VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
+ let VenueBookings=0;
+   await VenueBook.find().populate('VenueId','rent').then(datas=>datas.forEach(data=>{
+    if(data.VenueId && data.VenueId.rent){
+      VenueBookings=parseInt(data.VenueId.rent)+VenueBookings
+
+    }
    }))
  
    let CaterBookings = 0;
