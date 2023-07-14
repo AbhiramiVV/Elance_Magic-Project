@@ -28,7 +28,7 @@ const Adminview = () => {
       console.log(data);
 
       console.log("successful");
-      setadmin(data);
+      setadmin(data.reverse());
       setFilteredAdmin(data);
 
       toast(message);
@@ -78,16 +78,12 @@ const Adminview = () => {
   }, []);
 
 
-useEffect(() => {
-  if (admin && admin.length > 0) {
-    setFilteredAdmin(
-      admin.filter((adm) =>
-        adm.name && adm.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }
-}, [search, admin]);
 
+  useEffect(() => {
+    setFilteredAdmin(
+      admin.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+    );
+  }, [search, superadmin]);
 
 
   const columns = [
@@ -169,7 +165,7 @@ useEffect(() => {
             ) : (
               <BaseTable
                 columns={columns}
-                data={admin}
+                data={filteredAdmin}
                 title={"ADMIN MANAGEMENT"}
                 pagination
                 fixedHeader
