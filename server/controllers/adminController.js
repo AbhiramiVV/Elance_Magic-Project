@@ -379,7 +379,17 @@ singleDecor :async (req, res) => {
 },
 updateDecor :async (req, res) => {
   try {
-    const Decornew = await Decorcollection.findByIdAndUpdate(req.params.id, req.body, {
+    const Decornew = await Decorcollection.findByIdAndUpdate(req.params.id, {
+      VendorId:req.body.VendorId,
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      type:req.body.type,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      image:req.files,
+    }, {
       new: true,
     });
     if (!Decornew) {
