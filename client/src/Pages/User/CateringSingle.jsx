@@ -60,9 +60,8 @@ function CateringSingle() {
     );
   };
     const { id } = useParams();
-    
     const { user} = useAuthContext();
- 
+    const navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [name, setname] = useState("");
     const [desc, setdesc] = useState("");
@@ -180,7 +179,6 @@ function CateringSingle() {
         console.log(error);
       }
     };
-    const navigate = useNavigate();
     const senderId=user.userExist._id;
 
     const chatHandler = async () => {
