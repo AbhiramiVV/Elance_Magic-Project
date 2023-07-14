@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Adminsidebar from "../../Component/Adminsidebar";
 import { useParams } from "react-router-dom";
 import axios from "../../instance/axios";
@@ -87,37 +89,22 @@ function MakeupView() {
               </span>
             </div>
           </div>
-          <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
-            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-              <div class=" rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
-                
-                    alt="Avatar"
-                  />
-              </div>
-              <div class="rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[1]?.filename}`}
-                 
-                    alt="Avatar"
-                  />              </div>
-              <div class=" rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[2]?.filename}`}
-                   
-                    alt="Avatar"
-                  />              </div>
-              <div class="rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image[0]?.files[3]?.filename}`}
-               
-                    alt="Avatar"
-                  />              </div>
+          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
+            <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <Carousel showThumbs={false}>
+                {image[0]?.files.slice(1).map((file, index) => (
+                  <div key={index}>
+                    <img
+                      src={`http://localhost:5000/uploads/${file.filename}`}
+                      alt={`Carousel Item ${index}`}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </>
   );
 }

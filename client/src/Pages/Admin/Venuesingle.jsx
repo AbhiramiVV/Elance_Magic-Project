@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Adminsidebar from "../../Component/Adminsidebar";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "../../instance/axios";
 import { useAuthContext } from "../../Hooks/useAuthContext";
+
 function Venuesingle() {
   const { id } = useParams();
+  const { admin } = useAuthContext();
 
-  const{admin}=useAuthContext()
   const [name, setname] = useState("");
   const [manager, setmanager] = useState("");
   const [type, setType] = useState("");
@@ -20,16 +23,13 @@ function Venuesingle() {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    const viewvenueSingle = async () => {
-      try {
-       
-        const res = await axios.get(`/vendor/singleVenue/${id}`,{
-          headers: {
-            Authorization: `${admin.token}`,
-          },
-        });
+    axios.get(`/vendor/singleVenue/${id}`, {
+      headers: {
+        Authorization: `${admin.token}`,
+      },
+    })
+      .then((res) => {
         const venuesingle = res.data;
-        console.log(venuesingle);
         setname(venuesingle.name);
         setdescription(venuesingle.description);
         setType(venuesingle.type);
@@ -41,11 +41,10 @@ function Venuesingle() {
         setseats(venuesingle.seats);
         setRent(venuesingle.rent);
         setImage(venuesingle.image);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    };
-    viewvenueSingle();
+      });
   }, [id]);
 
   return (
@@ -53,94 +52,65 @@ function Venuesingle() {
       <div className="flex gap-24 bg-white">
         <Adminsidebar />
 
-        {/* <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6"> * */}
-
-        <div class="flex flex-col md:lg:xl:flex-row bg-white">
-          <div class="h-screen w-screen md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
-            {/* <div class="h-screen w-screen md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center shadow-2xl "> */}
-
-            <div class="bg-white p-8 rounded-xl w-96 shadow-2xl mx-auto flex flex-col items-center justify-center">
-              <div class="flex justify-between mb-4 text-center mx-auto">
+        <div className="flex flex-col md:lg:xl:flex-row bg-white">
+          <div className="h-screen w-screen md:lg:xl:w-1/2 bg-white flex flex-wrap justify-center content-center">
+            <div className="bg-white p-8 rounded-xl w-96 shadow-2xl mx-auto flex flex-col items-center justify-center">
+              <div className="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                   src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
+                    src={image ? `http://localhost:5000/uploads/${image.files[0]?.filename}` : ''}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
-                  <p class="text-lg font-semibold text-neutral-700">{name}</p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">Category:</span>
-                    {type}
+                  <p className="text-lg font-semibold text-neutral-700">{name}</p>
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Category:</span> {type}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">Manager:</span>
-                    {manager}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Manager:</span> {manager}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">Email:</span>
-                    {email}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Email:</span> {email}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">Mobile:</span>
-                    {mobile}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Mobile:</span> {mobile}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">Address:</span>
-                    {address}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Address:</span> {address}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-black font-extrabold">
-                      Location:
-                    </span>{" "}
-                    {location}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-black font-extrabold">Location:</span> {location}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-red-900 font-extrabold">Seats:</span>{" "}
-                    {seats}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-red-900 font-extrabold">Seats:</span> {seats}
                   </p>
-                  <p class="mt-0.5  text-black text-md">
-                    <span className="text-red-900 font-extrabold">Rate:</span>{" "}
-                    {rent}
+                  <p className="mt-0.5 text-black text-md">
+                    <span className="text-red-900 font-extrabold">Rate:</span> {rent}
                   </p>
                 </div>
               </div>
 
-              <span class="text-orange-500   px-3 text-sm py-1.5 bg-red-50 rounded-lg font-bold">
+              <span className="text-orange-500 px-3 text-sm py-1.5 bg-red-50 rounded-lg font-bold">
                 {description}
               </span>
             </div>
           </div>
-           <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
-            <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-              <div class=" rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
-                
-                    alt="Avatar"
-                  />
-              </div>
-              <div class="rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image?.files[1]?.filename}`}
-                 
-                    alt="Avatar"
-                  />              </div>
-              <div class=" rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image?.files[2]?.filename}`}
-                   
-                    alt="Avatar"
-                  />              </div>
-              <div class="rounded-lg overflow-hidden">
-              <img
-                   src={`http://localhost:5000/uploads/${image?.files[3]?.filename}`}
-               
-                    alt="Avatar"
-                  />              </div>
+
+          <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
+            <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
+              <Carousel showThumbs={false}>
+                {Array.isArray(image.files) &&
+                  image.files.map((file, index) => (
+                    <div key={index}>
+                      <img
+                        src={file ? `http://localhost:5000/uploads/${file.filename}` : ''}
+                        alt={`Carousel Item ${index}`}
+                      />
+                    </div>
+                  ))}
+              </Carousel>
             </div>
           </div>
-
-
         </div>
       </div>
     </>
