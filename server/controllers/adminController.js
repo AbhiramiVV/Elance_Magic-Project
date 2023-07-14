@@ -41,7 +41,6 @@ login: async (req, res) => {
           adminExist.password
         );
 
-            console.log(passwordMatch,'passwordmach');
         if (passwordMatch) {
           const token = createToken(adminExist._id);
           res.status(200).json({

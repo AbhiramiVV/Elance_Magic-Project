@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "../../instance/axios"
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
-const CoversationAdmin = ({ data, currentUser, online, type }) => {
+const CoversationAdmin = ({ data, currentUser, online }) => {
     const [userData, setUserData] = useState(null)
     const {admin}=useAuthContext();
 
