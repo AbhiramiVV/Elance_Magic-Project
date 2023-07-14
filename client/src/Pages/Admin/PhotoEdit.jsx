@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react'
 import axios from '../../instance/axios'
 import {useNavigate,useParams } from 'react-router-dom';
 import Adminsidebar from '../../Component/Adminsidebar';
+import { useAuthContext } from '../../Hooks/useAuthContext';
 
 function PhotoEdit() {
   const {id}=useParams();
   //const history = useHistory();
   const Navigate=useNavigate()
-  
-  console.log(id)
+  const {admin}=useAuthContext();
   const [pname, setname] = useState("");
   const [pemail, setemail] = useState("");
   const [pexperiance, setExperiance] = useState("");
@@ -19,28 +19,36 @@ function PhotoEdit() {
   const [rent, setRent] = useState("");
   const [files, setFiles] = useState([]);
 
-
-  useEffect(()=>{
-      const fetchPhoto=async()=>{
-          const response = await axios.get(`/vendor/singlePhotographer/${id}`);
-          const photo=response.data;
-          setname(photo.pname);
-          setemail(photo.pemail);
-          setDesc(photo.pdesc);
-          setAddress(photo.paddress);
-          setmobile(photo.pmobile)
-          setExperiance(photo.pexperiance)
-          setRent(photo.rate)
-          setFiles(photo.files)
+  useEffect(() => {
+    const fetchPhoto = async () => {
+      try {
+        const response = await axios.get(`/vendor/singlePhotographer/${id}`, {
+          headers: {
+            Authorization: admin.token,
+          },
+        });
+        const photo = response.data;
+        setname(photo.pname);
+        setemail(photo.pemail);
+        setDesc(photo.pdesc);
+        setAddress(photo.paddress);
+        setmobile(photo.pmobile);
+        setExperiance(photo.pexperiance);
+        setRent(photo.rate);
+        setFiles(photo.files);
+      } catch (error) {
+        console.log(error);
       }
-      fetchPhoto();
-      
-
-  },[id]);
+    };
+  
+    fetchPhoto();
+  }, [id]);
+  
 
 const updatePhoto=async(e)=>{
   e.preventDefault()
   const updatePhoto={pname,pemail,pmobile,paddress,pexperiance,rent,files};
+  console.log(updatePhoto,'999999999999');
   await axios.put(`/vendor/photoedit/${id}`,updatePhoto,{
     headers: {
       Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
@@ -64,7 +72,7 @@ return (
                 <div className="rounded-t bg-white mb-0 px-6 py-6">
                   <div className="text-center flex justify-center">
                     <h6 className="text-blueGray-700 text-xl font-bold">
-                      DECORATION MANAGEMENT
+                      PHOTOGRAPHER MANAGEMENT
                     </h6>
                   </div>
                 </div>
