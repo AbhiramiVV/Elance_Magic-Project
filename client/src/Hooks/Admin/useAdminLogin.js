@@ -8,16 +8,13 @@ export const useAdminLogin = () => {
   const { dispatch } = useAuthContext()
 
   const login = async (email, password) => {
-    console.log('login');
     setIsLoading(true)
     setError(null)
 
     try {
-      console.log(email,password)
       const response = await axios.post('/vendor/vendor', { email,password})
       const json = response.data.json
       const adminExist=response.data.adminExist
-      console.log(response.data)
 
 
       // save the user to the local storage
