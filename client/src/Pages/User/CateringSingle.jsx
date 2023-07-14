@@ -120,6 +120,7 @@ function CateringSingle() {
         console.log(response.data.status)
         toast.success(response.data.message);
         generateInvoice(name, desc, type, rent, selectedDate);
+        navigate("/success");
        
     } catch (error) {}
   };
@@ -380,7 +381,9 @@ function CateringSingle() {
                     <PayPalScriptProvider
                       options={{
                         "client-id":
-                        "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                        process.env.REACT_APP_ACCESS_KEY,
+
+                        
                       }}
                     >
                       <PayPalButtons
@@ -406,7 +409,9 @@ function CateringSingle() {
                       <PayPalScriptProvider
                         options={{
                           "client-id":
-                          "Abhp9DIDpqLlpmwjLxCUOBJhsJPefegAgL7aTXjA8Q6CBkR5oV4IeeRI4EpMXjdRjPmdWDWMmgK0T0m2",
+                          process.env.REACT_APP_ACCESS_KEY,
+
+                          
                         }}
                       >
                         <PayPalButtons
