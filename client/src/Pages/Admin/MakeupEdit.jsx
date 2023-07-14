@@ -17,8 +17,7 @@ function MakeupEdit() {
       const [manager, setmanager] = useState("");
       const [mobile, setmobile] = useState("");
       const [rent, setRent] = useState("");
-      const [image, setImage] = useState([]);
-      const [uploadedImages, setUploadedImages] = useState([]);
+      const [files, setFiles] = useState([]);
       useEffect(()=>{
           const fetchadmin=async()=>{
               const response = await axios.get(`/vendor/singleMakeup/${id}`,{
@@ -34,7 +33,7 @@ function MakeupEdit() {
               setmobile(Make.mobile)
               setType(Make.type)
               setRent(Make.rent)
-              setImage(Make.uploadedImages)
+              setFiles(Make.files)
           }
           fetchadmin();
           
@@ -43,9 +42,14 @@ function MakeupEdit() {
   
   const updateMake=async(e)=>{
       e.preventDefault()
-      const updateMake={name,email,mobile,type,rent,uploadedImages};
+      const updateMake={name,email,mobile,type,rent,files};
   
-      await axios.put(`/vendor/makeedit/${id}`,updateMake)
+      await axios.put(`/vendor/makeedit/${id}`,updateMake,{
+        headers: {
+          Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+  
+  
+      },})
       Navigate("/vendor/makeup")
       
   }
@@ -214,7 +218,7 @@ function MakeupEdit() {
   name="image"
   accept="image/*"
   multiple={true}
-  onChange={(e) => setUploadedImages(Array.from(e.target.files))}
+  onChange={(e) => setFiles((e.target.files[0]))}
   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 />
    

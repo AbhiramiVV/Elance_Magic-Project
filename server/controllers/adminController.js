@@ -581,10 +581,19 @@ singleMakeup:async (req, res) => {
   }
 },
 updateMake:async (req, res) => {
-  console.log(req.body,'8888888888888');
   try {
-    console.log(req.body);
-    const Makeupnew = await Makeupcollection.findByIdAndUpdate(req.params.id, req.body, {
+    const Makeupnew = await Makeupcollection.findByIdAndUpdate(req.params.id, {
+      VendorId:req.body.VendorId,
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      type:req.body.type,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      address:req.body.address,
+      image:req.files,
+    }, {
       new: true,
     });
     if (!Makeupnew) {
