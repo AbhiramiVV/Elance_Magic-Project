@@ -45,7 +45,7 @@ function DecorEdit() {
 
 const updateDecor=async(e)=>{
     e.preventDefault()
-    const updateDecor={name,email,mobile,type,rent,desc,image};
+    const updateDecor={name,email,mobile,type,rent,desc,files};
     await axios.put(`/vendor/decoredit/${id}`,updateDecor,{
       headers: {
         Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'

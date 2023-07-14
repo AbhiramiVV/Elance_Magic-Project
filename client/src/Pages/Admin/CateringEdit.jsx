@@ -10,7 +10,6 @@ function CateringEdit() {
    
       const Navigate=useNavigate()
       
-      console.log(id)
       const [name, setname] = useState("");
       const [email, setemail] = useState("");
       const [type, setType] = useState("");
@@ -19,7 +18,7 @@ function CateringEdit() {
       const [mobile, setmobile] = useState("");
       const [rent, setRent] = useState("");
       const [menu,setMenu]=useState("");
-      const [image, setImage] = useState([]);
+      const [files, setFiles] = useState([]);
       const [address,setAddress]=useState("");
   
       useEffect(()=>{
@@ -37,7 +36,7 @@ function CateringEdit() {
               setmobile(Catering.mobile)
               setType(Catering.type)
               setRent(Catering.rent)
-              setImage(Catering.image)
+              setFiles(Catering.files)
               setMenu(Catering.menu)
               setAddress(Catering.address)
           }
@@ -48,8 +47,13 @@ function CateringEdit() {
   
   const updateCatering=async(e)=>{
       e.preventDefault()
-      const updateCatering={name,email,mobile,type,rent,menu,address,image};
-      await axios.put(`/vendor/cateringedit/${id}`,updateCatering)
+      const updateCatering={name,email,mobile,type,rent,menu,address,files};
+      await axios.put(`/vendor/cateringedit/${id}`,updateCatering,{
+        headers: {
+          Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+  
+  
+      },})
       Navigate("/vendor/Catering")
       
   }
@@ -254,15 +258,14 @@ function CateringEdit() {
                               Upload Image
                             </label>
                             <input
-                              type="file"
-                              id="image"
-                              
-                              name="image"
-                              accept="image/*"
-                              multiple={true}
-          
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            />
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  multiple={true}
+  onChange={(e) => setFiles((e.target.files[0]))}
+  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+/>
                             
                           </div>
                         </div>

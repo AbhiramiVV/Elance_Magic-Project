@@ -528,7 +528,19 @@ singleCatering :async (req, res) => {
 updateCatering:async (req, res) => {
   try {
     console.log(req.body);
-    const Cateringnew = await cateringcollection.findByIdAndUpdate(req.params.id, req.body, {
+    const Cateringnew = await cateringcollection.findByIdAndUpdate(req.params.id, {
+      VendorId:req.body.VendorId,
+      name: req.body.name,
+      email: req.body.email,
+      manager: req.body.manager,
+      type:req.body.type,
+      mobile: req.body.mobile,
+      desc: req.body.desc,
+      rent: req.body.rent,
+      address:req.body.address,
+      menu:req.body.menu,
+      image:req.files,
+    }, {
       new: true,
     });
     if (!Cateringnew) {
