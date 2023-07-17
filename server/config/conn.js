@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 function dbConnect() {
-  mongoose.connect("mongodb://localhost:27017/event").then(()=>{
+  mongoose.connect(process.env.MONGOOSE_CONNECT).then(()=>{
       console.log('Database connected');
     })
     .catch((err) => {
