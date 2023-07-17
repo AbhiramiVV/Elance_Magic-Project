@@ -21,8 +21,7 @@ function ChatBox({chat,currentUser, setSendMessage, receivedMessage,setReceiver}
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [showMenu, setShowMenu] = useState(false);
-    // const [image, setImage] = useState(null);
-    // const scroll = useRef();
+    const scroll = useRef();
     const imageRef = useRef();
 
     const {user}=useAuthContext()
