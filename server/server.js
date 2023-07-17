@@ -21,7 +21,7 @@ app.use(express.static(path.resolve(__dirname, "public")));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000"]
+    origin: ["http://localhost:3000","https://enlancemagico.netlify.app/"]
   },
 });
 let activeUsers = [];
@@ -61,7 +61,7 @@ app.use(morgan('dev'))
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
+      "http://localhost:3000","https://enlancemagico.netlify.app/"
     ],
     credentials: true,
   })
