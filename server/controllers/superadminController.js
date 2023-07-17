@@ -31,12 +31,20 @@ login :async (req, res) => {
   try {
     const { email, password } = req.body;
     const superwe = await superadmin.findOne({ email: req.body.email });
-    if (email === superwe.email && password === superwe.password) {
+    if (superwe) {
+      id = superwe._id;
+
+      const checkpassword = await bcrypt.compare(
+        password,
+        superwe.password
+      );
+    if (email === superwe.email && checkpassword) {
       const token = createToken(superwe._id);
       return res.status(200).json({ token, message: "Login successful" });
     } else {
       return res.status(200).json({  success: true,error: "Incorrect login details" });
     }
+  }
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -232,10 +240,10 @@ getAdmin:async(req,res)=>{
  
  try {
   const {_id} = jwt.verify(token,"superadminSecretkey")
-  const superadminExist=await superadmin.find({_id})
+  const response=await superadmin.find({_id})
+console.log(response,'================');
   res.status(200).json({
       token,
-      superadminExist
     });
      
  } catch (error) {
