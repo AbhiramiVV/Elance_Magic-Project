@@ -18,7 +18,7 @@ import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Hooks/useAuthContext";
 const Header = () => {
   const{logout}=useLogout()
-  
+
   const { user } = useAuthContext();
   const [bg, setBg] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
     logout()
     
   }
-  
+  console.log(user,'888888888888888888888888888888');
 
    
   useEffect(() => {

@@ -681,7 +681,6 @@ feachUser: async (req,res) =>{
 console.log(id);
   try{
     const data= await adminModels.find({_id:id})
-    console.log(data,'88888888888');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)
@@ -697,6 +696,31 @@ feachVendor:async(req,res)=>{
   }catch (error){
     res.status(500).json(error)
   }
+},
+
+ userAuthe:async(req,res)=>{
+
+
+  //verify authentication
+ const{authorization} =req.headers
+ 
+ if(!authorization){
+  return res.status(401).json({error:"Authorization token required"})
+ }
+const token=authorization
+try {
+ const {_id} =jwt.verify(token,'usersecretkey')
+ let userExist= await userDetails.findOne({_id}).select('_id')
+ res.status(200).json({
+  token,userExist
+});
+} catch (error) {
+  console.log(error)
+  res.status(401).json({error:'Request is not authorized'})
+}
+
+
+
 }
 
 };

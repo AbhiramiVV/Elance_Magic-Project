@@ -6,6 +6,8 @@ const admin = require("../controllers/adminController");
 const adminAuth = require("../middleware/adminAuth");
 
 router.post("/vendor", admin.login);
+router.get('/checkAuthe',admin.adminAuthe)
+
 router.post("/vendorSignup", upload.single("file"), admin.postSignup);
 router.post("/otp", admin.verifyvendorSignup);
 router.use(adminAuth)

@@ -697,6 +697,33 @@ getAdmin:async(req,res)=>{
       res.status(404).json({ error: "Internal Server Error" });
     }
   },
+  adminAuthe:async(req,res)=>{
+
+
+    const {authorization} =req.headers
+console.log(authorization,'88888888');
+   if(!authorization){
+       return res.status(401).json({error: "Authorization token required"})
+   }
+   
+   const token = authorization 
+   
+   try {
+       const {_id} = jwt.verify(token,"adminsecretkey")
+       const adminExist=await adminModels.find({_id})
+       res.status(200).json({
+        token,adminExist
+      });
+       
+   } catch (error) {
+       console.log(error);
+       res.status(401).json({error:"Request is not authorized"})
+   
+   }
+  
+  
+  },
+  
  adminChats:async(req,res)=>{
   try{
       const chat = await ChatModel.find({

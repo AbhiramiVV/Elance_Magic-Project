@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import {Routes,Route, Navigate} from "react-router-dom";
+import React, { useEffect} from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "../Pages/User/Homepage";
 import Userlogin from "../Pages/User/Userlogin";
 import UserRegister from "../Pages/User/UserRegister";
@@ -16,6 +16,7 @@ import PageNotFound from "../Component/PageNotFound";
 import CateringView from "../Pages/User/CateringView";
 import Decorsinglepage from "../Pages/User/Decorsinglepage";
 import Venusingle from "../Pages/User/Venusingle";
+import axios from '../instance/axios'
 import CateringSingle from "../Pages/User/CateringSingle";
 import MakeupView from "../Pages/User/MakeupView";
 import MakeupSingle from "../Pages/User/MakeupSingle";
@@ -23,9 +24,41 @@ import Details from "../Pages/User/Details";
 import Chat from "../Pages/Chat/Chat";
 import OrderSuccess from "../Pages/User/Order";
 function User() {
+
+
+
   const {user}=useAuthContext()
+  const { dispatch } = useAuthContext()
+if(!user){
+  useEffect (()=>{
+    var userData = localStorage.getItem('user');
+    if (userData) {
+      let usertoken = JSON.parse(userData);
+      axios.get('/checkAuth', {
+        headers: {
+          Authorization: `${usertoken.token}`,
+        },}).then((response)=>{  
+    
+        // update the auth context
+        dispatch({ type: 'LOGIN', payload:response.data})
+    
+        setIsLoading(false)
+      }).catch((error)=>{
+        console.log(error);
+      })
+    } else {
+      console.log('User data not found in local storage');
+    }
+    
+    
+  
+  },[]);
+}
+
+
   return (
     <fragments>     
+
         <Routes>
         <Route path='/' element={<Homepage/>}></Route>
         <Route path='/login' element={!user ?<Userlogin/>:<Navigate to='/'/>}/>

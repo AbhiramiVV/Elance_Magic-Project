@@ -24,8 +24,8 @@
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "sharp": "^0.32.1",
+    "socket.io": "^4.7.1",
     "twilio": "^4.11.1"
   },
-  "devDependencies": {},
   "description": ""
 }

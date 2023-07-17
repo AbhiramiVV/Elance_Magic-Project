@@ -5,7 +5,7 @@ const User = require("../controllers/userController");
 const userAuth = require("../middleware/userAuth");
 
 router.post("/login", User.login);
-
+router.get('/checkAuth',User.userAuthe)
 router.post("/signup", User.postsignup);
 router.post("/otp", User.verifyUserSignup);
 router.post("/resendOtp", User.postResend);
