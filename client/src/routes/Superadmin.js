@@ -6,12 +6,42 @@ import Adminview from '../Pages/Superadmin/Adminview';
 import AdminEdit from '../Pages/Superadmin/AdminEdit';
 import Individualview from '../Pages/Superadmin/Individualview';
 import { useAuthContext } from '../Hooks/useAuthContext';
-import { Navigate } from 'react-router-dom';
+import { useEffect } from "react";
+import axios from '../instance/axios'
 import PageNotFound from '../Component/PageNotFound';
 import CustomerView from  '../Pages/Superadmin/CustomerView'
 import Order from '../Pages/Superadmin/Order';
 function Superadmin() {
   const {superadmin}=useAuthContext()
+  const { dispatch } = useAuthContext()
+  if(!superadmin){
+    useEffect (()=>{
+      const superadminData= localStorage.getItem('superadmin');
+ 
+      if (superadminData) {
+        let superadmintoken = JSON.parse(superadminData);
+
+        axios.get('/superadmin/checkAuthe', {
+          headers: {
+            Authorization: `${superadmintoken.token}`,
+          },}).then((response)=>{  
+      
+          // update the auth context
+          dispatch({ type: 'SUPERLOGIN', payload:response.data})
+      
+          setIsLoading(false)
+        }).catch((error)=>{
+          console.log(error);
+        })
+      } else {
+        console.log('Superadmin data not found in local storage');
+      }
+      
+      
+    
+    })
+  }
+
 
   return (
     <fragments>

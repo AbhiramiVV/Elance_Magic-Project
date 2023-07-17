@@ -7,6 +7,7 @@ const multiUpload = require("../utility/multer");
 const upload = require("../utility/multer");
 
 router.post("/superlogin", superadminController.login);
+router.get('/checkAuthe',superadminController.superadminAuthe)
 
 router.use(superAuth);
 router.get("/customerdisplay", superadminController.customerview);

@@ -219,7 +219,33 @@ getAdmin:async(req,res)=>{
   
  const TotalRevenue=VenueBookings+photoBookings+CaterBookings+MakeBookings+DecorBookings 
  res.status(200).json({Orders,venuecount,countuser,photocount,Decorcount,catercount,makecount,venue,decor,photo,admin,user,cater,make,DecorBookings,photoBookings,VenueBookings,TotalRevenue,MakeBookings,CaterBookings})
+ },
+ superadminAuthe:async(req,res)=>{
+
+
+  const {authorization} =req.headers
+ if(!authorization){
+     return res.status(401).json({error: "Authorization token required"})
  }
+ 
+ const token = authorization 
+ 
+ try {
+  const {_id} = jwt.verify(token,"superadminSecretkey")
+  const superadminExist=await superadmin.find({_id})
+  res.status(200).json({
+      token,
+      superadminExist
+    });
+     
+ } catch (error) {
+     console.log(error);
+     res.status(401).json({error:"Request is not authorized"})
+ 
+ }
+
+
+},
 
 
 
