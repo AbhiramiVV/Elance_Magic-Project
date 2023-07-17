@@ -15,8 +15,9 @@ function Superadmin() {
   const {superadmin}=useAuthContext()
   const { dispatch } = useAuthContext()
 
-  if(!superadmin){
+
     useEffect (()=>{
+      
       const superadminData= localStorage.getItem('superadmin');
       if (superadminData) {
         let superadmintoken = JSON.parse(superadminData);
@@ -37,8 +38,8 @@ function Superadmin() {
       
       
     
-    })
-  }
+    },[]);
+  
 
 
   return (

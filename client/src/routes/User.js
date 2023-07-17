@@ -29,7 +29,6 @@ function User() {
 
   const {user}=useAuthContext()
   const { dispatch } = useAuthContext()
-if(!user){
   useEffect (()=>{
     var userData = localStorage.getItem('user');
     if (userData) {
@@ -52,7 +51,7 @@ if(!user){
     
   
   },[]);
-}
+
 
 
   return (
