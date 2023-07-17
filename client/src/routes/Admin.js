@@ -38,33 +38,29 @@ import axios from '../instance/axios'
 function Admin() {
   const {admin}=useAuthContext()
   const { dispatch } = useAuthContext()
-  if(!admin){
-    useEffect (()=>{
-      const adminData= localStorage.getItem('admin');
- 
-      if (adminData) {
-        let admintoken = JSON.parse(adminData);
+  useEffect(() => {
+    const adminData = localStorage.getItem('admin');
 
-        axios.get('/vendor/checkAuthe', {
+    if (adminData) {
+      let admintoken = JSON.parse(adminData);
+
+      axios
+        .get('/vendor/checkAuthe', {
           headers: {
             Authorization: `${admintoken.token}`,
-          },}).then((response)=>{  
-      
-          // update the auth context
-          dispatch({ type: 'ADMINLOGIN', payload:response.data})
-      
-        }).catch((error)=>{
-          console.log(error);
+          },
         })
-      } else {
-        console.log('Admin data not found in local storage');
-      }
-      
-      
-    
-    })
-  }
-  
+        .then((response) => {
+          // update the auth context
+          dispatch({ type: 'ADMINLOGIN', payload: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log('Admin data not found in local storage');
+    }
+  }, []);
 
   return (
 <fragments>
