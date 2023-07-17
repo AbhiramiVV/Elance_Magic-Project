@@ -14,13 +14,14 @@ import Order from '../Pages/Superadmin/Order';
 function Superadmin() {
   const {superadmin}=useAuthContext()
   const { dispatch } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(false)
+
+  setIsLoading(true)
   if(!superadmin){
     useEffect (()=>{
       const superadminData= localStorage.getItem('superadmin');
- console.log(superadminData,'kkkkkkkkkkkk');
       if (superadminData) {
         let superadmintoken = JSON.parse(superadminData);
-console.log(superadmintoken,'11111111111111');
         axios.get('/superadmin/checkAuthe', {
           headers: {
             Authorization: `${superadmintoken.token}`,
