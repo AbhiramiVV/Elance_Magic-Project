@@ -42,7 +42,6 @@ if(!user){
         // update the auth context
         dispatch({ type: 'LOGIN', payload:response.data})
     
-        setIsLoading(false)
       }).catch((error)=>{
         console.log(error);
       })

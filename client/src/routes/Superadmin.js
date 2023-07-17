@@ -14,9 +14,7 @@ import Order from '../Pages/Superadmin/Order';
 function Superadmin() {
   const {superadmin}=useAuthContext()
   const { dispatch } = useAuthContext()
-  const [isLoading, setIsLoading] = useState(false)
 
-  setIsLoading(true)
   if(!superadmin){
     useEffect (()=>{
       const superadminData= localStorage.getItem('superadmin');
@@ -30,7 +28,6 @@ function Superadmin() {
           // update the auth context
           dispatch({ type: 'SUPERLOGIN', payload:response.data})
       
-          setIsLoading(false)
         }).catch((error)=>{
           console.log(error);
         })

@@ -53,7 +53,6 @@ function Admin() {
           // update the auth context
           dispatch({ type: 'ADMINLOGIN', payload:response.data})
       
-          setIsLoading(false)
         }).catch((error)=>{
           console.log(error);
         })
