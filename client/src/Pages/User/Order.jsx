@@ -4,7 +4,7 @@ const OrderSuccess = () => {
   const navigate = useNavigate();
     setTimeout(() => {
         navigate('/details')
-    }, 5000)
+    }, 8000)
   return (
       <div class="bg-white-100 h-screen flex justify-center items-center">
               <div class="bg-white p-6  md:mx-auto">
