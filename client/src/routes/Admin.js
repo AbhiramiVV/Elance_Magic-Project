@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {Routes,Route} from "react-router-dom";
 import Dashboard from '../Pages/Admin/Dashboard';
-import { Navigate } from 'react-router-dom';
 import Adminlogin from '../Pages/Admin/Adminlogin'
 import EditProfile from '../Pages/Admin/EditProfile';
 import { useAuthContext } from '../Hooks/useAuthContext';

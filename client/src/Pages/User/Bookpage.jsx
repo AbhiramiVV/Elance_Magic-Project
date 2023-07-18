@@ -43,12 +43,16 @@ function Bookpage () {
 </button></Link>
 </div>
 
-       <div className="w-full  overflow-x-hidden flex justify-center  py-0 items-center overflow mx-auto">
-       
-         <div
-           id="slider"
-           className="h-full flex lg:gap-8 md:gap-6 gap-10 items-center justify-start transition ease-out mt-10 duration-700"
-         >
+<div className="w-full overflow-x-auto flex justify-center py-0 items-center">
+  <div
+    id="slider"
+    className="h-full flex lg:gap-8 md:gap-6 gap-10 items-center justify-start transition ease-out mt-10 duration-700"
+    style={{
+      overflowX: 'auto',
+      whiteSpace: 'nowrap',
+      marginRight: '-10px' /* Adjust as needed */,
+    }}
+  >
              
            <div className="flex flex-shrink-0 relative w-full sm:w-auto">
           <img

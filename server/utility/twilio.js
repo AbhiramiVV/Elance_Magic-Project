@@ -8,7 +8,6 @@ exports.checkVerificationToken = (otp, phoneNumber) => {
         code: otp
       })
       .then((verification_check) => {
-        console.log(verification_check.status);
         if (verification_check.status === 'approved') {
           resolve(true);
         } else {
