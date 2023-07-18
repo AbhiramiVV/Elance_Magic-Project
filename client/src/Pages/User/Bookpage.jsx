@@ -50,7 +50,7 @@ function Bookpage () {
     style={{
       overflowX: 'auto',
       whiteSpace: 'nowrap',
-      marginRight: '-10px' /* Adjust as needed */,
+      marginRight: '-10px' ,
     }}
   >
              
