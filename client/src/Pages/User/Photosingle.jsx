@@ -210,7 +210,7 @@ function Photosingle({}) {
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                    src={`http://localhost:5000/uploads/${image[0]?.files[0]?.filename}`}
+                    src={`https://server.skoshoes.store/uploads/${image[0]?.files[0]?.filename}`}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />
@@ -335,7 +335,7 @@ function Photosingle({}) {
                 {image[0]?.files.slice(1).map((file, index) => (
                   <div key={index}>
                     <img
-                      src={`http://localhost:5000/uploads/${file.filename}`}
+                      src={`https://server.skoshoes.store/uploads/${file.filename}`}
                       alt={`Carousel Item ${index}`}
                     />
                   </div>

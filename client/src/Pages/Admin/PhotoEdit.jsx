@@ -48,7 +48,6 @@ function PhotoEdit() {
 const updatePhoto=async(e)=>{
   e.preventDefault()
   const updatePhoto={pname,pemail,pmobile,paddress,pexperiance,rent,files};
-  console.log(updatePhoto,'999999999999');
   await axios.put(`/vendor/photoedit/${id}`,updatePhoto,{
     headers: {
       Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'

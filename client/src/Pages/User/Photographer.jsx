@@ -43,7 +43,7 @@ function Photographer() {
             <div className="flex justify-center">
               <img
                 className="rounded-t-lg object-cover w-full h-64"
-                src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
+                src={`https://server.skoshoes.store/uploads/${data.image[0].files[0].filename}`}
                 alt=""
               />
             </div>

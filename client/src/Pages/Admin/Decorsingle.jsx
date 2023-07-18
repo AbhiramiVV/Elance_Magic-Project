@@ -56,7 +56,7 @@ function Decorsingle() {
                 <div>
                   
                   <img
-                   src={image ?`http://localhost:5000/uploads/${image[0].files[0].filename}`:''}
+                   src={image ?`https://server.skoshoes.store/uploads/${image[0].files[0].filename}`:''}
                     className="w-32 rounded-full mx-auto"
                     alt="Avatar"
                   />

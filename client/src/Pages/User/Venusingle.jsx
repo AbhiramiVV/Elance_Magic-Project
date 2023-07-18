@@ -232,7 +232,7 @@ console.error(error);
               <div class="flex justify-between mb-4 text-center mx-auto">
                 <div>
                   <img
-                     src={`http://localhost:5000/uploads/${image?.files[0]?.filename}`}
+                     src={`https://server.skoshoes.store/uploads/${image?.files[0]?.filename}`}
                     className="w-50 h-50 mx-auto"
                     alt="Avatar"
                   />
@@ -353,7 +353,7 @@ console.error(error);
                   image.files.map((file, index) => (
                     <div key={index}>
                       <img
-                        src={file ? `http://localhost:5000/uploads/${file.filename}` : ''}
+                        src={file ? `https://server.skoshoes.store/uploads/${file.filename}` : ''}
                         alt={`Carousel Item ${index}`}
                       />
                     </div>

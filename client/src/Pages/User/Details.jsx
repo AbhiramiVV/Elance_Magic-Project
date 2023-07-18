@@ -189,7 +189,7 @@ function Details() {
                           <td className="px-4 py-3">
                             {" "}
                             <img
-                              src={`http://localhost:5000/uploads/${booking.PhotoId.image[0]?.files[0]?.filename}`}
+                              src={`https://server.skoshoes.store/uploads/${booking.PhotoId.image[0]?.files[0]?.filename}`}
                               alt="Photographer Image"
                               className="h-10 w-10 rounded-full"
                             />
@@ -252,7 +252,7 @@ function Details() {
                         <td className="px-4 py-3">
                           {" "}
                           <img
-                            src={`http://localhost:5000/uploads/${booking.VenueId.image?.files[0]?.filename}`}
+                            src={`https://server.skoshoes.store/uploads/${booking.VenueId.image?.files[0]?.filename}`}
                             alt="Photographer Image"
                             className="h-10 w-10 rounded-full"
                           />
@@ -313,7 +313,7 @@ function Details() {
                         <td className="px-4 py-3">
                         
                           <img
-                            src={`http://localhost:5000/uploads/${booking.DecorId.image[0]?.files[0]?.filename}`}
+                            src={`https://server.skoshoes.store/uploads/${booking.DecorId.image[0]?.files[0]?.filename}`}
                             alt="Decor Image"
                             className="h-10 w-10 rounded-full"
                           />
@@ -374,7 +374,7 @@ function Details() {
                       >
                         <td className="px-4 py-3">
                           <img
-                            src={`http://localhost:5000/uploads/${booking.CaterId.image[0]?.files[0]?.filename}`}
+                            src={`https://server.skoshoes.store/uploads/${booking.CaterId.image[0]?.files[0]?.filename}`}
                             alt="Decor Image"
                             className="h-10 w-10 rounded-full"
                           />
@@ -435,7 +435,7 @@ function Details() {
                       >
                         <td className="px-4 py-3">
                           <img
-                            src={`http://localhost:5000/uploads/${booking.MakeId.image[0]?.files[0]?.filename}`}
+                            src={`https://server.skoshoes.store/uploads/${booking.MakeId.image[0]?.files[0]?.filename}`}
                             alt="Makeup Image"
                             className="h-10 w-10 rounded-full"
                           />

@@ -36,7 +36,7 @@ function Venue() {
         <div class="flex justify-center mt-18">
           <img
             class="rounded-t-lg object-cover w-full h-64"
-            src={`http://localhost:5000/uploads/${data.image.files[0].filename}`}
+            src={`https://server.skoshoes.store/uploads/${data.image.files[0].filename}`}
             alt=""
           />
         </div>

@@ -29,7 +29,6 @@ function MakeupView() {
         console.log(error);
       }
     };
-  console.log(makeup,'5555555555555');
     useEffect(() => {
         getMakeup();
     }, []);
@@ -43,7 +42,7 @@ function MakeupView() {
           <div className="flex justify-center mt-18">
             <img
               className="rounded-t-lg object-cover w-full h-64"
-              src={`http://localhost:5000/uploads/${data.image[0].files[0].filename}`}
+              src={`https://server.skoshoes.store/uploads/${data.image[0].files[0].filename}`}
               alt=""
             />
           </div>

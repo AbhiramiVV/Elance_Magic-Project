@@ -82,7 +82,7 @@ const Photoview=()=> {
       },
       {
           name:"Image",
-          selector:(row)=><img width={90} height={90} src={`http://localhost:5000/uploads/${row.image[0].files[0].filename}`}/>
+          selector:(row)=><img width={90} height={90} src={`https://server.skoshoes.store/uploads/${row.image[0].files[0].filename}`}/>
           
       },
       {

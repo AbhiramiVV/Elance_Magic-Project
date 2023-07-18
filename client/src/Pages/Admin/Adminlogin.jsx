@@ -30,20 +30,7 @@ function Adminlogin() {
         } catch (error) {
         //   toast.error("Invalid login details");
         }
-    
-      
-
-        
-        // postApi('/admin/login',{email,password},(response)=> {
-        //     const { created, token, message } = response.data;
-        //     if (created == true) {
-        //       toast.success(message);
-        //       localStorage.setItem('adminToken', token);
-        //       navigate("/admin/dashboard");
-        //     } else {
-        //       toast.error(message);
-        //     }
-        //   });
+   
 
 
         
