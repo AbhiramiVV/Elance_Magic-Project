@@ -21,7 +21,7 @@ app.use(express.static(path.resolve(__dirname, "public")));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000","https://enlancemagico.netlify.app/"]
+    origin: ["http://localhost:3000","https://enlancemagico.netlify.app"]
   },
 });
 let activeUsers = [];
