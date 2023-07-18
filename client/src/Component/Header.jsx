@@ -26,7 +26,6 @@ const Header = () => {
     logout()
     
   }
-  console.log(user,'888888888888888888888888888888');
 
    
   useEffect(() => {
