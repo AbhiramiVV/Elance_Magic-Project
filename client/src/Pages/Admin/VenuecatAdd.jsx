@@ -23,11 +23,11 @@ const VenuecatAdd=()=> {
             
             await axios.post('/vendor/Venueadd',{name,file,id},{
                 headers: {
-                  
-                    'content-type': 'multipart/form-data'
-
-                  },
-            }) .then((response) => {
+                  Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
+          
+          
+              },
+              }) .then((response) => {
               console.log(response);
               if (response.data.message) {
                 Navigate("/vendor/Venueview");
