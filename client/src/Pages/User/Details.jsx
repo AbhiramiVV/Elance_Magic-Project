@@ -104,6 +104,15 @@ function Details() {
             </div>
 
             <div className="w-full  overflow-x-hidden flex justify-center  py-0 items-center overflow mx-auto mt-8 gap-4">
+            <div
+    id="slider"
+    className="h-full flex lg:gap-8 md:gap-6 gap-10 items-center justify-start transition ease-out mt-10 duration-700"
+    style={{
+      overflowX: 'auto',
+      whiteSpace: 'nowrap',
+      marginRight: '-10px' ,
+    }}
+  >
               <p
                 className={`text-black font-bold py-2 px-4 rounded-full ${
                   activeTab === "photographer"
@@ -163,6 +172,7 @@ function Details() {
               >
                 Makeup Bookings
               </button>
+              </div>
             </div>
             {activeTab === "photographer" && (
               <table className="mt-5 mx-auto">
