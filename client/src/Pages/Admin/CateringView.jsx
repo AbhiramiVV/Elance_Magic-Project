@@ -108,7 +108,7 @@ function CateringView() {
                 {image[0]?.files.map((file, index) => (
                   <div key={index}>
                     <img
-                      src={`http://localhost:5000/uploads/${file.filename}`}
+                      src={`https://server.skoshoes.store/uploads/${file.filename}`}
                       alt={`Carousel Item ${index}`}
                     />
                   </div>

@@ -103,7 +103,7 @@ function Venuesingle() {
                   image.files.map((file, index) => (
                     <div key={index}>
                       <img
-                        src={file ? `http://localhost:5000/uploads/${file.filename}` : ''}
+                        src={file ? `https://server.skoshoes.store/uploads/${file.filename}` : ''}
                         alt={`Carousel Item ${index}`}
                       />
                     </div>
