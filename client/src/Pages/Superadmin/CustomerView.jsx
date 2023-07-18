@@ -12,7 +12,7 @@ import Superadminbar from '../../Component/Superadminbar'
 const CustomerView = () => {
 const {superadmin}=useAuthContext();
   const [customer, setCustomer] = useState([]);
-  const [search, setsearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
  
@@ -24,8 +24,6 @@ const {superadmin}=useAuthContext();
           },
         });
         const { message, data } = response.data;
-        console.log(response.data);
-        console.log('Successful');
         setCustomer(data.reverse());
         setFilteredAdmin(data);
 
@@ -34,16 +32,18 @@ const {superadmin}=useAuthContext();
         console.error(error);
       }
     };
-    
+    const handleSearch = (e) => {
+      setSearchQuery(e.target.value);
+    };
     useEffect(() => {
     getCustomer();
   }, []);
 
   useEffect(() => {
     setFilteredAdmin(
-      customer.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      customer.filter((cat) => cat.name.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [search, superadmin]);
+  }, [searchQuery, superadmin]);
   const handleBlock = async (id) => {
     try {
       const confirmResult = await Swal.fire({
@@ -155,7 +155,8 @@ const {superadmin}=useAuthContext();
                                   type="text"
                                   placeholder="Search"
                                   className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                                  
+                                  value={searchQuery}
+                    onChange={handleSearch}
                               />
                           }
                       />

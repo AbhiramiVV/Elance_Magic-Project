@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 const Adminview = () => {
   const { superadmin } = useAuthContext();
   const [admin, setadmin] = useState([]);
-  const [search, setsearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -71,7 +71,9 @@ const Adminview = () => {
     }
   };
   
-  
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   useEffect(() => {
     getAdmin();
@@ -81,9 +83,9 @@ const Adminview = () => {
 
   useEffect(() => {
     setFilteredAdmin(
-      admin.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      admin.filter((cat) => cat.name.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [search, superadmin]);
+  }, [searchQuery, superadmin]);
 
 
   const columns = [
@@ -173,8 +175,8 @@ const Adminview = () => {
                     type="text"
                     placeholder="Search"
                     className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                    value={search}
-                    onChange={(e) => setsearch(e.target.value)}
+                    value={searchQuery}
+                    onChange={handleSearch}
                   />
                 }
               />
