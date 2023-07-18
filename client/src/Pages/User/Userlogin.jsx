@@ -34,7 +34,7 @@ function Userlogin() {
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
         <div className="hidden sm:block h-full">
         </div>
-        <div className="flex flex-col justify-center" >
+        <div className="flex flex-col justify-center" style={{ marginRight: "17px",marginLeft:"17px" }}>
           <img className="w-40 h-40 mx-auto object-cover" src={logo} />
 
           <Formik

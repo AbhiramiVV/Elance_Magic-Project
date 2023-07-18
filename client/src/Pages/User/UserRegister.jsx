@@ -58,7 +58,7 @@ function UserRegister() {
           <div className="hidden sm:block h-full">
           </div>
 
-          <div className='flex flex-col justify-center'>
+          <div className='flex flex-col justify-center' style={{ marginRight: "17px",marginLeft:"17px" }}>
             <img className='w-40 h-40 mx-auto object-cover' src={logo} alt="Logo" />
             <form className='max-w-[400px] w-full mx-auto bg-gray-200 p-8 px-8 rounded-lg'>
               <h2 className='text-4xl dark:text-white font-bold text-center'>REGISTER HERE</h2>
