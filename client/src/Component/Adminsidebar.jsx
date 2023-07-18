@@ -25,7 +25,7 @@ function Adminsidebar() {
     logout()
   }
   const menus=[
-    {name:"Dashboard",link:'/vendor/vendor',icon:MdOutlineDashboard },
+    {name:"Dashboard",link:'/vendor/vendor/',icon:MdOutlineDashboard },
     {name:"Profile",link:'/vendor/profile',icon:GiPartyPopper },
     {name:"Venue-Category",link:'/vendor/Venueview',icon:FaHotel },
     {name:"Venue",link:'/vendor/venueDisplay',icon:FaPlaceOfWorship },
