@@ -49,10 +49,10 @@ export const navigation = [
     name: 'EVENT MANAGEMENT',
     href: '/vendor/vendor',
   },
-  // {
-  //   name: <IoMdLock/>,
-  //   href: 'about',
-  // },
+  {
+    name: 'LOGIN',
+    href: '/login',
+  },
  
 ];
 
