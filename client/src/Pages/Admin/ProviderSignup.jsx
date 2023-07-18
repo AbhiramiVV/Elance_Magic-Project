@@ -376,10 +376,9 @@ const ProviderSignup = () => {
   };
   return (
     !showOtp ?
-      <div style={{ backgroundImage: `url(${event})`, backgroundSize: "cover" }}>
         <div className='w-full h-50 grid lg:grid-cols-3 md:grid-cols-5 bg-white'>
           <div className='md:col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-5'>
-            <img src={logo} alt="logo" width={330} />
+            {/* <img src={logo} alt="logo" width={330} /> */}
             <h1 className='font-Viaoda text-7xl mb-10'>SINGUP</h1>
             <input
               type="text"
@@ -524,12 +523,12 @@ const ProviderSignup = () => {
             <p className='mt-5'>Already a member?<a className='text-blue-900 font-semibold cursor-pointer' onClick={loginHandle}>Login</a></p>
           </div>
           <div className='hidden md:flex items-center flex-col md:col-span-3 lg:col-span-2'>
-        <img src={event} alt="LOGIN" className='w-[100%] top-1 sticky' />
+        <img src={logo} alt="LOGIN" className='w-[50%] top-1 sticky' />
       </div>
      
 
         </div >
-      </div>
+      
       : <Otp data={{ ...providerData, vendor: true }} />
 
   )

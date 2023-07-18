@@ -6,7 +6,6 @@ import { useAuthContext } from '../Hooks/useAuthContext';
 
 
 const AddServiceModal = ({ visible, onClose, inService }) => {
-  // console.log(inService);
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const {admin}=useAuthContext()
@@ -33,7 +32,6 @@ const AddServiceModal = ({ visible, onClose, inService }) => {
             Authorization: admin.token,
           },
         })
-        console.log(response);
       if (response.status === 201) {
         toast({
           position: "top",
