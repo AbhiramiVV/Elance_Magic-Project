@@ -13,9 +13,9 @@ function Catering() {
   const { admin } = useAuthContext();
 
   const [catering, setCaterig] = useState([]);
-  const [search, setsearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredAdmin, setFilteredAdmin] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const fetchVenue = async () => {
     try {
@@ -27,8 +27,7 @@ function Catering() {
       const { message, data } = response.data;
       setCaterig(data.reverse());
       setFilteredAdmin(data);
-
-      setloading(false);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching catering view:', error);
     }
@@ -62,15 +61,21 @@ function Catering() {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   useEffect(() => {
     fetchVenue();
   }, []);
 
   useEffect(() => {
     setFilteredAdmin(
-      catering.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      catering.filter((cat) =>
+        cat.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
     );
-  }, [search, admin]);
+  }, [searchQuery, catering]);
 
   const columns = [
     {
@@ -158,9 +163,9 @@ function Catering() {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                    value={search}
-                    onChange={(e) => setsearch(e.target.value)}
+                    className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black"
+                    value={searchQuery}
+                    onChange={handleSearch}
                   />
                 }
               />

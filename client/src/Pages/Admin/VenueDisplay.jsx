@@ -15,7 +15,7 @@ function VenueDisplay() {
 
     const{admin}=useAuthContext()
     const[venue,setVenue]=useState([])
-    const [search, setsearch] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
     const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
   
@@ -65,19 +65,21 @@ function VenueDisplay() {
           toast.error('Failed to delete venue category.');
         }
       };
+      const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+      };
        
     useEffect(() => {
       fetchVenue();
     }, []);
-    const ImgURl='http://localhost:5000/uploads/'
 
     useEffect(() => {
         setFilteredAdmin(
             venue.filter((ven) =>
-            ven.name.toLowerCase().includes(search.toLowerCase())
+            ven.name.toLowerCase().includes(searchQuery.toLowerCase())
           )
         );
-      }, [search, admin]);
+      }, [searchQuery, admin]);
     
 
     const columns=[
@@ -159,13 +161,13 @@ return (
                       HighlightOnHover
                       subHeader
                       subHeaderComponent={
-                          <input
-                              type="text"
-                              placeholder="Search"
-                              className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                              value={search}
-                              onChange={(e) => setsearch(e.target.value)}
-                          />
+                        <input
+                        type="text"
+                        placeholder="Search"
+                        className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
+                        value={searchQuery}
+              onChange={handleSearch}
+                    />
                       }
                   />
                   )}

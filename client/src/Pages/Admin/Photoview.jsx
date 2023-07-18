@@ -15,7 +15,7 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 const Photoview=()=> {
   const{admin}=useAuthContext()
   const[photographer,setPhotographer]=useState([])
-  const [search, setsearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setloading] = useState(true);
   const [filteredAdmin, setFilteredAdmin] = useState([]);
 
@@ -64,16 +64,19 @@ const Photoview=()=> {
       toast.error('Failed to delete venue category.');
     }
   };
-
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
   useEffect(() => {
     fetchPhotographerView();
   }, []);
   
   useEffect(() => {
     setFilteredAdmin(
-      photographer.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      photographer.filter((cat) => 
+      cat.pname.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [search, admin]);
+  }, [searchQuery, admin]);
 
     const columns=[
       {
@@ -139,7 +142,7 @@ return (
                   <BaseTable
                       columns={columns}
                        data={filteredAdmin}
-                      title={"Photographer MANAGEMENT"}
+                      title={"PHOTOGRAPHER MANAGEMENT"}
                       pagination
                       fixedHeader
                       HighlightOnHover
@@ -149,8 +152,8 @@ return (
                               type="text"
                               placeholder="Search"
                               className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                              value={search}
-                              onChange={(e) => setsearch(e.target.value)}
+                              value={searchQuery}
+                    onChange={handleSearch}
                           />
                       }
                   />

@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 function DecorDisplay() {
   const { admin } = useAuthContext();
   const [Decor, setDecor] = useState([]);
-  const [search, setSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [filteredAdmin, setFilteredAdmin] = useState([]);
   const fetchDecor = async () => {
@@ -60,15 +60,17 @@ function DecorDisplay() {
       toast.error('Failed to delete venue category.');
     }
   };
-
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
   useEffect(() => {
     fetchDecor();
   }, []);
   useEffect(() => {
     setFilteredAdmin(
-      Decor.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+      Decor.filter((cat) => cat.name.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [search, admin]);
+  }, [searchQuery, admin]);
   const columns = [
     {
       name: '#',
@@ -147,8 +149,8 @@ function DecorDisplay() {
                   type='text'
                   placeholder='Search'
                   className='shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black '
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={searchQuery}
+                    onChange={handleSearch}
                 />
               }
             />

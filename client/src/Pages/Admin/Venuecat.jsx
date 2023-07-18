@@ -13,8 +13,8 @@ import ClipLoader from 'react-spinners/ClipLoader';
 const Venuecat=()=> {
     const{admin}=useAuthContext()
     const[venuecat,setVenuecat]=useState([])
-    const [search, setsearch] = useState("");
-     const [filtervenue,setFiltervenue]=useState([])
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filtervenue,setFiltervenue]=useState([])
       const[loading,setloading]=useState(true)
 
     const fetchVenueCategories = async () => {
@@ -67,14 +67,17 @@ const Venuecat=()=> {
     toast.error('Failed to delete venue category.');
   }
 };
+const handleSearch = (e) => {
+  setSearchQuery(e.target.value);
+};
  useEffect(() => {
         fetchVenueCategories();
       }, []);
       useEffect(() => {
         setFiltervenue(
-          venuecat.filter((cat) => cat.name.toLowerCase().includes(search.toLowerCase()))
+          venuecat.filter((cat) => cat.name.toLowerCase().includes(searchQuery.toLowerCase()))
         );
-      }, [search, admin]);
+      }, [searchQuery, admin]);
 
       const ImgURl='http://localhost:5000/uploads/'
 
@@ -136,6 +139,15 @@ const Venuecat=()=> {
                         fixedHeader
                         HighlightOnHover
                         subHeader
+                        subHeaderComponent={
+                          <input
+                              type="text"
+                              placeholder="Search"
+                              className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
+                              value={searchQuery}
+                    onChange={handleSearch}
+                          />
+                      }
                        
                    />)
 

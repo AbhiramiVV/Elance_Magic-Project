@@ -13,7 +13,7 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 function Makeup() {
   const{admin}=useAuthContext()
   const[makeup,setMakeup]=useState([])
-  const [search, setsearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredAdmin, setFilteredAdmin] = useState([]);
 const [loading, setloading] = useState(true);
 
@@ -69,14 +69,16 @@ const [loading, setloading] = useState(true);
     fetchMakeup();
   }, []);
  
-
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
   useEffect(() => {
       setFilteredAdmin(
         makeup.filter((make) =>
-          make.name.toLowerCase().includes(search.toLowerCase())
+          make.name.toLowerCase().includes(searchQuery.toLowerCase())
         )
       );
-    }, [search, admin]);
+    }, [searchQuery, admin]);
   
 
   const columns=[
@@ -169,8 +171,8 @@ return (
                             type="text"
                             placeholder="Search"
                             className="shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-black "
-                            value={search}
-                            onChange={(e) => setsearch(e.target.value)}
+                            value={searchQuery}
+                    onChange={handleSearch}
                         />
                     }
                 />
