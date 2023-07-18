@@ -241,7 +241,6 @@ getAdmin:async(req,res)=>{
  try {
   const {_id} = jwt.verify(token,"superadminSecretkey")
   const response=await superadmin.find({_id})
-console.log(response,'================');
   res.status(200).json({
       token,
     });

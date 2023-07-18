@@ -701,7 +701,6 @@ getAdmin:async(req,res)=>{
 
 
     const {authorization} =req.headers
-console.log(authorization,'88888888');
    if(!authorization){
        return res.status(401).json({error: "Authorization token required"})
    }
