@@ -33,9 +33,8 @@ function Userlogin() {
     <div style={{ backgroundImage: `url(${userRegister})`, backgroundSize: "cover" }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
         <div className="hidden sm:block h-full">
-          <img className="absolute inset-0 m-0 h-full overflow-hidden rounded-none p-5 ml-25" style={{ marginLeft: "400px" }} />
         </div>
-        <div className="flex flex-col justify-center" style={{ marginRight: "200px" }}>
+        <div className="flex flex-col justify-center" >
           <img className="w-40 h-40 mx-auto object-cover" src={logo} />
 
           <Formik
