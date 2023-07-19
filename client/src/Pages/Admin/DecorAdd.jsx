@@ -43,7 +43,6 @@ const id=admin.adminExist[0]._id;
       }
       });
 
-      console.log(response);
       if (response.data.message) {
         navigate("/vendor/Decordisplay");
       }
