@@ -314,11 +314,11 @@ setAmountpay(amountpay)
 
           <div class="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
           <div class="grid grid-cols-2 gap-2 mt-20 mr-8">
-  <Carousel showThumbs={false}>
+          <Carousel showThumbs={false}>
     {image[0]?.files.map((file, index) => (
       <div key={index}>
         <img
-          src={file?`http://localhost:5000/uploads/${file.filename}`:''}
+          src={file?`https://server.skoshoes.store/uploads/${file.filename}`:''}
           alt={`Carousel Item ${index}`}
         />
       </div>

@@ -20,7 +20,7 @@ const PhotoAdd = () => {
 const [pdesc, setPdesc] = useState("");
   const [files, setFiles] = useState([]);
   const [imgeError, setImageError] = React.useState(false);
-  const id=admin.adminExist[0]._id
+  const id=admin.adminExist._id
   const handleImageChange = (e) => {
     const selectedFiles = e.target.files;
     setFiles([...selectedFiles]);
