@@ -139,7 +139,7 @@ function DecorDisplay() {
             <Basetable
               columns={columns}
               data={filteredAdmin}
-              title={'DECOR MANAGEMENT'}
+              title={'DECORATION MANAGEMENT'}
               pagination
               fixedHeader
               HighlightOnHover
