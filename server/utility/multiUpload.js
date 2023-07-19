@@ -16,7 +16,7 @@ let upload=multer({
     storage: storage
 })
 
-const multipleUpload = upload.fields([{ name: 'files', maxCount: 5}])
+const multipleUpload = upload.fields([{ name: 'files', maxCount: 8}])
 
 
 module.exports=multipleUpload
