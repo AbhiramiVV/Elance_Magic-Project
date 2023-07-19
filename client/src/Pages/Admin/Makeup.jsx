@@ -161,7 +161,7 @@ return (
                 <Basetable
                     columns={columns}
                      data={filteredAdmin}
-                    title={"CATERING MANAGEMENT"}
+                    title={"MAKEUP MANAGEMENT"}
                     pagination
                     fixedHeader
                     HighlightOnHover

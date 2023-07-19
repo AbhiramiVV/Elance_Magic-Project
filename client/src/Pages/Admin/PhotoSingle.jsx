@@ -42,7 +42,6 @@ const{admin}=useAuthContext()
     };
     viewPhotoSingle();
   }, [id]);
-console.log(image,'00000000000000');
   return (
     <>
       <div className="flex gap-24 bg-white">

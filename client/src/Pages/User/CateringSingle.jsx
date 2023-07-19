@@ -333,8 +333,8 @@ function CateringSingle() {
   
             <div className="md:lg:xl:w-1/2 bg-white flex flex-wrap justify-end content-center mx-auto">
             <div className="grid grid-cols-2 gap-2 mt-20 mr-8">
-              <Carousel showThumbs={false}>
-                {image[0]?.files.slice(1).map((file, index) => (
+            <Carousel showThumbs={false}>
+                {image[0]?.files.map((file, index) => (
                   <div key={index}>
                     <img
                       src={`https://server.skoshoes.store/uploads/${file.filename}`}
