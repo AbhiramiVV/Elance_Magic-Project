@@ -18,7 +18,7 @@ function CateringAdd() {
     const [address,setAddress]=useState("");
     const [files, setFiles] = useState([]);
     const [imageError, setImageError] = useState(false);
-   const id=admin.adminExist._id
+   const id=admin.adminExist[0]._id
   
     const navigate = useNavigate();
   

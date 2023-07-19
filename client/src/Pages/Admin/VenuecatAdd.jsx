@@ -13,7 +13,7 @@ const VenuecatAdd=()=> {
     const [name,setName]=useState("")
     const[file,setImage]=useState("")
     const[loading,setloading]=useState(true)
-    const id=admin.adminExist._id
+    const id=admin.adminExist[0]._id
 
     const addVenuecat=async(e)=>{
         console.log(name)

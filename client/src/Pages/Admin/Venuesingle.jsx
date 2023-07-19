@@ -79,7 +79,7 @@ function Venuesingle() {
                     <span className="text-black font-extrabold">Address:</span> {address}
                   </p>
                   <p className="mt-0.5 text-black text-md">
-                    <span className="text-black font-extrabold">Location:</span> {location}
+                    <span className="text-black font-extrabold">Services:</span> {location}
                   </p>
                   <p className="mt-0.5 text-black text-md">
                     <span className="text-red-900 font-extrabold">Seats:</span> {seats}

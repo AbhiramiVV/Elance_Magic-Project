@@ -20,8 +20,7 @@ const PhotoAdd = () => {
 const [pdesc, setPdesc] = useState("");
   const [files, setFiles] = useState([]);
   const [imgeError, setImageError] = React.useState(false);
-  const id=admin.adminExist._id
-
+  const id=admin.adminExist[0]._id
   const handleImageChange = (e) => {
     const selectedFiles = e.target.files;
     setFiles([...selectedFiles]);
@@ -53,13 +52,10 @@ const [pdesc, setPdesc] = useState("");
     
     
         },
-        })
-        .then((response) => {
-          console.log(response);
+        });
           if (response.data.message) {
             Navigate("/vendor/photographerview");
-          }
-        });
+          }    
     } catch (error) {}
   };
 

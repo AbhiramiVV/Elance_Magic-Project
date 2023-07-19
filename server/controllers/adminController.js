@@ -407,6 +407,7 @@ Deletedecor :async (req, res) => {
   }
 },
 photographerAdd :async (req, res) => {
+  console.log(req.body.VendorId,'999999999');
   try {
     await photographer.create({
       VendorId:req.body.VendorId,
@@ -639,8 +640,12 @@ getAdmin:async(req,res)=>{
  const makecount=await Makeupcollection.find({}).count()
  const make=await Makeupcollection.find()
  let photoBookings = 0;
-  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.map(data=>{
-   photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.forEach(data=>{
+    if(data.PhotoId && data.PhotoId.rate){
+      photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+
+
+    }
  }))
 
  let DecorBookings=0;
