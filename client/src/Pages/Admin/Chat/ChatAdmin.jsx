@@ -38,7 +38,7 @@ const ChatAdmin = () => {
 
    // Connect to Socket.io
    useEffect(() => {
-    socket.current = io('http://localhost:5000');
+    socket.current = io('https://server.skoshoes.store/');
     socket.current.emit("new-user-add", vendorId);
     socket.current.on("get-users", (users) => {
         setOnlineUsers(users);

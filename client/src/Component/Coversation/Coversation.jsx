@@ -9,9 +9,9 @@ const Conversation = ({ data, currentUser, online, type }) => {
 
 const {user}=useAuthContext()
     useEffect(() => {
-
+console.log(data.members,'222222222');
+console.log(currentUser);
         const userId = data?.members?.find((id) => id !== currentUser)
-         
              axios.get(`/userchat/${userId}`,{headers: {
                 Authorization: `${user.token}`,
               }}).then((response)=>{

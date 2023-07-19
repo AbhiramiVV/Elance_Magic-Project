@@ -160,7 +160,7 @@ function Photosingle({}) {
       setPexperience(photosingle.pexperiance);
       setRate(photosingle.rate);
       setImage(photosingle.image);
-      setId(photosingle.vendorId);
+      setId(photosingle.VendorId);
       console.log(photosingle);
       const amountpay = photosingle.rate / 2;
       setAmountpay(amountpay);

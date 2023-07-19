@@ -19,6 +19,7 @@ const Chat = () => {
   const [showEstimate, setShowEstimate] = useState(false);
   const [receiver, setReceiver] = useState("");
   const userId=user.userExist._id;
+  
   const showEstimateClose = () => setShowEstimate(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const Chat = () => {
               Authorization: `${user.token}`,
             },
           })
-         
+         console.log(data,'................');
         setChats(data);
       } catch (error) {
         
@@ -41,7 +42,7 @@ const Chat = () => {
 
    // Connect to Socket.io
    useEffect(() => {
-    socket.current = io('http://localhost:5000');
+    socket.current = io('https://server.skoshoes.store/');
     socket.current.emit("new-user-add", userId);
     socket.current.on("get-users", (users) => {
         setOnlineUsers(users);
