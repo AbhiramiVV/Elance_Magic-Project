@@ -7,7 +7,6 @@ import Superadmin from "./routes/Superadmin";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '././instance/axios'
-import PageNotFound from "./Component/PageNotFound";
 
 
 function App() {
