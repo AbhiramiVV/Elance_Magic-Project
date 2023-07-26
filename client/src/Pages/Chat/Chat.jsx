@@ -31,7 +31,7 @@ const Chat = () => {
               Authorization: `${user.token}`,
             },
           })
-         console.log(data,'................');
+       
         setChats(data);
       } catch (error) {
         

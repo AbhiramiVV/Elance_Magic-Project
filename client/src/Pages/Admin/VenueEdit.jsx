@@ -50,8 +50,21 @@ function VenueEdit() {
 
 const updateVenue=async(e)=>{
     e.preventDefault()
-    const updateVenue={name,email,mobile,type,rent,address,location, description,files,seats};
-    await axios.put(`/vendor/venuEdit/${id}`,updateVenue,{
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("manager", manager);
+    formData.append("address", address);
+    formData.append("location", location);
+    formData.append("email", email);
+    formData.append("mobile", mobile);
+    formData.append("type", type);
+    formData.append("description", description);
+    formData.append("rent", rent);
+    formData.append("seats", seats);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+    await axios.put(`/vendor/venuEdit/${id}`,formData,{
       headers: {
         Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
 
@@ -289,7 +302,7 @@ const updateVenue=async(e)=>{
   name="image"
   accept="image/*"
   multiple={true}
-  onChange={(e) => setFiles((e.target.files[0]))}
+  onChange={(e) => setFiles((e.target.files))}
   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 />
                         </div>

@@ -407,7 +407,6 @@ Deletedecor :async (req, res) => {
   }
 },
 photographerAdd :async (req, res) => {
-  console.log(req.body.VendorId,'999999999');
   try {
     await photographer.create({
       VendorId:req.body.VendorId,
@@ -437,6 +436,7 @@ singlePhotographer :async (req, res) => {
   }
 },
  updatePhoto :async (req, res) => {
+  console.log(req.body,'//////////');
   try {
     const Photonew = await photographer.findByIdAndUpdate(
       req.params.id,
@@ -448,7 +448,7 @@ singlePhotographer :async (req, res) => {
         pmobile: req.body.pmobile,
         paddress: req.body.paddress,
         pexperiance: req.body.pexperiance,
-        rate: req.body.rate,
+        rate: req.body.rent,
         image: req.files,
       },
       {

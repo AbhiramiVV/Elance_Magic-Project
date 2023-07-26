@@ -42,7 +42,6 @@ const [pdesc, setPdesc] = useState("");
         formData.append(`files`, files[i]);
       }
 
-    console.log(formData);
 
     try {
       const response = await axios

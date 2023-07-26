@@ -34,7 +34,7 @@ function PhotoEdit() {
         setAddress(photo.paddress);
         setmobile(photo.pmobile);
         setExperiance(photo.pexperiance);
-        setRent(photo.rate);
+        setRent(photo.rent);
         setFiles(photo.files);
       } catch (error) {
         console.log(error);
@@ -47,8 +47,22 @@ function PhotoEdit() {
 
 const updatePhoto=async(e)=>{
   e.preventDefault()
-  const updatePhoto={pname,pemail,pmobile,paddress,pexperiance,rent,files};
-  await axios.put(`/vendor/photoedit/${id}`,updatePhoto,{
+  const formData = new FormData();
+  formData.append("VendorId",id);
+  formData.append("pname", pname);
+  formData.append("pdesc", pdesc);
+  formData.append("pemail", pemail);
+  formData.append("pmobile", pmobile);
+  formData.append("paddress", paddress);
+  formData.append("pexperiance", pexperiance);
+  formData.append("rate", rent);
+  
+  
+  for (let i = 0; i < files.length; i++) {
+      formData.append(`files`, files[i]);
+    }
+    console.log(formData,'??????????????????');
+  await axios.put(`/vendor/photoedit/${id}`,formData,{
     headers: {
       Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
 
@@ -213,7 +227,7 @@ return (
   name="image"
   accept="image/*"
   multiple={true}
-  onChange={(e) => setFiles((e.target.files[0]))}
+  onChange={(e) => setFiles((e.target.files))}
   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 />
                         
