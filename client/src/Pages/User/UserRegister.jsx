@@ -32,7 +32,7 @@ function UserRegister() {
         return;
       }
 
-      axios.post('/signup', { ...Inpval }).then((data) => {
+      axios.post('https://server.skoshoes.store/signup', { ...Inpval }).then((data) => {
       
         if (!data.data.err) {
     
