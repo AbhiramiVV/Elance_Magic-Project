@@ -42,7 +42,6 @@ function Details() {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-console.log(photo,'888888888888888888888');
   const handlephotocancel=async(id,bookItem)=>{
     try {
       const confirmResult = await Swal.fire({

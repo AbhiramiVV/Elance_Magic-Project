@@ -42,9 +42,20 @@ function MakeupEdit() {
   
   const updateMake=async(e)=>{
       e.preventDefault()
+      const formData = new FormData();
+    formData.append("VendorId",id);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("mobile", mobile);
+    formData.append("type", type);
+    formData.append("rent", rent);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+
       const updateMake={name,email,mobile,type,rent,files};
   
-      await axios.put(`/vendor/makeedit/${id}`,updateMake,{
+      await axios.put(`/vendor/makeedit/${id}`,formData,{
         headers: {
           Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
   
@@ -218,7 +229,7 @@ function MakeupEdit() {
   name="image"
   accept="image/*"
   multiple={true}
-  onChange={(e) => setFiles((e.target.files[0]))}
+  onChange={(e) => setFiles((e.target.files))}
   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 />
    

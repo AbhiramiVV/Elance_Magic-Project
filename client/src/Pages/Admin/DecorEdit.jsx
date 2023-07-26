@@ -45,8 +45,21 @@ function DecorEdit() {
 
 const updateDecor=async(e)=>{
     e.preventDefault()
-    const updateDecor={name,email,mobile,type,rent,desc,files};
-    await axios.put(`/vendor/decoredit/${id}`,updateDecor,{
+    const formData = new FormData();
+    formData.append("VendorId",id)
+    formData.append("name", name);
+    formData.append("manager", manager);
+    formData.append("email", email);
+    formData.append("mobile", mobile);
+    formData.append("type", type);
+    formData.append("desc", desc);
+    formData.append("rent", rent);
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+
+    await axios.put(`/vendor/decoredit/${id}`,formData,{
       headers: {
         Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
 
@@ -239,7 +252,7 @@ const updateDecor=async(e)=>{
   name="image"
   accept="image/*"
   multiple={true}
-  onChange={(e) => setFiles((e.target.files[0]))}
+  onChange={(e) => setFiles((e.target.files))}
   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 />
                           

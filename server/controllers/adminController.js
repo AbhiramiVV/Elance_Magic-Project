@@ -436,7 +436,6 @@ singlePhotographer :async (req, res) => {
   }
 },
  updatePhoto :async (req, res) => {
-  console.log(req.body,'//////////');
   try {
     const Photonew = await photographer.findByIdAndUpdate(
       req.params.id,
@@ -482,7 +481,6 @@ viewCatering:async(req,res)=>{
   }
 },
 cateringAdd:async (req, res) => {
-console.log(req.body);
   try {
     await cateringcollection.create({
       VendorId:req.body.VendorId,

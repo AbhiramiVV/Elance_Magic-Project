@@ -32,7 +32,6 @@ function Catering() {
       console.error('Error fetching catering view:', error);
     }
   };
-
   const handleDelete = async (id) => {
     try {
       const confirmResult = await Swal.fire({
