@@ -32,7 +32,7 @@ function UserRegister() {
         return;
       }
 
-      axios.post('http://localhost:5000/signup', { ...Inpval }).then((data) => {
+      axios.post('/signup', { ...Inpval }).then((data) => {
       
         if (!data.data.err) {
     
