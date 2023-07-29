@@ -77,7 +77,7 @@ function Photosingle({}) {
   const [amountPay, setAmountpay] = useState(0);
   const [paymentOption, setPaymentOption] = useState("advance");
   const navigate = useNavigate();
-
+console.log(Id,'kkkkkkkkkkkkkkkkkkkkkkkkk');
   const handleDateChange = async (date) => {
     setSelectedDate(date);
     try {
@@ -161,7 +161,6 @@ function Photosingle({}) {
       setRate(photosingle.rate);
       setImage(photosingle.image);
       setId(photosingle.VendorId);
-      console.log(photosingle);
       const amountpay = photosingle.rate / 2;
       setAmountpay(amountpay);
       setloading(false);
