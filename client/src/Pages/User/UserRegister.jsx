@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import Otp from './Otp';
 
 function UserRegister() {
-  const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const [Inpval, setInpval] = useState({
     name: "",
