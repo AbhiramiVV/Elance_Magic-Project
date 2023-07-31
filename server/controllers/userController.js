@@ -681,6 +681,7 @@ feachUser: async (req,res) =>{
 console.log(id);
   try{
     const data= await adminModels.find({_id:id})
+    console.log(data,'444444444444444');
     res.status(200).json({data})
   } catch (error){
     res.status(500).json(error)

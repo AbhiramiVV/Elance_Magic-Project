@@ -15,7 +15,7 @@ const ChatAdmin = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [showEstimate, setShowEstimate] = useState(false);
   const [receiver, setReceiver] = useState("");
-  const vendorId=admin.adminExist._id;
+  const vendorId=admin.adminExist[0]._id;
   const showEstimateClose = () => setShowEstimate(false);
 
   useEffect(() => {

@@ -13,7 +13,6 @@ const {user}=useAuthContext()
              axios.get(`/userchat/${userId}`,{headers: {
                 Authorization: `${user.token}`,
               }}).then((response)=>{
-
                   setUserData(response.data.data[0])
               }).catch((err)=>{
                 console.log(err)
