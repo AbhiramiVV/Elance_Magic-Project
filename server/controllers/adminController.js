@@ -637,14 +637,14 @@ getAdmin:async(req,res)=>{
  const photo = await photographer.find();
  const makecount=await Makeupcollection.find({}).count()
  const make=await Makeupcollection.find()
-//  let photoBookings = 0;
-//   await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.forEach(data=>{
-//     if(data.PhotoId && data.PhotoId.rate){
-//       photoBookings =parseInt( data.PhotoId.rate)+photoBookings
+ let photoBookings = 0;
+  await PhotoBook.find().populate('PhotoId','rate').then(datas => datas.forEach(data=>{
+    if(data.PhotoId && data.PhotoId.rate){
+      photoBookings =parseInt( data.PhotoId.rate)+photoBookings
 
 
-//     }
-//  }))
+    }
+ }))
 
  let DecorBookings=0;
  await DecorBook.find().populate('DecorId','rent').then(datas=>datas.forEach(data=>{

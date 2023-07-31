@@ -43,7 +43,10 @@ function PhotoEdit() {
   
     fetchPhoto();
   }, [id]);
-  
+  const handleImageChange = (e) => {
+    const selectedFiles = e.target.files;
+    setFiles([...selectedFiles]);
+  };
 
 const updatePhoto=async(e)=>{
   e.preventDefault()
@@ -56,12 +59,10 @@ const updatePhoto=async(e)=>{
   formData.append("paddress", paddress);
   formData.append("pexperiance", pexperiance);
   formData.append("rate", rent);
-  
-  
   for (let i = 0; i < files.length; i++) {
       formData.append(`files`, files[i]);
     }
-    console.log(formData,'??????????????????');
+   
   await axios.put(`/vendor/photoedit/${id}`,formData,{
     headers: {
       Authorization: `${admin.token}` ,  'content-type': 'multipart/form-data'
@@ -222,14 +223,14 @@ return (
                           Upload Image
                         </label>
                         <input
-  type="file"
-  id="image"
-  name="image"
-  accept="image/*"
-  multiple={true}
-  onChange={(e) => setFiles((e.target.files))}
-  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-/>
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept="image/*"
+                            multiple
+                            onChange={handleImageChange}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          />
                         
                       </div>
                     </div>
