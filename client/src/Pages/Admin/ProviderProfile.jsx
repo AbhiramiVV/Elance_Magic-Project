@@ -16,7 +16,7 @@ const ProviderProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const id = admin.adminExist._id;
+        const id = admin.adminExist[0]._id;
         const response = await axios.get(`/vendor/providerDetails/${id}`, {
           headers: {
             Authorization: `${admin.token}`,
